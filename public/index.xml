@@ -1,0 +1,18 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OBITools4 documentation – OBITools4: a unix-inspired software package for DNA metabarcoding</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content in OBITools4: a unix-inspired software package for DNA metabarcoding on OBITools4 documentation</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Oct 2024 11:14:04 +0200</lastBuildDate>
+    
+	  <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+      
+      
+    
+    
+  </channel>
+</rss>
