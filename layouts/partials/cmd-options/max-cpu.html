@@ -1,0 +1,10 @@
+{{ partial "cmd-options/option.html" 
+(dict "name" "max-cpu"
+      "param" "INTEGER"
+      "documentation" `*OBITools* can take advantage of your computer's multi-core 
+                       architecture by parallelizing the computation across all available CPUs. 
+                       Computing on more CPUs usually requires more memory to perform the 
+                       computation. Reducing the number of CPUs used to perform a calculation 
+                       is also a way to indirectly control the amount of memory used by the 
+                       process. The number of CPUs used by *OBITools* can also be controlled 
+                       by setting the **OBIMAXCPU** environment variable.`) }}

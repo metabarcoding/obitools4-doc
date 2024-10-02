@@ -1,0 +1,3 @@
+<b><code class="language-bash">--{{ .name }}</code></b>{{ if  .short }}
+| <b><code class="language-bash">-{{ .short }}</code></b>
+{{ end }}{{ if .param }} <{{ .param }}>{{ end }}: {{ .documentation | markdownify }}

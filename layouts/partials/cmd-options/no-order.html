@@ -1,0 +1,11 @@
+{{ partial "cmd-options/option.html" 
+(dict "name" "no-order"
+      "documentation" `The *OBITools* ensure that the order between the input file and 
+                       the output file does not change. When multiple files are processed, 
+                       they are processed one at a time. 
+                       If the **--no-order** option is added to a command, multiple input 
+                       files can be opened at the same time and their contents processed 
+                       in parallel. This usually increases processing speed, but does not 
+                       guarantee the order of the sequences in the output file. 
+                       Also, processing multiple files in parallel may require more memory 
+                       to perform the computation.`) }}
