@@ -11,34 +11,33 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
 <link fetchpriority="low" href="/site.webmanifest" rel="manifest" />
 
-  <title>Obipcr: the electronic PCR tool – OBITools4 documentation</title>
-  <meta name="description" content="Description : obipcr is the successor of ecoPCR. It is known as an electronic PCR software.
-Synopsis obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &lt;string&gt; [--allowed-mismatches|-e &lt;int&gt;] [--batch-size &lt;int&gt;] [--circular|-c] [--compress|-Z] [--debug] [--delta|-D &lt;int&gt;] [--ecopcr] [--embl] [--fasta] [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu] [--fragmented] [--genbank] [--help|-h|-?] [--input-OBI-header] [--input-json-header] [--json-output] [--max-cpu &lt;int&gt;] [--min-length|-l &lt;int&gt;] [--no-order] [--no-progressbar] [--only-complete-flanking] [--out|-o &lt;FILENAME&gt;] [--output-OBI-header|-O] [--output-json-header] [--paired-with &lt;FILENAME&gt;] [--pprof] [--pprof-goroutine &lt;int&gt;] [--pprof-mutex &lt;int&gt;] [--skip-empty] [--solexa] [--version] [&lt;args&gt;] Options obipcr mandatory options: --forward: The forward primer used for the electronic PCR. IUPAC codes can be used in the pattern. --reverse: The reverse primer used for the electronic PCR. IUPAC codes can be used in the pattern. --max-length | -L : Maximum length of the barcode, primers excluded. Other obipcr specific options: --allowed-mismatches | -e : Maximum number of mismatches allowed for each primer (default: 0). --min-length | -l : Minimum length of the barcode primers excluded (default: no minimum length). --circular | -c : Considers that sequences are circular. (default: sequences are considered linear) --delta | -D : Without this option, only the barcode sequences will be output, without the priming sites. This option allows to add the priming sites and the flanking sequences of the priming sites over a length of delta to each side of the barcode. --only-complete-flanking: Works in conjunction with –delta. Prints only sequences with full-length flanking sequences (default: prints every sequence regardless of whether the flanking sequences are present). Controlling the input data --fasta: Indicate that sequence data is following the FASTA format. --fastq: Indicate that sequence data is following the FASTQ format. --embl: Indicate that sequence data is following the EMBL flatfile format. --genbank: Indicate that sequence data is following the Genbank flatfile format. --ecopcr: Indicate that sequence data is following old ecoPCR tabulated format. --input-OBI-header: FASTA/FASTQ title line annotations follow the old OBI format. --input-json-header: FASTA/FASTQ title line annotations follow the json format. --solexa: Decodes quality string according to the Solexa specification. (default: the standard Sanger encoding is used, env: OBISSOLEXA) Controlling the output data --compress | -Z : Output is compressed using gzip (default: false). --no-order: The OBITools ensure that the order between the input file and the output file does not change. When multiple files are processed, they are processed one at a time. If the –no-order option is added to a command, multiple input files can be opened at the same time and their contents processed in parallel. This usually increases processing speed, but does not guarantee the order of the sequences in the output file. Also, processing multiple files in parallel may require more memory to perform the computation. --fasta-output: Write sequence in fasta format (default if no quality data available). --fastq-output: Write sequence in fastq format (default if quality data available). --json-output: Write sequence in json format. --out | -o &lt;FILENAME&gt;: Filename used for saving the output (default: “-”, the standard output) --output-OBI-header | -O : output FASTA/FASTQ title line annotations follow OBI format (default: JSON). --output-json-header: output FASTA/FASTQ title line annotations follow json format (the default format). --skip-empty: Sequences of length equal to zero are suppressed from the output (default: false). --no-progressbar: Disable the progress bar printing (default: false). General options --help | -h|-? : Show this help. --version: Print the version and exits. Computation related options --max-cpu &lt;INTEGER&gt;: OBITools can take advantage of your computer’s multi-core architecture by parallelizing the computation across all available CPUs. Computing on more CPUs usually requires more memory to perform the computation. Reducing the number of CPUs used to perform a calculation is also a way to indirectly control the amount of memory used by the process. The number of CPUs used by OBITools can also be controlled by setting the OBIMAXCPU environment variable. --force-one-cpu: Force to use only one CPU core for parallel processing (default: false). --batch-size &lt;INTEGER&gt;: Number of sequence per batch for parallel processing (default: 1000, env: OBIBATCHSIZE) Debug related options --debug: Enable debug mode, by setting log level to debug. (default: false, env: OBIDEBUG). --pprof: Enable pprof server. Look at the log for details. (default: false). --pprof-mutex &lt;INTEGER&gt;: Enable profiling of mutex lock. (default: 10, env: OBIPPROFMUTEX) --pprof-goroutine &lt;INTEGER&gt;: Enable profiling of goroutine blocking profile. (default: 6060, env: OBIPPROFGOROUTINE) Examples The minimal ecopcr command looks like this:" />
+  <title>Obipairing: align the forward and reverse paired reads – OBITools4 documentation</title>
+  <meta name="description" content="Description : Synopsis obipairing --forward-reads|-F &lt;FILENAME_F&gt; --reverse-reads|-R &lt;FILENAME_R&gt; [--batch-size &lt;int&gt;] [--compress|-Z] [--debug] [--delta|-D &lt;int&gt;] [--ecopcr] [--embl] [--exact-mode] [--fast-absolute] [--fasta] [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu] [--gap-penality|-G &lt;float64&gt;] [--genbank] [--help|-h|-?] [--input-OBI-header] [--input-json-header] [--json-output] [--max-cpu &lt;int&gt;] [--min-identity|-X &lt;float64&gt;] [--min-overlap &lt;int&gt;] [--no-order] [--no-progressbar] [--out|-o &lt;FILENAME&gt;] [--output-OBI-header|-O] [--output-json-header] [--penality-scale &lt;float64&gt;] [--pprof] [--pprof-goroutine &lt;int&gt;] [--pprof-mutex &lt;int&gt;] [--skip-empty] [--solexa] [--version] [--without-stat|-S] [&lt;args&gt;] Options obipairing mandatory options --forward-reads | -F : The name of the file containing the forward reads. --reverse-reads | -R : The name of the file containing the reverse reads. Other obipairing specific options: --delta | -D : Length added to the fast-detected overlap for the exact alignment algorithm (default: 5 nucleotides). --exact-mode: Do not run fast alignment heuristic. (default: a fast algorithm is run at first to accelerate the final exact alignment). --fast-absolute: Compute absolute fast score, this option has no effect in exact mode (default: false). --gap-penality | -G : Gap penality expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000) --min-identity | -X : Minimum identity between ovelaped regions of the reads to consider the aligment (default: 0.900000). --min-overlap: Minimum overlap between both the reads to consider the aligment (default: 20). --penality-scale: Scale factor applied to the mismatch score and the gap penality (default 1). --without-stat | -S : Remove alignment statistics from the produced consensus sequences (default: false). Controlling the input data --fasta: Indicate that sequence data is following the FASTA format. --fastq: Indicate that sequence data is following the FASTQ format. --embl: Indicate that sequence data is following the EMBL flatfile format. --genbank: Indicate that sequence data is following the Genbank flatfile format. --ecopcr: Indicate that sequence data is following old ecoPCR tabulated format. --input-OBI-header: FASTA/FASTQ title line annotations follow the old OBI format. --input-json-header: FASTA/FASTQ title line annotations follow the json format. --solexa: Decodes quality string according to the Solexa specification. (default: the standard Sanger encoding is used, env: OBISSOLEXA) Controlling the output data --compress | -Z : Output is compressed using gzip (default: false). --no-order: The OBITools ensure that the order between the input file and the output file does not change. When multiple files are processed, they are processed one at a time. If the –no-order option is added to a command, multiple input files can be opened at the same time and their contents processed in parallel. This usually increases processing speed, but does not guarantee the order of the sequences in the output file. Also, processing multiple files in parallel may require more memory to perform the computation. --fasta-output: Write sequence in fasta format (default if no quality data available). --fastq-output: Write sequence in fastq format (default if quality data available). --json-output: Write sequence in json format. --out | -o &lt;FILENAME&gt;: Filename used for saving the output (default: “-”, the standard output) --output-OBI-header | -O : output FASTA/FASTQ title line annotations follow OBI format (default: JSON). --output-json-header: output FASTA/FASTQ title line annotations follow json format (the default format). --skip-empty: Sequences of length equal to zero are suppressed from the output (default: false). --no-progressbar: Disable the progress bar printing (default: false). General options --help | -h|-? : Show this help. --version: Print the version and exits. Computation related options --max-cpu &lt;INTEGER&gt;: OBITools can take advantage of your computer’s multi-core architecture by parallelizing the computation across all available CPUs. Computing on more CPUs usually requires more memory to perform the computation. Reducing the number of CPUs used to perform a calculation is also a way to indirectly control the amount of memory used by the process. The number of CPUs used by OBITools can also be controlled by setting the OBIMAXCPU environment variable. --force-one-cpu: Force to use only one CPU core for parallel processing (default: false). --batch-size &lt;INTEGER&gt;: Number of sequence per batch for parallel processing (default: 1000, env: OBIBATCHSIZE) Debug related options --debug: Enable debug mode, by setting log level to debug. (default: false, env: OBIDEBUG). --pprof: Enable pprof server. Look at the log for details. (default: false). --pprof-mutex &lt;INTEGER&gt;: Enable profiling of mutex lock. (default: 10, env: OBIPPROFMUTEX) --pprof-goroutine &lt;INTEGER&gt;: Enable profiling of goroutine blocking profile. (default: 6060, env: OBIPPROFGOROUTINE) Examples obipairing --help " />
 
   
-    <link rel="canonical" href="http://localhost:1313/commands/alignments/obipcr/" itemprop="url" />
+    <link rel="canonical" href="http://localhost:1313/commands/alignments/obipairing/" itemprop="url" />
   
 
   
 
-<meta property="og:title" content="Obipcr: the electronic PCR tool" />
+<meta property="og:title" content="Obipairing: align the forward and reverse paired reads" />
 <meta property="og:description" content="Description :
-    obipcr is the successor of ecoPCR. It is known as an electronic PCR software.
-Synopsis
+    Synopsis
     
   
 
-obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &lt;string&gt;
-       [--allowed-mismatches|-e &lt;int&gt;] [--batch-size &lt;int&gt;] [--circular|-c]
-       [--compress|-Z] [--debug] [--delta|-D &lt;int&gt;] [--ecopcr] [--embl]
-       [--fasta] [--fasta-output] [--fastq] [--fastq-output]
-       [--force-one-cpu] [--fragmented] [--genbank] [--help|-h|-?]
-       [--input-OBI-header] [--input-json-header] [--json-output]
-       [--max-cpu &lt;int&gt;] [--min-length|-l &lt;int&gt;] [--no-order]
-       [--no-progressbar] [--only-complete-flanking] [--out|-o &lt;FILENAME&gt;]
-       [--output-OBI-header|-O] [--output-json-header]
-       [--paired-with &lt;FILENAME&gt;] [--pprof] [--pprof-goroutine &lt;int&gt;]
-       [--pprof-mutex &lt;int&gt;] [--skip-empty] [--solexa] [--version] [&lt;args&gt;]
+obipairing --forward-reads|-F &lt;FILENAME_F&gt; --reverse-reads|-R &lt;FILENAME_R&gt;
+           [--batch-size &lt;int&gt;] [--compress|-Z] [--debug] [--delta|-D &lt;int&gt;]
+           [--ecopcr] [--embl] [--exact-mode] [--fast-absolute] [--fasta]
+           [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu]
+           [--gap-penality|-G &lt;float64&gt;] [--genbank] [--help|-h|-?]
+           [--input-OBI-header] [--input-json-header] [--json-output]
+           [--max-cpu &lt;int&gt;] [--min-identity|-X &lt;float64&gt;]
+           [--min-overlap &lt;int&gt;] [--no-order] [--no-progressbar]
+           [--out|-o &lt;FILENAME&gt;] [--output-OBI-header|-O]
+           [--output-json-header] [--penality-scale &lt;float64&gt;] [--pprof]
+           [--pprof-goroutine &lt;int&gt;] [--pprof-mutex &lt;int&gt;] [--skip-empty]
+           [--solexa] [--version] [--without-stat|-S] [&lt;args&gt;]
   
     
     
@@ -48,51 +47,61 @@ obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &lt;string
   
 
 Options
-    obipcr mandatory options:
+    obipairing mandatory options
     
 
---forward: The forward primer used for the electronic PCR. IUPAC codes can be used in the pattern.
+--forward-reads
+| -F
+: The name of the file containing the forward reads.
 
 
 
---reverse: The reverse primer used for the electronic PCR. IUPAC codes can be used in the pattern.
+--reverse-reads
+| -R
+: The name of the file containing the reverse reads.
 
 
 
---max-length
-| -L
-: Maximum length of the barcode, primers excluded.
-
-
-
-Other obipcr specific options:
+Other obipairing specific options:
     
-
---allowed-mismatches
-| -e
-: Maximum number of mismatches allowed for each primer (default: 0).
-
-
-
---min-length
-| -l
-: Minimum length of the barcode primers excluded (default: no minimum length).
-
-
-
---circular
-| -c
-: Considers that sequences are circular. (default: sequences are considered linear)
-
-
 
 --delta
 | -D
-: Without this option, only the barcode sequences will be output, without the priming sites. This option allows to add the priming sites and the flanking sequences of the priming sites over a length of delta to each side of the barcode.
+: Length added to the fast-detected overlap for the exact alignment algorithm (default: 5 nucleotides).
 
 
 
---only-complete-flanking: Works in conjunction with &ndash;delta. Prints only sequences with full-length flanking sequences (default: prints every sequence regardless of whether the flanking sequences are present).
+--exact-mode: Do not run fast alignment heuristic. (default: a fast algorithm is run at first to accelerate the final exact alignment).
+
+
+
+--fast-absolute: Compute absolute fast score, this option has no effect in exact mode (default: false).
+
+
+
+--gap-penality
+| -G
+: Gap penality expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000)
+
+
+
+--min-identity
+| -X
+: Minimum identity between ovelaped regions of the reads to consider the aligment (default: 0.900000).
+
+
+
+--min-overlap: Minimum overlap between both the reads to consider the aligment (default: 20).
+
+
+
+--penality-scale: Scale factor applied to the mismatch score and the gap penality (default 1).
+
+
+
+--without-stat
+| -S
+: Remove alignment statistics from the produced consensus sequences (default: false).
 
 
 
@@ -176,21 +185,30 @@ Debug related options
     --pprof-goroutine &lt;INTEGER&gt;: Enable profiling of goroutine blocking profile. (default: 6060, env: OBIPPROFGOROUTINE)
 
 Examples
-    The minimal ecopcr command looks like this:" />
+    
+  
+
+obipairing --help
+  
+    
+    
+  
+
+
+  
+" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://localhost:1313/commands/alignments/obipcr/" /><meta property="article:section" content="commands" />
+<meta property="og:url" content="http://localhost:1313/commands/alignments/obipairing/" /><meta property="article:section" content="commands" />
 
 
 
   
-  <meta itemprop="name" content="Obipcr: the electronic PCR tool">
-  <meta itemprop="description" content="Description : obipcr is the successor of ecoPCR. It is known as an electronic PCR software.
-Synopsis obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &lt;string&gt; [--allowed-mismatches|-e &lt;int&gt;] [--batch-size &lt;int&gt;] [--circular|-c] [--compress|-Z] [--debug] [--delta|-D &lt;int&gt;] [--ecopcr] [--embl] [--fasta] [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu] [--fragmented] [--genbank] [--help|-h|-?] [--input-OBI-header] [--input-json-header] [--json-output] [--max-cpu &lt;int&gt;] [--min-length|-l &lt;int&gt;] [--no-order] [--no-progressbar] [--only-complete-flanking] [--out|-o &lt;FILENAME&gt;] [--output-OBI-header|-O] [--output-json-header] [--paired-with &lt;FILENAME&gt;] [--pprof] [--pprof-goroutine &lt;int&gt;] [--pprof-mutex &lt;int&gt;] [--skip-empty] [--solexa] [--version] [&lt;args&gt;] Options obipcr mandatory options: --forward: The forward primer used for the electronic PCR. IUPAC codes can be used in the pattern. --reverse: The reverse primer used for the electronic PCR. IUPAC codes can be used in the pattern. --max-length | -L : Maximum length of the barcode, primers excluded. Other obipcr specific options: --allowed-mismatches | -e : Maximum number of mismatches allowed for each primer (default: 0). --min-length | -l : Minimum length of the barcode primers excluded (default: no minimum length). --circular | -c : Considers that sequences are circular. (default: sequences are considered linear) --delta | -D : Without this option, only the barcode sequences will be output, without the priming sites. This option allows to add the priming sites and the flanking sequences of the priming sites over a length of delta to each side of the barcode. --only-complete-flanking: Works in conjunction with –delta. Prints only sequences with full-length flanking sequences (default: prints every sequence regardless of whether the flanking sequences are present). Controlling the input data --fasta: Indicate that sequence data is following the FASTA format. --fastq: Indicate that sequence data is following the FASTQ format. --embl: Indicate that sequence data is following the EMBL flatfile format. --genbank: Indicate that sequence data is following the Genbank flatfile format. --ecopcr: Indicate that sequence data is following old ecoPCR tabulated format. --input-OBI-header: FASTA/FASTQ title line annotations follow the old OBI format. --input-json-header: FASTA/FASTQ title line annotations follow the json format. --solexa: Decodes quality string according to the Solexa specification. (default: the standard Sanger encoding is used, env: OBISSOLEXA) Controlling the output data --compress | -Z : Output is compressed using gzip (default: false). --no-order: The OBITools ensure that the order between the input file and the output file does not change. When multiple files are processed, they are processed one at a time. If the –no-order option is added to a command, multiple input files can be opened at the same time and their contents processed in parallel. This usually increases processing speed, but does not guarantee the order of the sequences in the output file. Also, processing multiple files in parallel may require more memory to perform the computation. --fasta-output: Write sequence in fasta format (default if no quality data available). --fastq-output: Write sequence in fastq format (default if quality data available). --json-output: Write sequence in json format. --out | -o &lt;FILENAME&gt;: Filename used for saving the output (default: “-”, the standard output) --output-OBI-header | -O : output FASTA/FASTQ title line annotations follow OBI format (default: JSON). --output-json-header: output FASTA/FASTQ title line annotations follow json format (the default format). --skip-empty: Sequences of length equal to zero are suppressed from the output (default: false). --no-progressbar: Disable the progress bar printing (default: false). General options --help | -h|-? : Show this help. --version: Print the version and exits. Computation related options --max-cpu &lt;INTEGER&gt;: OBITools can take advantage of your computer’s multi-core architecture by parallelizing the computation across all available CPUs. Computing on more CPUs usually requires more memory to perform the computation. Reducing the number of CPUs used to perform a calculation is also a way to indirectly control the amount of memory used by the process. The number of CPUs used by OBITools can also be controlled by setting the OBIMAXCPU environment variable. --force-one-cpu: Force to use only one CPU core for parallel processing (default: false). --batch-size &lt;INTEGER&gt;: Number of sequence per batch for parallel processing (default: 1000, env: OBIBATCHSIZE) Debug related options --debug: Enable debug mode, by setting log level to debug. (default: false, env: OBIDEBUG). --pprof: Enable pprof server. Look at the log for details. (default: false). --pprof-mutex &lt;INTEGER&gt;: Enable profiling of mutex lock. (default: 10, env: OBIPPROFMUTEX) --pprof-goroutine &lt;INTEGER&gt;: Enable profiling of goroutine blocking profile. (default: 6060, env: OBIPPROFGOROUTINE) Examples The minimal ecopcr command looks like this:">
-  <meta itemprop="wordCount" content="852">
+  <meta itemprop="name" content="Obipairing: align the forward and reverse paired reads">
+  <meta itemprop="description" content="Description : Synopsis obipairing --forward-reads|-F &lt;FILENAME_F&gt; --reverse-reads|-R &lt;FILENAME_R&gt; [--batch-size &lt;int&gt;] [--compress|-Z] [--debug] [--delta|-D &lt;int&gt;] [--ecopcr] [--embl] [--exact-mode] [--fast-absolute] [--fasta] [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu] [--gap-penality|-G &lt;float64&gt;] [--genbank] [--help|-h|-?] [--input-OBI-header] [--input-json-header] [--json-output] [--max-cpu &lt;int&gt;] [--min-identity|-X &lt;float64&gt;] [--min-overlap &lt;int&gt;] [--no-order] [--no-progressbar] [--out|-o &lt;FILENAME&gt;] [--output-OBI-header|-O] [--output-json-header] [--penality-scale &lt;float64&gt;] [--pprof] [--pprof-goroutine &lt;int&gt;] [--pprof-mutex &lt;int&gt;] [--skip-empty] [--solexa] [--version] [--without-stat|-S] [&lt;args&gt;] Options obipairing mandatory options --forward-reads | -F : The name of the file containing the forward reads. --reverse-reads | -R : The name of the file containing the reverse reads. Other obipairing specific options: --delta | -D : Length added to the fast-detected overlap for the exact alignment algorithm (default: 5 nucleotides). --exact-mode: Do not run fast alignment heuristic. (default: a fast algorithm is run at first to accelerate the final exact alignment). --fast-absolute: Compute absolute fast score, this option has no effect in exact mode (default: false). --gap-penality | -G : Gap penality expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000) --min-identity | -X : Minimum identity between ovelaped regions of the reads to consider the aligment (default: 0.900000). --min-overlap: Minimum overlap between both the reads to consider the aligment (default: 20). --penality-scale: Scale factor applied to the mismatch score and the gap penality (default 1). --without-stat | -S : Remove alignment statistics from the produced consensus sequences (default: false). Controlling the input data --fasta: Indicate that sequence data is following the FASTA format. --fastq: Indicate that sequence data is following the FASTQ format. --embl: Indicate that sequence data is following the EMBL flatfile format. --genbank: Indicate that sequence data is following the Genbank flatfile format. --ecopcr: Indicate that sequence data is following old ecoPCR tabulated format. --input-OBI-header: FASTA/FASTQ title line annotations follow the old OBI format. --input-json-header: FASTA/FASTQ title line annotations follow the json format. --solexa: Decodes quality string according to the Solexa specification. (default: the standard Sanger encoding is used, env: OBISSOLEXA) Controlling the output data --compress | -Z : Output is compressed using gzip (default: false). --no-order: The OBITools ensure that the order between the input file and the output file does not change. When multiple files are processed, they are processed one at a time. If the –no-order option is added to a command, multiple input files can be opened at the same time and their contents processed in parallel. This usually increases processing speed, but does not guarantee the order of the sequences in the output file. Also, processing multiple files in parallel may require more memory to perform the computation. --fasta-output: Write sequence in fasta format (default if no quality data available). --fastq-output: Write sequence in fastq format (default if quality data available). --json-output: Write sequence in json format. --out | -o &lt;FILENAME&gt;: Filename used for saving the output (default: “-”, the standard output) --output-OBI-header | -O : output FASTA/FASTQ title line annotations follow OBI format (default: JSON). --output-json-header: output FASTA/FASTQ title line annotations follow json format (the default format). --skip-empty: Sequences of length equal to zero are suppressed from the output (default: false). --no-progressbar: Disable the progress bar printing (default: false). General options --help | -h|-? : Show this help. --version: Print the version and exits. Computation related options --max-cpu &lt;INTEGER&gt;: OBITools can take advantage of your computer’s multi-core architecture by parallelizing the computation across all available CPUs. Computing on more CPUs usually requires more memory to perform the computation. Reducing the number of CPUs used to perform a calculation is also a way to indirectly control the amount of memory used by the process. The number of CPUs used by OBITools can also be controlled by setting the OBIMAXCPU environment variable. --force-one-cpu: Force to use only one CPU core for parallel processing (default: false). --batch-size &lt;INTEGER&gt;: Number of sequence per batch for parallel processing (default: 1000, env: OBIBATCHSIZE) Debug related options --debug: Enable debug mode, by setting log level to debug. (default: false, env: OBIDEBUG). --pprof: Enable pprof server. Look at the log for details. (default: false). --pprof-mutex &lt;INTEGER&gt;: Enable profiling of mutex lock. (default: 10, env: OBIPPROFMUTEX) --pprof-goroutine &lt;INTEGER&gt;: Enable profiling of goroutine blocking profile. (default: 6060, env: OBIPPROFGOROUTINE) Examples obipairing --help ">
+  <meta itemprop="wordCount" content="690">
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Obipcr: the electronic PCR tool">
-  <meta name="twitter:description" content="Description : obipcr is the successor of ecoPCR. It is known as an electronic PCR software.
-Synopsis obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &lt;string&gt; [--allowed-mismatches|-e &lt;int&gt;] [--batch-size &lt;int&gt;] [--circular|-c] [--compress|-Z] [--debug] [--delta|-D &lt;int&gt;] [--ecopcr] [--embl] [--fasta] [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu] [--fragmented] [--genbank] [--help|-h|-?] [--input-OBI-header] [--input-json-header] [--json-output] [--max-cpu &lt;int&gt;] [--min-length|-l &lt;int&gt;] [--no-order] [--no-progressbar] [--only-complete-flanking] [--out|-o &lt;FILENAME&gt;] [--output-OBI-header|-O] [--output-json-header] [--paired-with &lt;FILENAME&gt;] [--pprof] [--pprof-goroutine &lt;int&gt;] [--pprof-mutex &lt;int&gt;] [--skip-empty] [--solexa] [--version] [&lt;args&gt;] Options obipcr mandatory options: --forward: The forward primer used for the electronic PCR. IUPAC codes can be used in the pattern. --reverse: The reverse primer used for the electronic PCR. IUPAC codes can be used in the pattern. --max-length | -L : Maximum length of the barcode, primers excluded. Other obipcr specific options: --allowed-mismatches | -e : Maximum number of mismatches allowed for each primer (default: 0). --min-length | -l : Minimum length of the barcode primers excluded (default: no minimum length). --circular | -c : Considers that sequences are circular. (default: sequences are considered linear) --delta | -D : Without this option, only the barcode sequences will be output, without the priming sites. This option allows to add the priming sites and the flanking sequences of the priming sites over a length of delta to each side of the barcode. --only-complete-flanking: Works in conjunction with –delta. Prints only sequences with full-length flanking sequences (default: prints every sequence regardless of whether the flanking sequences are present). Controlling the input data --fasta: Indicate that sequence data is following the FASTA format. --fastq: Indicate that sequence data is following the FASTQ format. --embl: Indicate that sequence data is following the EMBL flatfile format. --genbank: Indicate that sequence data is following the Genbank flatfile format. --ecopcr: Indicate that sequence data is following old ecoPCR tabulated format. --input-OBI-header: FASTA/FASTQ title line annotations follow the old OBI format. --input-json-header: FASTA/FASTQ title line annotations follow the json format. --solexa: Decodes quality string according to the Solexa specification. (default: the standard Sanger encoding is used, env: OBISSOLEXA) Controlling the output data --compress | -Z : Output is compressed using gzip (default: false). --no-order: The OBITools ensure that the order between the input file and the output file does not change. When multiple files are processed, they are processed one at a time. If the –no-order option is added to a command, multiple input files can be opened at the same time and their contents processed in parallel. This usually increases processing speed, but does not guarantee the order of the sequences in the output file. Also, processing multiple files in parallel may require more memory to perform the computation. --fasta-output: Write sequence in fasta format (default if no quality data available). --fastq-output: Write sequence in fastq format (default if quality data available). --json-output: Write sequence in json format. --out | -o &lt;FILENAME&gt;: Filename used for saving the output (default: “-”, the standard output) --output-OBI-header | -O : output FASTA/FASTQ title line annotations follow OBI format (default: JSON). --output-json-header: output FASTA/FASTQ title line annotations follow json format (the default format). --skip-empty: Sequences of length equal to zero are suppressed from the output (default: false). --no-progressbar: Disable the progress bar printing (default: false). General options --help | -h|-? : Show this help. --version: Print the version and exits. Computation related options --max-cpu &lt;INTEGER&gt;: OBITools can take advantage of your computer’s multi-core architecture by parallelizing the computation across all available CPUs. Computing on more CPUs usually requires more memory to perform the computation. Reducing the number of CPUs used to perform a calculation is also a way to indirectly control the amount of memory used by the process. The number of CPUs used by OBITools can also be controlled by setting the OBIMAXCPU environment variable. --force-one-cpu: Force to use only one CPU core for parallel processing (default: false). --batch-size &lt;INTEGER&gt;: Number of sequence per batch for parallel processing (default: 1000, env: OBIBATCHSIZE) Debug related options --debug: Enable debug mode, by setting log level to debug. (default: false, env: OBIDEBUG). --pprof: Enable pprof server. Look at the log for details. (default: false). --pprof-mutex &lt;INTEGER&gt;: Enable profiling of mutex lock. (default: 10, env: OBIPPROFMUTEX) --pprof-goroutine &lt;INTEGER&gt;: Enable profiling of goroutine blocking profile. (default: 6060, env: OBIPPROFGOROUTINE) Examples The minimal ecopcr command looks like this:">
+  <meta name="twitter:title" content="Obipairing: align the forward and reverse paired reads">
+  <meta name="twitter:description" content="Description : Synopsis obipairing --forward-reads|-F &lt;FILENAME_F&gt; --reverse-reads|-R &lt;FILENAME_R&gt; [--batch-size &lt;int&gt;] [--compress|-Z] [--debug] [--delta|-D &lt;int&gt;] [--ecopcr] [--embl] [--exact-mode] [--fast-absolute] [--fasta] [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu] [--gap-penality|-G &lt;float64&gt;] [--genbank] [--help|-h|-?] [--input-OBI-header] [--input-json-header] [--json-output] [--max-cpu &lt;int&gt;] [--min-identity|-X &lt;float64&gt;] [--min-overlap &lt;int&gt;] [--no-order] [--no-progressbar] [--out|-o &lt;FILENAME&gt;] [--output-OBI-header|-O] [--output-json-header] [--penality-scale &lt;float64&gt;] [--pprof] [--pprof-goroutine &lt;int&gt;] [--pprof-mutex &lt;int&gt;] [--skip-empty] [--solexa] [--version] [--without-stat|-S] [&lt;args&gt;] Options obipairing mandatory options --forward-reads | -F : The name of the file containing the forward reads. --reverse-reads | -R : The name of the file containing the reverse reads. Other obipairing specific options: --delta | -D : Length added to the fast-detected overlap for the exact alignment algorithm (default: 5 nucleotides). --exact-mode: Do not run fast alignment heuristic. (default: a fast algorithm is run at first to accelerate the final exact alignment). --fast-absolute: Compute absolute fast score, this option has no effect in exact mode (default: false). --gap-penality | -G : Gap penality expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000) --min-identity | -X : Minimum identity between ovelaped regions of the reads to consider the aligment (default: 0.900000). --min-overlap: Minimum overlap between both the reads to consider the aligment (default: 20). --penality-scale: Scale factor applied to the mismatch score and the gap penality (default 1). --without-stat | -S : Remove alignment statistics from the produced consensus sequences (default: false). Controlling the input data --fasta: Indicate that sequence data is following the FASTA format. --fastq: Indicate that sequence data is following the FASTQ format. --embl: Indicate that sequence data is following the EMBL flatfile format. --genbank: Indicate that sequence data is following the Genbank flatfile format. --ecopcr: Indicate that sequence data is following old ecoPCR tabulated format. --input-OBI-header: FASTA/FASTQ title line annotations follow the old OBI format. --input-json-header: FASTA/FASTQ title line annotations follow the json format. --solexa: Decodes quality string according to the Solexa specification. (default: the standard Sanger encoding is used, env: OBISSOLEXA) Controlling the output data --compress | -Z : Output is compressed using gzip (default: false). --no-order: The OBITools ensure that the order between the input file and the output file does not change. When multiple files are processed, they are processed one at a time. If the –no-order option is added to a command, multiple input files can be opened at the same time and their contents processed in parallel. This usually increases processing speed, but does not guarantee the order of the sequences in the output file. Also, processing multiple files in parallel may require more memory to perform the computation. --fasta-output: Write sequence in fasta format (default if no quality data available). --fastq-output: Write sequence in fastq format (default if quality data available). --json-output: Write sequence in json format. --out | -o &lt;FILENAME&gt;: Filename used for saving the output (default: “-”, the standard output) --output-OBI-header | -O : output FASTA/FASTQ title line annotations follow OBI format (default: JSON). --output-json-header: output FASTA/FASTQ title line annotations follow json format (the default format). --skip-empty: Sequences of length equal to zero are suppressed from the output (default: false). --no-progressbar: Disable the progress bar printing (default: false). General options --help | -h|-? : Show this help. --version: Print the version and exits. Computation related options --max-cpu &lt;INTEGER&gt;: OBITools can take advantage of your computer’s multi-core architecture by parallelizing the computation across all available CPUs. Computing on more CPUs usually requires more memory to perform the computation. Reducing the number of CPUs used to perform a calculation is also a way to indirectly control the amount of memory used by the process. The number of CPUs used by OBITools can also be controlled by setting the OBIMAXCPU environment variable. --force-one-cpu: Force to use only one CPU core for parallel processing (default: false). --batch-size &lt;INTEGER&gt;: Number of sequence per batch for parallel processing (default: 1000, env: OBIBATCHSIZE) Debug related options --debug: Enable debug mode, by setting log level to debug. (default: false, env: OBIDEBUG). --pprof: Enable pprof server. Look at the log for details. (default: false). --pprof-mutex &lt;INTEGER&gt;: Enable profiling of mutex lock. (default: 10, env: OBIPPROFMUTEX) --pprof-goroutine &lt;INTEGER&gt;: Enable profiling of goroutine blocking profile. (default: 6060, env: OBIPPROFGOROUTINE) Examples obipairing --help ">
 
     <link href="/css/compiled/main.css" rel="stylesheet" />
 
@@ -309,20 +327,12 @@ Synopsis obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a>
               <div class="ltr:hx-pr-0 hx-overflow-hidden">
-        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/commands/alignments/obipairing/"
     
   >Obipairing: align the forward and reverse paired reads
-    </a>
-              
-            </li><li class="hx-flex hx-flex-col open"><a
-    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
-    href="/commands/alignments/obipcr/"
-    
-  >Obipcr: the electronic PCR tool
     </a>
   
     <ul class='hx-flex hx-flex-col hx-gap-1 hx-relative before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] dark:before:hx-bg-neutral-800 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-pr-3 rtl:before:hx-right-0 ltr:hx-ml-3 rtl:hx-mr-3'><li>
@@ -333,6 +343,14 @@ Synopsis obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &
             </li>
           </ul>
   
+              
+            </li><li class="hx-flex hx-flex-col "><a
+    class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+    href="/commands/alignments/obipcr/"
+    
+  >Obipcr: the electronic PCR tool
+    </a>
               
             </li></ul>
       </div>
@@ -375,17 +393,17 @@ Synopsis obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &
   >Sequence alignments
         <span class="hextra-sidebar-collapsible-button"><svg fill="none" viewBox="0 0 24 24" stroke="currentColor" class="hx-h-[18px] hx-min-w-[18px] hx-rounded-sm hx-p-0.5 hover:hx-bg-gray-800/5 dark:hover:hx-bg-gray-100/5"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" class="hx-origin-center hx-transition-transform rtl:-hx-rotate-180"></path></svg></span>
     </a><div class="ltr:hx-pr-0 hx-overflow-hidden">
-        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col "><a
+        <ul class='hx-relative hx-flex hx-flex-col hx-gap-1 before:hx-absolute before:hx-inset-y-1 before:hx-w-px before:hx-bg-gray-200 before:hx-content-[""] ltr:hx-ml-3 ltr:hx-pl-3 ltr:before:hx-left-0 rtl:hx-mr-3 rtl:hx-pr-3 rtl:before:hx-right-0 dark:before:hx-bg-neutral-800'><li class="hx-flex hx-flex-col open"><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
+      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
     href="/commands/alignments/obipairing/"
     
   >Obipairing: align the forward and reverse paired reads
     </a>
               
-            </li><li class="hx-flex hx-flex-col open"><a
+            </li><li class="hx-flex hx-flex-col "><a
     class="hx-flex hx-items-center hx-justify-between hx-gap-2 hx-cursor-pointer hx-rounded hx-px-2 hx-py-1.5 hx-text-sm hx-transition-colors [-webkit-tap-highlight-color:transparent] [-webkit-touch-callout:none] [word-break:break-word]
-      sidebar-active-item hx-bg-primary-100 hx-font-semibold hx-text-primary-800 contrast-more:hx-border contrast-more:hx-border-primary-500 dark:hx-bg-primary-400/10 dark:hx-text-primary-600 contrast-more:dark:hx-border-primary-500"
+      hx-text-gray-500 hover:hx-bg-gray-100 hover:hx-text-gray-900 contrast-more:hx-border contrast-more:hx-border-transparent contrast-more:hx-text-gray-900 contrast-more:hover:hx-border-gray-900 dark:hx-text-neutral-400 dark:hover:hx-bg-primary-100/5 dark:hover:hx-text-gray-50 contrast-more:dark:hx-text-gray-50 contrast-more:dark:hover:hx-border-gray-50"
     href="/commands/alignments/obipcr/"
     
   >Obipcr: the electronic PCR tool
@@ -424,11 +442,11 @@ Synopsis obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#obipcr-mandatory-options">obipcr mandatory options:
+        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#obipairing-mandatory-options">obipairing mandatory options
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
-        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#other-obipcr-specific-options">Other obipcr specific options:
+        <a class="ltr:hx-pl-8 rtl:hx-pr-8 hx-inline-block hx-text-gray-500 hover:hx-text-gray-900 dark:hx-text-gray-400 dark:hover:hx-text-gray-300 contrast-more:hx-text-gray-900 contrast-more:hx-underline contrast-more:dark:hx-text-gray-50 hx-w-full hx-break-words" href="#other-obipairing-specific-options">Other obipairing specific options:
         </a>
       </li>
       <li class="hx-my-2 hx-scroll-my-6 hx-scroll-py-6">
@@ -456,28 +474,28 @@ Synopsis obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &
         </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
         <div class="hx-whitespace-nowrap hx-transition-colors hx-min-w-[24px] hx-overflow-hidden hx-text-ellipsis hover:hx-text-gray-900 dark:hover:hx-text-gray-100">
           <a href="/commands/alignments/">Sequence alignments</a>
-        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Obipcr: the electronic PCR tool</div>
+        </div><svg class="hx-w-3.5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg><div class="hx-whitespace-nowrap hx-transition-colors hx-font-medium hx-text-gray-700 contrast-more:hx-font-bold contrast-more:hx-text-current dark:hx-text-gray-100 contrast-more:dark:hx-text-current">Obipairing: align the forward and reverse paired reads</div>
   </div>
 
         <div class="content">
-          <h1>Obipcr: the electronic PCR tool</h1>
+          <h1>Obipairing: align the forward and reverse paired reads</h1>
           <h2>Description :<span class="hx-absolute -hx-mt-20" id="description-"></span>
-    <a href="#description-" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><p><code>obipcr</code> is the successor of <a href="https://metabarcoding.org/ecopcr" target="_blank" rel="noopener"><code>ecoPCR</code></a>. It is known as an electronic PCR software.</p>
-<h3>Synopsis<span class="hx-absolute -hx-mt-20" id="synopsis"></span>
+    <a href="#description-" class="subheading-anchor" aria-label="Permalink for this section"></a></h2><h3>Synopsis<span class="hx-absolute -hx-mt-20" id="synopsis"></span>
     <a href="#synopsis" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
   
 
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &lt;string&gt;
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">[</span>--allowed-mismatches|-e &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--batch-size &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--circular|-c<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">[</span>--compress|-Z<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--debug<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--delta|-D &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--ecopcr<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--embl<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">[</span>--fasta<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--fasta-output<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--fastq<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--fastq-output<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">[</span>--force-one-cpu<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--fragmented<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--genbank<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--help|-h|-?<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">[</span>--input-OBI-header<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--input-json-header<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--json-output<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">[</span>--max-cpu &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--min-length|-l &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--no-order<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">[</span>--no-progressbar<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--only-complete-flanking<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--out|-o &lt;FILENAME&gt;<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">[</span>--output-OBI-header|-O<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--output-json-header<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">[</span>--paired-with &lt;FILENAME&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--pprof<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--pprof-goroutine &lt;int&gt;<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>       <span style="color:#f92672">[</span>--pprof-mutex &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--skip-empty<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--solexa<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--version<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>&lt;args&gt;<span style="color:#f92672">]</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>obipairing --forward-reads|-F &lt;FILENAME_F&gt; --reverse-reads|-R &lt;FILENAME_R&gt;
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--batch-size &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--compress|-Z<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--debug<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--delta|-D &lt;int&gt;<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--ecopcr<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--embl<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--exact-mode<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--fast-absolute<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--fasta<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--fasta-output<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--fastq<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--fastq-output<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--force-one-cpu<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--gap-penality|-G &lt;float64&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--genbank<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--help|-h|-?<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--input-OBI-header<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--input-json-header<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--json-output<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--max-cpu &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--min-identity|-X &lt;float64&gt;<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--min-overlap &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--no-order<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--no-progressbar<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--out|-o &lt;FILENAME&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--output-OBI-header|-O<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--output-json-header<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--penality-scale &lt;float64&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--pprof<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--pprof-goroutine &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--pprof-mutex &lt;int&gt;<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--skip-empty<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>           <span style="color:#f92672">[</span>--solexa<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--version<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>--without-stat|-S<span style="color:#f92672">]</span> <span style="color:#f92672">[</span>&lt;args&gt;<span style="color:#f92672">]</span></span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
   <button
     class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
     title="Copy code"
@@ -490,51 +508,61 @@ Synopsis obipcr --forward &lt;string&gt; --max-length|-L &lt;int&gt; --reverse &
   
 </div>
 <h3>Options<span class="hx-absolute -hx-mt-20" id="options"></span>
-    <a href="#options" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><h4><code>obipcr</code> mandatory options:<span class="hx-absolute -hx-mt-20" id="obipcr-mandatory-options"></span>
-    <a href="#obipcr-mandatory-options" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><ul>
+    <a href="#options" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><h4><code>obipairing</code> mandatory options<span class="hx-absolute -hx-mt-20" id="obipairing-mandatory-options"></span>
+    <a href="#obipairing-mandatory-options" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><ul>
 <li>
-<b><code class="language-bash">--forward</code></b>: The forward primer used for the electronic PCR. IUPAC codes can be used in the pattern.
+<b><code class="language-bash">--forward-reads</code></b>
+| <b><code class="language-bash">-F</code></b>
+: The name of the file containing the forward reads.
 
 </li>
 <li>
-<b><code class="language-bash">--reverse</code></b>: The reverse primer used for the electronic PCR. IUPAC codes can be used in the pattern.
-
-</li>
-<li>
-<b><code class="language-bash">--max-length</code></b>
-| <b><code class="language-bash">-L</code></b>
-: Maximum length of the barcode, primers excluded.
+<b><code class="language-bash">--reverse-reads</code></b>
+| <b><code class="language-bash">-R</code></b>
+: The name of the file containing the reverse reads.
 
 </li>
 </ul>
-<h4>Other <code>obipcr</code> specific options:<span class="hx-absolute -hx-mt-20" id="other-obipcr-specific-options"></span>
-    <a href="#other-obipcr-specific-options" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><ul>
-<li>
-<b><code class="language-bash">--allowed-mismatches</code></b>
-| <b><code class="language-bash">-e</code></b>
-: Maximum number of mismatches allowed for each primer (default: 0).
-
-</li>
-<li>
-<b><code class="language-bash">--min-length</code></b>
-| <b><code class="language-bash">-l</code></b>
-: Minimum length of the barcode primers excluded (default: no minimum length).
-
-</li>
-<li>
-<b><code class="language-bash">--circular</code></b>
-| <b><code class="language-bash">-c</code></b>
-: Considers that sequences are circular. (default: sequences are considered linear)
-
-</li>
+<h4>Other <code>obipairing</code> specific options:<span class="hx-absolute -hx-mt-20" id="other-obipairing-specific-options"></span>
+    <a href="#other-obipairing-specific-options" class="subheading-anchor" aria-label="Permalink for this section"></a></h4><ul>
 <li>
 <b><code class="language-bash">--delta</code></b>
 | <b><code class="language-bash">-D</code></b>
-: Without this option, only the barcode sequences will be output, without the priming sites. This option allows to add the priming sites and the flanking sequences of the priming sites over a length of <code>delta</code> to each side of the barcode.
+: Length added to the fast-detected overlap for the exact alignment algorithm (default: 5 nucleotides).
 
 </li>
 <li>
-<b><code class="language-bash">--only-complete-flanking</code></b>: Works in conjunction with <strong>&ndash;delta</strong>. Prints only sequences with full-length flanking sequences (default: prints every sequence regardless of whether the flanking sequences are present).
+<b><code class="language-bash">--exact-mode</code></b>: Do not run fast alignment heuristic. (default: a fast algorithm is run at first to accelerate the final exact alignment).
+
+</li>
+<li>
+<b><code class="language-bash">--fast-absolute</code></b>: Compute absolute fast score, this option has no effect in exact mode (default: false).
+
+</li>
+<li>
+<b><code class="language-bash">--gap-penality</code></b>
+| <b><code class="language-bash">-G</code></b>
+: Gap penality expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000)
+
+</li>
+<li>
+<b><code class="language-bash">--min-identity</code></b>
+| <b><code class="language-bash">-X</code></b>
+: Minimum identity between ovelaped regions of the reads to consider the aligment (default: 0.900000).
+
+</li>
+<li>
+<b><code class="language-bash">--min-overlap</code></b>: Minimum overlap between both the reads to consider the aligment (default: 20).
+
+</li>
+<li>
+<b><code class="language-bash">--penality-scale</code></b>: Scale factor applied to the mismatch score and the gap penality (default 1).
+
+</li>
+<li>
+<b><code class="language-bash">--without-stat</code></b>
+| <b><code class="language-bash">-S</code></b>
+: Remove alignment statistics from the produced consensus sequences (default: false).
 
 </li>
 </ul>
@@ -618,37 +646,10 @@ by setting the <strong>OBIMAXCPU</strong> environment variable.</li>
     <li><b><code class="language-bash">--pprof-goroutine</code></b> &lt;INTEGER>: Enable profiling of goroutine blocking profile. (default: 6060, env: <strong>OBIPPROFGOROUTINE</strong>)</li>
 </ul>
 <h3>Examples<span class="hx-absolute -hx-mt-20" id="examples"></span>
-    <a href="#examples" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><p>The minimal <code>ecopcr</code> command looks like this:</p>
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+    <a href="#examples" class="subheading-anchor" aria-label="Permalink for this section"></a></h3><div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
   
 
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>obipcr -L <span style="color:#ae81ff">220</span>  <span style="color:#ae81ff">\ </span> 
-</span></span><span style="display:flex;"><span>       --forward GGGCAATCCTGAGCCAA <span style="color:#ae81ff">\ </span>  
-</span></span><span style="display:flex;"><span>       --reverse CCATTGAGTCTCTGCACCTATC <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       /data/Genbank/Release_261 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       &gt; Sper01_obipcr.fasta</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
-  <button
-    class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
-    title="Copy code"
-  >
-    <div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4"></div>
-    <div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4"></div>
-  </button>
-</div>
-
-  
-</div>
-<p>It fetches the sequences from the NCBI Genbank release 261 database stored in the <code>/data/Genbank/Release_261</code> directory. The output is stored in the <code>Sper01_obipcr.fasta</code> file. The primer pair is specified as <code>GGGCAATCCTGAGCCAA</code> and <code>CCATTGAGTCTCTGCACCTATC</code> using the <code>--forward</code> and <code>--reverse</code> options. These primers correspond to the marker <em>Sper01</em>. The <code>-L</code> option specifies the maximum length of the barcode, primers excluded, here 220 nucleotides. By default no mismatches are allowed between the primers and the priming sites.</p>
-<p>To allows mismatches between the primers and the priming sites, use the <code>--allowed-mismatches</code> option or its short form <code>-e</code>. Here, the maximum number of mismatches allowed is 3. This maximum number of mismatches is allowed per primer. The error can occur at any position of the primer.</p>
-<div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
-  
-
-<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>obipcr -e <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">\ </span> 
-</span></span><span style="display:flex;"><span>       -L <span style="color:#ae81ff">220</span>  <span style="color:#ae81ff">\ </span> 
-</span></span><span style="display:flex;"><span>       --forward GGGCAATCCTGAGCCAA <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       --reverse CCATTGAGTCTCTGCACCTATC <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       /data/Genbank/Release_261 <span style="color:#ae81ff">\
-</span></span></span><span style="display:flex;"><span><span style="color:#ae81ff"></span>       &gt; Sper01_obipcr.fasta</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+<div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>obipairing --help</span></span></code></pre></div></div><div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
   <button
     class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
     title="Copy code"
@@ -664,10 +665,10 @@ by setting the <strong>OBIMAXCPU</strong> environment variable.</li>
         </div>
         <div class="hx-mt-16"></div>
         <div class="hx-mb-8 hx-flex hx-items-center hx-border-t hx-pt-8 dark:hx-border-neutral-800 contrast-more:hx-border-neutral-400 dark:contrast-more:hx-border-neutral-400 print:hx-hidden"><a
-        href="/commands/alignments/obipairing/"
-        title="Obipairing: align the forward and reverse paired reads"
-        class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-pr-4 rtl:hx-pl-4"
-      ><svg class="hx-inline hx-h-5 hx-shrink-0 ltr:hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>Obipairing: align the forward and reverse paired reads</a></div>
+        href="/commands/alignments/obipcr/"
+        title="Obipcr: the electronic PCR tool"
+        class="hx-flex hx-max-w-[50%] hx-items-center hx-gap-1 hx-py-4 hx-text-base hx-font-medium hx-text-gray-600 hx-transition-colors [word-break:break-word] hover:hx-text-primary-600 dark:hx-text-gray-300 md:hx-text-lg ltr:hx-ml-auto ltr:hx-pl-4 ltr:hx-text-right rtl:hx-mr-auto rtl:hx-pr-4 rtl:hx-text-left"
+      >Obipcr: the electronic PCR tool<svg class="hx-inline hx-h-5 hx-shrink-0 rtl:-hx-rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg></a></div>
         
       </main>
     </article>
