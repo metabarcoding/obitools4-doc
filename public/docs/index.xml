@@ -1,13 +1,13 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>OBITools4 documentation – Docs</title>
-    <link>http://localhost:1313/docs/</link>
+    <link>http://localhost:1313/obitools4-doc/docs/</link>
     <description>Recent content in Docs on OBITools4 documentation</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 01 Oct 2024 11:14:04 +0200</lastBuildDate>
     
-	  <atom:link href="http://localhost:1313/docs/index.xml" rel="self" type="application/rss+xml" />
+	  <atom:link href="http://localhost:1313/obitools4-doc/docs/index.xml" rel="self" type="application/rss+xml" />
     
     
       
@@ -17,10 +17,10 @@
     
     <item>
       <title>obicount: Counting sequence records</title>
-      <link>http://localhost:1313/commands/basics/obicount/</link>
+      <link>http://localhost:1313/obitools4-doc/commands/basics/obicount/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/commands/basics/obicount/</guid>
+      <guid>http://localhost:1313/obitools4-doc/commands/basics/obicount/</guid>
       <description>
         
         
@@ -319,10 +319,10 @@ INFO[0000] xxx.fastq.gz mime type: text/fastq
     
     <item>
       <title>Obipairing: align the forward and reverse paired reads</title>
-      <link>http://localhost:1313/commands/alignments/obipairing/</link>
+      <link>http://localhost:1313/obitools4-doc/commands/alignments/obipairing/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/commands/alignments/obipairing/</guid>
+      <guid>http://localhost:1313/obitools4-doc/commands/alignments/obipairing/</guid>
       <description>
         
         
@@ -514,10 +514,10 @@ by setting the &lt;strong&gt;OBIMAXCPU&lt;/strong&gt; environment variable.&lt;/
     
     <item>
       <title>Obipcr: the electronic PCR tool</title>
-      <link>http://localhost:1313/commands/alignments/obipcr/</link>
+      <link>http://localhost:1313/obitools4-doc/commands/alignments/obipcr/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://localhost:1313/commands/alignments/obipcr/</guid>
+      <guid>http://localhost:1313/obitools4-doc/commands/alignments/obipcr/</guid>
       <description>
         
         
