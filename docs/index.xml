@@ -1,0 +1,552 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>OBITools4 documentation – Docs</title><link>https://example.org/docs/</link><description>Recent content in Docs on OBITools4 documentation</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 01 Oct 2024 11:14:04 +0200</lastBuildDate><atom:link href="https://example.org/docs/index.xml" rel="self" type="application/rss+xml"/><item><title>obicount: Counting sequence records</title><link>https://example.org/commands/basics/obicount/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://example.org/commands/basics/obicount/</guid><description>
+&lt;h3>Description&lt;span class="hx-absolute -hx-mt-20" id="description">&lt;/span>
+&lt;a href="#description" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>Count the sequence records in a sequence file. It returns three pieces of information. The first is the number of sequence variants (the actual number of sequence records in the file). Each sequence record is associated with a &lt;em>count&lt;/em> attribute (equal to 1 if absent), this number corresponds to the number of times that sequence has been observed in the data set. Thus, the second value returned is the sum of the count values for all sequences. The last value is the number of nucleotides stored in the file, the sum of the sequence lengths.&lt;/p>
+&lt;h3>Synopsis&lt;span class="hx-absolute -hx-mt-20" id="synopsis">&lt;/span>
+&lt;a href="#synopsis" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obicount &lt;span style="color:#f92672">[&lt;/span>--batch-size &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--debug&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--ecopcr&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--embl&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--fasta&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>         &lt;span style="color:#f92672">[&lt;/span>--fastq&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--force-one-cpu&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--genbank&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--help|-h|-?&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>         &lt;span style="color:#f92672">[&lt;/span>--input-OBI-header&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--input-json-header&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--max-cpu &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>         &lt;span style="color:#f92672">[&lt;/span>--no-order&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--pprof&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--pprof-goroutine &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>         &lt;span style="color:#f92672">[&lt;/span>--pprof-mutex &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--reads|-r&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--solexa&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--symbols|-s&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>         &lt;span style="color:#f92672">[&lt;/span>--variants|-v&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--version&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>&amp;lt;args&amp;gt;&lt;span style="color:#f92672">]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;h3>Options&lt;span class="hx-absolute -hx-mt-20" id="options">&lt;/span>
+&lt;a href="#options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;h4>&lt;code>obicount&lt;/code> specific options:&lt;span class="hx-absolute -hx-mt-20" id="obicount-specific-options">&lt;/span>
+&lt;a href="#obicount-specific-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>&lt;ul>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--variants&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-v&lt;/code>&lt;/b>
+: When present, output the number of variants (sequence records) in the sequence file.
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--reads&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-r&lt;/code>&lt;/b>
+: When present, output the number of reads (the sum of sequence counts) in the sequence file.
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--symbols&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-s&lt;/code>&lt;/b>
+: When present, output the number of symbols (nucleotides) in the sequence file.
+&lt;/li>
+&lt;/ul>
+&lt;h4>Controlling the input data&lt;span class="hx-absolute -hx-mt-20" id="controlling-the-input-data">&lt;/span>
+&lt;a href="#controlling-the-input-data" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--fasta&lt;/code>&lt;/b>: Indicate that sequence data is following the FASTA format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--fastq&lt;/code>&lt;/b>: Indicate that sequence data is following the FASTQ format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--embl&lt;/code>&lt;/b>: Indicate that sequence data is following the EMBL flatfile format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--genbank&lt;/code>&lt;/b>: Indicate that sequence data is following the Genbank flatfile format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--ecopcr&lt;/code>&lt;/b>: Indicate that sequence data is following old ecoPCR tabulated format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--input-OBI-header&lt;/code>&lt;/b>: FASTA/FASTQ title line annotations follow the old OBI format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--input-json-header&lt;/code>&lt;/b>: FASTA/FASTQ title line annotations follow the json format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--solexa&lt;/code>&lt;/b>: Decodes quality string according to the Solexa specification. (default: the standard Sanger encoding is used, env: &lt;strong>OBISSOLEXA&lt;/strong>)&lt;/li>
+&lt;/ul>
+&lt;h4>General options&lt;span class="hx-absolute -hx-mt-20" id="general-options">&lt;/span>
+&lt;a href="#general-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--help&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-h|-?&lt;/code>&lt;/b>
+: Show this help.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--version&lt;/code>&lt;/b>: Print the version and exits.&lt;/li>
+&lt;/ul>
+&lt;h4>Computation related options&lt;span class="hx-absolute -hx-mt-20" id="computation-related-options">&lt;/span>
+&lt;a href="#computation-related-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--max-cpu&lt;/code>&lt;/b> &amp;lt;INTEGER>: &lt;em>OBITools&lt;/em> can take advantage of your computer&amp;rsquo;s multi-core
+architecture by parallelizing the computation across all available CPUs.
+Computing on more CPUs usually requires more memory to perform the
+computation. Reducing the number of CPUs used to perform a calculation
+is also a way to indirectly control the amount of memory used by the
+process. The number of CPUs used by &lt;em>OBITools&lt;/em> can also be controlled
+by setting the &lt;strong>OBIMAXCPU&lt;/strong> environment variable.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--force-one-cpu&lt;/code>&lt;/b>: Force to use only one CPU core for parallel processing (default: false).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--batch-size&lt;/code>&lt;/b> &amp;lt;INTEGER>: Number of sequence per batch for parallel processing (default: 1000, env: &lt;strong>OBIBATCHSIZE&lt;/strong>)&lt;/li>
+&lt;/ul>
+&lt;h4>Debug related options&lt;span class="hx-absolute -hx-mt-20" id="debug-related-options">&lt;/span>
+&lt;a href="#debug-related-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--debug&lt;/code>&lt;/b>: Enable debug mode, by setting log level to debug. (default: false, env: &lt;strong>OBIDEBUG&lt;/strong>).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--pprof&lt;/code>&lt;/b>: Enable pprof server. Look at the log for details. (default: false).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--pprof-mutex&lt;/code>&lt;/b> &amp;lt;INTEGER>: Enable profiling of mutex lock. (default: 10, env: &lt;strong>OBIPPROFMUTEX&lt;/strong>)&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--pprof-goroutine&lt;/code>&lt;/b> &amp;lt;INTEGER>: Enable profiling of goroutine blocking profile. (default: 6060, env: &lt;strong>OBIPPROFGOROUTINE&lt;/strong>)&lt;/li>
+&lt;/ul>
+&lt;h3>Examples&lt;span class="hx-absolute -hx-mt-20" id="examples">&lt;/span>
+&lt;a href="#examples" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>By default the &lt;code>obicount&lt;/code> command will output the number of variants, reads and symbols in the sequence file.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obicount my_sequence_file.fasta&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;pre>&lt;code>INFO[0000] Number of workers set 16
+INFO[0000] Found 1 files to process
+INFO[0000] xxx.fastq.gz mime type: text/fastq
+entites,n
+variants,43221
+reads,43221
+symbols,4391530&lt;/code>&lt;/pre>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>The output is in CSV format and can avantageously transformed to Markdown for a prettier output using the &lt;a href="https://github.com/brentp/csvtomd" target="_blank" rel="noopener">&lt;code>csvtomd&lt;/code>&lt;/a> command.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obicount my_sequence_file.fasta | csvtomd&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;pre>&lt;code>INFO[0000] Number of workers set 16
+INFO[0000] Found 1 files to process
+INFO[0000] xxx.fastq.gz mime type: text/fastq
+entites | n
+----------|---------
+variants | 43221
+reads | 43221
+symbols | 4391530&lt;/code>&lt;/pre>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>the conversion can also be done with the &lt;code>csvlook&lt;/code> command from the &lt;a href="https://csvkit.readthedocs.io/" target="_blank" rel="noopener">csvkit&lt;/a> package.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obicount my_sequence_file.fasta | csvlook&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;pre>&lt;code>INFO[0000] Number of workers set 16
+INFO[0000] Found 1 files to process
+INFO[0000] xxx.fastq.gz mime type: text/fastq
+| entites | n |
+| -------- | --------- |
+| variants | 43 221 |
+| reads | 43 221 |
+| symbols | 4 391 530 |&lt;/code>&lt;/pre>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>When using the &lt;code>--variants&lt;/code>, &lt;code>--reads&lt;/code> or &lt;code>--symbols&lt;/code> option, the output only contains the number corresponding to the options specified.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obicount -v --reads my_sequence_file.fasta | csvlook&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;pre>&lt;code>INFO[0000] Number of workers set 16
+INFO[0000] Found 1 files to process
+INFO[0000] xxx.fastq.gz mime type: text/fastq
+| entites | n |
+| -------- | ------ |
+| variants | 43 221 |
+| reads | 43 221 |&lt;/code>&lt;/pre>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>As for all the OBITools commands, the input file can be compressed with gzip.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obicount my_sequence_file.fasta.gz | csvlook&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;pre>&lt;code>INFO[0000] Number of workers set 16
+INFO[0000] Found 1 files to process
+INFO[0000] xxx.fastq.gz mime type: text/fastq
+| entites | n |
+| -------- | --------- |
+| variants | 43 221 |
+| reads | 43 221 |
+| symbols | 4 391 530 |&lt;/code>&lt;/pre>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div></description></item><item><title>Obipairing: align the forward and reverse paired reads</title><link>https://example.org/commands/alignments/obipairing/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://example.org/commands/alignments/obipairing/</guid><description>
+&lt;h2>Description :&lt;span class="hx-absolute -hx-mt-20" id="description-">&lt;/span>
+&lt;a href="#description-" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;h3>Synopsis&lt;span class="hx-absolute -hx-mt-20" id="synopsis">&lt;/span>
+&lt;a href="#synopsis" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obipairing --forward-reads|-F &amp;lt;FILENAME_F&amp;gt; --reverse-reads|-R &amp;lt;FILENAME_R&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--batch-size &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--compress|-Z&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--debug&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--delta|-D &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--ecopcr&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--embl&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--exact-mode&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--fast-absolute&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--fasta&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--fasta-output&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--fastq&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--fastq-output&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--force-one-cpu&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--gap-penality|-G &amp;lt;float64&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--genbank&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--help|-h|-?&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--input-OBI-header&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--input-json-header&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--json-output&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--max-cpu &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--min-identity|-X &amp;lt;float64&amp;gt;&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--min-overlap &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--no-order&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--no-progressbar&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--out|-o &amp;lt;FILENAME&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--output-OBI-header|-O&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--output-json-header&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--penality-scale &amp;lt;float64&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--pprof&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--pprof-goroutine &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--pprof-mutex &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--skip-empty&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--solexa&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--version&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--without-stat|-S&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>&amp;lt;args&amp;gt;&lt;span style="color:#f92672">]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;h3>Options&lt;span class="hx-absolute -hx-mt-20" id="options">&lt;/span>
+&lt;a href="#options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;h4>&lt;code>obipairing&lt;/code> mandatory options&lt;span class="hx-absolute -hx-mt-20" id="obipairing-mandatory-options">&lt;/span>
+&lt;a href="#obipairing-mandatory-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>&lt;ul>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--forward-reads&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-F&lt;/code>&lt;/b>
+: The name of the file containing the forward reads.
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--reverse-reads&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-R&lt;/code>&lt;/b>
+: The name of the file containing the reverse reads.
+&lt;/li>
+&lt;/ul>
+&lt;h4>Other &lt;code>obipairing&lt;/code> specific options:&lt;span class="hx-absolute -hx-mt-20" id="other-obipairing-specific-options">&lt;/span>
+&lt;a href="#other-obipairing-specific-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>&lt;ul>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--delta&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-D&lt;/code>&lt;/b>
+: Length added to the fast-detected overlap for the exact alignment algorithm (default: 5 nucleotides).
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--exact-mode&lt;/code>&lt;/b>: Do not run fast alignment heuristic. (default: a fast algorithm is run at first to accelerate the final exact alignment).
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--fast-absolute&lt;/code>&lt;/b>: Compute absolute fast score, this option has no effect in exact mode (default: false).
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--gap-penality&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-G&lt;/code>&lt;/b>
+: Gap penality expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000)
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--min-identity&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-X&lt;/code>&lt;/b>
+: Minimum identity between ovelaped regions of the reads to consider the aligment (default: 0.900000).
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--min-overlap&lt;/code>&lt;/b>: Minimum overlap between both the reads to consider the aligment (default: 20).
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--penality-scale&lt;/code>&lt;/b>: Scale factor applied to the mismatch score and the gap penality (default 1).
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--without-stat&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-S&lt;/code>&lt;/b>
+: Remove alignment statistics from the produced consensus sequences (default: false).
+&lt;/li>
+&lt;/ul>
+&lt;h4>Controlling the input data&lt;span class="hx-absolute -hx-mt-20" id="controlling-the-input-data">&lt;/span>
+&lt;a href="#controlling-the-input-data" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--fasta&lt;/code>&lt;/b>: Indicate that sequence data is following the FASTA format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--fastq&lt;/code>&lt;/b>: Indicate that sequence data is following the FASTQ format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--embl&lt;/code>&lt;/b>: Indicate that sequence data is following the EMBL flatfile format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--genbank&lt;/code>&lt;/b>: Indicate that sequence data is following the Genbank flatfile format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--ecopcr&lt;/code>&lt;/b>: Indicate that sequence data is following old ecoPCR tabulated format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--input-OBI-header&lt;/code>&lt;/b>: FASTA/FASTQ title line annotations follow the old OBI format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--input-json-header&lt;/code>&lt;/b>: FASTA/FASTQ title line annotations follow the json format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--solexa&lt;/code>&lt;/b>: Decodes quality string according to the Solexa specification. (default: the standard Sanger encoding is used, env: &lt;strong>OBISSOLEXA&lt;/strong>)&lt;/li>
+&lt;/ul>
+&lt;h4>Controlling the output data&lt;span class="hx-absolute -hx-mt-20" id="controlling-the-output-data">&lt;/span>
+&lt;a href="#controlling-the-output-data" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--compress&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-Z&lt;/code>&lt;/b>
+: Output is compressed using gzip (default: false).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--no-order&lt;/code>&lt;/b>: The &lt;em>OBITools&lt;/em> ensure that the order between the input file and
+the output file does not change. When multiple files are processed,
+they are processed one at a time.
+If the &lt;strong>&amp;ndash;no-order&lt;/strong> option is added to a command, multiple input
+files can be opened at the same time and their contents processed
+in parallel. This usually increases processing speed, but does not
+guarantee the order of the sequences in the output file.
+Also, processing multiple files in parallel may require more memory
+to perform the computation.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--fasta-output&lt;/code>&lt;/b>: Write sequence in fasta format (default if no quality data available).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--fastq-output&lt;/code>&lt;/b>: Write sequence in fastq format (default if quality data available).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--json-output&lt;/code>&lt;/b>: Write sequence in json format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--out&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-o&lt;/code>&lt;/b>
+&amp;lt;FILENAME>: Filename used for saving the output (default: &amp;ldquo;-&amp;rdquo;, the standard output)&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--output-OBI-header&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-O&lt;/code>&lt;/b>
+: output FASTA/FASTQ title line annotations follow OBI format (default: JSON).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--output-json-header&lt;/code>&lt;/b>: output FASTA/FASTQ title line annotations follow json format (the default format).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--skip-empty&lt;/code>&lt;/b>: Sequences of length equal to zero are suppressed from the output (default: false).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--no-progressbar&lt;/code>&lt;/b>: Disable the progress bar printing (default: false).&lt;/li>
+&lt;/ul>
+&lt;h4>General options&lt;span class="hx-absolute -hx-mt-20" id="general-options">&lt;/span>
+&lt;a href="#general-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--help&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-h|-?&lt;/code>&lt;/b>
+: Show this help.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--version&lt;/code>&lt;/b>: Print the version and exits.&lt;/li>
+&lt;/ul>
+&lt;h4>Computation related options&lt;span class="hx-absolute -hx-mt-20" id="computation-related-options">&lt;/span>
+&lt;a href="#computation-related-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--max-cpu&lt;/code>&lt;/b> &amp;lt;INTEGER>: &lt;em>OBITools&lt;/em> can take advantage of your computer&amp;rsquo;s multi-core
+architecture by parallelizing the computation across all available CPUs.
+Computing on more CPUs usually requires more memory to perform the
+computation. Reducing the number of CPUs used to perform a calculation
+is also a way to indirectly control the amount of memory used by the
+process. The number of CPUs used by &lt;em>OBITools&lt;/em> can also be controlled
+by setting the &lt;strong>OBIMAXCPU&lt;/strong> environment variable.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--force-one-cpu&lt;/code>&lt;/b>: Force to use only one CPU core for parallel processing (default: false).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--batch-size&lt;/code>&lt;/b> &amp;lt;INTEGER>: Number of sequence per batch for parallel processing (default: 1000, env: &lt;strong>OBIBATCHSIZE&lt;/strong>)&lt;/li>
+&lt;/ul>
+&lt;h4>Debug related options&lt;span class="hx-absolute -hx-mt-20" id="debug-related-options">&lt;/span>
+&lt;a href="#debug-related-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--debug&lt;/code>&lt;/b>: Enable debug mode, by setting log level to debug. (default: false, env: &lt;strong>OBIDEBUG&lt;/strong>).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--pprof&lt;/code>&lt;/b>: Enable pprof server. Look at the log for details. (default: false).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--pprof-mutex&lt;/code>&lt;/b> &amp;lt;INTEGER>: Enable profiling of mutex lock. (default: 10, env: &lt;strong>OBIPPROFMUTEX&lt;/strong>)&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--pprof-goroutine&lt;/code>&lt;/b> &amp;lt;INTEGER>: Enable profiling of goroutine blocking profile. (default: 6060, env: &lt;strong>OBIPPROFGOROUTINE&lt;/strong>)&lt;/li>
+&lt;/ul>
+&lt;h3>Examples&lt;span class="hx-absolute -hx-mt-20" id="examples">&lt;/span>
+&lt;a href="#examples" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obipairing --help&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div></description></item><item><title>Obipcr: the electronic PCR tool</title><link>https://example.org/commands/alignments/obipcr/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://example.org/commands/alignments/obipcr/</guid><description>
+&lt;h2>Description :&lt;span class="hx-absolute -hx-mt-20" id="description-">&lt;/span>
+&lt;a href="#description-" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h2>&lt;p>&lt;code>obipcr&lt;/code> is the successor of &lt;a href="https://metabarcoding.org/ecopcr" target="_blank" rel="noopener">&lt;code>ecoPCR&lt;/code>&lt;/a>. It is known as an electronic PCR software.&lt;/p>
+&lt;h3>Synopsis&lt;span class="hx-absolute -hx-mt-20" id="synopsis">&lt;/span>
+&lt;a href="#synopsis" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obipcr --forward &amp;lt;string&amp;gt; --max-length|-L &amp;lt;int&amp;gt; --reverse &amp;lt;string&amp;gt;
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--allowed-mismatches|-e &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--batch-size &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--circular|-c&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--compress|-Z&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--debug&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--delta|-D &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--ecopcr&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--embl&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--fasta&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--fasta-output&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--fastq&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--fastq-output&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--force-one-cpu&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--fragmented&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--genbank&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--help|-h|-?&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--input-OBI-header&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--input-json-header&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--json-output&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--max-cpu &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--min-length|-l &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--no-order&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--no-progressbar&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--only-complete-flanking&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--out|-o &amp;lt;FILENAME&amp;gt;&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--output-OBI-header|-O&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--output-json-header&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--paired-with &amp;lt;FILENAME&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--pprof&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--pprof-goroutine &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> &lt;span style="color:#f92672">[&lt;/span>--pprof-mutex &amp;lt;int&amp;gt;&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--skip-empty&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--solexa&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>--version&lt;span style="color:#f92672">]&lt;/span> &lt;span style="color:#f92672">[&lt;/span>&amp;lt;args&amp;gt;&lt;span style="color:#f92672">]&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;h3>Options&lt;span class="hx-absolute -hx-mt-20" id="options">&lt;/span>
+&lt;a href="#options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;h4>&lt;code>obipcr&lt;/code> mandatory options:&lt;span class="hx-absolute -hx-mt-20" id="obipcr-mandatory-options">&lt;/span>
+&lt;a href="#obipcr-mandatory-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>&lt;ul>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--forward&lt;/code>&lt;/b>: The forward primer used for the electronic PCR. IUPAC codes can be used in the pattern.
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--reverse&lt;/code>&lt;/b>: The reverse primer used for the electronic PCR. IUPAC codes can be used in the pattern.
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--max-length&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-L&lt;/code>&lt;/b>
+: Maximum length of the barcode, primers excluded.
+&lt;/li>
+&lt;/ul>
+&lt;h4>Other &lt;code>obipcr&lt;/code> specific options:&lt;span class="hx-absolute -hx-mt-20" id="other-obipcr-specific-options">&lt;/span>
+&lt;a href="#other-obipcr-specific-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>&lt;ul>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--allowed-mismatches&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-e&lt;/code>&lt;/b>
+: Maximum number of mismatches allowed for each primer (default: 0).
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--min-length&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-l&lt;/code>&lt;/b>
+: Minimum length of the barcode primers excluded (default: no minimum length).
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--circular&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-c&lt;/code>&lt;/b>
+: Considers that sequences are circular. (default: sequences are considered linear)
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--delta&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-D&lt;/code>&lt;/b>
+: Without this option, only the barcode sequences will be output, without the priming sites. This option allows to add the priming sites and the flanking sequences of the priming sites over a length of &lt;code>delta&lt;/code> to each side of the barcode.
+&lt;/li>
+&lt;li>
+&lt;b>&lt;code class="language-bash">--only-complete-flanking&lt;/code>&lt;/b>: Works in conjunction with &lt;strong>&amp;ndash;delta&lt;/strong>. Prints only sequences with full-length flanking sequences (default: prints every sequence regardless of whether the flanking sequences are present).
+&lt;/li>
+&lt;/ul>
+&lt;h4>Controlling the input data&lt;span class="hx-absolute -hx-mt-20" id="controlling-the-input-data">&lt;/span>
+&lt;a href="#controlling-the-input-data" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--fasta&lt;/code>&lt;/b>: Indicate that sequence data is following the FASTA format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--fastq&lt;/code>&lt;/b>: Indicate that sequence data is following the FASTQ format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--embl&lt;/code>&lt;/b>: Indicate that sequence data is following the EMBL flatfile format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--genbank&lt;/code>&lt;/b>: Indicate that sequence data is following the Genbank flatfile format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--ecopcr&lt;/code>&lt;/b>: Indicate that sequence data is following old ecoPCR tabulated format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--input-OBI-header&lt;/code>&lt;/b>: FASTA/FASTQ title line annotations follow the old OBI format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--input-json-header&lt;/code>&lt;/b>: FASTA/FASTQ title line annotations follow the json format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--solexa&lt;/code>&lt;/b>: Decodes quality string according to the Solexa specification. (default: the standard Sanger encoding is used, env: &lt;strong>OBISSOLEXA&lt;/strong>)&lt;/li>
+&lt;/ul>
+&lt;h4>Controlling the output data&lt;span class="hx-absolute -hx-mt-20" id="controlling-the-output-data">&lt;/span>
+&lt;a href="#controlling-the-output-data" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--compress&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-Z&lt;/code>&lt;/b>
+: Output is compressed using gzip (default: false).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--no-order&lt;/code>&lt;/b>: The &lt;em>OBITools&lt;/em> ensure that the order between the input file and
+the output file does not change. When multiple files are processed,
+they are processed one at a time.
+If the &lt;strong>&amp;ndash;no-order&lt;/strong> option is added to a command, multiple input
+files can be opened at the same time and their contents processed
+in parallel. This usually increases processing speed, but does not
+guarantee the order of the sequences in the output file.
+Also, processing multiple files in parallel may require more memory
+to perform the computation.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--fasta-output&lt;/code>&lt;/b>: Write sequence in fasta format (default if no quality data available).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--fastq-output&lt;/code>&lt;/b>: Write sequence in fastq format (default if quality data available).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--json-output&lt;/code>&lt;/b>: Write sequence in json format.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--out&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-o&lt;/code>&lt;/b>
+&amp;lt;FILENAME>: Filename used for saving the output (default: &amp;ldquo;-&amp;rdquo;, the standard output)&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--output-OBI-header&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-O&lt;/code>&lt;/b>
+: output FASTA/FASTQ title line annotations follow OBI format (default: JSON).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--output-json-header&lt;/code>&lt;/b>: output FASTA/FASTQ title line annotations follow json format (the default format).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--skip-empty&lt;/code>&lt;/b>: Sequences of length equal to zero are suppressed from the output (default: false).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--no-progressbar&lt;/code>&lt;/b>: Disable the progress bar printing (default: false).&lt;/li>
+&lt;/ul>
+&lt;h4>General options&lt;span class="hx-absolute -hx-mt-20" id="general-options">&lt;/span>
+&lt;a href="#general-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--help&lt;/code>&lt;/b>
+| &lt;b>&lt;code class="language-bash">-h|-?&lt;/code>&lt;/b>
+: Show this help.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--version&lt;/code>&lt;/b>: Print the version and exits.&lt;/li>
+&lt;/ul>
+&lt;h4>Computation related options&lt;span class="hx-absolute -hx-mt-20" id="computation-related-options">&lt;/span>
+&lt;a href="#computation-related-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--max-cpu&lt;/code>&lt;/b> &amp;lt;INTEGER>: &lt;em>OBITools&lt;/em> can take advantage of your computer&amp;rsquo;s multi-core
+architecture by parallelizing the computation across all available CPUs.
+Computing on more CPUs usually requires more memory to perform the
+computation. Reducing the number of CPUs used to perform a calculation
+is also a way to indirectly control the amount of memory used by the
+process. The number of CPUs used by &lt;em>OBITools&lt;/em> can also be controlled
+by setting the &lt;strong>OBIMAXCPU&lt;/strong> environment variable.&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--force-one-cpu&lt;/code>&lt;/b>: Force to use only one CPU core for parallel processing (default: false).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--batch-size&lt;/code>&lt;/b> &amp;lt;INTEGER>: Number of sequence per batch for parallel processing (default: 1000, env: &lt;strong>OBIBATCHSIZE&lt;/strong>)&lt;/li>
+&lt;/ul>
+&lt;h4>Debug related options&lt;span class="hx-absolute -hx-mt-20" id="debug-related-options">&lt;/span>
+&lt;a href="#debug-related-options" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h4>
+&lt;ul>
+&lt;li>&lt;b>&lt;code class="language-bash">--debug&lt;/code>&lt;/b>: Enable debug mode, by setting log level to debug. (default: false, env: &lt;strong>OBIDEBUG&lt;/strong>).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--pprof&lt;/code>&lt;/b>: Enable pprof server. Look at the log for details. (default: false).&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--pprof-mutex&lt;/code>&lt;/b> &amp;lt;INTEGER>: Enable profiling of mutex lock. (default: 10, env: &lt;strong>OBIPPROFMUTEX&lt;/strong>)&lt;/li>
+&lt;li>&lt;b>&lt;code class="language-bash">--pprof-goroutine&lt;/code>&lt;/b> &amp;lt;INTEGER>: Enable profiling of goroutine blocking profile. (default: 6060, env: &lt;strong>OBIPPROFGOROUTINE&lt;/strong>)&lt;/li>
+&lt;/ul>
+&lt;h3>Examples&lt;span class="hx-absolute -hx-mt-20" id="examples">&lt;/span>
+&lt;a href="#examples" class="subheading-anchor" aria-label="Permalink for this section">&lt;/a>&lt;/h3>&lt;p>The minimal &lt;code>ecopcr&lt;/code> command looks like this:&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obipcr -L &lt;span style="color:#ae81ff">220&lt;/span> &lt;span style="color:#ae81ff">\ &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --forward GGGCAATCCTGAGCCAA &lt;span style="color:#ae81ff">\ &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --reverse CCATTGAGTCTCTGCACCTATC &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> /data/Genbank/Release_261 &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> &amp;gt; Sper01_obipcr.fasta&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div>
+&lt;p>It fetches the sequences from the NCBI Genbank release 261 database stored in the &lt;code>/data/Genbank/Release_261&lt;/code> directory. The output is stored in the &lt;code>Sper01_obipcr.fasta&lt;/code> file. The primer pair is specified as &lt;code>GGGCAATCCTGAGCCAA&lt;/code> and &lt;code>CCATTGAGTCTCTGCACCTATC&lt;/code> using the &lt;code>--forward&lt;/code> and &lt;code>--reverse&lt;/code> options. These primers correspond to the marker &lt;em>Sper01&lt;/em>. The &lt;code>-L&lt;/code> option specifies the maximum length of the barcode, primers excluded, here 220 nucleotides. By default no mismatches are allowed between the primers and the priming sites.&lt;/p>
+&lt;p>To allows mismatches between the primers and the priming sites, use the &lt;code>--allowed-mismatches&lt;/code> option or its short form &lt;code>-e&lt;/code>. Here, the maximum number of mismatches allowed is 3. This maximum number of mismatches is allowed per primer. The error can occur at any position of the primer.&lt;/p>
+&lt;div class="hextra-code-block hx-relative hx-mt-6 first:hx-mt-0 hx-group/code">
+&lt;div>&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;">&lt;code class="language-bash" data-lang="bash">&lt;span style="display:flex;">&lt;span>obipcr -e &lt;span style="color:#ae81ff">3&lt;/span> &lt;span style="color:#ae81ff">\ &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> -L &lt;span style="color:#ae81ff">220&lt;/span> &lt;span style="color:#ae81ff">\ &lt;/span>
+&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span> --forward GGGCAATCCTGAGCCAA &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> --reverse CCATTGAGTCTCTGCACCTATC &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> /data/Genbank/Release_261 &lt;span style="color:#ae81ff">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span style="display:flex;">&lt;span>&lt;span style="color:#ae81ff">&lt;/span> &amp;gt; Sper01_obipcr.fasta&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/div>&lt;div class="hextra-code-copy-btn-container hx-opacity-0 hx-transition group-hover/code:hx-opacity-100 hx-flex hx-gap-1 hx-absolute hx-m-[11px] hx-right-0 hx-top-0">
+&lt;button
+class="hextra-code-copy-btn hx-group/copybtn hx-transition-all active:hx-opacity-50 hx-bg-primary-700/5 hx-border hx-border-black/5 hx-text-gray-600 hover:hx-text-gray-900 hx-rounded-md hx-p-1.5 dark:hx-bg-primary-300/10 dark:hx-border-white/10 dark:hx-text-gray-400 dark:hover:hx-text-gray-50"
+title="Copy code"
+>
+&lt;div class="copy-icon group-[.copied]/copybtn:hx-hidden hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;div class="success-icon hx-hidden group-[.copied]/copybtn:hx-block hx-pointer-events-none hx-h-4 hx-w-4">&lt;/div>
+&lt;/button>
+&lt;/div>
+&lt;/div></description></item></channel></rss>
