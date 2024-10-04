@@ -34,8 +34,8 @@ jobs:
             ${{ runner.os }}-hugomod-
 
       - name: Setup Hextra
-        run: hugo mod get -u
-        
+        run: hugo mod get github.com/imfing/hextra
+
       - name: Build
         run: hugo --minify --buildDrafts
 
