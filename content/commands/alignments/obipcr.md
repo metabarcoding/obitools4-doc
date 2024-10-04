@@ -79,9 +79,9 @@ obipcr -L 220  \
        > Sper01_obipcr.fasta
 ```
 
-It fetches the sequences from the NCBI Genbank release 261 database stored in the `/data/Genbank/Release_261` directory. The output is stored in the `Sper01_obipcr.fasta` file. The primer pair is specified as `GGGCAATCCTGAGCCAA` and `CCATTGAGTCTCTGCACCTATC` using the `--forward` and `--reverse` options. These primers correspond to the marker *Sper01*. The `-L` option specifies the maximum length of the barcode, primers excluded, here 220 nucleotides. By default no mismatches are allowed between the primers and the priming sites.
+It retrieves the sequences from the NCBI Genbank Release 261 database located in the `/data/Genbank/Release_261` directory. The output is saved in the file `Sper01_obipcr.fasta`. The primer pair is specified as `GGGCAATCCTGAGCCAA` and `CCATTGAGTCTCTGCACCTATC` using the `-forward` and `--reverse` options. These primers correspond to the *Sper01* marker. The `-L` option specifies the maximum length of the barcode excluding the primers, here 220 nucleotides. By default, no mismatches are allowed between the primers and the priming sites.
 
-To allows mismatches between the primers and the priming sites, use the `--allowed-mismatches` option or its short form `-e`. Here, the maximum number of mismatches allowed is 3. This maximum number of mismatches is allowed per primer. The error can occur at any position of the primer.
+To allow mismatches between the primers and the priming sites, use the `--allowed-mismatches` option or its short form `-e`. Here, the maximum number of mismatches allowed is 3. This maximum number of mismatches is allowed per primer. The mismatch can occur anywhere in the primer.
 
 ```bash
 obipcr -e 3  \  
@@ -92,3 +92,13 @@ obipcr -e 3  \
        > Sper01_obipcr.fasta
 ```
 
+To disallow mismatches at specific positions, add a sharp `#` after the blocked position. For example, `GGGCAATCCTGAGCCAA#` disallows mismatches at the last position of the forward primer. Since `#` is also used to introduce comments in a bash script, the primer containing the `#` sign must be enclosed in single or double quotes.
+
+```bash
+obipcr -e 3  \  
+       -L 220  \  
+       --forward "GGGCAATCCTGAGCCAA#" \
+       --reverse "CCATTGAGTCTCTGCACCTATC" \
+       /data/Genbank/Release_261 \
+       > Sper01_obipcr.fasta
+```
