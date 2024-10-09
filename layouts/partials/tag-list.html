@@ -1,0 +1,16 @@
+{{ $old := "" }}
+{{ $context := . }}
+{{ range sort .Site.Data.tags "tag" "asc" }}
+  {{ $first := substr .tag 0 1 | upper }}
+  {{ if ne $first $old }}
+### \- {{ $first }} -
+
+    {{ $old = $first }}
+  {{ end }}
+- **{{- .tag -}}** :
+
+  > {{- .definition -}}
+
+  {{ if .command }}
+  ({{ range $i,$c := sort .command }}{{ if $i }}, {{ end }}[{{ . }}]({{ ref $context $c }}){{ end }}){{ end }}
+{{ end }}

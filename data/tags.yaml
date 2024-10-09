@@ -1,0 +1,58 @@
+- tag: definition
+  definition: text information about the sequence present in the original sequence file.
+- tag: direction
+  definition: set to “forward” if the original sequence did not need to be
+    reverse-complemented to be processed, set to “reverse” otherwise.
+  command:
+    - obipcr
+- tag: forward_error
+  definition: Mismatch between forward primer and priming site
+  command:
+    - obipcr
+  category:
+    - primer
+- tag: forward_match
+  definition: Forward primer priming site sequence
+  command:
+    - obipcr
+  category:
+    - primer
+- tag: forward_primer
+  definition: Forward primer sequence
+  command:
+    - obipcr
+  category:
+    - primer
+- tag: reverse_error
+  definition: Mismatch between reverse primer and priming site
+  command:
+    - obipcr
+  category:
+    - primer
+- tag: reverse_match
+  definition: Reverse primer priming site sequence
+  command:
+    - obipcr
+  category:
+    - primer
+- tag: reverse_primer
+  definition: Reverse primer sequence
+  command:
+    - obipcr
+  category:
+    - primer
+- tag: scientific_name
+  definition: Scientific name associated with to the taxid
+  command:
+    - obitag
+    - obipcr
+  category:
+    - taxonomy
+- tag: taxid
+  definition: Taxonomic identifier
+  link: https://www.ncbi.nlm.nih.gov/Taxonomy
+  command:
+    - obitag
+    - obipcr
+  category:
+    - taxonomy

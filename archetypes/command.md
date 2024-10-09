@@ -1,9 +1,17 @@
-+++
-archetype = "command"
-title = "{{ .Name | title }}"
-+++
+{{- $short := "" -}}{{- $description := "" -}}{{- $name := .Name | lower -}}{{- range .Site.Data.commands -}}{{ if eq $name .command }}{{- $description = .description -}}{{- $short = .short -}}{{ end }}{{- end -}}
+---
+archetype: "command"
+title: "{{ .Name | title }}{{ if $short }}: {{ $short }}{{end}}"
+date: {{ .Date | time.Format "2006-01-02" }}
+command: "{{ .Name }}"
+url: "/obitools/{{ .Name | lower }}"
+---
 
-## Description :
+## `{{ .Name | lower }}`{{ if $short }}: {{ $short }}{{end}}
+
+### Description 
+
+{{ if $description }}{{- $description -}}{{ end }}
 
 ### Synopsis
 
@@ -13,7 +21,7 @@ title = "{{ .Name | title }}"
 
 ### Options
 
-#### `{{ .Name }}` specific options:
+#### {{< obi {{ .Name | lower }} >}} specific options:
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option

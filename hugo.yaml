@@ -4,5 +4,13 @@ title: OBITools4 documentation
 
 module:
   imports:
-    - path: github.com/imfing/hextra
+#    - path: github.com/imfing/hextra
+    - path: github.com/alex-shpak/hugo-book
 
+taxonomies:
+  command: commands
+  tag: tags
+  category: categories
+
+refLinksErrorLevel: WARNING
+refLinksNotFoundURL: /some/other/url

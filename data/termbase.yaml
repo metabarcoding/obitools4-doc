@@ -1,0 +1,11 @@
+- abbr: LECA
+  definition: Laboratoire d'écologie Alpine - Laboratory for Alpine Ecology
+  link: https://leca.osug.fr
+
+- term: OBITools
+  definition: A set of unix command line tools for manipulating DNA metabarcoding data
+  
+- term: OBITools4
+  definition: The fourth version of the OBITools, a set of unix command line tools
+    for manipulating DNA metabarcoding data
+  link: https://metabarcoding.org/obitools4
