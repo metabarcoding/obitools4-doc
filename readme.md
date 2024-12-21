@@ -3,7 +3,10 @@
 ## Getting a copy of the OBITools4 documentation
 
 ```bash
-git clone git@github.com:metabarcoding/obitools4-doc.git
+git clone --recurse-submodules \
+          --remote-submodules  \
+          -j 8  \
+          git@github.com:metabarcoding/obitools4-doc.git
 ```
 
 ## The editor

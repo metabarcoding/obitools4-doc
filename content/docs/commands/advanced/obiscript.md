@@ -1,12 +1,12 @@
 ---
 archetype: "command"
-title: "Obiscript"
+title: "Obiscript: apply a LUA script"
 date: 2024-12-21
 command: "obiscript"
 url: "/obitools/obiscript"
 ---
 
-## `obiscript`
+## `obiscript` apply a LUA script to each sequence in a file.
 
 ### Description 
 

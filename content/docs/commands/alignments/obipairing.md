@@ -78,7 +78,7 @@ obipairing -F forward.fastq -R reverse.fastq > paired.fastq
 
 {{< mermaid class="workflow" >}}
 graph TD
-    A@{ shape: doc, label: "forward.fastq" }
+  A@{ shape: doc, label: "forward.fastq" }
   B@{ shape: doc, label: "reverse.fastq" }
   C[obipairing]
   D@{ shape: doc, label: "paired.fastq" }
