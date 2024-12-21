@@ -6,11 +6,6 @@ draft = true
 
 This is the landing page.
 
-## Explore
-
-{{- range .Site.RegularPages -}}
-- [{{ .Title }}]({{ .RelPermalink }})
-{{- end -}}
 
 
 ## Documentation
