@@ -98,7 +98,7 @@ I9--III99IIIIII-IIIIII9IIIIIIIIIIIIIIIIIIIIqqqqqJUUqqaqqaqqqqqqUqqaqQqqqqqqqaqqq
 
 #### The alignment process
 
-{{< obi obipairing >}} will align the reads following a two-step procedure to increase computation speed. The first step aligns the reads using a FASTA derived algorithm. Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm.
+{{< obi obipairing >}} will align the reads following a two-step procedure to increase computation speed. The first step aligns the reads using a [FASTA derived algorithm](https://en.wikipedia.org/wiki/FASTA). Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm.
 
 ##### The FASTA like first step alignment
 
