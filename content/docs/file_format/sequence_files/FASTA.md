@@ -7,13 +7,14 @@ weight: 1
 # bookCollapseSection: false
 # bookComments: false
 # bookSearchExclude: false
+bibFile: bibliography/bibliography.json 
 ---
 
 ## The *fasta* sequence file format
 
 The *fasta* sequence file format is certainly the most widely used sequence file
 format. This is certainly due to its great simplicity. It was originally created
-for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA).
+for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA) {{< cite "Pearson:1988aa" >}}.
 OBITools use in more of the classical :ref:`fasta ` format an :ref:`extended
 version ` of this format where structured data are included in the title line.
 
@@ -26,4 +27,7 @@ several lines of the same length (expect for the last one) ::
     ACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGT
     GTGCTGACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTGTTT
     AACGACGTTGCAGTACGTTGCAGT
- ```
+```
+
+
+ {{< bibliography cited >}}

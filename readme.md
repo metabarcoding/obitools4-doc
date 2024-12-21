@@ -13,4 +13,10 @@ I recommend to use VSCodium, all installation instructions are available on http
 ### VsCode extensions
 
 - [Hugo Language and Syntax Support](https://marketplace.visualstudio.com/items?itemName=budparr.language-hugo-vscode)
-- 
+
+
+### Rebuild the bibliography file 
+
+```bash
+pandoc data/bibliography.bib -t csljson -o data/bibliography.json
+```

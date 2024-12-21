@@ -69,11 +69,24 @@ The sequence first sequence of the `forward.fastq` file having the id `LH00534:2
 
 #### The simplest {{< obi obipairing >}} command
 
+
 The minimal {{< obi obipairing >}} command to align the `forward.fastq` and `reverse.fastq` files is:
 
 ```bash
 obipairing -F forward.fastq -R reverse.fastq > paired.fastq
 ```
+
+{{< mermaid class="workflow" >}}
+graph TD
+    A@{ shape: doc, label: "forward.fastq" }
+  B@{ shape: doc, label: "reverse.fastq" }
+  C[obipairing]
+  D@{ shape: doc, label: "paired.fastq" }
+  A --> C
+  B --> C:::obitools
+  C --> D
+  classDef obitools fill:#99d57c
+{{< /mermaid >}}
 
 it will produce a file named [`paired.fastq`]({{< static "examples/obipairing/paired.fastq" >}}) with the following content:
 

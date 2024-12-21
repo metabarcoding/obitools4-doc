@@ -3,10 +3,10 @@ languageCode: en-us
 title: OBITools4 documentation
 enableEmoji: true
 
-module:
-  imports:
+#module:
+#  imports:
 #    - path: github.com/imfing/hextra
-    - path: github.com/alex-shpak/hugo-book
+#    - path: github.com/alex-shpak/hugo-book
 
 taxonomies:
   command: commands
@@ -23,7 +23,6 @@ markup:
       unsafe: true
   tableOfContents:
     startLevel: 1
-
 
 params:
   # (Optional, default light) Sets color theme: light, dark or auto.
@@ -84,3 +83,8 @@ params:
   # /!\ This is an experimental feature, might be removed or changed at any time
   # (Optional, experimental, default false) Enables service worker that caches visited pages and resources for offline use.
   BookServiceWorker: true
+
+theme:
+- hugo-book  
+- hugo-cite
+# - hugo-thirdhemisphere

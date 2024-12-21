@@ -456,10 +456,10 @@ obirefidx -t TAXO results/v05_clean_uniq.fasta \
 
 
 
-{{% hint warning %}}
+
 :warning:
 From now on, for clarity, the following commands will use the filenames of the files provided with the tutorial. If you decided to do the last steps and use the files you created, you'll have to use `results/v05_clean_uniq.indexed.fasta` instead of `wolf_data/db_v05_r117.indexed.fasta`.
-{{% /hint %}}
+
 
 ### Assign each sequence to a taxon
 
