@@ -24,7 +24,7 @@ obicount [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 ### Options
 
-#### `obicount` specific options:
+#### {{< obi obicount >}} specific options:
 
 - {{< cmd-option name="variants" short="v" >}}
   When present, output the number of variants (sequence records) in the sequence file.
@@ -44,7 +44,7 @@ obicount [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 ### Examples
 
-By default the `obicount` command will output the number of variants, reads and symbols in the sequence file.
+By default the {{< obi obicount >}} command will output the number of variants, reads and symbols in the sequence file.
 
 ```bash
 obicount my_sequence_file.fasta

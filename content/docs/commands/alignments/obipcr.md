@@ -30,7 +30,7 @@ obipcr --forward <string> --max-length|-L <int> --reverse <string>
 
 ### Options
 
-#### `obipcr` mandatory options:
+#### {{< obi obipcr >}} mandatory options:
 
 - {{< cmd-option name="forward" param="PATTERN" >}}
   The forward primer used for the electronic PCR. IUPAC codes can be used in the pattern.  
@@ -44,7 +44,7 @@ obipcr --forward <string> --max-length|-L <int> --reverse <string>
   Maximum length of the barcode, primers excluded.
   {{< /cmd-option >}}
 
-#### Other `obipcr` specific options:
+#### Other {{< obi obipcr >}} specific options:
 
 - {{< cmd-option name="allowed-mismatches" short="e" param="INTEGER" >}}
   Maximum number of mismatches allowed for each primer (default: 0).
@@ -74,7 +74,7 @@ obipcr --forward <string> --max-length|-L <int> --reverse <string>
 
 ### Examples
 
-The minimal `ecopcr` command looks like this:
+The minimal {{< obi obipcr >}} command looks like this:
 
 ```bash
 obipcr -L 220  \  
