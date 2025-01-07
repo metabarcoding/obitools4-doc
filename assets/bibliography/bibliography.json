@@ -1,5 +1,31 @@
 [
   {
+    "ISSN": "0305-1048",
+    "PMID": "2582368",
+    "URL": "http://www.ncbi.nlm.nih.gov/pubmed/2582368",
+    "author": [
+      {
+        "family": "Cornish-Bowden",
+        "given": "A"
+      }
+    ],
+    "container-title": "Nucleic acids research",
+    "id": "Cornish-Bowden:1985aa",
+    "issue": "9",
+    "issued": {
+      "date-parts": [
+        [
+          1985
+        ]
+      ]
+    },
+    "page": "3021-3030",
+    "publisher": "Oxford University Press",
+    "title": "Nomenclature for incompletely specified bases in nucleic acid sequences: recommendations 1984",
+    "type": "article-journal",
+    "volume": "13"
+  },
+  {
     "ISSN": "0027-8424",
     "PMID": "3162770",
     "URL": "http://www.ncbi.nlm.nih.gov/pubmed/3162770",
