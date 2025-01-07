@@ -13,7 +13,8 @@
   short: "Search for a taxon in a taxonomic database"
   category: 
     - taxonomy
-- command: obilandmark      
+- command: obilandmark   
+  experimental: true
 - command: obipcr
   description: An electronic PCR tool that extracts sequences from a database of sequences that are potentially PCR amplifiable with a pair of primers.
   short: "The electronic PCR tool"
@@ -58,6 +59,7 @@
   category:
     - taxonomy
     - alignments
+  experimental: true
 - command: obicsv
   description: Convert a sequence file to a CSV file.
   category: 
@@ -79,6 +81,7 @@
   short: "Denoise MinIon data using consensus sequences"
   category: 
     - denoising
+  experimental: true
 - command: obidistribute   
   description: Distribute a sequence file accross multiple output files.
   short: "Split a sequence file into multiple files"   

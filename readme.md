@@ -31,6 +31,23 @@ hugo server --buildDrafts
 
 ## Some commands to help you edit the documentation
 
+### Add a new content
+
+To add a new page, use the following command:
+
+```bash
+hugo new content content/docs/new_page.md
+```
+
+#### Add a new command description page
+
+The following command will create a new page in the `content/docs/commands` folder,
+containing a pre-filled template for the command description (here `obiconvert`).
+
+```bash
+hugo new content --kind command content/docs/commands/obiconvert.md
+```
+
 ### The hugo shortcodes
 
 - To cite an obitool, use the following format: `{{< obi command_name >}}`
@@ -41,6 +58,24 @@ hugo server --buildDrafts
 
   That shortcode use the `data/commands.yaml` to retrieve the information
   related to an obitool.
+
+- To refer to a glossary term, use the following format: `{{< gloentry "term" >}}`
+
+  Glossary entries are stored in the `data/termbase.yaml` file.
+
+  Two categories of glossary entries are available:
+  - `term`: defined a term frequently used in the documentation
+    - `definition`: the definition of the term.
+    - `link`: an URL to a page with more information about the term.
+  
+  - `abbr`: the glossary entries related to the OBI.
+    - `definition`: the definition of the abbreviation.
+    - `link`: an URL to a page with more information about the abbreviated term.
+
+  ```md
+  {{< gloentry "OBITools" >}}
+  ```
+
 - To display the IUPAC DNA nucleotide abbreviations table: `{{< iupac >}}`
   
 #### Shortcodes related to the obitools options
