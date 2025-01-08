@@ -30,4 +30,6 @@ several lines of the same length (expect for the last one) ::
 ```
 
 
+## Bibliography
+
  {{< bibliography cited >}}

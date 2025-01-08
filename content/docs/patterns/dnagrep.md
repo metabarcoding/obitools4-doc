@@ -25,18 +25,19 @@ DNA patterns are useful for describing short DNA sequences like oligonucleotides
 - Positions where errors are not allowed, are denoted by a sharp (`#`) symbol after the base.
 - Patterns are case unsensitive.
 
-Here is an example of a DNA pattern corresponding to the forward primer of the *Euka02* marker with no errors allowed
-at the two last bases on the 3' end:
 
-```
-TTTGTCTGSTTAATTSC#G#
-```
+>[!EXAMPLE]
+> Here is an example of a DNA pattern corresponding to the forward primer of the *Euka02* marker with no errors allowed
+> at the two last bases on the 3' end:
+>
+> TTTGTCTGSTTAATTSC#G#
 
-or the same pattern using base ranges for indicating the second `S` ambiguity:
 
-```
-TTTGTCTGSTTAATT[CG]C#G#
-```
+>[!EXAMPLE]
+>
+> or the same pattern using base ranges for indicating the second `S` ambiguity:
+>
+> TTTGTCTGSTTAATT[CG]C#G#
 
 
 

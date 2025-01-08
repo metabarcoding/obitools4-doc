@@ -85,6 +85,8 @@ params:
   BookServiceWorker: true
 
 theme:
+- hugo-admonitions
 - hugo-book  
 - hugo-cite
+
 # - hugo-thirdhemisphere

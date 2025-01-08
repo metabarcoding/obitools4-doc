@@ -111,7 +111,43 @@ hugo new content --kind command content/docs/commands/obiconvert.md
   
       List all the options related to the selection of a subset of sequence entries from the input data.
       
-### Rebuild the bibliography file 
+### Admonitions
+
+```
+> [!NOTIFY]
+> System notification: Your password will expire in 30 days.
+```
+
+Available admonitions:
+
+- `[!ABSTRACT]`
+- `[!CAUTION]`
+- `[!CODE]`
+- `[!CONCLUSION]`
+- `[!DANGER]`
+- `[!ERROR]`
+- `[!EXAMPLE]`
+- `[!EXPERIMENT]`
+- `[!GOAL]`
+- `[!IDEA]`
+- `[!IMPORTANT]`
+- `[!INFO]`
+- `[!MEMO]`
+- `[!NOTE]`
+- `[!NOTIFY]`
+- `[!QUESTION]`
+- `[!QUOTE]`
+- `[!SUCCESS]`
+- `[!TASK]`
+- `[!TIP]`
+- `[!WARNING]`
+
+### Citing a reference
+
+To cite a reference, use the following format: `{{< cite "Pearson:1988aa" >}}`
+
+
+#### Rebuild the bibliography file 
 
 ```bash
 pandoc assets/bibliography/bibliography.bib -t csljson -o assets/bibliography/bibliography.json
