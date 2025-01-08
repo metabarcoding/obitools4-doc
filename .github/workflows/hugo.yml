@@ -31,7 +31,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HUGO_VERSION: 0.132.2
+      HUGO_VERSION: 0.140.2
       HUGO_CACHEDIR: /tmp/hugo_cache # <- Define the env variable here, so that Hugo's cache dir is now predictible in your workflow and doesn't depend on the Hugo's version you're using.
     steps:
       - name: Checkout
