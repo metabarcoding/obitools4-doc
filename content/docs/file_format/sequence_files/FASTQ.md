@@ -8,3 +8,5 @@ weight: 1
 # bookComments: false
 # bookSearchExclude: false
 ---
+
+## The FastQ sequence format
