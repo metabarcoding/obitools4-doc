@@ -27,7 +27,7 @@ DNA patterns are useful for describing short DNA sequences like oligonucleotides
 
 
 >[!EXAMPLE]
-> Here is an example of a DNA pattern corresponding to the forward primer of the *Euka02* marker with no errors allowed
+> A DNA pattern corresponding to the forward primer of the *Euka02* marker with no errors allowed
 > at the two last bases on the 3' end:
 >
 > TTTGTCTGSTTAATTSC#G#
@@ -35,7 +35,7 @@ DNA patterns are useful for describing short DNA sequences like oligonucleotides
 
 >[!EXAMPLE]
 >
-> or the same pattern using base ranges for indicating the second `S` ambiguity:
+> The same pattern using base ranges for indicating the second `S` ambiguity:
 >
 > TTTGTCTGSTTAATT[CG]C#G#
 
