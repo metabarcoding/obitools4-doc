@@ -1,5 +1,5 @@
 ---
-title: "Fasta format"
+title: "Fasta file format"
 weight: 1
 # bookFlatSection: false
 # bookToc: true

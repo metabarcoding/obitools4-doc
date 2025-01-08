@@ -1,5 +1,5 @@
 ---
-title: "Fastq"
+title: "Fastq file format"
 weight: 1
 # bookFlatSection: false
 # bookToc: true

@@ -1,3 +1,4 @@
-{{ partial "cmd-options/option.html" 
-(dict "name" "fastq-output"
-      "documentation" "Write sequence in fastq format (default if quality data available).") }}
+{{ $url := printf "Write sequence in  <a href=\"%s\">fastq</a>  format (default if quality data is available)." (ref . "/docs/file_format/sequence_files/FASTQ.md")}}
+      {{ partial "cmd-options/option.html" 
+      (dict "name" "fastq-output"
+            "documentation" $url) }}
