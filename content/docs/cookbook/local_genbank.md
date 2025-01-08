@@ -11,5 +11,5 @@ weight: 1
 
 # Prepare a local copy of Genbank
 
->[!CAUTION]
+> [!CAUTION]
 > A local copy of Genbank requires a lot of disk space. A complete Genbank stored as compressed fasta files takes about 1TB.
