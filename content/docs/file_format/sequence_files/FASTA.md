@@ -10,7 +10,7 @@ weight: 1
 bibFile: bibliography/bibliography.json 
 ---
 
-## The *fasta* sequence file format
+# The *fasta* sequence file format
 
 The *fasta* sequence file format is certainly the most widely used sequence file
 format. This is certainly due to its great simplicity. It was originally created
@@ -20,7 +20,7 @@ version ` of this format where structured data are included in the title line.
 
 In *fasta* format a sequence is represented by a title line beginning with a **>** character and
 the sequences by itself following the :doc:`iupac ` code. The sequence is usually split other 
-several lines of the same length (expect for the last one) ::
+several lines of the same length (expect for the last one) 
 
 ```
 >my_sequence this is my pretty sequence
@@ -28,7 +28,6 @@ several lines of the same length (expect for the last one) ::
     GTGCTGACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTGTTT
     AACGACGTTGCAGTACGTTGCAGT
 ```
-
 
 ## Bibliography
 

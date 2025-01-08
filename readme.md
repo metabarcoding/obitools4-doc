@@ -147,7 +147,7 @@ Available admonitions:
 To cite a reference, use the following format: `{{< cite "Pearson:1988aa" >}}`
 
 
-#### Rebuild the bibliography file 
+#### Rebuild the bibliography file in JSON from bibtex
 
 ```bash
 pandoc assets/bibliography/bibliography.bib -t csljson -o assets/bibliography/bibliography.json
