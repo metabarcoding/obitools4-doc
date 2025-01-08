@@ -29,6 +29,7 @@ Regular expressions are a powerful tool for describing patterns in text. They ar
 |------------------|---------------------------|
 | `xy`             | x followed by y           |
 | `x|y`            | x or y (prefer x)        |
+
 - Repetitions
 
 | Pattern          | Description                                   |
@@ -45,6 +46,7 @@ Regular expressions are a powerful tool for describing patterns in text. They ar
 | `x{n,m}?`        | n or n+1 or ... or m x, prefer fewer        |
 | `x{n,}?`         | n or more x, prefer fewer                    |
 | `x{n}?`          | exactly n x                                  |
+
 - Grouping:
   
 | Pattern                | Description                                      |
@@ -55,6 +57,7 @@ Regular expressions are a powerful tool for describing patterns in text. They ar
 | `(?:re)`              | non-capturing group                              |
 | `(?flags)`            | set flags within current group; non-capturing    |
 | `(?flags:re)`         | set flags during re; non-capturing               |
+
 - Character classes:
 
 | Pattern                | Description                                          |
@@ -67,6 +70,7 @@ Regular expressions are a powerful tool for describing patterns in text. They ar
 | `[^[:name:]]`         | named ASCII class inside negated character class (== [:^name:]) |
 | `[\p{Name}]`          | named Unicode property inside character class (== \p{Name}) |
 | `[^\p{Name}]`         | named Unicode property inside negated character class (== \P{Name}) |
+
   - Named character classes:
   
 | Pattern                | Description                                          |
