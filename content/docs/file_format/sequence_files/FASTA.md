@@ -8,6 +8,7 @@ weight: 1
 # bookComments: false
 # bookSearchExclude: false
 bibFile: bibliography/bibliography.json 
+url: "/formats/fasta"
 ---
 
 # The *fasta* sequence file format

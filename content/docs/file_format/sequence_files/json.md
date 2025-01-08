@@ -1,5 +1,5 @@
 ---
-title: "Fastq"
+title: "The JSON format"
 weight: 1
 # bookFlatSection: false
 # bookToc: true
@@ -7,7 +7,7 @@ weight: 1
 # bookCollapseSection: false
 # bookComments: false
 # bookSearchExclude: false
-url: "/formats/fastq"
+url: "/formats/json"
 ---
 
-# The *fastq* sequence file format
+# The *JSON* sequence file format

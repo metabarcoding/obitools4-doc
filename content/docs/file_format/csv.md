@@ -1,5 +1,5 @@
 ---
-title: "Fastq"
+title: "The CSV format"
 weight: 1
 # bookFlatSection: false
 # bookToc: true
@@ -7,7 +7,7 @@ weight: 1
 # bookCollapseSection: false
 # bookComments: false
 # bookSearchExclude: false
-url: "/formats/fastq"
+url: "/formats/csv"
 ---
 
-# The *fastq* sequence file format
+# The *CSV* (coma separated values) flat file format

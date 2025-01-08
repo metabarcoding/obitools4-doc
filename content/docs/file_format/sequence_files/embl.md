@@ -1,5 +1,5 @@
 ---
-title: "Fastq"
+title: "Embl Flat File Format"
 weight: 1
 # bookFlatSection: false
 # bookToc: true
@@ -7,7 +7,7 @@ weight: 1
 # bookCollapseSection: false
 # bookComments: false
 # bookSearchExclude: false
-url: "/formats/fastq"
+url: "/formats/embl"
 ---
 
-# The *fastq* sequence file format
+# The *EMBL-ENA* flat file format

@@ -1,5 +1,5 @@
 ---
-title: "Fastq"
+title: "Genbank Flat file format"
 weight: 1
 # bookFlatSection: false
 # bookToc: true
@@ -7,7 +7,7 @@ weight: 1
 # bookCollapseSection: false
 # bookComments: false
 # bookSearchExclude: false
-url: "/formats/fastq"
+url: "/formats/genbank"
 ---
 
-# The *fastq* sequence file format
+# The *Genbank* flat file format
