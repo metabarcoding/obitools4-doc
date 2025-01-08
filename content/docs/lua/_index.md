@@ -13,7 +13,7 @@ The aim of this section is not to be a full introduction to [Lua](https://www.lu
 
 ## The structure of a Lua script for {{< obi obiscript >}}
 
-{{< code example.lua lua >}}
+{{< code example.lua lua true >}}
 
 ### The `begin` and finish function
 
@@ -29,5 +29,5 @@ The aim of this section is not to be a full introduction to [Lua](https://www.lu
 
 ## Dealing with the OBITools4 multithreading
 
-{{< code extrem_quality.lua lua >}}
+{{< code extrem_quality.lua lua true>}}
 
