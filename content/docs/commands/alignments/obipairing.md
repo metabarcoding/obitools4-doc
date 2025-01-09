@@ -177,15 +177,15 @@ obipairing --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
   {{< /cmd-option >}}
 
 - {{< cmd-option name="gap-penality" short="G" param="FLOAT64" >}}
-  Gap penality expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000)
+  Gap penalty expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000)
   {{< /cmd-option >}}
 
 - {{< cmd-option name="min-identity" short="X" param="FLOAT64" >}}
-  Minimum identity between ovelaped regions of the reads to consider the aligment (default: 0.900000).
+  Minimum identity between ovelaped regions of the reads to consider the alignment (default: 0.900000).
   {{< /cmd-option >}}
 
 - {{< cmd-option name="min-overlap" param="INTEGER" >}}
-  Minimum overlap between both the reads to consider the aligment (default: 20).
+  Minimum overlap between both the reads to consider the alignment (default: 20).
   {{< /cmd-option >}}
 
 - {{< cmd-option name="penality-scale" param="FLOAT64" >}}
