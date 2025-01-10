@@ -155,7 +155,7 @@ Both methods will produce the same result, a file named <a href="two_sequences_c
 
 ## Combining {{% obitools %}} commands using pipes
 
-As the {{% obitools %}} are UNIX commands, and their default behavior is to read their input from *stdin* and write their output to *stdout*, it is possible to combine them using the Unix pipe mechanism (*i.e.* `|`). It is for example to reverse-complement the `two_sequences.fasta` file with the {{% obi obicomplement %}} command, and then to count the number of DNA sequences in the resulting file with the {{% obi obicount %}} command without saving the intermediate results.
+As the {{% obitools %}} are UNIX commands, and their default behaviour is to read their input from *stdin* and write their output to *stdout*, it is possible to combine them using the Unix pipe mechanism (*i.e.* `|`). For example, you can reverse-complement the file `two_sequences.fasta` with the command {{% obi obicomplement %}}, and then count the number of DNA sequences in the resulting file with the command {{% obi obicount %}}, without saving the intermediate results, by linking the *stdout* of {{% obi obicomplement %}} to the *stdin* of {{% obi obicount %}}.
 
 ```bash
 obicomplement two_sequences.fasta | obicount 
@@ -193,3 +193,9 @@ obicomplement two_sequences.fasta | obicount | uplot barplot -H -d,
     symbols ┤■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 200.0   
             └                                        ┘ 
 ```
+
+## The tagging system of {{% obitools %}}
+
+The {{% obitools %}} provide several tools to perform computations on the sequences. The result of such a computation may be the selection of a subset of the input sequences, a modification of the sequences themselves, or it may only lead to the estimation of some properties of the sequences. In the latter case, the {{% obitools %}} must store the estimated properties on the associated sequence. These new properties are annotations that have to be stored in the {{% fasta %}} or {{% fastq %}} file.
+
+To achieve this, the {{% obitools %}} add structured information in the form of a JSON map to the header of each sequence. The JSON map allows the results of calculations to be stored in key-value pairs. Each obitool will add one or more key-value pairs to the JSON map as needed to annotate a sequence.
