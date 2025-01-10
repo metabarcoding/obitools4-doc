@@ -47,7 +47,7 @@ If nothing is specified, the UNIX system connects standard input to the terminal
 
 {{% obitools %}} are dedicated to process DNA sequences files. Thus, most of them accept as inputs, DNA sequences files. They can be formatted following on the common sequence file formats, {{% fasta %}}, {{% fastq %}}, {{% embl %}} and {{% genbank %}} flat files. Data can also be provided as CSV files. The {{% obitools %}} usually recognize the file format of the input data, but options are provided to force a specific format (*i.e.* `--fasta`, `--fastq`, `--genbank`, `--embl`).
 
-The most common way to specify the file containing the DNA sequences to be processed is to specify its name as an argument. Here is an example of how to count the number of DNA sequences in a file named `my_file.fasta`.
+The most common way to specify the file containing the DNA sequences to be processed is to specify its name as an argument. Here is an example using {{< obi obicount >}} to count the number of DNA sequences in a file named `my_file.fasta`.
 
 ```bash
 obicount my_file.fasta
@@ -77,9 +77,9 @@ If the files are in a subdirectory, the directory name can be specified, without
 obicount my_sub_directory
 ```
 
-The files considered as DNA sequences files are those that have a file extension of `.fasta`, `.fastq`, `.genbank` or `.embl`, `.seq` or `.dat`. Their pendent with the `.gz` extension (*e.g.* `.fasta.gz`) are also considered as DNA sequences files.
+The files considered as DNA sequence files are those with the file extension `.fasta`, `.fastq`, `.genbank` or `.embl`, `.seq` or `.dat`. Files with the second extension `.gz` (*e.g.* `.fasta.gz`) are also considered to be DNA sequence files.
 
-Imagine the folder `Genbank` containning a whole genbank copy organized by divisions in subdirectories. Each subdirectory containing a set of {{% fasta %}} compressed (`.gz`) files.
+Imagine a folder called `Genbank` which contains a complete copy of the genbank organised into subdirectories, one per division. Each division subdirectory contains a set of {{% fasta %}} compressed (`.gz`) files.
 
 ```
 . 📂 Genbank
@@ -102,7 +102,7 @@ Imagine the folder `Genbank` containning a whole genbank copy organized by divis
 │
 ```
 
-It is possible to count entries in the `gbbact1.fasta.gz` file with the commnand
+It is possible to count entries in the `gbbact1.fasta.gz` file with the command
 
 ```bash
 obicount Genbank/bct/gbbact1.fasta.gz
@@ -110,11 +110,11 @@ obicount Genbank/bct/gbbact1.fasta.gz
 
 to count the entries in the bac (bacterial) division with the command
 
-```bash
+```bash {linenos=table}
 obicount Genbank/bct
 ```
 
-or to count the entries in the whole genbank copy with the command
+or to count the entries in the complete Genbank copy with the command
 
 ```bash
 obicount Genbank
