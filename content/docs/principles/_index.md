@@ -41,7 +41,7 @@ graph LR
   classDef obitools fill:#99d57c
 {{< /mermaid >}}
 
-If nothing is specified, the UNIX system connects standard input to the terminal keyboard and standard output to the terminal screen. So if you run the `obiconvert' command in your terminal without any arguments, it will appear to stop and do nothing, when in fact it is waiting for you to type something on the keyboard. To stop it, just press *Ctrl+D* to indicate the end of input.
+If nothing is specified, the UNIX system connects standard input to the terminal keyboard and standard output to the terminal screen. So if you run the {{< obi obiconvert >}} command in your terminal without any arguments, it will appear to stop and do nothing, when in fact it is waiting for you to type something on the keyboard. To stop it, just press *Ctrl+D* to indicate the end of input.
 
 ## Specifying the input data
 
@@ -53,7 +53,7 @@ The most common way to specify the file containing the DNA sequences to be proce
 obicount my_file.fasta
 ```
 
-But it is also possible to pass the data using the Unix redirection mecanism (*i.e.* `>` and `<`, [more details](https://en.wikipedia.org/wiki/Redirection_(computing))).
+But it is also possible to pass the data using the Unix redirection mechanism (*i.e.* `>` and `<`, [more details](https://en.wikipedia.org/wiki/Redirection_(computing))).
 
 ```bash
 obicount < my_file.fasta
@@ -79,7 +79,7 @@ obicount my_sub_directory
 
 The files considered as DNA sequence files are those with the file extension `.fasta`, `.fastq`, `.genbank` or `.embl`, `.seq` or `.dat`. Files with the second extension `.gz` (*e.g.* `.fasta.gz`) are also considered to be DNA sequence files.
 
-Imagine a folder called `Genbank` which contains a complete copy of the genbank organised into subdirectories, one per division. Each division subdirectory contains a set of {{% fasta %}} compressed (`.gz`) files.
+Imagine a folder called `Genbank` which contains a complete copy of the Genbank database organized into subdirectories, one per division. Each division subdirectory contains a set of {{% fasta %}} compressed (`.gz`) files.
 
 ```
 . 📂 Genbank
@@ -108,7 +108,7 @@ It is possible to count entries in the `gbbact1.fasta.gz` file with the command
 obicount Genbank/bct/gbbact1.fasta.gz
 ```
 
-to count the entries in the bac (bacterial) division with the command
+to count the entries in the **bac** (bacterial) division with the command
 
 ```bash {linenos=table}
 obicount Genbank/bct

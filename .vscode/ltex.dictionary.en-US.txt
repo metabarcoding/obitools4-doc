@@ -2,3 +2,12 @@ VSCodium
 metabarcoding
 illumina
 shortcode
+Genbank
+fasta
+obitools
+genbank
+embl
+fastq
+obisummary
+json
+obicount
