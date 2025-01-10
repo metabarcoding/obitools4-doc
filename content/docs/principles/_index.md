@@ -127,3 +127,69 @@ By default, {{% obitools %}} write their output to standard output (*stdout*), w
 Most {{% obitools %}} produce sequence files as output. The sequence data is output in {{% fasta %}} or {{% fastq %}} format, depending on whether it contains quality scores ({{% fastq %}}) or not ({{% fasta %}}). The output format for sequence files can be forced using the `--fasta-output` or `--fastq-output` options. If the `--fastq-output` option is used for a data set without quality information, a default quality score of 40 will be used for each base. A third option is the `--json-output` option, which outputs the data in a {{% json %}} format.
 
 Except for {{< obi obisummary >}}, the {{% obitools %}} which produce other types of data output them in CSV format. The {{< obi obisummary >}} command returns its results in JSON or YAML format.
+
+The {{< obi obicomplement >}} command computes the reverse-complement of the DNA sequences provided as input. If the `two_sequences.fasta` :
+
+{{% code "two_sequences.fasta" fasta true %}} 
+
+is processed with the {{< obi obicomplement >}} command, without indicating the output file name, the result is written to terminal screen.
+
+```bash
+obicomplement two_sequences.fasta
+```
+{{% code "two_sequences.fasta" fasta false %}} 
+
+To save the results in a file, two possible options are available. The first one is to redirect the output to a file, as in the following example.
+
+```bash
+obicomplement two_sequences.fasta > two_sequences_comp.fasta
+```
+
+The second option is to use the `--out` option.
+
+```bash
+obicomplement two_sequences.fasta --out two_sequences_comp.fasta
+```
+
+Both methods will produce the same result, a file named <a href="two_sequences_comp.fasta" download="two_sequences_comp.fasta">`two_sequences_comp.fasta`</a> containing the reverse-complement of the DNA sequences contained in <a href="two_sequences.fasta" download="two_sequences.fasta">`two_sequences.fasta`</a>.
+
+## Combining {{% obitools %}} commands using pipes
+
+As the {{% obitools %}} are UNIX commands, and their default behavior is to read their input from *stdin* and write their output to *stdout*, it is possible to combine them using the Unix pipe mechanism (*i.e.* `|`). It is for example to reverse-complement the `two_sequences.fasta` file with the {{% obi obicomplement %}} command, and then to count the number of DNA sequences in the resulting file with the {{% obi obicount %}} command without saving the intermediate results.
+
+```bash
+obicomplement two_sequences.fasta | obicount 
+```
+```csv
+entites,n
+variants,2
+reads,3
+symbols,200
+```
+
+The result of the {{% obi obicount %}} command is a CSV file. Therefore, it can itself be piped to another command, like [`csvtomd`](https://github.com/mplewis/csvtomd) to reformat the result in a Markdown table.
+
+```bash
+obicomplement two_sequences.fasta | obicount | csvtomd
+```
+```md
+entites   |  n
+----------|-----
+variants  |  2
+reads     |  3
+symbols   |  200
+```
+
+Or being plotted with the [`uplot`](https://github.com/red-data-tools/YouPlot) command.
+
+```bash
+obicomplement two_sequences.fasta | obicount | uplot barplot -H -d,
+```
+```
+                               n
+            ┌                                        ┐ 
+   variants ┤ 2.0                                      
+      reads ┤ 3.0                                      
+    symbols ┤■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 200.0   
+            └                                        ┘ 
+```
