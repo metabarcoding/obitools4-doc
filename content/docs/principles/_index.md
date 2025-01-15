@@ -131,11 +131,11 @@ types of data output them in CSV format. The {{< obi obisummary >}} command
 returns its results in [JSON](https://en.wikipedia.org/wiki/JSON) or
 [YAML](https://en.wikipedia.org/wiki/YAML) format.
 
-The {{< obi obicomplement >}} command computes the reverse-complement of the DNA sequences provided as input. If the `two_sequences.fasta` :
+The {{< obi obicomplement >}} command computes the reverse-complement of the DNA sequences provided as input. 
 
 {{< code "two_sequences.fasta" fasta true >}} 
 
-is processed with the {{< obi obicomplement >}} command, without indicating the output file name, the result is written to terminal screen.
+If the `two_sequences.fasta` file is processed with the {{< obi obicomplement >}} command, without indicating the output file name, the result is written to terminal screen.
 
 ```bash
 obicomplement two_sequences.fasta
