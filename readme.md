@@ -2,7 +2,7 @@
 
 ## The public version of the OBITools4 documentation
 
-https://metabarcoding.github.io/obitools4-doc/
+https://obitools4.metabarcoding.org/
 
 ## Getting a copy of the OBITools4 documentation
 
