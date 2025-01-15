@@ -6,7 +6,7 @@
 {{- range $.Site.Data.commands -}}
   {{- if eq ( .command | lower) ( $entry | lower ) -}}
     <a href="{{ ref $context .command }}">
-    <abbr title="{{- .command -}}: {{ .description | plainify -}}"><code>{{- .command -}}</code></abbr>
+    <abbr title="{{- .command -}}: {{ .short | plainify -}}"><code>{{- .command -}}</code></abbr>
     </a>
   {{- end -}}
 {{- end -}}

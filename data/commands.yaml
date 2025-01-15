@@ -1,99 +1,106 @@
 - command: obiannotate
   description: Add or edit annotations associated with sequences in a sequence file.
-  short: "Edit sequence annotations"
+  short: "edit sequence annotations"
   category: 
     - basic
 - command: obiconvert
   description: Convert a sequence file to fasta, fastq, or json format.
-  short: "Convert a sequence file"
+  short: "convert format of a sequence file"
   category: 
     - conversion
 - command: obifind
   description: Search for a taxon in a taxonomic database.
-  short: "Search for a taxon in a taxonomic database"
+  short: "search for a taxon in a taxonomic database"
   category: 
     - taxonomy
 - command: obilandmark   
   experimental: true
 - command: obipcr
   description: An electronic PCR tool that extracts sequences from a database of sequences that are potentially PCR amplifiable with a pair of primers.
-  short: "The electronic PCR tool"
+  short: "the electronic PCR tool"
   category: 
     - alignments
 - command: obisummary
   description: Generate summary statistics describing the sequence content of a sequence file.
-  short: "Generate summary statistics"
+  short: "generate summary statistics"
   category: 
     - basic
 - command: obiclean
   description: A denoising/clustering algorithm to filter out potential PCR-generated spurious sequences.
-  short: "A PCR aware denoising algorithm" 
+  short: "a PCR aware denoising algorithm" 
   category: 
     - alignments
     - denoising
 - command: obicount
   description: Print the number of variants, reads, and symbols in the sequence file.
-  short: "Counting sequence records"
+  short: "counting sequence records"
   category: 
     - basic      
 - command: obigrep
   description: Filter a sequence file to keep only the entries you want based on multiple criteria.
-  short: "Filter a sequence file"
+  short: "filter a sequence file"
   category: 
     - filtering   
 - command: obimatrix   
   description: Convert a mapping tag from a sequence file to a matrix file in CSV format.
-  short: "Convert a sequence file into a data matrix file"
+  short: "convert a sequence file into a data matrix file"
   category: 
     - conversion     
 - command: obireffamidx     
 - command: obitag
   description: A Least Common Ancestor-based algorithm for taxonomic sequence annotation. 
-  short: "Annotate sequences with taxonomic information"
+  short: "annotate sequences with taxonomic information"
   category:
     - taxonomy
     - alignments 
 - command: obicleandb
   description: Clean a sequence reference database for trivial wrong taxonomic annotations.
-  short: "Clean a sequence reference database"
+  short: "clean a sequence reference database"
   category:
     - taxonomy
     - alignments
   experimental: true
 - command: obicsv
   description: Convert a sequence file to a CSV file.
+  short: "convert a sequence file to a CSV file"
   category: 
     - conversion     
 - command: obijoin          
   description: Perform a join operation to transfer annotations from a file to a sequence file.
+  short: "join annotations from a file to a sequence file"
+  category: 
+    - basic
 - command: obimicrosat
   description: Extract sequence entries containing a microsatellite from a sequence file.  
+  short: "extract microsatellite sequences"
 - command: obirefidx        
 - command: obicomplement    
   description: Reverse complement a sequence file.
+  short: "reverse complement a sequence file"
 - command: obidemerge       
 - command: obimultiplex     
 - command: obiscript
   description: Apply a LUA script to each sequence in a sequence file.
+  short: "apply a LUA script to a sequence file"
 - command: obitagpcr        
 - command: obiconsensus
   description: Denoise MinIon sequence data by constructing consensus sequences.
-  short: "Denoise MinIon data using consensus sequences"
+  short: "denoise MinIon data using consensus sequences"
   category: 
     - denoising
   experimental: true
 - command: obidistribute   
   description: Distribute a sequence file accross multiple output files.
-  short: "Split a sequence file into multiple files"   
+  short: "split a sequence file into multiple files"   
   category: 
     - basic
 - command: obipairing
   description: Align the paired forward and reverse reads to construct full-length PCR amplicons.
-  short: "Align the forward and reverse paired reads"
+  short: "align the forward and reverse paired reads"
   category: alignments
 - command: obisplit
 - command: obiuniq
   description: Dereplicate a sequence file, by merging identical sequences.
-  short: "Dereplicate a sequence file"
+  short: "dereplicate a sequence file"
   category: 
     - alignment

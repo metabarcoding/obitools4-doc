@@ -126,8 +126,10 @@ By default, {{% obitools %}} write their output to standard output (*stdout*), w
 
 Most {{% obitools %}} produce sequence files as output. The output sequence file is in {{% fasta %}} or {{% fastq %}} format, depending on whether it contains quality scores ({{% fastq %}}) or not ({{% fasta %}}). The output format for sequence files can be forced using the `--fasta-output` or `--fastq-output` options. If the `--fastq-output` option is used for a data set without quality information, a default quality score of 40 will be used for each nucleotide. A third option is the `--json-output` option, which outputs the data in a {{% json %}} format.
 
-Except for {{< obi obisummary >}}, the {{% obitools %}} which produce other types of data output them in CSV format. The {{< obi obisummary >}} command returns its results in JSON or YAML format.
-<!-- Please add the link for YAML format -->
+Except for {{< obi obisummary >}}, the {{% obitools %}} which produce other
+types of data output them in CSV format. The {{< obi obisummary >}} command
+returns its results in [JSON](https://en.wikipedia.org/wiki/JSON) or
+[YAML](https://en.wikipedia.org/wiki/YAML) format.
 
 The {{< obi obicomplement >}} command computes the reverse-complement of the DNA sequences provided as input. If the `two_sequences.fasta` :
 
