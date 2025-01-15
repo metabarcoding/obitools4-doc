@@ -1,4 +1,9 @@
-{{ highlight (.Page.Resources.GetMatch (.Get 0)).Content (.Get 1) "linenos=table" }}
-{{ if .Get 2 }}
-Download the file <a href="{{.Get 0}}" download="{{.Get 0}}">{{ .Get 0 }}</a> 
+{{ if .Get 2 }}    
+<a style="padding: 10px 20px; background-color: #cacaca; border: 1px solid #8e8080; border-bottom: none; border-radius: 5px 5px 0 0; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1)"
+   href="{{.Get 0}}" download="{{.Get 0}}">📄 {{.Get 0 | path.Base }}</a>
+<DIV style="border: 2px solid #8e8080; border-radius: 0 0 5px 5px; padding: 20px; background-color: white; ">
+{{ end }}
+{{ highlight (.Page.Resources.GetMatch (.Get 0)).Content (.Get 1) "linenos=table" }}</td>
+{{ if .Get 2 }}    
+</DIV>
 {{ end }}

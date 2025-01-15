@@ -131,14 +131,14 @@ Except for {{< obi obisummary >}}, the {{% obitools %}} which produce other type
 
 The {{< obi obicomplement >}} command computes the reverse-complement of the DNA sequences provided as input. If the `two_sequences.fasta` :
 
-{{% code "two_sequences.fasta" fasta true %}} 
+{{< code "two_sequences.fasta" fasta true >}} 
 
 is processed with the {{< obi obicomplement >}} command, without indicating the output file name, the result is written to terminal screen.
 
 ```bash
 obicomplement two_sequences.fasta
 ```
-{{% code "two_sequences.fasta" fasta false %}} 
+{{< code "two_sequences.fasta" fasta false >}} 
 
 To save the results in a file, two possible options are available. The first one is to redirect the output to a file, as in the following example.
 
