@@ -41,11 +41,11 @@ graph LR
   classDef obitools fill:#99d57c
 {{< /mermaid >}}
 
-If nothing is specified, the UNIX system connects standard input to the terminal keyboard and standard output to the terminal screen. So if you run the {{< obi obiconvert >}} command in your terminal without any arguments, it will appear to stop and do nothing, when in fact it is waiting for you to type something on the keyboard. To stop it, just press *Ctrl+D* to indicate the end of input.
+If nothing is specified, the UNIX system connects standard input to the terminal keyboard and standard output to the terminal screen. So if you run the {{< obi obiconvert >}} command in your terminal without any arguments, it will appear to stop and do nothing, when in fact it is waiting for you to type something on the keyboard. To stop it, just press *Ctrl+D* or *Ctrl+C*. *Ctrl+D* terminates the input and stops the program. *Ctrl+C* kills the program.
 
 ## Specifying the input data
 
-{{% obitools %}} are dedicated to process DNA sequences files. Thus, most of them accept as inputs, DNA sequences files. They can be formatted following on the common sequence file formats, {{% fasta %}}, {{% fastq %}}, {{% embl %}} and {{% genbank %}} flat files. Data can also be provided as CSV files. The {{% obitools %}} usually recognize the file format of the input data, but options are provided to force a specific format (*i.e.* `--fasta`, `--fastq`, `--genbank`, `--embl`).
+{{% obitools %}} are dedicated to process DNA sequences files. Thus, most of them accept as inputs DNA sequences files. They can be formatted in the most common sequence file formats, {{% fasta %}}, {{% fastq %}}, {{% embl %}} and {{% genbank %}} flat files. Data can also be provided as CSV files. The {{% obitools %}} usually recognize the file format of the input data, but options are provided to force a specific format (*i.e.* `--fasta`, `--fastq`, `--genbank`, `--embl`).
 
 The most common way to specify the file containing the DNA sequences to be processed is to specify its name as an argument. Here is an example using {{< obi obicount >}} to count the number of DNA sequences in a file named `my_file.fasta`.
 
@@ -77,7 +77,7 @@ If the files are in a subdirectory, the directory name can be specified, without
 obicount my_sub_directory
 ```
 
-The files considered as DNA sequence files are those with the file extension `.fasta`, `.fastq`, `.genbank` or `.embl`, `.seq` or `.dat`. Files with the second extension `.gz` (*e.g.* `.fasta.gz`) are also considered to be DNA sequence files.
+The files considered as DNA sequence files are those with the file extension `.fasta`, `.fastq`, `.genbank` or `.embl`, `.seq` or `.dat`. Files with the second extension `.gz` (*e.g.* `.fasta.gz`) are also considered to be DNA sequence files and are processed without having to uncompressed them.
 
 Imagine a folder called `Genbank` which contains a complete copy of the Genbank database organized into subdirectories, one per division. Each division subdirectory contains a set of {{% fasta %}} compressed (`.gz`) files.
 
@@ -110,7 +110,7 @@ obicount Genbank/bct/gbbact1.fasta.gz
 
 to count the entries in the **bac** (bacterial) division with the command
 
-```bash {linenos=table}
+```bash
 obicount Genbank/bct
 ```
 
@@ -124,9 +124,10 @@ obicount Genbank
 
 By default, {{% obitools %}} write their output to standard output (*stdout*), which means that the results of a command are printed to the terminal screen. 
 
-Most {{% obitools %}} produce sequence files as output. The sequence data is output in {{% fasta %}} or {{% fastq %}} format, depending on whether it contains quality scores ({{% fastq %}}) or not ({{% fasta %}}). The output format for sequence files can be forced using the `--fasta-output` or `--fastq-output` options. If the `--fastq-output` option is used for a data set without quality information, a default quality score of 40 will be used for each base. A third option is the `--json-output` option, which outputs the data in a {{% json %}} format.
+Most {{% obitools %}} produce sequence files as output. The output sequence file is in {{% fasta %}} or {{% fastq %}} format, depending on whether it contains quality scores ({{% fastq %}}) or not ({{% fasta %}}). The output format for sequence files can be forced using the `--fasta-output` or `--fastq-output` options. If the `--fastq-output` option is used for a data set without quality information, a default quality score of 40 will be used for each nucleotide. A third option is the `--json-output` option, which outputs the data in a {{% json %}} format.
 
 Except for {{< obi obisummary >}}, the {{% obitools %}} which produce other types of data output them in CSV format. The {{< obi obisummary >}} command returns its results in JSON or YAML format.
+<!-- Please add the link for YAML format -->
 
 The {{< obi obicomplement >}} command computes the reverse-complement of the DNA sequences provided as input. If the `two_sequences.fasta` :
 
@@ -156,6 +157,8 @@ Both methods will produce the same result, a file named <a href="two_sequences_c
 ## Combining {{% obitools %}} commands using pipes
 
 As the {{% obitools %}} are UNIX commands, and their default behaviour is to read their input from *stdin* and write their output to *stdout*, it is possible to combine them using the Unix pipe mechanism (*i.e.* `|`). For example, you can reverse-complement the file `two_sequences.fasta` with the command {{% obi obicomplement %}}, and then count the number of DNA sequences in the resulting file with the command {{% obi obicount %}}, without saving the intermediate results, by linking the *stdout* of {{% obi obicomplement %}} to the *stdin* of {{% obi obicount %}}.
+<!-- I suggest to use obigrep instead of obicomplement as the first command. obigrep can be to select sequences longer (or shorter) than xxx bp. As a consequence, the file two_sequence.fasta should be changed -->
+
 
 ```bash
 obicomplement two_sequences.fasta | obicount 
@@ -196,6 +199,4 @@ obicomplement two_sequences.fasta | obicount | uplot barplot -H -d,
 
 ## The tagging system of {{% obitools %}}
 
-The {{% obitools %}} provide several tools to perform computations on the sequences. The result of such a computation may be the selection of a subset of the input sequences, a modification of the sequences themselves, or it may only lead to the estimation of some properties of the sequences. In the latter case, the {{% obitools %}} must store the estimated properties on the associated sequence. These new properties are annotations that have to be stored in the {{% fasta %}} or {{% fastq %}} file.
-
-To achieve this, the {{% obitools %}} add structured information in the form of a JSON map to the header of each sequence. The JSON map allows the results of calculations to be stored in key-value pairs. Each obitool will add one or more key-value pairs to the JSON map as needed to annotate a sequence.
+The {{% obitools %}} provide several tools to perform computations on the sequences. The result of such a computation may be the selection of a subset of the input sequences, a modification of the sequences themselves, or it may only lead to the estimation of some properties of the sequences. In the latter case, the {{% obitools %}} saves the estimated properties on the associated sequence in a {{% fasta %}} or {{% fastq %}} file. To achieve this, the {{% obitools %}} add structured information in the form of a JSON map to the header of each sequence. The JSON map allows the results of calculations to be stored in key-value pairs. Each {{% obitools %}} command will add one or more key-value pairs to the JSON map as needed to annotate a sequence.

@@ -12,7 +12,7 @@ url: "/formats/json"
 
 # The *JSON* sequence file format
 
-To facilitate the exchange of data between different systems, and allow an easy parsing of the data with all the programming languages, {{% obitools %}} propose to export the sequence data in the *JSON* format. JSON output is demanded by adding the `--json-output` option to the command line.
+To facilitate the exchange of data between different systems, and allow an easy parsing of the data with all the programming languages, {{% obitools %}} propose to export the sequence data in the *JSON* format. JSON output is requested by adding the `--json-output` option to the command line.
 
 For the following two sequences examples:
 
