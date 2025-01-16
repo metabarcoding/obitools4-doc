@@ -14,7 +14,7 @@ bookSearchExclude: true
 ![Welcome obitools4](images/welcome_obitools4.jpg)
 
 {{< button relref="/docs/about" >}}About{{< /button >}}
-{{< button relref="/docs/installation" >}}Install OBITools4{{< /button >}}
+{{< button relref="/docs/installation" >}}Installation{{< /button >}}
 {{< button relref="/docs/principles" >}}OBITools principles{{< /button >}}
 {{< button relref="/docs/commands" >}}The OBITools commands{{< /button >}}
 {{< button relref="/docs" >}}Full documentation{{< /button >}}
