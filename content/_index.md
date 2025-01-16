@@ -1,5 +1,22 @@
-+++
-title = ''
-date = 2024-10-04T17:50:53+02:00
-draft = false
-+++
+---
+title: ''
+date: 2024-10-04T17:50:53+02:00
+draft: false
+BookToC: false
+# bookFlatSection: true
+# bookHidden: true
+# bookCollapseSection: true
+bookComments: true
+bookSearchExclude: true
+---
+
+
+![Welcome obitools4](images/welcome_obitools4.jpg)
+
+{{< button relref="/docs/about" >}}About{{< /button >}}
+{{< button relref="/docs/installation" >}}Install OBITools4{{< /button >}}
+{{< button relref="/docs/principles" >}}OBITools principles{{< /button >}}
+{{< button relref="/docs/commands" >}}The OBITools commands{{< /button >}}
+{{< button relref="/docs" >}}Full documentation{{< /button >}}
+{{< button relref="/docs/cookbook" >}}Cookbook{{< /button >}}
+{{< button href="https://github.com/metabarcoding/obitools4-doc" >}}Contribute to the doc{{< /button >}}

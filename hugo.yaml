@@ -90,3 +90,11 @@ theme:
 - hugo-cite
 
 # - hugo-thirdhemisphere
+
+module:
+  mounts:
+    - source: 'static'
+      target: 'static'
+    - source: 'images'
+      target: 'static/images'
+
