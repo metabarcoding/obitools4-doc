@@ -15,8 +15,9 @@ bookSearchExclude: true
 
 > [!CAUTION] *ATTENTION* : THIS DOCUMENTATION IS A WORK IN PROGRESS!
 > Do not hesitate to contact us if you have any questions or feedback.
-> Several errors may still be present.
-> Many features are not yet documented.
+> 
+> - Several errors may still be present.
+> - Many features are not yet documented.
 >
 > Don't hesitate to contribute and comment on [GitHub](https://github.com/metabarcoding/obitools4-doc)
 
