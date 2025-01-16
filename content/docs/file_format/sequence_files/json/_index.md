@@ -1,6 +1,6 @@
 ---
 title: "The JSON format"
-weight: 1
+weight: 100
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false

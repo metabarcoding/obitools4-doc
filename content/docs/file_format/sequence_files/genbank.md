@@ -1,6 +1,6 @@
 ---
 title: "Genbank Flat file format"
-weight: 1
+weight: 30
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
