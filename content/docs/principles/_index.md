@@ -11,7 +11,9 @@ weight: 22
 
 # General operating principles for {{% obitools %}}
 
-{{% obitools %}} are a set of UNIX commands that are used from a command line interface, also named a terminal, to perform various tasks on DNA sequences files. A UNIX command can be considered as a black box that takes a set of inputs and produces a set of outputs.
+{{% obitools %}} are not a metabarcoding data analysis pipeline, but a set of tools for developing customized analysis, while avoiding the black-box effect of a ready-to-use pipeline. A particular effort in the development of {{% obitools4 %}} has been to use data formats that can be easily interfaced with other software.
+
+{{% obitools %}} corresponds to a set of UNIX commands that are used from a command line interface, also named a terminal, to perform various tasks on DNA sequence files. A UNIX command can be considered as a process that takes a set of inputs and produces a set of outputs.
 
 {{< mermaid class="workflow" >}}
 graph LR
@@ -45,7 +47,7 @@ If nothing is specified, the UNIX system connects standard input to the terminal
 
 ## Specifying the input data
 
-{{% obitools %}} are dedicated to process DNA sequences files. Thus, most of them accept as inputs DNA sequences files. They can be formatted in the most common sequence file formats, {{% fasta %}}, {{% fastq %}}, {{% embl %}} and {{% genbank %}} flat files. Data can also be provided as CSV files. The {{% obitools %}} usually recognize the file format of the input data, but options are provided to force a specific format (*i.e.* `--fasta`, `--fastq`, `--genbank`, `--embl`).
+{{% obitools %}} are dedicated to process DNA sequence files. Thus, most of them accept as inputs DNA sequence files. They can be formatted in the most common sequence file formats, {{% fasta %}}, {{% fastq %}}, {{% embl %}} and {{% genbank %}} flat files. Data can also be provided as CSV files. The {{% obitools %}} usually recognize the file format of the input data, but options are provided to force a specific format (*i.e.* `--fasta`, `--fastq`, `--genbank`, `--embl`).
 
 The most common way to specify the file containing the DNA sequences to be processed is to specify its name as an argument. Here is an example using {{< obi obicount >}} to count the number of DNA sequences in a file named `my_file.fasta`.
 
