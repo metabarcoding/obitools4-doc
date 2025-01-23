@@ -140,7 +140,7 @@ If the `two_sequences.fasta` file is processed with the {{< obi obicomplement >}
 ```bash
 obicomplement two_sequences.fasta
 ```
-{{< code "two_sequences.fasta" fasta false >}} 
+{{< code "two_sequences_comp.fasta" fasta false >}} 
 
 To save the results in a file, two possible options are available. The first one is to redirect the output to a file, as in the following example.
 
