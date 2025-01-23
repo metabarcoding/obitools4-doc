@@ -14,3 +14,11 @@ weight: 1
 > [!caution] A local copy of the Genbank database requires a lot of disk space.
 > A whole copy of genbank stored as compressed {{% fasta %}} files takes up about 1TB of disk
 > space.
+
+```bash
+make GBDIV=mam depends
+make
+```
+
+
+{{% code "Makefile" make true %}}
