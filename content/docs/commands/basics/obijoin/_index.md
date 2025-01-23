@@ -16,7 +16,16 @@ Perform a join operation to transfer annotations from a file to a sequence file.
 ### Synopsis
 
 ```bash
-obijoin [OPTIONS] [ARGS]
+obijoin --join-with|-j <string> [--batch-size <int>] [--by|-b <string>]...
+        [--compress|-Z] [--debug] [--ecopcr] [--embl] [--fasta]
+        [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu]
+        [--genbank] [--help|-h|-?] [--input-OBI-header] [--input-json-header]
+        [--json-output] [--max-cpu <int>] [--no-order] [--no-progressbar]
+        [--out|-o <FILENAME>] [--output-OBI-header|-O] [--output-json-header]
+        [--paired-with <FILENAME>] [--pprof] [--pprof-goroutine <int>]
+        [--pprof-mutex <int>] [--skip-empty] [--solexa]
+        [--taxdump|-t <string>] [--update-id|-i] [--update-quality|-q]
+        [--update-sequence|-s] [--version] [<args>]
 ```
 
 ### Options
