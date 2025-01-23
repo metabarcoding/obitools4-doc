@@ -9,7 +9,7 @@ Some {{% obitools %}} command options are shared by several commands. These opti
 
 ## Several ways to specify the same option
 
-Some options can be specified in more than one way. For example, the `help' option can be specified with the long `--help' option or with one of the short `-h` or `-?` options. The table below shows the different ways of specifying the `help` option, separated by the `|` symbol: `--help|-h|-?`.
+Some options can be specified in more than one way. For example, the `help` option can be specified with the long `--help` option or with one of the short `-h` or `-?` options. The table below shows the different ways of specifying the `help` option, separated by the `|` symbol: `--help|-h|-?`.
 
 ## Specifying an option through environment variables
 
