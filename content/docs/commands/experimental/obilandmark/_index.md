@@ -15,7 +15,15 @@ url: "/obitools/obilandmark"
 ### Synopsis
 
 ```bash
-obilandmark [OPTIONS] [ARGS]
+obilandmark [--batch-size <int>] [--center|-n <int>] [--compress|-Z]
+            [--debug] [--ecopcr] [--embl] [--fasta] [--fasta-output]
+            [--fastq] [--fastq-output] [--force-one-cpu] [--genbank]
+            [--help|-h|-?] [--input-OBI-header] [--input-json-header]
+            [--json-output] [--max-cpu <int>] [--no-order] [--no-progressbar]
+            [--out|-o <FILENAME>] [--output-OBI-header|-O]
+            [--output-json-header] [--pprof] [--pprof-goroutine <int>]
+            [--pprof-mutex <int>] [--skip-empty] [--solexa]
+            [--taxdump|-t <string>] [--version] [<args>]
 ```
 
 ### Options

@@ -15,7 +15,14 @@ url: "/obitools/_index."
 ### Synopsis
 
 ```bash
-_index. [OPTIONS] [ARGS]
+obifind --taxdump|-t <string> [--alternative-names|-a] [--batch-size <int>]
+        [--debug] [--fixed|-F] [--force-one-cpu] [--help|-h|-?]
+        [--max-cpu <int>] [--parents|-p <string>] [--pprof]
+        [--pprof-goroutine <int>] [--pprof-mutex <int>] [--rank <string>]
+        [--rank-list|-l] [--raw-taxid] [--restrict-to-taxon|-r <string>]...
+        [--solexa] [--sons|-s <string>] [--version] [--with-path]
+        [--with-query|-P] [--with-scientific-name|-S] [--without-parent]
+        [--without-rank|-R] [<args>]
 ```
 
 ### Options

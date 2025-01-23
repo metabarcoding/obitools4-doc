@@ -15,7 +15,18 @@ url: "/obitools/obimultiplex"
 ### Synopsis
 
 ```bash
-obimultiplex [OPTIONS] [ARGS]
+obimultiplex [--allowed-mismatches|-e <int>] [--batch-size <int>]
+             [--compress|-Z] [--debug] [--ecopcr] [--embl] [--fasta]
+             [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu]
+             [--genbank] [--help|-h|-?] [--input-OBI-header]
+             [--input-json-header] [--json-output] [--keep-errors]
+             [--max-cpu <int>] [--no-order] [--no-progressbar]
+             [--out|-o <FILENAME>] [--output-OBI-header|-O]
+             [--output-json-header] [--paired-with <FILENAME>] [--pprof]
+             [--pprof-goroutine <int>] [--pprof-mutex <int>] [--skip-empty]
+             [--solexa] [--tag-list|-s <string>] [--taxdump|-t <string>]
+             [--template] [--unidentified|-u <string>] [--version]
+             [--with-indels] [<args>]
 ```
 
 ### Options

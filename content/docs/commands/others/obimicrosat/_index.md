@@ -15,7 +15,18 @@ Extract sequence entries containing a microsatellite from a sequence file.
 ### Synopsis
 
 ```bash
-obimicrosat [OPTIONS] [ARGS]
+obimicrosat [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
+            [--embl] [--fasta] [--fasta-output] [--fastq] [--fastq-output]
+            [--force-one-cpu] [--genbank] [--help|-h|-?] [--input-OBI-header]
+            [--input-json-header] [--json-output] [--max-cpu <int>]
+            [--max-unit-length|-M <int>] [--min-flank-length|-f <int>]
+            [--min-length|-l <int>] [--min-unit-count <int>]
+            [--min-unit-length|-m <int>] [--no-order] [--no-progressbar]
+            [--not-reoriented|-n] [--out|-o <FILENAME>]
+            [--output-OBI-header|-O] [--output-json-header]
+            [--paired-with <FILENAME>] [--pprof] [--pprof-goroutine <int>]
+            [--pprof-mutex <int>] [--skip-empty] [--solexa]
+            [--taxdump|-t <string>] [--version] [<args>]
 ```
 
 ### Options
