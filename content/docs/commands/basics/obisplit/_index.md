@@ -16,7 +16,16 @@ weight: 110
 ### Synopsis
 
 ```bash
-obisplit [OPTIONS] [ARGS]
+obisplit [--allows-indels] [--batch-size <int>] [--compress|-Z]
+         [--config|-C <string>] [--debug] [--ecopcr] [--embl] [--fasta]
+         [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu]
+         [--genbank] [--help|-h|-?] [--input-OBI-header]
+         [--input-json-header] [--json-output] [--max-cpu <int>] [--no-order]
+         [--no-progressbar] [--out|-o <FILENAME>] [--output-OBI-header|-O]
+         [--output-json-header] [--paired-with <FILENAME>]
+         [--pattern-error <int>] [--pprof] [--pprof-goroutine <int>]
+         [--pprof-mutex <int>] [--skip-empty] [--solexa]
+         [--taxdump|-t <string>] [--template] [--version] [<args>]
 ```
 
 ### Options

@@ -16,7 +16,15 @@ Convert a sequence file to a CSV file.
 ### Synopsis
 
 ```bash
-obicsv [OPTIONS] [ARGS]
+obicsv [--auto] [--batch-size <int>] [--compress|-Z] [--count] [--debug]
+       [--definition|-d] [--ecopcr] [--embl] [--fasta] [--fastq]
+       [--force-one-cpu] [--genbank] [--help|-h|-?] [--ids|-i]
+       [--input-OBI-header] [--input-json-header] [--keep|-k <KEY>]...
+       [--max-cpu <int>] [--na-value <NAVALUE>] [--no-order]
+       [--no-progressbar] [--obipairing] [--out|-o <FILENAME>] [--pprof]
+       [--pprof-goroutine <int>] [--pprof-mutex <int>] [--quality|-q]
+       [--sequence|-s] [--skip-empty] [--solexa] [--taxdump|-t <string>]
+       [--taxon] [--version] [<args>]
 ```
 
 ### Options
