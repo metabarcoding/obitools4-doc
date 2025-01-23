@@ -56,7 +56,7 @@ INFO[0000] Number of workers set 16
 INFO[0000] Found 1 files to process
 INFO[0000] xxx.fastq.gz mime type: text/fastq
 
-entites,n
+entities,n
 variants,43221
 reads,43221
 symbols,4391530
@@ -73,7 +73,7 @@ INFO[0000] Number of workers set 16
 INFO[0000] Found 1 files to process
 INFO[0000] xxx.fastq.gz mime type: text/fastq
 
-entites   |  n
+entities  |  n
 ----------|---------
 variants  |  43221
 reads     |  43221
@@ -91,7 +91,7 @@ INFO[0000] Number of workers set 16
 INFO[0000] Found 1 files to process
 INFO[0000] xxx.fastq.gz mime type: text/fastq
 
-| entites  |         n |
+| entities |         n |
 | -------- | --------- |
 | variants |    43 221 |
 | reads    |    43 221 |
@@ -109,7 +109,7 @@ INFO[0000] Number of workers set 16
 INFO[0000] Found 1 files to process
 INFO[0000] xxx.fastq.gz mime type: text/fastq
 
-| entites  |      n |
+| entities |      n |
 | -------- | ------ |
 | variants | 43 221 |
 | reads    | 43 221 |
@@ -126,7 +126,7 @@ INFO[0000] Number of workers set 16
 INFO[0000] Found 1 files to process
 INFO[0000] xxx.fastq.gz mime type: text/fastq
 
-| entites  |         n |
+| entities |         n |
 | -------- | --------- |
 | variants |    43 221 |
 | reads    |    43 221 |
