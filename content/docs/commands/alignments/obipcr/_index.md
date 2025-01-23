@@ -4,6 +4,7 @@ title: "Obipcr: The electronic PCR tool"
 command: obipcr
 category: alignments
 url: "/obitools/obipcr"
+weight: 30
 ---
 
 ## `obipcr`: The electronic PCR tool

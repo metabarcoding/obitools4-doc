@@ -4,6 +4,7 @@ title: "Obiclean: a PCR aware denoising algorithm"
 date: 2025-01-23
 command: "obiclean"
 url: "/obitools/obiclean"
+weight: 10
 ---
 
 ## `obiclean`: a PCR aware denoising algorithm

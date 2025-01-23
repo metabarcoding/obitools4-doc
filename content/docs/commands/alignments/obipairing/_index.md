@@ -4,6 +4,7 @@ title: "Obipairing: Align the forward and reverse paired reads"
 command: obipairing
 category: alignments
 url: "/obitools/obipairing"
+weight: 20
 ---
 
 ## `obipairing`: Align the forward and reverse paired reads

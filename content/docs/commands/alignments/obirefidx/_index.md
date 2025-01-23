@@ -4,6 +4,7 @@ title: "Obirefidx"
 date: 2025-01-23
 command: "obirefidx"
 url: "/obitools/obirefidx"
+weight: 40
 ---
 
 ## `obirefidx`

@@ -4,6 +4,7 @@ title: "Obitag: Annotate sequences with taxonomic information"
 date: 2024-12-21
 command: "obitag"
 url: "/obitools/obitag"
+weight: 50
 ---
 
 ## `obitag`: Annotate sequences with taxonomic information
