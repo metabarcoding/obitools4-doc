@@ -1,0 +1,40 @@
+LOCUS       HQ324066                  84 bp    DNA     linear   PLN 18-NOV-2011
+DEFINITION  Trinia glauca tRNA-Leu (trnL) gene, intron; chloroplast.
+ACCESSION   HQ324066
+VERSION     HQ324066.1
+KEYWORDS    .
+SOURCE      chloroplast Trinia glauca
+  ORGANISM  Trinia glauca
+            Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+            Spermatophyta; Magnoliopsida; eudicotyledons; Gunneridae;
+            Pentapetalae; asterids; campanulids; Apiales; Apiaceae; Apioideae;
+            apioid superclade; Selineae; Trinia.
+REFERENCE   1  (bases 1 to 84)
+  AUTHORS   Raye,G., Miquel,C., Coissac,E., Redjadj,C., Loison,A. and
+            Taberlet,P.
+  TITLE     New insights on diet variability revealed by DNA barcoding and
+            high-throughput pyrosequencing: chamois diet in autumn as a case
+            study
+  JOURNAL   Ecol. Res. 26 (2), 265-276 (2011)
+REFERENCE   2  (bases 1 to 84)
+  AUTHORS   Raye,G.
+  TITLE     Direct Submission
+  JOURNAL   Submitted (25-SEP-2010) LECA, Universite Joseph Fourier, Bp 53,
+            2233 rue de la Piscine, Grenoble 38041, France
+FEATURES             Location/Qualifiers
+     source          1..84
+                     /organism="Trinia glauca"
+                     /organelle="plastid:chloroplast"
+                     /mol_type="genomic DNA"
+                     /db_xref="taxon:1000432"
+                     /geo_loc_name="France"
+     gene            <1..>84
+                     /gene="trnL"
+                     /note="tRNA-Leu; tRNA-Leu(UAA)"
+     intron          <1..>84
+                     /gene="trnL"
+                     /note="P6 loop"
+ORIGIN      
+        1 gggcaatcct gagccaaatc ctattttaca aaaacaaaca aaggcccaga aggtgaaaaa
+       61 aggataggtg cagagactca atgg
+//

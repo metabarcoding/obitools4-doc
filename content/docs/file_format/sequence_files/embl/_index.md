@@ -18,36 +18,7 @@ The [EMBL (European Molecular Biology Laboratory) Flat File Format](https://ena-
 
 The EMBL format is designed to be human-readable and machine-readable, making it suitable for both manual inspection and automated processing. Each flat file contains a sequence record that includes metadata about the sequence, as well as the sequence itself. Each file is composed of a single record or a series of records, separated by a line containing only a `//` (slash-slash) string.
 
-```
-ID   XXX; XXX; {'linear' or 'circular'}; XXX; XXX; XXX; XXX.
-XX
-AC   XXX;
-XX
-AC * _{entry_name} (where entry_name=sequence name: e.g. _contig1 or _scaffold1)
-XX
-PR   Project:PRJEBNNNN;
-XX
-DE   XXX
-XX
-RN   [1]
-RP   1-2149
-RA   XXX;
-RT   ;
-RL   Submitted {(DD-MMM-YYYY)} to the INSDC.
-XX
-FH   Key           Location/Qualifiers
-FH
-FT   source        1..588788
-FT                 /organism={"scientific organism name"}
-FT                 /mol_type={"in vivo molecule type of sequence"}
-XX
-SQ   Sequence 588788 BP; 101836 A; 193561 C; 192752 G; 100639 T; 0 other;
-     tgcgtactcg aagagacgcg cccagattat ataagggcgt cgtctcgagg ccgacggcgc        60
-     gccggcgagt acgcgtgatc cacaacccga agcgaccgtc gggagaccga gggtcgtcga       120
-     gggtggatac gttcctgcct tcgtgccggg aaacggccga agggaacgtg gcgacctgcg       180
-[sequence truncated]...
-//
-```
+{{% code "sample.embl" embl true %}}
 
 ## Structure of the EMBL Flat File record
 
@@ -70,21 +41,40 @@ The header section contains essential metadata about the sequence. The following
 - **RL**: Reference line, providing the complete citation for the reference.
 
 ```
-ID   XXX; XXX; {'linear' or 'circular'}; XXX; XXX; XXX; XXX.
+ID   HQ324066; SV 1; linear; genomic DNA; STD; PLN; 84 BP.
 XX
-AC   XXX;
+AC   HQ324066;
 XX
-AC * _{entry_name} (where entry_name=sequence name: e.g. _contig1 or _scaffold1)
+DT   30-MAR-2011 (Rel. 108, Created)
+DT   20-NOV-2011 (Rel. 110, Last updated, Version 2)
 XX
-PR   Project:PRJEBNNNN;
+DE   Trinia glauca tRNA-Leu (trnL) gene, intron; chloroplast.
 XX
-DE   XXX
+KW   .
+XX
+OS   Trinia glauca
+OC   Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+OC   Spermatophyta; Magnoliopsida; eudicotyledons; Gunneridae; Pentapetalae;
+OC   asterids; campanulids; Apiales; Apiaceae; Apioideae; apioid superclade;
+OC   Selineae; Trinia.
+OG   Plastid:Chloroplast
 XX
 RN   [1]
-RP   1-2149
-RA   XXX;
+RP   1-84
+RA   Raye G., Miquel C., Coissac E., Redjadj C., Loison A., Taberlet P.;
+RT   "New insights on diet variability revealed by DNA barcoding and
+RT   high-throughput pyrosequencing: chamois diet in autumn as a case study";
+RL   Ecol. Res. 26(2):265-276(2011).
+XX
+RN   [2]
+RP   1-84
+RA   Raye G.;
 RT   ;
-RL   Submitted {(DD-MMM-YYYY)} to the INSDC.
+RL   Submitted (25-SEP-2010) to the INSDC.
+RL   LECA, Universite Joseph Fourier, Bp 53, 2233 rue de la Piscine, Grenoble
+RL   38041, France
+XX
+DR   MD5; f2c1ac0a050529656590007b565d327d.
 XX
 ```
 
@@ -93,11 +83,20 @@ XX
 The feature table section contains information about the annotations or features of the sequence, such as genes, transcripts, or regions. Each feature is represented by a set of fields splitted over multiple lines. The first line of each feature contains the feature type, such as "gene", "transcript", or "region" and its location in the sequence. The subsequent lines contain the feature-specific information, such as the gene name, gene function, cross-references to other databases, or its translation to protein for protein-coding genes.
 
 ```
-FH   Key           Location/Qualifiers
+FH   Key             Location/Qualifiers
 FH
-FT   source        1..588788
-FT                 /organism={"scientific organism name"}
-FT                 /mol_type={"in vivo molecule type of sequence"}
+FT   source          1..84
+FT                   /organism="Trinia glauca"
+FT                   /organelle="plastid:chloroplast"
+FT                   /mol_type="genomic DNA"
+FT                   /country="France"
+FT                   /db_xref="taxon:1000432"
+FT   gene            <1..>84
+FT                   /gene="trnL"
+FT                   /note="tRNA-Leu; tRNA-Leu(UAA)"
+FT   intron          <1..>84
+FT                   /gene="trnL"
+FT                   /note="P6 loop"
 XX
 ```
 
@@ -109,11 +108,9 @@ The sequence section contains the actual nucleotide sequence. This section is fo
 - The sequence itself follows, formatted in lines of 60 characters for clarity.
 
 ```
-SQ   Sequence 588788 BP; 101836 A; 193561 C; 192752 G; 100639 T; 0 other;
-     tgcgtactcg aagagacgcg cccagattat ataagggcgt cgtctcgagg ccgacggcgc        60
-     gccggcgagt acgcgtgatc cacaacccga agcgaccgtc gggagaccga gggtcgtcga       120
-     gggtggatac gttcctgcct tcgtgccggg aaacggccga agggaacgtg gcgacctgcg       180
-[sequence truncated]...
+SQ   Sequence 84 BP; 35 A; 16 C; 20 G; 13 T; 0 other;
+     gggcaatcct gagccaaatc ctattttaca aaaacaaaca aaggcccaga aggtgaaaaa        60
+     aggataggtg cagagactca atgg                                               84
 ```
 
 ###  Terminator
@@ -123,6 +120,18 @@ The record concludes with a `//` line, indicating the end of the record. This te
 ```
 //
 ```
+
+## Converting EMBL flat file to {{% fasta %}} format
+
+To convert a EMBL flat file to FASTA format, you can use the {{< obi obiconvert >}} command.
+The {{% obi obiconvert %}} command extracts from the source feature present in each EMBL record the taxid and scientific name associated with the record to store them in the `taxid` and `scientific_name` tags within the FASTA header.
+
+```bash
+obiconvert sample.embl
+```
+{{% code "sample.fasta" fasta false %}}
+
+
 
 ## References
 

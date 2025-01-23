@@ -1,0 +1,54 @@
+ID   HQ324066; SV 1; linear; genomic DNA; STD; PLN; 84 BP.
+XX
+AC   HQ324066;
+XX
+DT   30-MAR-2011 (Rel. 108, Created)
+DT   20-NOV-2011 (Rel. 110, Last updated, Version 2)
+XX
+DE   Trinia glauca tRNA-Leu (trnL) gene, intron; chloroplast.
+XX
+KW   .
+XX
+OS   Trinia glauca
+OC   Eukaryota; Viridiplantae; Streptophyta; Embryophyta; Tracheophyta;
+OC   Spermatophyta; Magnoliopsida; eudicotyledons; Gunneridae; Pentapetalae;
+OC   asterids; campanulids; Apiales; Apiaceae; Apioideae; apioid superclade;
+OC   Selineae; Trinia.
+OG   Plastid:Chloroplast
+XX
+RN   [1]
+RP   1-84
+RA   Raye G., Miquel C., Coissac E., Redjadj C., Loison A., Taberlet P.;
+RT   "New insights on diet variability revealed by DNA barcoding and
+RT   high-throughput pyrosequencing: chamois diet in autumn as a case study";
+RL   Ecol. Res. 26(2):265-276(2011).
+XX
+RN   [2]
+RP   1-84
+RA   Raye G.;
+RT   ;
+RL   Submitted (25-SEP-2010) to the INSDC.
+RL   LECA, Universite Joseph Fourier, Bp 53, 2233 rue de la Piscine, Grenoble
+RL   38041, France
+XX
+DR   MD5; f2c1ac0a050529656590007b565d327d.
+XX
+FH   Key             Location/Qualifiers
+FH
+FT   source          1..84
+FT                   /organism="Trinia glauca"
+FT                   /organelle="plastid:chloroplast"
+FT                   /mol_type="genomic DNA"
+FT                   /country="France"
+FT                   /db_xref="taxon:1000432"
+FT   gene            <1..>84
+FT                   /gene="trnL"
+FT                   /note="tRNA-Leu; tRNA-Leu(UAA)"
+FT   intron          <1..>84
+FT                   /gene="trnL"
+FT                   /note="P6 loop"
+XX
+SQ   Sequence 84 BP; 35 A; 16 C; 20 G; 13 T; 0 other;
+     gggcaatcct gagccaaatc ctattttaca aaaacaaaca aaggcccaga aggtgaaaaa        60
+     aggataggtg cagagactca atgg                                               84
+//
