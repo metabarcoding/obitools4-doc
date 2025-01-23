@@ -112,6 +112,10 @@ obiconvert sample.gb
 ```
 {{% code "sample.fasta" fasta false %}}
 
+> [!NOTE] the DDBJ database uses a format very similar to GenBank, 
+> so {{< obi obiconvert >}} recognizes it as a GenBank file and correctly 
+> converts it to FASTA.
+
 
 ## References
 
