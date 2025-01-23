@@ -17,9 +17,9 @@ weight: 1
 
 Three bioinformatics centres distribute all publicly available DNA sequences worldwide. They are
 
-- NCBI](https://www.ncbi.nlm.nih.gov/genome/) : distributes GenBank
-- EMBL-EBI](https://www.ebi.ac.uk/ena/data/view/home) : distributes EMBL
-- DDBJ](https://www.ddbj.nig.ac.jp/ddbj/index-e.html) : distributes DDBJ
+- [NCBI](https://www.ncbi.nlm.nih.gov/genome/) : distributes GenBank
+- [EMBL-EBI](https://www.ebi.ac.uk/ena/data/view/home) : distributes EMBL
+- [DDBJ](https://www.ddbj.nig.ac.jp/ddbj/index-e.html) : distributes DDBJ
 
 The three centres are associated in an international agreement, the International Nucleotide Sequence Database Collaboration ([INSDC](https://www.insdc.org/)). This agreement allows the three centres to share the sequences submitted by biologists. As a result, all sequences are available in the three databases, where they are identified by the same accession number.
 
