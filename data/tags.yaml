@@ -6,7 +6,7 @@
   command:
     - obipcr
 - tag: forward_error
-  definition: Mismatch between forward primer and priming site
+  definition: Number of mismatch between forward primer and priming site
   command:
     - obipcr
   category:
@@ -24,7 +24,7 @@
   category:
     - primer
 - tag: reverse_error
-  definition: Mismatch between reverse primer and priming site
+  definition: Number of mismatch between reverse primer and priming site
   command:
     - obipcr
   category:
