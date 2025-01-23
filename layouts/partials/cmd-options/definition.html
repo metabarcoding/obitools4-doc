@@ -1,0 +1,7 @@
+{{ partial "cmd-options/option.html" 
+(dict "name" "definition"
+      "short" "D"
+      "param" "REGEX"
+      "documentation" (printf `<a href="%s">Regular expression pattern</a> to be tested against the sequence definition. 
+      The pattern is case-insensitive.` ( "docs/patterns/regular" |  relURL ) ) )
+}}

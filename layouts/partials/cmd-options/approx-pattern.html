@@ -1,4 +1,8 @@
 {{ partial "cmd-options/option.html" 
-(dict "name" "approx-pattern"
+(dict "name" "approx-pattern" 
       "param" "PATTERN"
-      "documentation" `Selection sequence record matching <PATTEHN>. The pattern is case insensitive.`) }}
+      "documentation" (printf `A <a href="%s">DNA pattern</a> used to match the sequence. 
+      Only the entries whose sequence matches the pattern are kept. 
+      DNA patterns are case-insensitive. They can be matched allowing 
+      for errors: mismatches or insertions or deletions.`  ( "docs/patterns/dnagrep" |  relURL ) )) 
+}}

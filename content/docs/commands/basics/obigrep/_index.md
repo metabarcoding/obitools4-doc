@@ -10,7 +10,7 @@ url: "/obitools/obigrep"
 
 ### Description 
 
-Filter a sequence file to keep only the entries you want based on multiple criteria.
+{{< obi obigrep >}} is a tool to filter a sequence file based on multiple criteria. It allows selecting a subset of sequences based on a set of criteria. Sequences matching all the criteria are kept and printed to the standard output, while the other sequences are discarded. Criteria can apply to the sequence identifier, the sequence itself or the annotations of the sequence.
 
 ### Synopsis
 
@@ -38,37 +38,9 @@ obigrep [--allows-indels] [--approx-pattern <PATTERN>]...
 
 ### Options
 
-#### {{< obi obigrep >}} specific options:
+{{< option-sets/selection >}}
 
 ##### Matching the sequence annotations
-
-- {{< cmd-option name="identifier" short="I" param="REGEX" >}}
-  [Regular expression pattern]({{< ref "/doc/patterns/regular.md" >}}) to be tested against the sequence identifier. The pattern is case-insensitive.
-  {{< /cmd-option >}}
-
-##### Matching the sequence
-
-###### Strict matching
-
-- {{< cmd-option name="sequence" short="s" param="PATTERN" >}}
-  Regular expression pattern to be tested against the sequence. The pattern is case-insensitive.
-  {{< /cmd-option >}}
-
-###### Approximate matching
-
-- {{< cmd-option name="approx-pattern"  param="DNAPATTERN" >}}
-  A DNA pattern used to match the sequence. Only the entries whose sequence matches the pattern are kept.
-  DNA patterns are case-insensitive. They can be matched allowing for errors: mismatches or insertions or deletions.
-  {{< /cmd-option >}}
-
-- {{< cmd-option name="allows-indels" >}}
-  Allows for indel during pattern DNA pattern matching (see `--approx-pattern` option).
-  {{< /cmd-option >}}
-
-- {{< cmd-option name="pattern-error" param="INT" >}}
-  Maximum number of allowed error during DNA pattern matching (default 0, see `--approx-pattern` option).
-  {{< /cmd-option >}}
-
 
 
 ##### Taxonomy based filtering

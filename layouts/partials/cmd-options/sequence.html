@@ -1,0 +1,8 @@
+{{ partial "cmd-options/option.html" 
+(dict "name" "sequence"
+      "short" "s"
+      "param" "PATTERN"
+      "documentation" (printf `A <a href="%s">Regular expression pattern</a> used to match the sequence. 
+      Only the entries whose sequence matches the pattern are kept. 
+      Regular expression patterns are case-insensitive.`  ( "docs/patterns/regular" |  relURL ) )) 
+}}

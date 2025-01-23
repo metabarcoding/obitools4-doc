@@ -201,4 +201,14 @@ obicomplement two_sequences.fasta | obicount | uplot barplot -H -d,
 
 ## The tagging system of {{% obitools %}}
 
-The {{% obitools %}} provide several tools to perform computations on the sequences. The result of such a computation may be the selection of a subset of the input sequences, a modification of the sequences themselves, or it may only lead to the estimation of some properties of the sequences. In the latter case, the {{% obitools %}} saves the estimated properties on the associated sequence in a {{% fasta %}} or {{% fastq %}} file. To achieve this, the {{% obitools %}} add structured information in the form of a JSON map to the header of each sequence. The JSON map allows the results of calculations to be stored in key-value pairs. Each {{% obitools %}} command will add one or more key-value pairs to the JSON map as needed to annotate a sequence.
+The {{% obitools %}} provide several tools to perform computations on the sequences. The result of such a computation may be the selection of a subset of the input sequences, a modification of the sequences themselves, or it may only lead to the estimation of some properties of the sequences. In the latter case, the {{% obitools %}} stores the estimated properties of the associated sequence in a {{% fasta %}} or {{% fastq %}} file. To achieve this, the {{% obitools %}} add structured information in the form of a JSON map to the header of each sequence. The JSON map allows the results of calculations to be stored in key-value pairs. Each {{% obitools %}} command adds one or more key-value pairs to the JSON map as needed to annotate a sequence. Below is an example of a {{% fasta %}} formatted sequence with a JSON map added to its header containing three key-value pairs: `count` associated with the value `2`, `is_annotated` associated with the value `true` and `xxxx` associated with the value `yyyy`.
+
+
+```
+>sequence1 {"count": 2, "is_annotated": true, "xxxx": "yyy"}
+cgacgtagctgtgatgcagtgcagttatattttacgtgctatgtttcagtttttttt
+fdcgacgcagcggag
+```
+
+Keys can be any string. Their names are case-sensitive. The keys `count`, `Count` and `COUNT` are all considered to different keys. The values can be any string, integer, float, or boolean values. Values can also be of composite types but with some limitations compared to the [JSON](https://en.wikipedia.org/wiki/JSON) format. 
+

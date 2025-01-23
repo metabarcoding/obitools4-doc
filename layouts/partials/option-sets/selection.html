@@ -1,28 +1,39 @@
-{{ "#### Selecting sequence records" | markdownify}}
+{{ "#### Selecting sequence records" | markdownify }}
 
-{{ "##### Based on sequence identifier" | markdownify}}
+{{ "##### Selection based on the sequence" | markdownify }}
+
+{{ "###### Strict matching" | markdownify }}
 
 <ul>
+    <li>{{ partial "cmd-options/sequence.html" .}}</li>
+</ul>
+
+{{ "###### Approximate matching" | markdownify }}
+
+<ul>
+    <li>{{ partial "cmd-options/approx-pattern.html" .}}</li>
+    <li>{{ partial "cmd-options/allows-indels.html" .}}</li>
+    <li>{{ partial "cmd-options/pattern-error.html" .}}
+</ul>
+
+{{ "##### Selection based on the sequence identifier" | markdownify}}
+
+<ul>
+    <li>{{ partial "cmd-options/identifier.html" .}}</li>
     <li>{{ partial "cmd-options/id-list.html" .}}</li>
 </ul>
 
-{{ "##### Based on sequence definition" | markdownify}}
+{{ "##### Selection based on the sequence definition" | markdownify}}
 
-{{ "##### Based on sequence identifier" | markdownify}}
+<ul>
+    <li>{{ partial "cmd-options/definition.html" .}}</li>
+</ul>
 
-
-{{ "##### Based on sequence properties" | markdownify}}
+{{ "##### Selection based on the sequence properties" | markdownify}}
 
 <ul>
     <li>{{ partial "cmd-options/min-count.html" .}}</li>
     <li>{{ partial "cmd-options/max-count.html" .}}</li>
     <li>{{ partial "cmd-options/min-length.html" .}}</li>
     <li>{{ partial "cmd-options/max-length.html" .}}</li>
-</ul>
-
-
-{{ "##### Based on sequence" | markdownify}}
-
-<ul>
-    <li>{{ partial "cmd-options/approx-pattern.html" .}}</li>
 </ul>
