@@ -5,13 +5,13 @@ draft = true
 weight = 10
 +++
 
-Some OBITools command options are shared by several commands. These options are listed in the following table.
+Some {{% obitools %}} command options are shared by several commands. These options are listed in the following table.
 
-## Several way to specify the same option
+## Several ways to specify the same option
 
-Some options can be specified in more than one way. For example, the `help' option can be specified with the long `--help' option or with one of the short `-h' or `-?` options. The table below shows the different ways of specifying the `help' option, separated by the `|` symbol: `--help|-h|-?`.
+Some options can be specified in more than one way. For example, the `help' option can be specified with the long `--help' option or with one of the short `-h` or `-?` options. The table below shows the different ways of specifying the `help` option, separated by the `|` symbol: `--help|-h|-?`.
 
-## Specifying an option through ennvironment variables
+## Specifying an option through environment variables
 
 Options such as `--max-cpu`, which specifies the maximum number of CPU cores used by {{% obitools %}}, can be specified when running the command
 
@@ -19,7 +19,7 @@ Options such as `--max-cpu`, which specifies the maximum number of CPU cores use
 obicount --max-cpu=4 my_sequence.fasta
 ```
 
-or by declaring an environment variable. For this example, the environment variable corresponding to the `--max-cpu' option is `OBIMAXCPU'. When using [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) or [zsh](https://en.wikipedia.org/wiki/Z_shell) shells, the environment variable can be set using the `export` command:
+or by declaring an environment variable. For this example, the environment variable corresponding to the `--max-cpu` option is `OBIMAXCPU`. When using [bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell)) or [zsh](https://en.wikipedia.org/wiki/Z_shell) shells, the environment variable can be set using the `export` command:
 
 ```sh
 export OBIMAXCPU=4
