@@ -48,7 +48,7 @@ or by declaring an environment variable. For this example, the environment varia
 export OBIMAXCPU=4
 ```
 
-Once the environment variable is set, any {{% obitools %}} run in the same shell session will use the value of four CPU cores, in this case without the need to specify the `--max-cpu` option.
+Once the environment variable is set, any {{% obitools %}} command run in the same shell session will use the value of four CPU cores, in this case without the need to specify the `--max-cpu` option.
 
 Some {{% obitools %}} command options are shared by several commands. These options are listed in the following table.
 
