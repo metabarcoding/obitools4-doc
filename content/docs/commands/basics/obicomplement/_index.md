@@ -4,6 +4,7 @@ title: "Obicomplement"
 date: 2025-01-08
 command: "obicomplement"
 url: "/obitools/obicomplement"
+weight: 20
 ---
 
 ## `obicomplement`

@@ -4,6 +4,7 @@ title: "Obiannotate: Edit sequence annotations"
 date: 2024-10-09
 command: "obiannotate"
 url: "/obitools/obiannotate"
+weight: 10
 ---
 
 ## `obiannotate`: Edit sequence annotations

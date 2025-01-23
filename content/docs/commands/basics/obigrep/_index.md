@@ -4,6 +4,7 @@ title: "Obigrep: Filter a sequence file"
 date: 2025-01-15
 command: "obigrep"
 url: "/obitools/obigrep"
+weight: 80
 ---
 
 ## `obigrep`: Filter a sequence file

@@ -4,6 +4,7 @@ title: "Obiconvert: Convert a sequence file"
 date: 2025-01-08
 command: "obiconvert"
 url: "/obitools/obiconvert"
+weight: 30
 ---
 
 ## `obiconvert`: Convert a sequence file

@@ -1,26 +1,27 @@
 ---
 archetype: "command"
-title: "Obicsv"
-date: 2025-01-08
-command: "obicsv"
-url: "/obitools/obicsv"
+title: "Obiuniq: dereplicate a sequence file"
+date: 2025-01-23
+command: "obiuniq"
+url: "/obitools/obiuniq"
+weight: 130
 ---
 
-## `obicsv`
+## `obiuniq`: dereplicate a sequence file
 
 ### Description 
 
-Convert a sequence file to a CSV file.
+Dereplicate a sequence file, by merging identical sequences.
 
 ### Synopsis
 
 ```bash
-obicsv [OPTIONS] [ARGS]
+obiuniq [OPTIONS] [ARGS]
 ```
 
 ### Options
 
-#### {{< obi obicsv >}} specific options:
+#### {{< obi obiuniq >}} specific options:
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -35,5 +36,5 @@ obicsv [OPTIONS] [ARGS]
 ### Examples
 
 ```bash
-obicsv --help
+obiuniq --help
 ```

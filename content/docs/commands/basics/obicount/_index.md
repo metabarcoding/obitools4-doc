@@ -3,6 +3,7 @@ title: "Obicount: Counting sequence records"
 category: "basics"
 command: "obicount"
 url: "/obitools/obicount"
+weight: 40
 ---
 
 ## `obicount`: Counting sequence records
