@@ -45,12 +45,72 @@ Genbank is distributed in two main formats: {{% fasta %}} and {{% genbank %}}. T
 
 To combine the advantages of both formats, we will download the {{% genbank %}} format and use the {{< obi obiconvert >}} command to convert it to {{% fasta %}} format. The {{< obi obiconvert >}} command takes care during the conversion to keep the taxonomic information.
 
-Because downloading all the files is a long process, it has a high chance to fail because of network disruption. 
+Because downloading all the files is a long process, it has a high chance to fail because of network disruption. To tackle this problem, here is a Make script that downloads the Genbank files and convert them to {{% fasta %}} format. The use of Make allows for restarting the download process, if it fails, at the failure point.
+
+To download Genbank, copy the <a href="Makefile" type="text/x-makefile" download="Makefile">`Makefile`</a> file to your local computer in the directory where you want to store the Genbank files. 
+
+> [!caution] The Makefile script must be named `Makefile` without any extension.
+
+Run the make command.
 
 ```bash
-make GBDIV=mam depends
 make
 ```
 
+By default, the script will download all the cited above Genbank divisions. If you want to download a specific division or a subset of the Genbank divisions, you can use the `GBDIV` variable. For example, to download only the `mam` division, you can use the following command:
+
+```bash
+make GBDIV=mam
+```
+
+To download the `mam`  and the `rod` divisions, you can use the following command:
+
+```bash
+make GBDIV="mam rod"
+```
+
+If the download fails, you can restart the download process by using the `make` command again.  You don't need to specify the `GBDIV` variable
+
+```bash
+make
+```
+
+The `Makefile` file will create a directory named `Release_###` where ### is the number of the current release. The directory will contain the following files:
+
+```
+. 📂 Release_264
+└── 📂 depends/
+│  ├── 📄 gbfiles.d
+│  ├── 📄 gbfiles.d.full
+└── 📂 fasta/
+│  └── 📂 mam/
+│    ├── 📄 gbmam1.fasta.gz
+│    ├── 📄 gbmam10.fasta.gz
+│    └── 📄 ...
+│  └── 📂 rod/
+│    ├── 📄 gbrod1.fasta.gz
+│    └── 📄 ...
+└── 📂 stamp/
+│  ├── 📄 gbmam1.seq.gz.stamp
+│  ├── 📄 gbmam10.seq.gz.stamp
+│  ├── 📄 gbrod1.seq.gz.stamp
+└── 📂 taxonomy/
+   ├── 📄 citations.dmp
+   ├── 📄 delnodes.dmp
+   ├── 📄 division.dmp
+   ├── 📄 gc.prt
+   ├── 📄 gencode.dmp
+   ├── 📄 images.dmp
+   ├── 📄 merged.dmp
+   ├── 📄 names.dmp
+   ├── 📄 nodes.dmp
+   └── 📄 readme.txt
+```
+
+- The `taxonomy` directory contains a copy of the NCBI taxonomy database at the date of the download. 
+- The `fasta` directory contains the {{% fasta %}} files sorted by taxonomic division in subdirectories, here `mam` and `rod`. 
+- The `stamp` directory allows the Makefile script to restart the download process if it fails without having to download the whole Genbank database again. To save space the `stamp` directory can be deleted at the end of the download process.
+- The `depends` directory contains a make script with all the instructions to download the Genbank files. It is generated at first by the `Makefile` script. It contains the files that have to be downloaded according to the specified Genbank divisions. To save space the `depends` directory can be deleted at the end of the download process.
+- The `tmp` directory is used to store the downloaded Genbank files before they are converted to {{% fasta %}} format. It does not normally persist after the download process. To save space the `tmp` directory can be deleted at the end of the download process, if it persists.
 
 {{% code "Makefile" make true %}}

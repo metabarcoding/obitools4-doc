@@ -31,11 +31,16 @@ ifeq (0, $(words $(findstring $(MAKECMDGOALS), $(NODEPS))))
 endif
 
 
-all: depends directories taxonomy fasta_files 
+all: depends directories
+	@make downloads
+
+downloads: taxonomy fasta_files 
 	@echo Genbank Release number $(GBRELEASE)
 	@echo all divisions : $(GBDIV_ALL)
 
-depends: Release_$(GBRELEASE)/depends/gbfiles.d Makefile
+.PHONY: all directories depends taxonomy fasta_files
+
+depends: directories Release_$(GBRELEASE)/depends/gbfiles.d Makefile
 
 division: $(GBDIV)
 
