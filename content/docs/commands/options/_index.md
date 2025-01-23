@@ -5,7 +5,7 @@ draft = true
 weight = 10
 +++
 
-# Customise {{% obitools %}} execution
+# Customising the execution of {{% obitools %}}
 
 {{% obitools %}} are a set of UNIX commands that can be used from a UNIX shell. They can be used interactively from a terminal, or as part of a shell script to automate a data analysis pipeline. Each {{% obitools %}} command implements an algorithm to process the data. For example, the {{< obi obicount >}} command implements an algorithm to count the number of sequences in a sequence file.
 
@@ -30,9 +30,15 @@ symbols,200
 ``` 
 
 If you compare the two outputs, you will notice that the first version of the {{< obi obicount >}} command without the `--symbols` option counts the total number of nucleotides, but also the number of sequence variants and the number of reads, while the second version with the `--symbols` option counts only the total number of nucleotides.
-## Several ways to specify the same option
 
-Some options can be specified in more than one way. For example, the `help` option can be specified with the long `--help` option or with one of the short `-h` or `-?` options. The table below shows the different ways of specifying the `help` option, separated by the `|` symbol: `--help|-h|-?`.
+## Multiple ways to specify the same option
+
+Unix options are specified on the command line by adding then after the command name. They can take two forms:
+
+- The long option name, which is the name of the option preceded by two hyphens, for example `--help'.
+- For some options, such as the `help` option, there is also a short version of the option. This consists of a single character preceded by a single hyphen, for example `-h`.
+
+If multiple forms of the same option exist, they are separated in the documentation by a vertical bar `|`, e.g. the option `help` exists in its long form `--help` and in one of its short forms `-h` or `-?`. These different forms are represented as follows `--help|-h|-?`.
 
 ## Specifying an option through environment variables
 
