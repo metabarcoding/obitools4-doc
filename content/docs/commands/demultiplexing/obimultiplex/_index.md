@@ -24,7 +24,7 @@ obimultiplex [--allowed-mismatches|-e <int>] [--batch-size <int>]
              [--out|-o <FILENAME>] [--output-OBI-header|-O]
              [--output-json-header] [--paired-with <FILENAME>] [--pprof]
              [--pprof-goroutine <int>] [--pprof-mutex <int>] [--skip-empty]
-             [--solexa] [--tag-list|-s <string>] [--taxdump|-t <string>]
+             [--solexa] [--tag-list|-s <string>] [--taxonomy|-t <string>]
              [--template] [--unidentified|-u <string>] [--version]
              [--with-indels] [<args>]
 ```

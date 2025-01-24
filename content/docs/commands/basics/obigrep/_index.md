@@ -34,7 +34,7 @@ obigrep [--allows-indels] [--approx-pattern <PATTERN>]...
         [--predicate|-p <EXPRESSION>]... [--require-rank <RANK_NAME>]...
         [--restrict-to-taxon|-r <TAXID>]... [--save-discarded <FILENAME>]
         [--sequence|-s <PATTERN>]... [--skip-empty] [--solexa]
-        [--taxdump|-t <string>] [--version] [<args>]
+        [--taxonomy|-t <string>] [--version] [<args>]
 ```
 
 ### Options
@@ -46,7 +46,7 @@ obigrep [--allows-indels] [--approx-pattern <PATTERN>]...
 
 ##### Taxonomy based filtering
 
-If the user specifies a taxonomy when calling {{< obitools obigrep >}} (see `--taxdump` option), it is possible to filter the sequences based on taxonomic properties. Each of the following options can be used multiple times if needed to specify multiple taxids or ranks.
+If the user specifies a taxonomy when calling {{< obitools obigrep >}} (see `--taxonomy` option), it is possible to filter the sequences based on taxonomic properties. Each of the following options can be used multiple times if needed to specify multiple taxids or ranks.
 
 - {{< cmd-option name="restrict-to-taxon" short="r" param="TAXID" >}}
   Only sequences having a taxid belonging the provided taxid are conserved.

@@ -23,7 +23,7 @@ obicsv [--auto] [--batch-size <int>] [--compress|-Z] [--count] [--debug]
        [--max-cpu <int>] [--na-value <NAVALUE>] [--no-order]
        [--no-progressbar] [--obipairing] [--out|-o <FILENAME>] [--pprof]
        [--pprof-goroutine <int>] [--pprof-mutex <int>] [--quality|-q]
-       [--sequence|-s] [--skip-empty] [--solexa] [--taxdump|-t <string>]
+       [--sequence|-s] [--skip-empty] [--solexa] [--taxonomy|-t <string>]
        [--taxon] [--version] [<args>]
 ```
 

@@ -25,7 +25,7 @@ obicleandb [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
            [--pprof-goroutine <int>] [--pprof-mutex <int>]
            [--require-rank <RANK_NAME>]...
            [--restrict-to-taxon|-r <TAXID>]... [--skip-empty] [--solexa]
-           [--taxdump|-t <string>] [--update-taxids] [--version] [<args>]
+           [--taxonomy|-t <string>] [--update-taxids] [--version] [<args>]
 ```
 
 ### Options

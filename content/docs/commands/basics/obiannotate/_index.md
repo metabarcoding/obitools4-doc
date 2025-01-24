@@ -40,7 +40,7 @@ obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
             [--rename-tag|-R <NEW_NAME=OLD_NAME>]... [--scientific-name]
             [--sequence|-s <PATTERN>]... [--set-identifier <EXPRESSION>]
             [--set-tag|-S <KEY=EXPRESSION>]... [--skip-empty] [--solexa]
-            [--taxdump|-t <string>] [--taxonomic-path] [--taxonomic-rank]
+            [--taxonomy|-t <string>] [--taxonomic-path] [--taxonomic-rank]
             [--version] [--with-taxon-at-rank <RANK_NAME>]... [<args>]
 ```
 

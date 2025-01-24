@@ -15,7 +15,7 @@ url: "/obitools/_index."
 ### Synopsis
 
 ```bash
-obifind --taxdump|-t <string> [--alternative-names|-a] [--batch-size <int>]
+obifind --taxonomy|-t <string> [--alternative-names|-a] [--batch-size <int>]
         [--debug] [--fixed|-F] [--force-one-cpu] [--help|-h|-?]
         [--max-cpu <int>] [--parents|-p <string>] [--pprof]
         [--pprof-goroutine <int>] [--pprof-mutex <int>] [--rank <string>]

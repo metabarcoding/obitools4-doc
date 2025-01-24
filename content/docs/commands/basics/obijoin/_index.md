@@ -24,7 +24,7 @@ obijoin --join-with|-j <string> [--batch-size <int>] [--by|-b <string>]...
         [--out|-o <FILENAME>] [--output-OBI-header|-O] [--output-json-header]
         [--paired-with <FILENAME>] [--pprof] [--pprof-goroutine <int>]
         [--pprof-mutex <int>] [--skip-empty] [--solexa]
-        [--taxdump|-t <string>] [--update-id|-i] [--update-quality|-q]
+        [--taxonomy|-t <string>] [--update-id|-i] [--update-quality|-q]
         [--update-sequence|-s] [--version] [<args>]
 ```
 

@@ -23,7 +23,7 @@ obilandmark [--batch-size <int>] [--center|-n <int>] [--compress|-Z]
             [--out|-o <FILENAME>] [--output-OBI-header|-O]
             [--output-json-header] [--pprof] [--pprof-goroutine <int>]
             [--pprof-mutex <int>] [--skip-empty] [--solexa]
-            [--taxdump|-t <string>] [--version] [<args>]
+            [--taxonomy|-t <string>] [--version] [<args>]
 ```
 
 ### Options

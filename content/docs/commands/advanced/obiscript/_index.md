@@ -33,7 +33,7 @@ obiscript [--allows-indels] [--approx-pattern <PATTERN>]...
           [--pprof-goroutine <int>] [--pprof-mutex <int>]
           [--predicate|-p <EXPRESSION>]... [--save-discarded <FILENAME>]
           [--script|-S <string>] [--sequence|-s <PATTERN>]... [--skip-empty]
-          [--solexa] [--taxdump|-t <string>] [--template] [--version]
+          [--solexa] [--taxonomy|-t <string>] [--template] [--version]
           [<args>]
 ```
 

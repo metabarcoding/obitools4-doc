@@ -26,7 +26,7 @@ obimicrosat [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
             [--output-OBI-header|-O] [--output-json-header]
             [--paired-with <FILENAME>] [--pprof] [--pprof-goroutine <int>]
             [--pprof-mutex <int>] [--skip-empty] [--solexa]
-            [--taxdump|-t <string>] [--version] [<args>]
+            [--taxonomy|-t <string>] [--version] [<args>]
 ```
 
 ### Options

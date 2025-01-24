@@ -25,7 +25,7 @@ obisplit [--allows-indels] [--batch-size <int>] [--compress|-Z]
          [--output-json-header] [--paired-with <FILENAME>]
          [--pattern-error <int>] [--pprof] [--pprof-goroutine <int>]
          [--pprof-mutex <int>] [--skip-empty] [--solexa]
-         [--taxdump|-t <string>] [--template] [--version] [<args>]
+         [--taxonomy|-t <string>] [--template] [--version] [<args>]
 ```
 
 ### Options
