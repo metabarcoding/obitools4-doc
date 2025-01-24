@@ -2,9 +2,16 @@
 
 ## The public version of the OBITools4 documentation
 
+GitHub through the GitHub Pages feature allows for maintaining an up-to-date version of the documentation at the following URL:
+
 https://obitools4.metabarcoding.org/
 
+The documentation is automatically generated from the source code of the OBITools4-doc repository at each commit.
+
 ## Getting a copy of the OBITools4 documentation
+
+For the official OBITools4 developers, the documentation is hosted on GitHub
+If you want to edit the documentation, you have to clone the repository:
 
 ```bash
 git clone --recurse-submodules \
@@ -13,31 +20,56 @@ git clone --recurse-submodules \
           git@github.com:metabarcoding/obitools4-doc.git
 ```
 
+On each commit, the documentation is automatically generated and pushed to the public documentation website.
+
 ## The editor
 
 I recommend to use VSCodium, all installation instructions are available on https://vscodium.com/.
 
 ### VsCode extensions
 
+The OBITools4 documentation is written in Markdown using the Hugo static site generator.
+Therefore, I recommend using the following extensions to edit the documentation:
+
 - [Hugo Language and Syntax Support](https://marketplace.visualstudio.com/items?itemName=budparr.language-hugo-vscode)
 
 
 ### Testing the documentation on the local machine
 
+When you edit the documentation from VSCodium, I recommend you to open two unix terminals. In one of them, run the following command to start the Hugo server:
+
 ```bash
 hugo server --buildDrafts
 ```
 
+Each time you edit the documentation, your local copy of the documentation will be automatically rebuilt and visible at the URL specified by the `hugo server` command.
+
+```
+Web Server is available at http://localhost:1313/obitools4-doc/ (bind address 127.0.0.1)
+Total in 110 ms
+```
+
+The URL is changing each time you restart the server. So be sure to use the correct URL.
+
 
 ## Some commands to help you edit the documentation
+
+In the second terminal, you will be able to run other hugo commands to create new pages as example.
 
 ### Add a new content
 
 To add a new page, use the following command:
 
 ```bash
-hugo new content content/docs/new_page.md
+hugo new content content/docs/new_page/_index.md
 ```
+
+This will create a new folder in the `content/docs` folder named `new_page` in which a new file named `_index.md` will be created.
+
+Edit this file to modify the page.
+
+You can add auxiliary files (images, sequence examples files, etc.) in the same folder.
+They can thus be easily referenced from the page.
 
 #### Add a new command description page
 
@@ -45,7 +77,7 @@ The following command will create a new page in the `content/docs/commands` fold
 containing a pre-filled template for the command description (here `obiconvert`).
 
 ```bash
-hugo new content --kind command content/docs/commands/obiconvert.md
+hugo new content --kind command content/docs/commands/obiconvert/_index.md
 ```
 
 ### The hugo shortcodes
@@ -152,3 +184,53 @@ To cite a reference, use the following format: `{{< cite "Pearson:1988aa" >}}`
 ```bash
 pandoc assets/bibliography/bibliography.bib -t csljson -o assets/bibliography/bibliography.json
 ```
+
+## Download a developer copy of the obitools4
+
+Currently, the documentation use the obitools4 as present in the `taxonomy` branch of the obitools4 repository.
+
+To be able to get that version of the obitools4, you have to clone the repository:
+
+```bash
+git clone --recursive git@github.com:metabarcoding/obitools4.git
+```
+
+You can now enter the `obitools4` directory:
+
+```bash
+cd obitools4
+```
+
+You have to fetch all remote branches. And create the corresponding local branches.
+From the `obitools4` directory, run the following command:
+
+```bash
+git fetch --all
+for branch in $(git branch -r | grep -v '\->'); do
+    if [[ "$branch" != "origin/master" ]]; then
+      git branch --track ${branch#origin/} $branch
+    fi
+done
+```
+
+Finally, to ensure all branches are up-to-date, pull all branches:
+
+```bash
+git pull --all
+```
+
+The last step is to switch to the `taxonomy` branch:
+
+```bash
+git checkout taxonomy
+```
+
+### Compiling the obitools4
+
+To compile the obitools4, run the following command:
+
+```bash
+make
+```
+
+The obitools4 will be compiled in the `build` directory.

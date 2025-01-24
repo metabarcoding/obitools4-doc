@@ -367,11 +367,7 @@ sequences and reference sequences.
 It is always possible to download the complete taxonomy from NCBI using the following commands.
 
 ```bash
-mkdir TAXO
-cd TAXO
-curl http://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz \
-   | tar -zxvf -
-cd ..
+curl http://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz > ncbitaxo.tgz
 ```
 
 For people have a low speed internet connection, a copy of the `taxdump.tar.gz` file is provided in the wolf_data directory.
@@ -380,10 +376,7 @@ The NCBI taxonomy is dayly updated, but the one provided here is ok for running 
 To build the TAXO directory from the provided `taxdump.tar.gz`, you need to execute the following commands
 
 ```bash
-mkdir TAXO
-cd TAXO
-tar zxvf wolf_data/taxdump.tar.gz 
-cd ..
+cp wolf_data/taxdump.tar.gz ncbitaxo.tgz
 ```
 
 #### Build a reference database  {.unnumbered}
@@ -415,7 +408,7 @@ DO NOT RUN THIS COMMAND EXCEPT IF YOU ARE REALLY CONSIENT OF THE TIME AND DISK S
 ##### Use obipcr to simulate an in silico\` PCR  {.unnumbered}
 
 ```bash
-obipcr -t TAXO -e 3 -l 50 -L 150 \ 
+obipcr -e 3 -l 50 -L 150 \ 
        --forward TTAGATACCCCACTATGC \
        --reverse TAGAACAGGCTCCTCTAG \
        --no-order \
@@ -440,7 +433,7 @@ Please check in your genbank directory the exact name of your release.
     (`obiannotate` command below)
 
 ```bash
-obigrep -t TAXO \
+obigrep -t ncbitaxo.tgz \
           --require-rank species \
           --require-rank genus \
           --require-rank family \
@@ -450,7 +443,7 @@ obiuniq -c taxid \
         results/v05_clean.fasta \
         > results/v05_clean_uniq.fasta
 
-obirefidx -t TAXO results/v05_clean_uniq.fasta \
+obirefidx -t ncbitaxo.tgz results/v05_clean_uniq.fasta \
         > results/v05_clean_uniq.indexed.fasta
 ```
 
@@ -467,7 +460,7 @@ Once the reference database is built, taxonomic assignment can be
 carried out using the `obitag` command.
 
 ```bash
-obitag -t TAXO -R wolf_data/db_v05_r117.indexed.fasta \
+obitag -t ncbitaxo.tgz -R wolf_data/db_v05_r117.indexed.fasta \
        results/wolf.ali.assigned.simple.clean.c10.l80.fasta \
        > results/wolf.ali.assigned.simple.clean.c10.l80.taxo.fasta
 ```
