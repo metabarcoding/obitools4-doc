@@ -30,7 +30,7 @@ Each of these databases is divided into several taxonomic divisions. The main Ge
 - `bct`: *Bacteria*
 - `inv`: *Invertebrates*
 - `mam`: *Mammals*
-- `phg`: *phages*
+- `phg`: *Phages*
 - `pln`: *Plants*
 - `pri`: *Primates*
 - `rod`: *Rodents*
