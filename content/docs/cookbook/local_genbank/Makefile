@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 FTPNCBI=ftp.ncbi.nlm.nih.gov
 GBURL=https://$(FTPNCBI)/genbank
 GBRELEASE_URL=$(GBURL)/GB_Release_Number
@@ -68,26 +69,26 @@ Release_$(GBRELEASE)/depends/gbfiles.d: Makefile
 	@echo Create depends directory
 	@mkdir -p Release_$(GBRELEASE)/depends
 	@for f in ${GBFILE_ALL} ; do \
-	            echo "Release_$(GBRELEASE)/stamp/$$f.stamp:" ; \
-				echo "\t@echo Downloading file : $$f..." ; \
-				echo "\t@mkdir -p Release_$(GBRELEASE)/tmp" ; \
-				echo "\t@mkdir -p Release_$(GBRELEASE)/stamp" ; \
-				echo "\t@curl -L ${GBURL}/$$f > Release_$(GBRELEASE)/tmp/$$f && touch \$$@"  ; \
+	            echo -e "Release_$(GBRELEASE)/stamp/$$f.stamp:" ; \
+				echo -e "\t@echo Downloading file : $$f..." ; \
+				echo -e "\t@mkdir -p Release_$(GBRELEASE)/tmp" ; \
+				echo -e "\t@mkdir -p Release_$(GBRELEASE)/stamp" ; \
+				echo -e "\t@curl -L ${GBURL}/$$f > Release_$(GBRELEASE)/tmp/$$f && touch \$$@"  ; \
 				echo ; \
 				div=$$(sed -E 's@^gb(...).*$$@\1@' <<< $$f) ; \
 				fasta="Release_$(GBRELEASE)/fasta/$$div/$${f/.seq.gz/.fasta.gz}" ; \
 				fasta_fgs="Release_$(GBRELEASE)/fasta_fgs/$$div/$${f/.seq.gz/.fasta.gz}" ; \
 				fasta_files="$$fasta_files $$fasta" ; \
 				fasta_fgs_files="$$fasta_fgs_files $$fasta_fgs" ; \
-				echo "$$fasta: Release_$(GBRELEASE)/stamp/$$f.stamp" ; \
-				echo "\t@echo converting file : \$$< in fasta" ; \
-				echo "\t@mkdir -p Release_$(GBRELEASE)/fasta/$$div" ; \
-				echo "\t@obiconvert -Z --fasta-output --skip-empty  \\" ; \
-				echo "\t            Release_$(GBRELEASE)/tmp/$$f > Release_$(GBRELEASE)/tmp/$${f/.seq.gz/.fasta.gz} \\" ; \
-				echo "\t            && mv Release_$(GBRELEASE)/tmp/$${f/.seq.gz/.fasta.gz} \$$@  \\" ; \
-				echo "\t            && rm -f Release_$(GBRELEASE)/tmp/$$f  \\" ; \
-				echo "\t            || rm -f \$$@" ; \
-				echo "\t@echo conversion of $$@ done." ; \
+				echo -e "$$fasta: Release_$(GBRELEASE)/stamp/$$f.stamp" ; \
+				echo -e "\t@echo converting file : \$$< in fasta" ; \
+				echo -e "\t@mkdir -p Release_$(GBRELEASE)/fasta/$$div" ; \
+				echo -e "\t@obiconvert -Z --fasta-output --skip-empty  \\" ; \
+				echo -e "\t            Release_$(GBRELEASE)/tmp/$$f > Release_$(GBRELEASE)/tmp/$${f/.seq.gz/.fasta.gz} \\" ; \
+				echo -e "\t            && mv Release_$(GBRELEASE)/tmp/$${f/.seq.gz/.fasta.gz} \$$@  \\" ; \
+				echo -e "\t            && rm -f Release_$(GBRELEASE)/tmp/$$f  \\" ; \
+				echo -e "\t            || rm -f \$$@" ; \
+				echo -e "\t@echo conversion of $$@ done." ; \
 				echo ; \
 				done > $@ ; \
 				echo >> $@ ; \
