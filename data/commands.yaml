@@ -8,9 +8,9 @@
   short: "convert format of a sequence file"
   category: 
     - conversion
-- command: obifind
-  description: Search for a taxon in a taxonomic database.
-  short: "search for a taxon in a taxonomic database"
+- command: obitaxonomy
+  description: Manage and search in the taxonomic database.
+  short: "manage and search in the taxonomic database"
   category: 
     - taxonomy
 - command: obilandmark   
