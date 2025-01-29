@@ -1,5 +1,5 @@
 ---
-title: "Sequence Files"
+title: "Taxonomy file formats"
 weight: 1
 # bookFlatSection: false
 # bookToc: true

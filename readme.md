@@ -187,7 +187,7 @@ pandoc assets/bibliography/bibliography.bib -t csljson -o assets/bibliography/bi
 
 ## Download a developer copy of the obitools4
 
-Currently, the documentation use the obitools4 as present in the `taxonomy` branch of the obitools4 repository.
+Currently, the documentation uses the obitools4 as present in the `V4.3` branch of the obitools4 repository.
 
 To be able to get that version of the obitools4, you have to clone the repository:
 
@@ -219,10 +219,10 @@ Finally, to ensure all branches are up-to-date, pull all branches:
 git pull --all
 ```
 
-The last step is to switch to the `taxonomy` branch:
+The last step is to switch to the `V4.3` branch:
 
 ```bash
-git checkout taxonomy
+git checkout V4.3
 ```
 
 ### Compiling the obitools4
