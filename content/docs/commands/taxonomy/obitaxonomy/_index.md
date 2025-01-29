@@ -6,7 +6,7 @@ command: "_index."
 url: "/obitools/obitaxonomy"
 ---
 
-## `_index.`
+## `obitaxonomy` : Manage and search in the taxonomy database
 
 ### Description 
 
@@ -40,5 +40,5 @@ obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--compressed|-Z]
 ### Examples
 
 ```bash
-_index. --help
+obitaxonomy --help
 ```
