@@ -1,0 +1,61 @@
+---
+title: "Fasta file format"
+weight: 10
+# bookFlatSection: false
+# bookToc: true
+# bookHidden: false
+# bookCollapseSection: false
+# bookComments: false
+# bookSearchExclude: false
+bibFile: bibliography/bibliography.json 
+url: "/formats/fasta"
+---
+
+# The *fasta* sequence file format
+
+The *fasta* sequence file format is certainly the most widely used sequence file
+format. This is certainly due to its great simplicity. It was originally created
+for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA) {{< cite "Pearson:1988aa" >}}.
+OBITools use in more of the classical :ref:`fasta ` format an :ref:`extended
+version ` of this format where structured data are included in the title line.
+
+In *fasta* format a sequence is represented by a title line beginning with a **>** character and
+the sequences by itself following the :doc:`iupac ` code. The sequence is usually split other 
+several lines of the same length (expect for the last one) 
+
+```
+>my_sequence this is my pretty sequence
+    ACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGT
+    GTGCTGACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTGTTT
+    AACGACGTTGCAGTACGTTGCAGT
+```
+
+The first word in the title line is the sequence identifier. The rest of the line is a description of the sequence. The {{% obitools %}} extend this format by adding structured data to the title line. In the previous version of the {{% obitools %}}, the structured data was stored after the sequence identifier in a `key=value;` format, as shown below. The sequence definition was stored as free text after the last `key=value;` pair.
+
+{{< code "two_sequences_obi2.fasta" fasta true >}}
+
+With {{% obitools4 %}} a new format has been introduced to store structured data in the title line. The *key*/*value* annotation pairs are now formatted as a [JSON](https://en.wikipedia.org/wiki/JSON) map object. The definition is stored as an additional *key*/*value* pair using the *key* `definition'.
+
+{{< code "two_sequences_obi4.fasta" fasta true >}}
+
+The {{< obi obiconvert >}} command, like all other {{% obitools4 %}} commands, has two options `--output-json-header' and `--output-OBI-header' to choose between the new [JSON](https://en.wikipedia.org/wiki/JSON) format and the old {{% obitools %}} format. The `--output-OBI-header' option can be abbreviated to `-O'. By default, the new [JSON](https://en.wikipedia.org/wiki/JSON) {{% obitools4 %}} format is used, so only the `-O` option is really useful if the old format is required for compatibility with other software.
+
+Converting from the new [JSON](https://en.wikipedia.org/wiki/JSON) format to the old {{% obitools %}}:
+
+```bash
+obiconvert -O two_sequences_obi4.fasta
+```
+{{< code "two_sequences_obi2.fasta" fasta false >}}
+
+Converting from the old {{% obitools %}} format to the new [JSON](https://en.wikipedia.org/wiki/JSON) format:
+
+```bash
+obiconvert two_sequences_obi2.fasta
+```
+{{< code "two_sequences_obi4.fasta" fasta false >}}
+
+The actual format of the header is automatically detected when {{% obitools4 %}} commands read a fasta file.
+
+## Bibliography
+
+ {{< bibliography cited >}}

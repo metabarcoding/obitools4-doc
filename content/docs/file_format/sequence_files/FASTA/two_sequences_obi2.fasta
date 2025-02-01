@@ -1,0 +1,6 @@
+>AB061527 obicleandb_level=family; count=1; family_name=Soricidae; genus_name=Sorex; genus_taxid=9379; obicleandb_trusted=2.2137847111025621e-13; species_name=Sorex unguiculatus; species_taxid=62275; taxid=62275; family_taxid=9376;  Sorex unguiculatus mitochondrial NA, complete genome.
+ttagccctaaacttaggtatttaatctaacaaaaatacccgtcagagaactactagcaat
+agcttaaaactcaaaggacttggcggtgctttatatccct
+>AL355887 species_name=Homo sapiens; family_taxid=9604; genus_name=Homo; obicleandb_trusted=0; genus_taxid=9605; obicleandb_level=genus; species_taxid=9606; taxid=9606; count=2; family_name=Hominidae;  Human chromosome 14 NA sequence BAC R-179O11 of library RPCI-11 from chromosome 14 of Homo sapiens (Human)XXKW HTG.; HTGS_ACTIVFIN.
+ttagccctaaactctagtagttacattaacaaaaccattcgtcagaatactacgagcaac
+agcttaaaactcaaaggacctggcagttctttatatccct
