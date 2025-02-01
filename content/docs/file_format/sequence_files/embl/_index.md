@@ -1,6 +1,6 @@
 ---
 title: "Embl Flat File Format"
-weight: 40
+weight: 50
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false

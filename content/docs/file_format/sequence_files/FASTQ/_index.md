@@ -1,6 +1,6 @@
 ---
 title: "Fastq file format"
-weight: 11
+weight: 30
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false

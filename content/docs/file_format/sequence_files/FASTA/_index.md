@@ -1,6 +1,6 @@
 ---
 title: "Fasta file format"
-weight: 10
+weight: 20
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
