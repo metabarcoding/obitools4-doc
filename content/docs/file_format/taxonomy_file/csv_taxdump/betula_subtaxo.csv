@@ -1,0 +1,132 @@
+taxid,parent,taxonomic_rank,scientific_name
+taxon:1 [root]@no rank,taxon:1 [root]@no rank,no rank,root
+taxon:131567 [cellular organisms]@no rank,taxon:1 [root]@no rank,no rank,cellular organisms
+taxon:2759 [Eukaryota]@superkingdom,taxon:131567 [cellular organisms]@no rank,superkingdom,Eukaryota
+taxon:33090 [Viridiplantae]@kingdom,taxon:2759 [Eukaryota]@superkingdom,kingdom,Viridiplantae
+taxon:35493 [Streptophyta]@phylum,taxon:33090 [Viridiplantae]@kingdom,phylum,Streptophyta
+taxon:131221 [Streptophytina]@subphylum,taxon:35493 [Streptophyta]@phylum,subphylum,Streptophytina
+taxon:3193 [Embryophyta]@clade,taxon:131221 [Streptophytina]@subphylum,clade,Embryophyta
+taxon:58023 [Tracheophyta]@clade,taxon:3193 [Embryophyta]@clade,clade,Tracheophyta
+taxon:78536 [Euphyllophyta]@clade,taxon:58023 [Tracheophyta]@clade,clade,Euphyllophyta
+taxon:58024 [Spermatophyta]@clade,taxon:78536 [Euphyllophyta]@clade,clade,Spermatophyta
+taxon:3398 [Magnoliopsida]@class,taxon:58024 [Spermatophyta]@clade,class,Magnoliopsida
+taxon:1437183 [Mesangiospermae]@clade,taxon:3398 [Magnoliopsida]@class,clade,Mesangiospermae
+taxon:71240 [eudicotyledons]@clade,taxon:1437183 [Mesangiospermae]@clade,clade,eudicotyledons
+taxon:91827 [Gunneridae]@clade,taxon:71240 [eudicotyledons]@clade,clade,Gunneridae
+taxon:1437201 [Pentapetalae]@clade,taxon:91827 [Gunneridae]@clade,clade,Pentapetalae
+taxon:71275 [rosids]@clade,taxon:1437201 [Pentapetalae]@clade,clade,rosids
+taxon:91835 [fabids]@clade,taxon:71275 [rosids]@clade,clade,fabids
+taxon:3502 [Fagales]@order,taxon:91835 [fabids]@clade,order,Fagales
+taxon:3514 [Betulaceae]@family,taxon:3502 [Fagales]@order,family,Betulaceae
+taxon:3504 [Betula]@genus,taxon:3514 [Betulaceae]@family,genus,Betula
+taxon:361421 [Betula middendorffii]@species,taxon:3504 [Betula]@genus,species,Betula middendorffii
+taxon:1603696 [Betula austrosinensis]@species,taxon:3504 [Betula]@genus,species,Betula austrosinensis
+taxon:216993 [Betula fruticosa]@species,taxon:3504 [Betula]@genus,species,Betula fruticosa
+taxon:361422 [Betula ovalifolia]@species,taxon:3504 [Betula]@genus,species,Betula ovalifolia
+taxon:253223 [Betula uber]@species,taxon:3504 [Betula]@genus,species,Betula uber
+taxon:1685986 [Betula megrelica]@species,taxon:3504 [Betula]@genus,species,Betula megrelica
+taxon:1685997 [Betula tianschanica]@species,taxon:3504 [Betula]@genus,species,Betula tianschanica
+taxon:312792 [Betula raddeana]@species,taxon:3504 [Betula]@genus,species,Betula raddeana
+taxon:1685980 [Betula bomiensis]@species,taxon:3504 [Betula]@genus,species,Betula bomiensis
+taxon:253225 [Betula costata]@species,taxon:3504 [Betula]@genus,species,Betula costata
+taxon:2233625 [unclassified Betula]@no rank,taxon:3504 [Betula]@genus,no rank,unclassified Betula
+taxon:1685983 [Betula fargesii]@species,taxon:3504 [Betula]@genus,species,Betula fargesii
+taxon:3084575 [Betula caerulea]@species,taxon:3504 [Betula]@genus,species,Betula caerulea
+taxon:216987 [Betula neoalaskana]@species,taxon:3504 [Betula]@genus,species,Betula neoalaskana
+taxon:3508 [Betula nigra]@species,taxon:3504 [Betula]@genus,species,Betula nigra
+taxon:1677736 [Betula pubescens x Betula nana]@species,taxon:3504 [Betula]@genus,species,Betula pubescens x Betula nana
+taxon:54070 [Betula sp.]@species,taxon:2233625 [unclassified Betula]@no rank,species,Betula sp.
+taxon:1685989 [Betula x obscura]@species,taxon:3504 [Betula]@genus,species,Betula x obscura
+taxon:1685982 [Betula cylindrostachya]@species,taxon:3504 [Betula]@genus,species,Betula cylindrostachya
+taxon:312782 [Betula calcicola]@species,taxon:3504 [Betula]@genus,species,Betula calcicola
+taxon:2920375 [Betula kweichowensis]@species,taxon:3504 [Betula]@genus,species,Betula kweichowensis
+taxon:1539860 [Betula minor]@species,taxon:3504 [Betula]@genus,species,Betula minor
+taxon:3084576 [Betula jarmolenkoana]@species,taxon:3504 [Betula]@genus,species,Betula jarmolenkoana
+taxon:1685979 [Betula ashburneri]@species,taxon:3504 [Betula]@genus,species,Betula ashburneri
+taxon:228163 [Betula utilis]@species,taxon:3504 [Betula]@genus,species,Betula utilis
+taxon:2136400 [Betula rotundifolia]@species,taxon:3504 [Betula]@genus,species,Betula rotundifolia
+taxon:211500 [Betula maximowicziana]@species,taxon:3504 [Betula]@genus,species,Betula maximowicziana
+taxon:1686000 [Betula utilis subsp. occidentalis]@subspecies,taxon:228163 [Betula utilis]@species,subspecies,Betula utilis subsp. occidentalis
+taxon:312784 [Betula chinensis]@species,taxon:3504 [Betula]@genus,species,Betula chinensis
+taxon:482929 [Betula sp. CVM-2007]@species,taxon:2233625 [unclassified Betula]@no rank,species,Betula sp. CVM-2007
+taxon:312785 [Betula corylifolia]@species,taxon:3504 [Betula]@genus,species,Betula corylifolia
+taxon:21018 [Betula glandulosa]@species,taxon:3504 [Betula]@genus,species,Betula glandulosa
+taxon:2914967 [Betula procurva]@species,taxon:3504 [Betula]@genus,species,Betula procurva
+taxon:2233626 [Betula sp. HB-2018]@species,taxon:2233625 [unclassified Betula]@no rank,species,Betula sp. HB-2018
+taxon:312790 [Betula medwediewii]@species,taxon:3504 [Betula]@genus,species,Betula medwediewii
+taxon:312787 [Betula globispica]@species,taxon:3504 [Betula]@genus,species,Betula globispica
+taxon:284673 [Betula alnoides]@species,taxon:3504 [Betula]@genus,species,Betula alnoides
+taxon:312789 [Betula luminifera]@species,taxon:3504 [Betula]@genus,species,Betula luminifera
+taxon:1685972 [Betula x caerulea]@species,taxon:3504 [Betula]@genus,species,Betula x caerulea
+taxon:312781 [Betula apoiensis]@species,taxon:3504 [Betula]@genus,species,Betula apoiensis
+taxon:1685932 [Betula x utahensis]@species,taxon:3504 [Betula]@genus,species,Betula x utahensis
+taxon:2115954 [Betula x atrata]@species,taxon:3504 [Betula]@genus,species,Betula x atrata
+taxon:2527809 [Betula x sandbergii]@species,taxon:3504 [Betula]@genus,species,Betula x sandbergii
+taxon:2109660 [Betula kotulae]@species,taxon:3504 [Betula]@genus,species,Betula kotulae
+taxon:312786 [Betula delavayi]@species,taxon:3504 [Betula]@genus,species,Betula delavayi
+taxon:2218489 [Betula ovalifolia x Betula ermanii]@species,taxon:3504 [Betula]@genus,species,Betula ovalifolia x Betula ermanii
+taxon:398729 [Betula halophila]@species,taxon:3504 [Betula]@genus,species,Betula halophila
+taxon:1685987 [Betula microphylla]@species,taxon:3504 [Betula]@genus,species,Betula microphylla
+taxon:2071405 [Betula kenaica]@species,taxon:3504 [Betula]@genus,species,Betula kenaica
+taxon:2109656 [Betula x aurata]@species,taxon:3504 [Betula]@genus,species,Betula x aurata
+taxon:78630 [Betula platyphylla]@species,taxon:3504 [Betula]@genus,species,Betula platyphylla
+taxon:3080006 [Betula rezniczenkoana]@species,taxon:3504 [Betula]@genus,species,Betula rezniczenkoana
+taxon:1685998 [Betula turkestanica]@species,taxon:3504 [Betula]@genus,species,Betula turkestanica
+taxon:1685992 [Betula celtiberica]@species,taxon:3504 [Betula]@genus,species,Betula celtiberica
+taxon:2108006 [Betula klokovii]@species,taxon:3504 [Betula]@genus,species,Betula klokovii
+taxon:3076647 [Betula kirghisorum]@species,taxon:3504 [Betula]@genus,species,Betula kirghisorum
+taxon:3505 [Betula pendula]@species,taxon:3504 [Betula]@genus,species,Betula pendula
+taxon:2527808 [Betula x purpusii]@species,taxon:3504 [Betula]@genus,species,Betula x purpusii
+taxon:1685984 [Betula hainanensis]@species,taxon:3504 [Betula]@genus,species,Betula hainanensis
+taxon:3507 [Betula papyrifera]@species,taxon:3504 [Betula]@genus,species,Betula papyrifera
+taxon:1233953 [Betula cordifolia]@species,taxon:3504 [Betula]@genus,species,Betula cordifolia
+taxon:253224 [Betula davurica]@species,taxon:3504 [Betula]@genus,species,Betula davurica
+taxon:223244 [Betula occidentalis]@species,taxon:3504 [Betula]@genus,species,Betula occidentalis
+taxon:38787 [Betula pubescens]@species,taxon:3504 [Betula]@genus,species,Betula pubescens
+taxon:216994 [Betula lenta]@species,taxon:3504 [Betula]@genus,species,Betula lenta
+taxon:312783 [Betula chichibuensis]@species,taxon:3504 [Betula]@genus,species,Betula chichibuensis
+taxon:312788 [Betula grossa]@species,taxon:3504 [Betula]@genus,species,Betula grossa
+taxon:216990 [Betula nana]@species,taxon:3504 [Betula]@genus,species,Betula nana
+taxon:1685991 [Betula potaninii]@species,taxon:3504 [Betula]@genus,species,Betula potaninii
+taxon:2874836 [Betula buggsii]@species,taxon:3504 [Betula]@genus,species,Betula buggsii
+taxon:284674 [Betula pumila]@species,taxon:3504 [Betula]@genus,species,Betula pumila
+taxon:216992 [Betula ermanii]@species,taxon:3504 [Betula]@genus,species,Betula ermanii
+taxon:3015411 [Betula pamirica]@species,taxon:3504 [Betula]@genus,species,Betula pamirica
+taxon:312791 [Betula michauxii]@species,taxon:3504 [Betula]@genus,species,Betula michauxii
+taxon:2900534 [Betula davurica var. davurica]@varietas,taxon:253224 [Betula davurica]@species,varietas,Betula davurica var. davurica
+taxon:1685993 [Betula pubescens var. fragrans]@varietas,taxon:38787 [Betula pubescens]@species,varietas,Betula pubescens var. fragrans
+taxon:1686001 [Betula utilis var. prattii]@varietas,taxon:228163 [Betula utilis]@species,varietas,Betula utilis var. prattii
+taxon:21017 [Betula alleghaniensis]@species,taxon:3504 [Betula]@genus,species,Betula alleghaniensis
+taxon:216991 [Betula humilis]@species,taxon:3504 [Betula]@genus,species,Betula humilis
+taxon:1685981 [Betula browicziana]@species,taxon:3504 [Betula]@genus,species,Betula browicziana
+taxon:251214 [Betula pubescens var. pumila]@varietas,taxon:38787 [Betula pubescens]@species,varietas,Betula pubescens var. pumila
+taxon:1520706 [Betula sp. RP-2014]@species,taxon:2233625 [unclassified Betula]@no rank,species,Betula sp. RP-2014
+taxon:2107775 [Betula borysthenica]@species,taxon:3504 [Betula]@genus,species,Betula borysthenica
+taxon:216986 [Betula schmidtii]@species,taxon:3504 [Betula]@genus,species,Betula schmidtii
+taxon:1685988 [Betula murrayana]@species,taxon:3504 [Betula]@genus,species,Betula murrayana
+taxon:216989 [Betula populifolia]@species,taxon:3504 [Betula]@genus,species,Betula populifolia
+taxon:2973750 [Betula mcallisteri]@species,taxon:3504 [Betula]@genus,species,Betula mcallisteri
+taxon:1689654 [Betula pendula subsp. mandshurica]@subspecies,taxon:3505 [Betula pendula]@species,subspecies,Betula pendula subsp. mandshurica
+taxon:1532291 [Betula pubescens var. glabrata]@varietas,taxon:38787 [Betula pubescens]@species,varietas,Betula pubescens var. glabrata
+taxon:2918155 [Betula schmidtii var. schmidtii]@varietas,taxon:216986 [Betula schmidtii]@species,varietas,Betula schmidtii var. schmidtii
+taxon:3080005 [Betula nana var. macrophylla]@varietas,taxon:216990 [Betula nana]@species,varietas,Betula nana var. macrophylla
+taxon:1685999 [Betula utilis subsp. jacquemontii]@subspecies,taxon:228163 [Betula utilis]@species,subspecies,Betula utilis subsp. jacquemontii
+taxon:1685990 [Betula papyrifera var. commutata]@varietas,taxon:3507 [Betula papyrifera]@species,varietas,Betula papyrifera var. commutata
+taxon:216988 [Betula platyphylla var. japonica]@varietas,taxon:78630 [Betula platyphylla]@species,varietas,Betula platyphylla var. japonica
+taxon:2900535 [Betula ermanii var. ermanii]@varietas,taxon:216992 [Betula ermanii]@species,varietas,Betula ermanii var. ermanii
+taxon:1689656 [Betula pendula subsp. szechuanica]@subspecies,taxon:3505 [Betula pendula]@species,subspecies,Betula pendula subsp. szechuanica
+taxon:1623466 [Betula nana subsp. nana]@subspecies,taxon:216990 [Betula nana]@species,subspecies,Betula nana subsp. nana
+taxon:659875 [Betula pendula var. carelica]@varietas,taxon:3505 [Betula pendula]@species,varietas,Betula pendula var. carelica
+taxon:2109659 [Betula pubescens var. sibakademica]@varietas,taxon:38787 [Betula pubescens]@species,varietas,Betula pubescens var. sibakademica
+taxon:2172038 [Betula pendula var. oycowiensis]@varietas,taxon:3505 [Betula pendula]@species,varietas,Betula pendula var. oycowiensis
+taxon:717481 [Betula ermanii var. lanata]@varietas,taxon:216992 [Betula ermanii]@species,varietas,Betula ermanii var. lanata
+taxon:717482 [Betula nana subsp. exilis]@subspecies,taxon:216990 [Betula nana]@species,subspecies,Betula nana subsp. exilis
+taxon:713164 [Betula pubescens subsp. carpatica]@subspecies,taxon:38787 [Betula pubescens]@species,subspecies,Betula pubescens subsp. carpatica
+taxon:1685994 [Betula pubescens var. litwinowii]@varietas,taxon:38787 [Betula pubescens]@species,varietas,Betula pubescens var. litwinowii
+taxon:2820156 [Betula nana subsp. tundrarum]@subspecies,taxon:216990 [Betula nana]@species,subspecies,Betula nana subsp. tundrarum
+taxon:1301345 [Betula pumila var. glandulifera]@varietas,taxon:284674 [Betula pumila]@species,varietas,Betula pumila var. glandulifera
+taxon:1526641 [Betula sp. YM4252]@species,taxon:2233625 [unclassified Betula]@no rank,species,Betula sp. YM4252
+taxon:1685985 [Betula kweichowensis subsp. fansipanensis]@subspecies,taxon:2920375 [Betula kweichowensis]@species,subspecies,Betula kweichowensis subsp. fansipanensis
+taxon:1689655 [Betula pendula subsp. pendula]@subspecies,taxon:3505 [Betula pendula]@species,subspecies,Betula pendula subsp. pendula
+taxon:210132 [Betula utilis subsp. albosinensis]@subspecies,taxon:228163 [Betula utilis]@species,subspecies,Betula utilis subsp. albosinensis
+taxon:1685995 [Betula pubescens var. pubescens]@varietas,taxon:38787 [Betula pubescens]@species,varietas,Betula pubescens var. pubescens

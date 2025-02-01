@@ -15,9 +15,9 @@ url: "/obitools/obitaxonomy"
 ### Synopsis
 
 ```bash
-obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--compressed|-Z]
-            [--debug] [--download-ncbi] [--dump|-D <TAXID>] [--fixed|-F]
-            [--force-one-cpu] [--help|-h|-?] [--max-cpu <int>]
+obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--debug]
+            [--download-ncbi] [--dump|-D <TAXID>] [--extract-taxonomy]
+            [--fixed|-F] [--force-one-cpu] [--help|-h|-?] [--max-cpu <int>]
             [--no-progressbar] [--out|-o <FILENAME>] [--parents|-p <TAXID>]
             [--pprof] [--pprof-goroutine <int>] [--pprof-mutex <int>]
             [--rank <RANK>] [--rank-list|-l] [--raw-taxid]
@@ -29,7 +29,7 @@ obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--compressed|-Z]
 
 ### Options
 
-#### {{< obi _index. >}} specific options:
+#### {{< obi obitaxonomy >}} specific options:
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option

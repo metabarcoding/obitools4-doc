@@ -13,3 +13,6 @@ json
 obicount
 taxid
 taxids
+subtaxonomy
+Betula
+nana
