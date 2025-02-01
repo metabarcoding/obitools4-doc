@@ -13,21 +13,15 @@ url: "/formats/fasta"
 
 # The *fasta* sequence file format
 
-The *fasta* sequence file format is certainly the most widely used sequence file
-format. This is certainly due to its great simplicity. It was originally created
-for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA) {{< cite "Pearson:1988aa" >}}.
-OBITools use in more of the classical :ref:`fasta ` format an :ref:`extended
-version ` of this format where structured data are included in the title line.
+The *fasta* sequence file format is probably the most widely used sequence file format. This is probably due to its simplicity. It was originally created for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA) {{< cite "Pearson:1988aa" >}}.
 
-In *fasta* format a sequence is represented by a title line beginning with a **>** character and
-the sequences by itself following the :doc:`iupac ` code. The sequence is usually split other 
-several lines of the same length (expect for the last one) 
+In the *fasta* format, a sequence is represented by a title line starting with a **>** character, and the sequences themselves follow the [`iupac`]({{< ref "/docs/patterns/dnagrep/#iupac-codes-for-ambiguous-bases" >}}) code. The sequence is usually split into several other lines of the same length (expect for the last one). Several sequences can be stored in the same file. The first line of the next sequence also marks the end of the previous one.
 
 ```
 >my_sequence this is my pretty sequence
-    ACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGT
-    GTGCTGACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTGTTT
-    AACGACGTTGCAGTACGTTGCAGT
+ACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGT
+GTGCTGACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTGTTT
+AACGACGTTGCAGTACGTTGCAGT
 ```
 
 The first word in the title line is the sequence identifier. The rest of the line is a description of the sequence. The {{% obitools %}} extend this format by adding structured data to the title line. In the previous version of the {{% obitools %}}, the structured data was stored after the sequence identifier in a `key=value;` format, as shown below. The sequence definition was stored as free text after the last `key=value;` pair.

@@ -86,5 +86,49 @@
     "title-short": "Tagsteady",
     "type": "article-journal",
     "volume": "20"
+  },
+  {
+    "DOI": "10.1093/nar/gkp1137",
+    "ISSN": "0305-1048,1362-4962",
+    "PMID": "20015970",
+    "URL": "http://dx.doi.org/10.1093/nar/gkp1137",
+    "abstract": "FASTQ has emerged as a common file format for sharing sequencing read data combining both the sequence and an associated per base quality score, despite lacking any formal definition to date, and existing in at least three incompatible variants. This article defines the FASTQ format, covering the original Sanger standard, the Solexa/Illumina variants and conversion between them, based on publicly available information such as the MAQ documentation and conventions recently agreed by the Open Bioinformatics Foundation projects Biopython, BioPerl, BioRuby, BioJava and EMBOSS. Being an open access publication, it is hoped that this description, with the example files provided as Supplementary Data, will serve in future as a reference for this important file format.",
+    "author": [
+      {
+        "family": "Cock",
+        "given": "Peter J A"
+      },
+      {
+        "family": "Fields",
+        "given": "Christopher J"
+      },
+      {
+        "family": "Goto",
+        "given": "Naohisa"
+      },
+      {
+        "family": "Heuer",
+        "given": "Michael L"
+      },
+      {
+        "family": "Rice",
+        "given": "Peter M"
+      }
+    ],
+    "container-title": "Nucleic acids research",
+    "id": "Cock2010-wl",
+    "issue": "6",
+    "issued": {
+      "date-parts": [
+        [
+          2010,
+          4
+        ]
+      ]
+    },
+    "page": "1767-1771",
+    "title": "The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants",
+    "type": "article-journal",
+    "volume": "38"
   }
 ]
