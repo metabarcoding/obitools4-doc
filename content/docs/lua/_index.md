@@ -27,6 +27,10 @@ The aim of this section is not to be a full introduction to [Lua](https://www.lu
 
 ### The `BioSequenceSlice` class
 
+### The `Taxonomy` class
+
+### The `Taxon` class
+
 ## Dealing with the OBITools4 multithreading
 
 {{< code extrem_quality.lua lua true>}}
