@@ -16,6 +16,9 @@ The *CSV* format is a simple text format that is widely used for storing tabular
 
 Each line of the file corresponds to a record that consists of the same number of fields. The first row of the file is a header row that contains the names of the fields. If the field delimiter, coma, itself may appear within a field, fields can be surrounded with quotation marks, usually `"`.
 
+
+{{< code "two_sequences.fasta" fasta true >}}
+
 ```bash
 obicount two_sequences.fasta
 ```
