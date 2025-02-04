@@ -39,6 +39,12 @@ P(error) = 10^{-\frac{Q}{10}}
 
 Sequencers typically provide quality scores in the range of {{< katex >}}0{{< /katex >}} to {{< katex >}}40{{< /katex >}}, which corresponds to a probability of error {{< katex >}}P(Error){{< /katex >}} in the range of {{< katex >}}10^{0} = 1{{< /katex >}} to {{< katex >}}10^{-4}{{< /katex >}}. The higher the score, the lower the probability of error.
 
+<!-- 
+
+quality <- ggplot() + geom_function(fun = function(x) 10^(-x/10)) + xlim(0,40) + xlab("Quality") + ylab(expression(P(Error) == 10^{-Q/10})) + theme_minimal() + scale_y_log10()
+ggsave("qality.png",quality) 
+-->
+
 {{< figure src="quality.png" 
     alt="Quality scores to error probability relationship"
     caption="Graph showing the relationship between FASTQ quality scores and error probability" 

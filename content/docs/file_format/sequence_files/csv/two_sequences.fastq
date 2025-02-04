@@ -1,0 +1,8 @@
+@HELIUM_000100422_612GNAAXX:7:108:5640:3823#0/1 {"ali_dir":"left","ali_length":62,"mode":"alignment","pairing_mismatches":{"(T:26)->(G:13)":62,"(T:34)->(G:18)":48},"score":484,"score_norm":0.968,"seq_a_single":46,"seq_ab_match":60,"seq_b_single":46} 
+ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattgttcgccagagtactaccggcaatagcttaaaactcaaaggacttggcggtgctttatacccttctagaggagcctgttctaaggaggcgg
++
+CCCCCCCBCCCCCCCCCCCCCCCCCCCCCCBCCCCCBCCCCCCC<CcCccbe[`F`accXV<TA\RYU\\ee_e[XZ[XEEEEEEEEEE?EEEEEEEEEEDEEEEEEECCCCCCCCCCCCCCCCCCCCCCCACCCCCACCCCCCCCCCCCCCCC
+@HELIUM_000100422_612GNAAXX:7:97:14311:19299#0/1 {"ali_dir":"left","ali_length":62,"mode":"alignment","pairing_mismatches":{"(A:02)->(G:30)":104,"(A:34)->(G:14)":64,"(C:02)->(A:30)":86,"(C:02)->(T:20)":108,"(C:27)->(G:32)":83,"(C:34)->(G:18)":57,"(T:02)->(G:26)":87,"(T:22)->(G:14)":66,"(T:29)->(G:11)":62,"(T:32)->(G:30)":48},"score":283,"score_norm":0.839,"seq_a_single":46,"seq_ab_match":52,"seq_b_single":46} 
+ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcaagagcttaaaactcaaaggacttggcggtgctttatacccttctagaggagcctgttctaaggaggcgg
++
+CCCCCCCCCCCCCCCCCCCCCCCBBCCC?BCCCCCBC?CCCC@@;AVA`cWeb_TYC\UIN?IDP8QJMKRPVGLQAFPPc`AbAFB5A4>AAA56A><>8>>F@A><8??@BB+<?;?C@9CCCCCC<CC=CCCCCCCCCBC?CBCCCCC@CC
