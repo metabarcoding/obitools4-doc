@@ -32,9 +32,9 @@ With {{% obitools4 %}} a new format has been introduced to store structured data
 
 {{< code "two_sequences_obi4.fasta" fasta true >}}
 
-The {{< obi obiconvert >}} command, like all other {{% obitools4 %}} commands, has two options `--output-json-header' and `--output-OBI-header' to choose between the new [JSON](https://en.wikipedia.org/wiki/JSON) format and the old {{% obitools %}} format. The `--output-OBI-header' option can be abbreviated to `-O'. By default, the new [JSON](https://en.wikipedia.org/wiki/JSON) {{% obitools4 %}} format is used, so only the `-O` option is really useful if the old format is required for compatibility with other software.
+The {{< obi obiconvert >}} command, like all other {{% obitools4 %}} commands, has two options `--output-json-header` and `--output-OBI-header` to choose between the new [JSON](https://en.wikipedia.org/wiki/JSON) format and the old {{% obitools %}} format. The `--output-OBI-header` option can be abbreviated to `-O`. By default, the new [JSON](https://en.wikipedia.org/wiki/JSON) {{% obitools4 %}} format is used, so only the `-O` option is really useful if the old format is required for compatibility with other software.
 
-Converting from the new [JSON](https://en.wikipedia.org/wiki/JSON) format to the old {{% obitools %}}:
+Converting from the new [JSON](https://en.wikipedia.org/wiki/JSON) format to the old {{% obitools %}} format:
 
 ```bash
 obiconvert -O two_sequences_obi4.fasta
