@@ -86,9 +86,9 @@ Imagine a folder called `Genbank` which contains a complete copy of the Genbank 
 ```
 . 📂 Genbank
 └── 📂 bct
-│   └── 📄 gbbact1.fasta.gz
-│   ├── 📄 gbbact2.fasta.gz
-│   ├── 📄 gbbact3.fasta.gz
+│   └── 📄 gbbct1.fasta.gz
+│   ├── 📄 gbbct2.fasta.gz
+│   ├── 📄 gbbct3.fasta.gz
 │   └── 📄 ...
 └── 📂 inv
 │   └── 📄 gbinv1.fasta.gz
@@ -104,13 +104,13 @@ Imagine a folder called `Genbank` which contains a complete copy of the Genbank 
 │
 ```
 
-It is possible to count entries in the `gbbact1.fasta.gz` file with the command
+It is possible to count entries in the `gbbct1.fasta.gz` file with the command
 
 ```bash
-obicount Genbank/bct/gbbact1.fasta.gz
+obicount Genbank/bct/gbbct1.fasta.gz
 ```
 
-to count the entries in the **bac** (bacterial) division with the command
+to count the entries in the **bct** (bacterial) division with the command
 
 ```bash
 obicount Genbank/bct
