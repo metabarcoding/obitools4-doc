@@ -1,5 +1,5 @@
 ---
-title: "Fastq file format"
+title: "FASTQ file format"
 weight: 30
 # bookFlatSection: false
 # bookToc: true
@@ -11,11 +11,11 @@ bibFile: bibliography/bibliography.json
 url: "/formats/fastq"
 ---
 
-# The *fastq* sequence file format
+# The *FASTQ* sequence file format
 
-The [fastq](https://en.wikipedia.org/wiki/FASTQ_format) sequence file format is widely used for storing biological sequences and their corresponding quality scores. It was originally developed at the [Wellcome Trust Sanger Institute](https://www.sanger.ac.uk/) to bundle a {{% fasta %}} sequence together with its quality data {{< cite "Cock2010-wl" >}}. The format has become the *de facto* standard for storing the output of high-throughput sequencing instruments. 
+The [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) sequence file format is widely used for storing biological sequences and their corresponding quality scores. It was originally developed at the [Wellcome Trust Sanger Institute](https://www.sanger.ac.uk/) to bundle a {{% fasta %}} sequence together with its quality data {{< cite "Cock2010-wl" >}}. The format has become the *de facto* standard for storing the output of high-throughput sequencing instruments.
 
-In *fastq* format, each sequence entry consists of four lines:
+In *FASTQ* format, each sequence entry consists of four lines:
 1. A sequence identifier line beginning with an **@** character
 2. The raw sequence letters following the [`iupac`]({{< ref "/docs/patterns/dnagrep/#iupac-codes-for-ambiguous-bases" >}}) code
 3. A separator line beginning with a **+** character (optionally followed by the same sequence identifier)
@@ -49,7 +49,7 @@ ggsave("qality.png",quality)
     caption="Figure showing the relationship between FASTQ quality scores and error probability" 
     width="600px" >}}
 
-In *fastq* format, the sequence of quality score is encoded as an ASCII string where each score is mapped to an ASCII character. The quality score {{< katex >}}0{{< /katex >}} is encoded as the character `!`. The quality score {{< katex >}}40{{< /katex >}} is encoded as the character `I` (uppercase `i`).
+In *FASTQ* format, the sequence of quality score is encoded as an ASCII string where each score is mapped to an ASCII character. The quality score {{< katex >}}0{{< /katex >}} is encoded as the character `!`. The quality score {{< katex >}}40{{< /katex >}} is encoded as the character `I` (uppercase `i`).
 
 The {{% obitools %}} extend this format by adding structured data to the identifier line. In the previous version of the {{% obitools %}}, the structured data was stored after the sequence identifier in a `key=value;` format, as shown below. The sequence definition was stored as free text after the last `key=value;` pair.
 
@@ -75,7 +75,8 @@ obiconvert two_sequences_obi2.fastq
 ```
 {{< code "two_sequences_obi4.fastq" fastq false >}} 
 
-The actual format of the header is automatically detected when {{% obitools4 %}} commands read a fastq file.
+The actual format of the header is automatically detected when {{% obitools4 %}} commands read a FASTQ file.
 
-## Bibliography
+## References
+
 {{< bibliography cited >}}

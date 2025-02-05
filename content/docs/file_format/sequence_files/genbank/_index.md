@@ -1,5 +1,5 @@
 ---
-title: "Genbank Flat file format"
+title: "GenBank Flat File format"
 weight: 40
 # bookFlatSection: false
 # bookToc: true
@@ -10,9 +10,9 @@ weight: 40
 url: "/formats/genbank"
 ---
 
-# The *GenBank* flat file format
+# The *GenBank* Flat File format
 
-The [GenBank Flat File Format](https://www.ncbi.nlm.nih.gov/nuccore) is a widely used text-based format for storing nucleotide sequence data and their associated annotations. It is maintained by the National Center for Biotechnology Information (NCBI) and serves as a primary repository for sequence data in the United States.
+The [GenBank Flat File format](https://www.ncbi.nlm.nih.gov/genbank/samplerecord/) is a widely used text-based format for storing nucleotide sequence data and their associated annotations. It is maintained by the [National Center for Biotechnology Information (NCBI)](https://www.ncbi.nlm.nih.gov/) and serves as a primary repository for sequence data in the United States.
 
 ## Overview
 
@@ -29,7 +29,7 @@ A GenBank flat file consists of several sections, each containing specific infor
 
 The header section contains essential metadata about the sequence. The following fields are commonly found in this section:
 
-- **LOCUS**: A unique identifier for the sequence, including its length, type (e.g., DNA, RNA), and whether it is linear or circular.
+- **LOCUS**: A unique identifier for the sequence, including its length, type (*e.g.* DNA, RNA), and whether it is linear or circular.
 - **DEFINITION**: A brief description of the sequence, summarizing its biological significance.
 - **ACCESSION**: Accession number(s) associated with the sequence, which can be used to retrieve the record.
 - **VERSION**: The version number of the sequence record, indicating updates or changes.
@@ -102,23 +102,22 @@ The record concludes with a `//` line, indicating the end of the record. This te
 //
 ```
 
-## Converting GenBank flat file to {{% fasta %}} format
+## Converting GenBank Flat File to FASTA format
 
-To convert a GenBank flat file to FASTA format, you can use the {{< obi obiconvert >}} command.
-The {{% obi obiconvert %}} command extracts from the source feature present in each GenBank record the taxid and scientific name associated with the record to store them in the `taxid` and `scientific_name` tags within the FASTA header.
+To convert a GenBank flat file to {{% fasta %}} format, you can use the {{< obi obiconvert >}} command. The {{% obi obiconvert %}} command extracts from the source feature present in each GenBank record the taxid and scientific name associated with the record to store them in the `taxid` and `scientific_name` tags within the FASTA header.
 
 ```bash
 obiconvert sample.gb
 ```
 {{% code "sample.fasta" fasta false %}}
 
-> [!NOTE] the DDBJ database uses a format very similar to GenBank, 
-> so {{< obi obiconvert >}} recognizes it as a GenBank file and correctly 
-> converts it to FASTA.
+> [!NOTE]
+> The DDBJ database uses a format very similar to GenBank, so {{< obi obiconvert >}}
+> recognizes it as a GenBank file and correctly converts it to FASTA.
 
 
 ## References
 
-For more detailed specifications and guidelines regarding the GenBank Flat File Format, refer to the following resource:
+For more detailed specifications and guidelines regarding the GenBank Flat File format, refer to the following resource:
 
-- [GenBank Flat File Format](https://www.ncbi.nlm.nih.gov/genbank/samplerecord/)
+- [GenBank Flat File format](https://www.ncbi.nlm.nih.gov/genbank/samplerecord/)

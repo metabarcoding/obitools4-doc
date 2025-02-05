@@ -1,5 +1,5 @@
 ---
-title: "Fasta file format"
+title: "FASTA file format"
 weight: 20
 # bookFlatSection: false
 # bookToc: true
@@ -11,11 +11,11 @@ bibFile: bibliography/bibliography.json
 url: "/formats/fasta"
 ---
 
-# The *fasta* sequence file format
+# The *FASTA* sequence file format
 
-The *fasta* sequence file format is probably the most widely used sequence file format. This is probably due to its simplicity. It was originally created for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA) {{< cite "Pearson:1988aa" >}}.
+The *FASTA* sequence file format is probably the most widely used sequence file format. This is probably due to its simplicity. It was originally created for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA) {{< cite "Pearson:1988aa" >}}.
 
-In the *fasta* format, a sequence is represented by a title line starting with a **>** character, and the sequences themselves follow the [`iupac`]({{< ref "/docs/patterns/dnagrep/#iupac-codes-for-ambiguous-bases" >}}) code. The sequence is usually split into several other lines of the same length (expect for the last one). Several sequences can be stored in the same file. The first line of the next sequence also marks the end of the previous one.
+In the *FASTA* format, a sequence is represented by a title line starting with a **>** character, and the sequences themselves follow the [`iupac`]({{< ref "/docs/patterns/dnagrep/#iupac-codes-for-ambiguous-bases" >}}) code. The sequence is usually split into several other lines of the same length (expect for the last one). Several sequences can be stored in the same file. The first line of the next sequence also marks the end of the previous one.
 
 ```
 >my_sequence this is my pretty sequence
@@ -48,8 +48,8 @@ obiconvert two_sequences_obi2.fasta
 ```
 {{< code "two_sequences_obi4.fasta" fasta false >}}
 
-The actual format of the header is automatically detected when {{% obitools4 %}} commands read a fasta file.
+The actual format of the header is automatically detected when {{% obitools4 %}} commands read a FASTA file.
 
-## Bibliography
+## References
 
- {{< bibliography cited >}}
+{{< bibliography cited >}}
