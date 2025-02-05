@@ -20,16 +20,15 @@ The GenBank format is designed to be both human-readable and machine-readable, m
 
 {{% code "sample.gb" genbank true %}}
 
-
 ## Structure of the GenBank Flat File record
 
 A GenBank flat file consists of several sections, each containing specific information about the sequence. The main sections include:
 
-### Header Section
+### Header section
 
 The header section contains essential metadata about the sequence. The following fields are commonly found in this section:
 
-- **LOCUS**: A unique identifier for the sequence, including its length, type (*e.g.* DNA, RNA), and whether it is linear or circular.
+- **LOCUS**: A unique identifier for the sequence, including its length, type (*e.g.*, DNA, RNA), and whether it is linear or circular.
 - **DEFINITION**: A brief description of the sequence, summarizing its biological significance.
 - **ACCESSION**: Accession number(s) associated with the sequence, which can be used to retrieve the record.
 - **VERSION**: The version number of the sequence record, indicating updates or changes.
@@ -63,7 +62,7 @@ REFERENCE   2  (bases 1 to 84)
             2233 rue de la Piscine, Grenoble 38041, France
 ````
 
-### The feature table section
+### Feature table section
 
 The feature table section contains information about the annotations or features of the sequence, such as genes, transcripts, or regions. Each feature is represented by a set of fields splitted over multiple lines. The first line of each feature contains the feature type, such as "gene", "transcript", or "region" and its location in the sequence. The subsequent lines contain the feature-specific information, such as the gene name, gene function, cross-references to other databases, or its translation to protein for protein-coding genes.
 
@@ -83,8 +82,7 @@ FEATURES             Location/Qualifiers
                      /note="P6 loop"
 ```
 
-### Sequence Section
-
+### Sequence section
 
 The sequence section contains the actual sequence data. It is starting at a line containing only the keyword `ORIGIN` (uppercase), followed by the sequence data. The sequence data is separated by spaces every 10 characters and each line contains 60 nucleotides. The number on the left of the sequence lines indicates the start position of the line in the sequence.
 
@@ -104,7 +102,8 @@ The record concludes with a `//` line, indicating the end of the record. This te
 
 ## Converting GenBank Flat File to FASTA format
 
-To convert a GenBank flat file to {{% fasta %}} format, you can use the {{< obi obiconvert >}} command. The {{% obi obiconvert %}} command extracts from the source feature present in each GenBank record the taxid and scientific name associated with the record to store them in the `taxid` and `scientific_name` tags within the FASTA header.
+To convert a GenBank flat file to {{% fasta %}} format, you can use the {{< obi obiconvert >}} command.
+The {{% obi obiconvert %}} command extracts from the source feature present in each GenBank record the taxid and scientific name associated with the record to store them in the `taxid` and `scientific_name` tags within the FASTA header.
 
 ```bash
 obiconvert sample.gb
@@ -114,7 +113,6 @@ obiconvert sample.gb
 > [!NOTE]
 > The DDBJ database uses a format very similar to GenBank, so {{< obi obiconvert >}}
 > recognizes it as a GenBank file and correctly converts it to FASTA.
-
 
 ## References
 
