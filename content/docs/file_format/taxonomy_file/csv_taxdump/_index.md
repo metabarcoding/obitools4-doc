@@ -1,5 +1,5 @@
 ---
-title: "CSV formated Taxdump"
+title: "CSV formatted taxdump"
 weight: 1
 # bookFlatSection: false
 # bookToc: true
@@ -9,24 +9,24 @@ weight: 1
 # bookSearchExclude: false
 ---
 
-# Describing a taxonomy with a CSV file
+# The *CSV* format to describe a taxonomy
 
-{{% obitools4 %}} allows you to describe a taxonomy with a CSV file of four columns that must be named as below: 
+{{% obitools4 %}} allow to describe a taxonomy with a CSV file of four columns that must be named as below:
 
-| Field | Documentation |
+| Field | Description |
 |-------|---------------|
 | `taxid` | A unique taxonomic identifier composed only of digits (0-9) lower case (a-z) and upper case (A-Z) characters |
 | `parent` | The taxid of the parent taxon of the current taxon |
-| `scientific_name` | The name used by the obitools as the scientific name of the taxon |
-| `taxonomic_rank` | The taxonomic rank of the taxon (*e.g.* species, genus, family...) |
+| `scientific_name` | The name used by the *OBITools* as the scientific name of the taxon |
+| `taxonomic_rank` | The taxonomic rank of the taxon (*e.g.* species, genus, family, etc.) |
 
-The order of these four columns is free. 
+The four columns can be freely ordered.
 
-Some constraints exist on the order of the rows describing the taxa in the CSV file. The first row must contain the taxid of the root taxon (i.e. the taxid of the first taxon in the taxonomic hierarchy). The taxid of the parent taxon of the root taxon must be the same as the taxid of the root taxon. For the following taxa, the parent taxon must precede the declaration of a taxon using it as parent. 
+Some constraints exist on the order of the rows describing the taxa in the CSV file. The first row must contain the taxid of the root taxon (*i.e.* the taxid of the first taxon in the taxonomic hierarchy). The taxid of the parent taxon of the root taxon must be the same as the taxid of the root taxon. For the following taxa, the parent taxon must precede the declaration of a taxon using it as parent.
 
 ## Example of a taxonomy formatted in CSV
 
-Following this format here a four-taxa example with the root taxon, the *Betula* genus and two species *Betula nana* and *Betula pubescence*.
+Following this format, here a four-taxa example with the root taxon, the *Betula* genus and two species *Betula nana* and *Betula pubescence*.
 
 ```CSV
 taxid,parents,scientific_name,taxonomic_rank
@@ -58,26 +58,26 @@ graph RL
     class 3,4 species
 {{< /mermaid >}}
 
-That simple format allows to comvert eaasily with a small UNIX script any available taxonomic hierarchy into a format useable by {{% obitools4 %}}.
+That simple format allows to convert easily with a small UNIX script any available taxonomic hierarchy into a format useable by {{% obitools4 %}}.
 
 ## Generating a CSV taxonomy file from another taxonomy
 
 The {{< obi obitaxonomy >}} command can be used to generate a CSV file from another taxonomy format. The main aim of this command functionality is to extract a subtaxonomy corresponding to a clade from a largest taxonomy.
 
-If it was not already done, a copy of the NCBI taxonomy is downloaded and save in the `ncbitaxo.tgz` file.
+If it was not already done, a copy of the NCBI taxonomy is downloaded and saved into the `ncbitaxo.tgz` file.
 
 ```bash
 obitaxonomy --download-ncbi --out ncbitaxo.tgz
 ```
 
-{{< obi obitaxonomy >}} is used to identify the taxid of the taxon of interest, here the genus **Betula**.
+{{< obi obitaxonomy >}} is used to identify the taxid of the taxon of interest, here the genus *Betula*.
 
 - The **-t** option allows for specifying the just downloaded above taxonomy
 - The **--rank** option allows for restricting the search to the taxa with the **genus** taxonomic rank
-- the **--fixed** option indicates to look for an exact match with the taxon name
+- The **--fixed** option indicates to look for an exact match with the taxon name
 - `Betula` is the pattern used to match the taxon name.
 
-The result of the {{< obi obitaxonomy >}} is {{% csv %}} formatted. Piping the result to the `csvlook` command allows for having a nice table presentation on the screen.
+The result of the following {{< obi obitaxonomy >}} command is {{% csv %}} formatted, and the piped result can be displayed as a nice table with the `csvlook` command:
 
 ```bash
 obitaxonomy -t ncbitaxo.tgz \
@@ -100,7 +100,7 @@ obitaxonomy -t ncbitaxo.tgz \
             --dump taxon:3504 > betula_subtaxo.csv
 ```
 
-As usual with {{< obi obitaxonomy >}} the result is {{% csv %}} formatted. That allows for using the `csvkit dim` UNIX command to display the number of columns (four as expected) and of rows here *131* taxa. Once again `csvlook` is used to pretty print the result as a nice ASCII table
+As usual with {{< obi obitaxonomy >}} the result is {{% csv %}} formatted. That allows for using the `csvkit dim` UNIX command to display the number of columns (four as expected) and of rows, here *131* taxa. Once again `csvlook` is used to pretty print the result as a nice ASCII table
 
 ```bash
 csvkit dim betula_subtaxo.csv \
@@ -152,8 +152,8 @@ head -30 betula_subtaxo.csv \
 
 From **taxon:1** the root taxon to **taxon:3504** the taxon of interest *Betula*, the command {{< obi obitaxonomy >}} has dumped the taxonomic path classifying the *Betula* genus. The following taxa corresponds to species belonging the *Betula* genus.
 
-This new taxonomy save as a CSV file <a href="betula_subtaxo.csv" download="betula_subtaxo.csv">`betula_subtaxo.csv`</a> can be used by any {{% obitools %}} as a taxonomy.
-For example, {{< obi obitaxonomy >}} can use it to identify the taxid of **Betula megrelica**
+This new taxonomy saved as a CSV file <a href="betula_subtaxo.csv" download="betula_subtaxo.csv">`betula_subtaxo.csv`</a> can be used by any {{% obitools %}} as a taxonomy.
+For example, {{< obi obitaxonomy >}} can use it to identify the taxid of *Betula megrelica*:
 
 ```bash
 obitaxonomy -t betula_subtaxo.csv "Betula megrelica" \

@@ -1,5 +1,5 @@
 ---
-title: "File Format"
+title: "File formats"
 weight: 25
 bookCollapseSection: true
 # bookFlatSection: false

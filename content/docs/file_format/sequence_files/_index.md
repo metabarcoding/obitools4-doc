@@ -1,5 +1,5 @@
 ---
-title: "Sequence Files"
+title: "Sequence file formats"
 weight: 1
 # bookFlatSection: false
 # bookToc: true

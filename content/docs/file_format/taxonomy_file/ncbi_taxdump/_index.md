@@ -9,9 +9,9 @@ weight: 1
 # bookSearchExclude: false
 ---
 
-# The NCBI Taxonomy Dump
+# The *NCBI taxonomy dump*
 
-NCBI provides a taxonomy that is used as a reference taxonomy for all molecular data published by [NCBI](https://ncbi.nlm.nih.gov), [EBI](https://www.ebi.ac.uk/ena) and [DDBJ](https://www.ddbj.nig.ac.jp/). The taxonomy is available via a [web interface](https://www.ncbi.nlm.nih.gov/taxonomy/), but can also be downloaded from the [NCBI FTP server](https://ftp.ncbi.nlm.nih.gov). 
+The NCBI provides a taxonomy that is used as a reference taxonomy for all molecular data published by [NCBI](https://ncbi.nlm.nih.gov), [EBI](https://www.ebi.ac.uk/ena) and [DDBJ](https://www.ddbj.nig.ac.jp/). This taxonomy is available via a [web interface](https://www.ncbi.nlm.nih.gov/taxonomy/), but can also be downloaded from the [NCBI FTP server](https://ftp.ncbi.nlm.nih.gov).
 
 The NCBI taxonomy can be used by {{% obitools4 %}} by downloading the [taxdump](https://ftp.ncbi.nlm.nih.gov/pub/taxonomy/taxdump.tar.gz) from the [NCBI FTP server](https://ftp.ncbi.nlm.nih.gov). The file is a gzipped tarball archive containing the following files required by {{% obitools4 %}}:
 
@@ -20,44 +20,44 @@ The NCBI taxonomy can be used by {{% obitools4 %}} by downloading the [taxdump](
 * [`merged.dmp`]({{< ref "#merged.dmp" >}}) : a tab-separated file containing the information about reassignment of taxids
 * [`delnodes.dmp`]({{< ref "#delnodes.dmp" >}}) : a tab-separated file containing the information about old taxids today deleted from the taxonomy.
 
-## Downloading the NCBI Taxonomy Dump
+## Downloading the NCBI taxonomy dump
 
-The {{< obi obitaxonomy >}} command provides the `---download-ncbi` option, which downloads a copy of the NCBI taxonomy dump tarball from the [NCBI FTP server](https://ftp.ncbi.nlm.nih.gov). By default, the file is downloaded to the current directory with the name `ncbitaxo_YYYYMMDD.tgz`, where *YYYY* is the year, *MM* is the month and *DD* is the day of the current date.
-The filename used to save the tarball can be specified with the `--out` option, as in the following example
+The {{< obi obitaxonomy >}} command provides the `--download-ncbi` option, which downloads a copy of the NCBI taxonomy dump tarball from the [NCBI FTP server](https://ftp.ncbi.nlm.nih.gov). By default, the file is downloaded to the current directory with the name `ncbitaxo_YYYYMMDD.tgz`, where *YYYY* is the year, *MM* the month and *DD* the current date.
+The filename used to save the tarball can be specified with the `--out` option, as in the following example:
 
 ```bash
 obitaxonomy --download-ncbi --out ncbitaxo.tgz
 ```
 
 > [!NOTE]
-> {{% obitools4 %}} does not require extracting the downloaded file. The name of the compressed file can be passed directly to any {{% obitools4 %}} command using the `--taxonomy' option.
+> {{% obitools4 %}} do not require extracting the downloaded file. The name of the compressed file can be passed directly to any {{% obitools4 %}} command using the `--taxonomy` option.
 
 ## Structure of the NCBI taxonomy directory
 
-When the archive is unpacked using the following bash commands
+When the archive is unpacked using the following bash commands:
 
 ```bash
 mkdir ncbitaxo 
 cd ncbitaxo 
-tar zxvf ../ncbitaxo.tgz
+tar -zxvf ../ncbitaxo.tgz
 cd ..
 ```
 
-The `ncbitaxo` directory contains all the files provided by NCBI. The `readme.txt` file describes the contents of each file provided.
+The `ncbitaxo` directory contains all the files provided by NCBI. The `readme.txt` file describes the content of each file provided.
 Only the files used by {{% obitools4 %}} are described below.
 
 ### The `nodes.dmp` file {#nodes.dmp}
 
-The `nodes.dmp` file is a tab-separated file with the following columns:
+The `nodes.dmp` file is a tab-separated file, here is the description of the first columns used by {{% obitools4 %}}:
 
-| Field | Documentation |
+| Field | Description |
 |-------|---------------|
-| `taxid` | A unique taxonomic identifier composed only of digits (0-9) lower case (a-z) and upper case (A-Z) characters |
-| `parent` | The taxid of the parent taxon of the current taxon |
-| `scientific name` | The name used by the obitools as the scientific name of the taxon |
-| `taxonomic_rank` | The taxonomic rank of the taxon (*e.g.* species, genus, family...) |
+| `tax_id` | A unique taxonomic identifier composed only of digits (0-9) lower case (a-z) and upper case (A-Z) characters |
+| `parent tax_id` | The taxid of the parent taxon of the current taxon |
+<!-- | `scientific_name` | The name used by the *OBITools* as the scientific name of the taxon | -->
+| `rank` | The taxonomic rank of the taxon (*e.g.* species, genus, family, etc.) |
 
-see below the first lines of this file:
+Here are the first lines of this file:
 
 ```
 1       |       1       |       no rank |               |       8       |       0       |       1       |       0       |       0       |       0       |     0|       0       |               |
@@ -76,14 +76,14 @@ see below the first lines of this file:
 
 The `names.dmp` file is a tab-separated file with the following columns:
 
-| Field | Documentation |
+| Field | Description |
 |-------|---------------|
-| `tax_id` | The id of node associated with this name |
-| `name_txt` | Name itself |
+| `tax_id` | The node identifier associated with this name |
+| `name_txt` | The name itself |
 | `unique name` | The unique variant of this name if name not unique |
 | `name class` | (synonym, common name, ...) |
 
-see below the first lines of this file:
+Here are the first lines of this file:
 
 ```
 1       |       all     |               |       synonym |
@@ -102,12 +102,12 @@ see below the first lines of this file:
 
 The `merged.dmp` file is a tab-separated file with the following columns:
 
-| Field | Documentation |
+| Field | Description |
 |-------|---------------|
-| `old_tax_id` | Id of nodes which has been merged |
-| `new_tax_id` | Id of nodes which is result of merging |
- 
-see below the first lines of this file:
+| `old_tax_id` | The node identifier which has been merged |
+| `new_tax_id` | The node identifier which is result of merging |
+
+Here are the first lines of this file:
 
 ```
 12      |       74109   |
@@ -126,11 +126,11 @@ see below the first lines of this file:
 
 The `delnodes.dmp` file is a tab-separated file with the following columns:
 
-| Field | Documentation |
+| Field | Description |
 |-------|---------------|
-| `tax_id` | Deleted node id |
+| `tax_id` | The deleted node ID |
 
-see below the first lines of this file:
+Here are the first lines of this file:
 
 ```
 3025011 |
@@ -144,4 +144,3 @@ see below the first lines of this file:
 3025003 |
 3025002 |
 ```
-
