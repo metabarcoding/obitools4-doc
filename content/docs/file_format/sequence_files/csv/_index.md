@@ -13,7 +13,7 @@ weight: 90
 
 The [CSV (Comma-Separated Values)](https://en.wikipedia.org/wiki/Comma-separated_values) files are formatted as plain text where each line represents a data record, and each field within that record is separated by a comma.
 
-## Converting FASTA file to CSV
+## Converting FASTA file to CSV
 
 Use the {{% obi obicsv %}} command to convert a {{% fasta %}} file to CSV format, with the `-i` and `-s` options, to prints respectively the sequence identifier and the nucleotide sequence, and `-k` option to keep the desired attributes. Each record in the FASTA file corresponds to a line in the output file:
 
@@ -42,7 +42,7 @@ csvlook -I two_sequences.csv
 | AL355887 | 2     | 9606  | 9604         | Hominidae   | ttagccctaaactctagtagttacattaacaaaaccattcgtcagaatactacgagcaacagcttaaaactcaaaggacctggcagttctttatatccct |
 ```
 
-## Converting CSV file to FASTA format
+## Converting CSV file to FASTA format
 
 To convert a sequence file in CSV format to {{% fasta %}} format, you can use the {{% obi obiconvert %}} command:
 
