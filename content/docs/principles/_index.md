@@ -167,7 +167,7 @@ As the {{% obitools %}} are UNIX commands, and their default behaviour is to rea
 ```bash
 obicomplement two_sequences.fasta | obicount 
 ```
-```csv
+```
 entities,n
 variants,2
 reads,3
@@ -179,7 +179,7 @@ The result of the {{% obi obicount %}} command is a CSV file. Therefore, it can 
 ```bash
 obicomplement two_sequences.fasta | obicount | csvtomd
 ```
-```md
+```
 entities  |  n
 ----------|-----
 variants  |  2
