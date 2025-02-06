@@ -100,10 +100,10 @@ obitaxonomy -t ncbitaxo.tgz \
             --dump taxon:3504 > betula_subtaxo.csv
 ```
 
-As usual with {{< obi obitaxonomy >}} the result is {{% csv %}} formatted. That allows for using the `csvkit dim` UNIX command to display the number of columns (four as expected) and of rows, here *131* taxa. Once again `csvlook` is used to pretty print the result as a nice ASCII table
+As usual with {{< obi obitaxonomy >}} the result is {{% csv %}} formatted. That allows for using the `csvtk dim` UNIX command from [csvtk program](https://github.com/shenwei356/csvtk) to display the number of columns (four as expected) and of rows, here *131* taxa. Once again `csvlook` is used to pretty print the result as a nice ASCII table:
 
 ```bash
-csvkit dim betula_subtaxo.csv \
+csvtk dim betula_subtaxo.csv \
     | csvlook -d ' ' -S
 ```
 ```
@@ -150,7 +150,7 @@ head -30 betula_subtaxo.csv \
 | taxon:1685980 [Betula bomiensis]@species      | taxon:3504 [Betula]@genus                 | species        | Betula bomiensis      |
 ```
 
-From **taxon:1** the root taxon to **taxon:3504** the taxon of interest *Betula*, the command {{< obi obitaxonomy >}} has dumped the taxonomic path classifying the *Betula* genus. The following taxa corresponds to species belonging the *Betula* genus.
+From **taxon:1** (the root taxon) to **taxon:3504** (the taxon of interest *Betula*), the command {{< obi obitaxonomy >}} has dumped the taxonomic path classifying the *Betula* genus. The following taxa correspond to the species belonging to the *Betula* genus.
 
 This new taxonomy saved as a CSV file <a href="betula_subtaxo.csv" download="betula_subtaxo.csv">`betula_subtaxo.csv`</a> can be used by any {{% obitools %}} as a taxonomy.
 For example, {{< obi obitaxonomy >}} can use it to identify the taxid of *Betula megrelica*:
@@ -165,7 +165,7 @@ obitaxonomy -t betula_subtaxo.csv "Betula megrelica" \
 | taxon:1685986 [Betula megrelica]@species | taxon:3504 [Betula]@genus | species        | Betula megrelica |
 ```
 
-or to just dump the subtree of the *Betula nana* species
+or to just dump the subtree of the *Betula nana* species:
 
 ```bash
 obitaxonomy -t betula_subtaxo.csv \
