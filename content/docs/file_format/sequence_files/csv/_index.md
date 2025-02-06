@@ -58,7 +58,6 @@ ttagccctaaactctagtagttacattaacaaaaccattcgtcagaatactacgagcaac
 agcttaaaactcaaaggacctggcagttctttatatccct
 ```
 
-<!-- 
 ## Converting FASTQ file to CSV
 
 In the same way as for {{% fasta %}} files, use the {{% obi obicsv %}} command to convert a {{% fastq %}} file to CSV format:
@@ -67,10 +66,27 @@ In the same way as for {{% fasta %}} files, use the {{% obi obicsv %}} command t
 
 ```bash
 obicsv -i -s -q two_sequences.fastq > two_sequences.csv
+csvlook -I two_sequences.csv
+```
+```
+| id                                              | sequence                                                                                                                                                   | qualities                                                                                                                                                  |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| HELIUM_000100422_612GNAAXX:7:108:5640:3823#0/1  | ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattgttcgccagagtactaccggcaatagcttaaaactcaaaggacttggcggtgctttatacccttctagaggagcctgttctaaggaggcgg | CCCCCCCBCCCCCCCCCCCCCCCCCCCCCCBCCCCCBCCCCCCC<CcCccbe[`F`accXV<TA\RYU\\ee_e[XZ[XEEEEEEEEEE?EEEEEEEEEEDEEEEEEECCCCCCCCCCCCCCCCCCCCCCCACCCCCACCCCCCCCCCCCCCCC |
+| HELIUM_000100422_612GNAAXX:7:97:14311:19299#0/1 | ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcaagagcttaaaactcaaaggacttggcggtgctttatacccttctagaggagcctgttctaaggaggcgg | CCCCCCCCCCCCCCCCCCCCCCCBBCCC?BCCCCCBC?CCCC@@;AVA`cWeb_TYC\UIN?IDP8QJMKRPVGLQAFPPc`AbAFB5A4>AAA56A><>8>>F@A><8??@BB+<?;?C@9CCCCCC<CC=CCCCCCCCCBC?CBCCCCC@CC |
 ```
 
 ## Converting CSV file to FASTQ format
 
 ```bash
 obiconvert --fastq-output two_sequences.csv
-``` -->
+```
+```
+@HELIUM_000100422_612GNAAXX:7:108:5640:3823#0/1 
+ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattgttcgccagagtactaccggcaatagcttaaaactcaaaggacttggcggtgctttatacccttctagaggagcctgttctaaggaggcgg
++
+CCCCCCCBCCCCCCCCCCCCCCCCCCCCCCBCCCCCBCCCCCCC<CcCccbe[`F`accXV<TA\RYU\\ee_e[XZ[XEEEEEEEEEE?EEEEEEEEEEDEEEEEEECCCCCCCCCCCCCCCCCCCCCCCACCCCCACCCCCCCCCCCCCCCC
+@HELIUM_000100422_612GNAAXX:7:97:14311:19299#0/1 
+ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcaagagcttaaaactcaaaggacttggcggtgctttatacccttctagaggagcctgttctaaggaggcgg
++
+CCCCCCCCCCCCCCCCCCCCCCCBBCCC?BCCCCCBC?CCCC@@;AVA`cWeb_TYC\UIN?IDP8QJMKRPVGLQAFPPc`AbAFB5A4>AAA56A><>8>>F@A><8??@BB+<?;?C@9CCCCCC<CC=CCCCCCCCCBC?CBCCCCC@CC
+```
