@@ -1,8 +1,9 @@
 ---
 archetype: "command"
-title: "Obicsv"
+title: "obicsv"
 date: 2025-02-10
 command: "obicsv"
+category: basics
 url: "/obitools/obicsv"
 weight: 50
 ---

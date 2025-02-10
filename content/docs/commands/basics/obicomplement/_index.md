@@ -1,8 +1,9 @@
 ---
 archetype: "command"
-title: "Obicomplement"
+title: "obicomplement"
 date: 2025-02-10
 command: "obicomplement"
+category: basics
 url: "/obitools/obicomplement"
 weight: 20
 ---

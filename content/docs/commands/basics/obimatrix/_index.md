@@ -1,8 +1,9 @@
 ---
 archetype: "command"
-title: "Obimatrix"
+title: "obimatrix"
 date: 2025-02-10
 command: "obimatrix"
+category: basics
 url: "/obitools/obimatrix"
 weight: 100
 ---

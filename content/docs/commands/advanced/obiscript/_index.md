@@ -1,18 +1,18 @@
 ---
 archetype: "command"
-title: "Obiscript: apply a LUA script"
-date: 2024-12-21
+title: "obiscript"
+date: 2025-02-10
 command: "obiscript"
 url: "/obitools/obiscript"
 ---
 
-## `obiscript` apply a LUA script to each sequence in a file.
+# `obiscript`: apply a LUA script on sequences
 
-### Description 
+## Description 
 
 Apply a LUA script to each sequence in a sequence file.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obiscript [--allows-indels] [--approx-pattern <PATTERN>]...
@@ -37,7 +37,7 @@ obiscript [--allows-indels] [--approx-pattern <PATTERN>]...
           [<args>]
 ```
 
-### Options
+## Options
 
 #### {{< obi obiscript >}} mandatory option
 
@@ -45,14 +45,11 @@ obiscript [--allows-indels] [--approx-pattern <PATTERN>]...
   The script to execute.
   {{< /cmd-option >}}
 
-
 #### Other {{< obi obiscript >}} specific option
 
 - {{< cmd-option name="template" >}}
   Print on the standard output a script template.
   {{< /cmd-option >}}
-
-
 
 {{< option-sets/selection >}}
 
@@ -62,7 +59,7 @@ obiscript [--allows-indels] [--approx-pattern <PATTERN>]...
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obiscript --help

@@ -1,18 +1,19 @@
 ---
 archetype: "command"
-title: "Obiconsensus: denoise MinIon data using consensus sequences"
-date: 2025-01-23
+title: "obiconsensus"
+date: 2025-02-10
 command: "obiconsensus"
+category: experimental
 url: "/obitools/obiconsensus"
 ---
 
-## `obiconsensus`: denoise MinIon data using consensus sequences
+# `obiconsensus`: denoise MinION data using consensus sequences
 
-### Description 
+## Description 
 
 Denoise MinIon sequence data by constructing consensus sequences.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obiconsensus [--batch-size <int>] [--cluster|-C] [--compress|-Z] [--debug]
@@ -29,9 +30,9 @@ obiconsensus [--batch-size <int>] [--cluster|-C] [--compress|-Z] [--debug]
              [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obiconsensus >}} specific options:
+#### {{< obi obiconsensus >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -43,7 +44,7 @@ obiconsensus [--batch-size <int>] [--cluster|-C] [--compress|-Z] [--debug]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obiconsensus --help

@@ -1,18 +1,19 @@
 ---
 archetype: "command"
-title: "Obitagpcr"
-date: 2025-01-23
+title: "obitagpcr"
+date: 2025-02-10
 command: "obitagpcr"
+category: demultiplexing
 url: "/obitools/obitagpcr"
 ---
 
-## `obitagpcr`
+# `obitagpcr`:
 
-### Description 
+## Description 
 
 
 
-### Synopsis
+## Synopsis
 
 ```bash
 obitagpcr --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
@@ -32,9 +33,9 @@ obitagpcr --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
           [--without-stat|-S] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obitagpcr >}} specific options:
+#### {{< obi obitagpcr >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -46,7 +47,7 @@ obitagpcr --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obitagpcr --help

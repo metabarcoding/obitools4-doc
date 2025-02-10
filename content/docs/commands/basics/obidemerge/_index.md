@@ -1,8 +1,9 @@
 ---
 archetype: "command"
-title: "Obidemerge"
+title: "obidemerge"
 date: 2025-02-10
 command: "obidemerge"
+category: basics
 url: "/obitools/obidemerge"
 weight: 60
 ---

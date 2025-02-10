@@ -1,8 +1,9 @@
 ---
 archetype: "command"
-title: "Obiannotate"
+title: "obiannotate"
 date: 2025-02-10
 command: "obiannotate"
+category: basics
 url: "/obitools/obiannotate"
 weight: 10
 ---

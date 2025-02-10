@@ -1,9 +1,10 @@
 ---
 archetype: "command"
 category: "basics"
-title: "Obicount"
+title: "obicount"
 date: 2025-02-10
 command: "obicount"
+category: basics
 url: "/obitools/obicount"
 weight: 40
 ---

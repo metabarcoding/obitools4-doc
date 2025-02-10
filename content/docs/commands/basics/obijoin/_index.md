@@ -1,8 +1,9 @@
 ---
 archetype: "command"
-title: "Obijoin"
+title: "obijoin"
 date: 2025-02-10
 command: "obijoin"
+category: basics
 url: "/obitools/obijoin"
 weight: 90
 ---

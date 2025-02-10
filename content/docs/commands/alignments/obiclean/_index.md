@@ -1,19 +1,20 @@
 ---
 archetype: "command"
-title: "Obiclean: a PCR aware denoising algorithm"
-date: 2025-01-23
+title: "obiclean"
+date: 2025-02-10
 command: "obiclean"
+category: alignments
 url: "/obitools/obiclean"
 weight: 10
 ---
 
-## `obiclean`: a PCR aware denoising algorithm
+# `obiclean`: a PCR aware denoising algorithm
 
-### Description 
+## Description 
 
 A denoising/clustering algorithm to filter out potential PCR-generated spurious sequences.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obiclean [--batch-size <int>] [--compress|-Z] [--debug] [--distance|-d <int>]
@@ -29,9 +30,9 @@ obiclean [--batch-size <int>] [--compress|-Z] [--debug] [--distance|-d <int>]
          [--solexa] [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obiclean >}} specific options:
+#### {{< obi obiclean >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -43,7 +44,7 @@ obiclean [--batch-size <int>] [--compress|-Z] [--debug] [--distance|-d <int>]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obiclean --help

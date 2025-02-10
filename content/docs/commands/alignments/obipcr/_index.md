@@ -1,19 +1,20 @@
 ---
 archetype: command
-title: "Obipcr: The electronic PCR tool"
+title: "obipcr"
+date: 2025-02-10
 command: obipcr
 category: alignments
 url: "/obitools/obipcr"
 weight: 30
 ---
 
-## `obipcr`: The electronic PCR tool
+# `obipcr`: the electronic PCR tool
 
-### Description 
+## Description 
 
-`obipcr` is the successor of [`ecoPCR`](https://metabarcoding.org/ecopcr). It is known as an electronic PCR software.
+The `obipcr` program is the successor of [`ecoPCR`](https://metabarcoding.org/ecopcr). It is known as an electronic PCR software.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obipcr --forward <string> --max-length|-L <int> --reverse <string>
@@ -29,9 +30,9 @@ obipcr --forward <string> --max-length|-L <int> --reverse <string>
        [--pprof-mutex <int>] [--skip-empty] [--solexa] [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obipcr >}} mandatory options:
+#### {{< obi obipcr >}} mandatory options
 
 - {{< cmd-option name="forward" param="PATTERN" >}}
   The forward primer used for the electronic PCR. IUPAC codes can be used in the pattern.  
@@ -45,7 +46,7 @@ obipcr --forward <string> --max-length|-L <int> --reverse <string>
   Maximum length of the barcode, primers excluded.
   {{< /cmd-option >}}
 
-#### Other {{< obi obipcr >}} specific options:
+#### Other {{< obi obipcr >}} specific options
 
 - {{< cmd-option name="allowed-mismatches" short="e" param="INTEGER" >}}
   Maximum number of mismatches allowed for each primer (default: 0).
@@ -73,7 +74,7 @@ obipcr --forward <string> --max-length|-L <int> --reverse <string>
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 The minimal {{< obi obipcr >}} command looks like this:
 

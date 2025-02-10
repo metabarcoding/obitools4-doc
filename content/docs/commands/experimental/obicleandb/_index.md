@@ -1,18 +1,19 @@
 ---
 archetype: "command"
-title: "Obicleandb: clean a sequence reference database"
-date: 2025-01-23
+title: "obicleandb"
+date: 2025-02-10
 command: "obicleandb"
+category: experimental
 url: "/obitools/obicleandb"
 ---
 
-## `obicleandb`: clean a sequence reference database
+# `obicleandb`: clean a sequence reference database
 
-### Description 
+## Description 
 
 Clean a sequence reference database for trivial wrong taxonomic annotations.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obicleandb [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
@@ -28,9 +29,9 @@ obicleandb [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
            [--taxonomy|-t <string>] [--update-taxids] [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obicleandb >}} specific options:
+#### {{< obi obicleandb >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -42,7 +43,7 @@ obicleandb [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obicleandb --help

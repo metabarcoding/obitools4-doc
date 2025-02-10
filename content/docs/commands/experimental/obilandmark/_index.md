@@ -1,18 +1,19 @@
 ---
 archetype: "command"
-title: "Obilandmark"
-date: 2025-01-23
+title: "obilandmark"
+date: 2025-02-10
 command: "obilandmark"
+category: experimental
 url: "/obitools/obilandmark"
 ---
 
-## `obilandmark`
+# `obilandmark`
 
-### Description 
+## Description 
 
 
 
-### Synopsis
+## Synopsis
 
 ```bash
 obilandmark [--batch-size <int>] [--center|-n <int>] [--compress|-Z]
@@ -26,9 +27,9 @@ obilandmark [--batch-size <int>] [--center|-n <int>] [--compress|-Z]
             [--taxonomy|-t <string>] [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obilandmark >}} specific options:
+#### {{< obi obilandmark >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -40,7 +41,7 @@ obilandmark [--batch-size <int>] [--center|-n <int>] [--compress|-Z]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obilandmark --help

@@ -1,27 +1,28 @@
 ---
 archetype: "command"
-title: "Obirefidx"
-date: 2025-01-23
+title: "obirefidx"
+date: 2025-02-10
 command: "obirefidx"
 url: "/obitools/obirefidx"
+category: alignments
 weight: 40
 ---
 
-## `obirefidx`
+# `obirefidx`
 
-### Description 
+## Description 
 
 
 
-### Synopsis
+## Synopsis
 
 ```bash
 obirefidx [OPTIONS] [ARGS]
 ```
 
-### Options
+## Options
 
-#### {{< obi obirefidx >}} specific options:
+#### {{< obi obirefidx >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -33,7 +34,7 @@ obirefidx [OPTIONS] [ARGS]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obirefidx --help

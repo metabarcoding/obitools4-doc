@@ -1,18 +1,19 @@
 ---
 archetype: "command"
-title: "Obimultiplex"
-date: 2025-01-23
+title: "obimultiplex"
+date: 2025-02-10
 command: "obimultiplex"
+category: demultiplexing
 url: "/obitools/obimultiplex"
 ---
 
-## `obimultiplex`
+# `obimultiplex`: demultiplex the sequences
 
-### Description 
+## Description 
 
 
 
-### Synopsis
+## Synopsis
 
 ```bash
 obimultiplex [--allowed-mismatches|-e <int>] [--batch-size <int>]
@@ -29,9 +30,9 @@ obimultiplex [--allowed-mismatches|-e <int>] [--batch-size <int>]
              [--with-indels] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obimultiplex >}} specific options:
+#### {{< obi obimultiplex >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -43,7 +44,7 @@ obimultiplex [--allowed-mismatches|-e <int>] [--batch-size <int>]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obimultiplex --help

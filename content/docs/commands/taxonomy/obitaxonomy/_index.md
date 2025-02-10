@@ -1,18 +1,19 @@
 ---
 archetype: "command"
-title: "obitaxonomy: Manage taxonomy"
-date: 2025-01-23
+title: "obitaxonomy"
+date: 2025-02-10
 command: "_index."
+category: taxonomy
 url: "/obitools/obitaxonomy"
 ---
 
-## `obitaxonomy` : Manage and search in the taxonomy database
+# `obitaxonomy`: manage and request a taxonomy database
 
-### Description 
+## Description 
 
 
 
-### Synopsis
+## Synopsis
 
 ```bash
 obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--debug]
@@ -27,9 +28,9 @@ obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--debug]
             [--without-rank|-R] [--without-scientific-name|-S] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obitaxonomy >}} specific options:
+#### {{< obi obitaxonomy >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -37,7 +38,7 @@ obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--debug]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obitaxonomy --help

@@ -1,18 +1,19 @@
 ---
 archetype: "command"
-title: "Obimicrosat: extract microsatellite sequences"
-date: 2025-01-23
+title: "obimicrosat"
+date: 2025-02-10
 command: "obimicrosat"
+category: others
 url: "/obitools/obimicrosat"
 ---
 
-## `obimicrosat`: extract microsatellite sequences
+# `obimicrosat`: extract microsatellite sequences
 
-### Description 
+## Description 
 
 Extract sequence entries containing a microsatellite from a sequence file.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obimicrosat [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
@@ -29,7 +30,7 @@ obimicrosat [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
             [--taxonomy|-t <string>] [--version] [<args>]
 ```
 
-### Options
+## Options
 
 #### {{< obi obimicrosat >}} specific options:
 
@@ -43,7 +44,7 @@ obimicrosat [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obimicrosat --help

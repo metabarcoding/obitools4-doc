@@ -1,8 +1,9 @@
 ---
 archetype: "command"
-title: "Obidistribute"
+title: "obidistribute"
 date: 2025-01-23
 command: "obidistribute"
+category: basics
 url: "/obitools/obidistribute"
 weight: 70
 ---

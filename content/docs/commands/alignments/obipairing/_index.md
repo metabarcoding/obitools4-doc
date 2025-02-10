@@ -1,19 +1,20 @@
 ---
 archetype: command
-title: "Obipairing: Align the forward and reverse paired reads"
+title: "obipairing"
+date: 2025-02-10
 command: obipairing
 category: alignments
 url: "/obitools/obipairing"
 weight: 20
 ---
 
-## `obipairing`: Align the forward and reverse paired reads
+# `obipairing`: align the forward and reverse paired reads
 
-### Description 
+## Description 
 
 When DNA metabarcoding sequences are generated as paired reads on the Illumina platform, {{< obi obipairing >}} aims to align both forward and reverse reads to generate full length amplicon sequences.
 
-#### Input data
+### Input data
 
 The {{< obi obipairing >}} command requires two input files:
 
@@ -68,8 +69,7 @@ I9IIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIII-IIIIIIIIIIIII9II9II9IIIIII9IIIII
 
 The sequence first sequence of the `forward.fastq` file having the id `LH00534:26:2237MWLT1:2:1101:3663:1096` will be paired with the first sequence of the `reverse.fastq` file having the same id `LH00534:26:2237MWLT1:2:1101:3663:1096`, not because they have the same identifier but because they are both the first sequence of their respective files.
 
-#### The simplest {{< obi obipairing >}} command
-
+### The simplest {{< obi obipairing >}} command
 
 The minimal {{< obi obipairing >}} command to align the `forward.fastq` and `reverse.fastq` files is:
 
@@ -110,15 +110,15 @@ acacttacatacactctttccctacacgacgctcttccgatctcaaccaaggggcaatcctgagccaaatccgtgttttg
 I9--III99IIIIII-IIIIII9IIIIIIIIIIIIIIIIIIIIqqqqqJUUqqaqqaqqqqqqUqqaqQqqqqqqqaqqqqqqaqqEqaaqqqqqqqaqqqqqJqaqqaqqqqqaaqqUaqqqqqUaqqaqqqqUaqUqqaqqqaqaqqQaI9I-9-I999-I99III99I9I-III9IIIIIIIIII9IIIII
 ```
 
-#### The alignment process
+### The alignment process
 
 {{< obi obipairing >}} will align the reads following a two-step procedure to increase computation speed. The first step aligns the reads using a [FASTA derived algorithm](https://en.wikipedia.org/wiki/FASTA). Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm.
 
-##### The FASTA like first step alignment
+#### The FASTA like first step alignment
 
 That alignment allows for identifying the overlapping region of the reads, its position and its extent. Based on this results the best alignment procedure is selected for the second step, and the parts of the reads to be aligned are determined.
 
-#### The annotation added to the FASTQ header for each read
+### The annotation added to the FASTQ header for each read
 
 - mode
 - ali_dir
@@ -133,7 +133,7 @@ That alignment allows for identifying the overlapping region of the reads, its p
 - seq_b_single
 - pairing_mismatches
 
-### Synopsis
+## Synopsis
 
 ```bash
 obipairing --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
@@ -150,7 +150,7 @@ obipairing --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
            [--solexa] [--version] [--without-stat|-S] [<args>]
 ```
 
-### Options
+## Options
 
 #### {{< obi obipairing >}} mandatory options
 
@@ -162,8 +162,7 @@ obipairing --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
   The name of the file containing the reverse reads.
   {{< /cmd-option >}}
 
-
-#### Other {{< obi obipairing >}} specific options:
+#### Other {{< obi obipairing >}} specific options
 
 - {{< cmd-option name="delta" short="D" param="INTEGER" >}}
   Length added to the fast-detected overlap for the exact alignment algorithm (default: 5 nucleotides).  
@@ -203,7 +202,7 @@ obipairing --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obipairing --help

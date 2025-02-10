@@ -1,8 +1,9 @@
 ---
 archetype: "command"
-title: "Obisplit"
+title: "obisplit"
 date: 2025-01-23
 command: "obisplit"
+category: basics
 url: "/obitools/obisplit"
 weight: 110
 ---

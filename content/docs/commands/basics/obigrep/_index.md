@@ -1,8 +1,9 @@
 ---
 archetype: "command"
-title: "Obigrep"
+title: "obigrep"
 date: 2025-02-10
 command: "obigrep"
+category: basics
 url: "/obitools/obigrep"
 weight: 80
 ---

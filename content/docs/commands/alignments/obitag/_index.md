@@ -1,27 +1,28 @@
 ---
 archetype: "command"
-title: "Obitag: Annotate sequences with taxonomic information"
-date: 2024-12-21
+title: "obitag"
+date: 2025-02-10
 command: "obitag"
+category: alignments
 url: "/obitools/obitag"
 weight: 50
 ---
 
-## `obitag`: Annotate sequences with taxonomic information
+# `obitag`: annotate sequences with taxonomic information
 
-### Description 
+## Description 
 
 A Least Common Ancestor-based algorithm for taxonomic sequence annotation.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obitag [OPTIONS] [ARGS]
 ```
 
-### Options
+## Options
 
-#### {{< obi obitag >}} specific options:
+#### {{< obi obitag >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -33,7 +34,7 @@ obitag [OPTIONS] [ARGS]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obitag --help
