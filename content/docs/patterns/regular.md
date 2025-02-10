@@ -1,5 +1,5 @@
 ---
-title: "Regular Expression Patterns"
+title: "Regular Expressions"
 weight: 10
 # bookFlatSection: false
 # bookToc: true
@@ -9,11 +9,11 @@ weight: 10
 # bookSearchExclude: false
 ---
 
-## Regular Expression Patterns
+# Regular Expressions
 
 Regular expressions are a powerful tool for describing patterns in text. They are used in several {{< gloentry "OBITools" >}} like {{< obi obigrep >}}, {{< obi obiannotate >}} or {{< obi obiscript >}}.
 
-- Single characters:
+## Single characters
 
 | Pattern            | Description                                        |
 |--------------------|----------------------------------------------------|
@@ -23,14 +23,14 @@ Regular expressions are a powerful tool for describing patterns in text. They ar
 | `[[:alpha:]]`      | ASCII character class                             |
 | `[[:^alpha:]]`     | negated ASCII character class                     |
 
-- Composites:
+## Composites
 
 | Pattern          | Description               |
 |------------------|---------------------------|
 | `xy`             | x followed by y           |
-| `x|y`            | x or y (prefer x)        |
+| `x\|y`            | x or y (prefer x)        |
 
-- Repetitions
+## Repetitions
 
 | Pattern          | Description                                   |
 |------------------|-----------------------------------------------|
@@ -47,7 +47,7 @@ Regular expressions are a powerful tool for describing patterns in text. They ar
 | `x{n,}?`         | n or more x, prefer fewer                    |
 | `x{n}?`          | exactly n x                                  |
 
-- Grouping:
+## Grouping
   
 | Pattern                | Description                                      |
 |------------------------|--------------------------------------------------|
@@ -58,7 +58,7 @@ Regular expressions are a powerful tool for describing patterns in text. They ar
 | `(?flags)`            | set flags within current group; non-capturing    |
 | `(?flags:re)`         | set flags during re; non-capturing               |
 
-- Character classes:
+## Character classes
 
 | Pattern                | Description                                          |
 |------------------------|------------------------------------------------------|
@@ -71,7 +71,7 @@ Regular expressions are a powerful tool for describing patterns in text. They ar
 | `[\p{Name}]`          | named Unicode property inside character class (== \p{Name}) |
 | `[^\p{Name}]`         | named Unicode property inside negated character class (== \P{Name}) |
 
-  - Named character classes:
+## Named character classes
   
 | Pattern                | Description                                          |
 |------------------------|------------------------------------------------------|
@@ -81,7 +81,7 @@ Regular expressions are a powerful tool for describing patterns in text. They ar
 | `[[:blank:]]`         | blank (== `[\t ]`)                                    |
 | `[[:cntrl:]]`         | control (== `[\x00-\x1F\x7F]`)                        |
 | `[[:digit:]]`         | digits (== `[0-9]`)                                   |
-| `[[:graph:]]`         | graphical (== [!-~] == ```[A-Za-z0-9!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{|}~])``` |
+| `[[:graph:]]`         | graphical (== `[!-~]` == ```[A-Za-z0-9!"#$%&'()*+,\-./:;<=>?@[\\\]^_`{\|}~])``` |
 | `[[:lower:]]`         | lower case (== `[a-z]`)                               |
 | `[[:print:]]`         | printable (== `[ -~]` == `[[:graph:]]`)               |
 | `[[:punct:]]`         | punctuation (== ```[!-/:-@[-\`{-~]```)                |

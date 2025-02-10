@@ -1,4 +1,4 @@
-{{ $url := printf "Write sequence in  <a href=\"%s\">fasta</a>  format (default if quality data is not available)." (ref . "/docs/file_format/sequence_files/FASTA.md")}}
+{{ $url := printf "Write sequence data in <a href=\"%s\">fasta</a>  format (default if quality data is not available)." (ref . "/docs/file_format/sequence_files/FASTA.md")}}
 {{ partial "cmd-options/option.html" 
 (dict "name" "fasta-output"
       "documentation" $url) }}

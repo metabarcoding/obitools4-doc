@@ -75,7 +75,7 @@ csvlook -I two_sequences.csv
 | HELIUM_000100422_612GNAAXX:7:97:14311:19299#0/1 | ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcaagagcttaaaactcaaaggacttggcggtgctttatacccttctagaggagcctgttctaaggaggcgg | CCCCCCCCCCCCCCCCCCCCCCCBBCCC?BCCCCCBC?CCCC@@;AVA`cWeb_TYC\UIN?IDP8QJMKRPVGLQAFPPc`AbAFB5A4>AAA56A><>8>>F@A><8??@BB+<?;?C@9CCCCCC<CC=CCCCCCCCCBC?CBCCCCC@CC |
 ```
 
-## Converting CSV file to FASTQ format
+## Converting CSV file to FASTQ format
 
 ```bash
 obiconvert --fastq-output two_sequences.csv

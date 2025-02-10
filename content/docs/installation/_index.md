@@ -1,9 +1,9 @@
-+++
-title = 'Installation'
-date = 2024-10-08T19:37:31+02:00
-draft = true
-weight = 20
-+++
+---
+title: 'Installation'
+date: 2024-10-08T19:37:31+02:00
+draft: true
+weight: 20
+---
 
 # Availability
 
