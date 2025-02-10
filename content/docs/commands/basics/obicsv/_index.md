@@ -1,13 +1,13 @@
 ---
 archetype: "command"
 title: "Obicsv"
-date: 2025-01-08
+date: 2025-02-10
 command: "obicsv"
 url: "/obitools/obicsv"
 weight: 50
 ---
 
-## `obicsv`
+# `obicsv`
 
 ### Description 
 

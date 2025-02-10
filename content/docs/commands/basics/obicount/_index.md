@@ -1,18 +1,20 @@
 ---
-title: "Obicount: Counting sequence records"
+archetype: "command"
 category: "basics"
+title: "Obicount"
+date: 2025-02-10
 command: "obicount"
 url: "/obitools/obicount"
 weight: 40
 ---
 
-## `obicount`: Counting sequence records
+# `obicount`: counting sequence records
 
-### Description
+## Description
 
 Count the sequence records in a sequence file. It returns three pieces of information. The first is the number of sequence variants (the actual number of sequence records in the file). Each sequence record is associated with a *count* attribute (equal to 1 if absent), this number corresponds to the number of times that sequence has been observed in the data set. Thus, the second value returned is the sum of the count values for all sequences. The last value is the number of nucleotides stored in the file, the sum of the sequence lengths.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obicount [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
@@ -23,7 +25,7 @@ obicount [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
          [--variants|-v] [--version] [<args>]
 ```
 
-### Options
+## Options
 
 #### {{< obi obicount >}} specific options:
 
@@ -43,7 +45,7 @@ obicount [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 By default the {{< obi obicount >}} command will output the number of variants, reads and symbols in the sequence file.
 

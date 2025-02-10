@@ -1,19 +1,19 @@
 ---
 archetype: "command"
-title: "Obimatrix: convert a sequence file into a data matrix file"
-date: 2025-01-23
+title: "Obimatrix"
+date: 2025-02-10
 command: "obimatrix"
 url: "/obitools/obimatrix"
 weight: 100
 ---
 
-## `obimatrix`: convert a sequence file into a data matrix file
+# `obimatrix`: convert a sequence file into a data matrix file
 
-### Description 
+## Description 
 
 Convert a mapping tag from a sequence file to a matrix file in CSV format.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obimatrix [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
@@ -25,9 +25,9 @@ obimatrix [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
           [--value-name <string>] [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obimatrix >}} specific options:
+#### {{< obi obimatrix >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -39,7 +39,7 @@ obimatrix [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obimatrix --help

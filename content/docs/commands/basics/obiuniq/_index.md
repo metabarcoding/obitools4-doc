@@ -1,19 +1,19 @@
 ---
 archetype: "command"
-title: "Obiuniq: dereplicate a sequence file"
-date: 2025-01-23
+title: "Obiuniq"
+date: 2025-02-10
 command: "obiuniq"
 url: "/obitools/obiuniq"
 weight: 130
 ---
 
-## `obiuniq`: dereplicate a sequence file
+# `obiuniq`: dereplicate a sequence file
 
-### Description 
+## Description 
 
 Dereplicate a sequence file, by merging identical sequences.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obiuniq [--batch-size <int>] [--category-attribute|-c <CATEGORY>]...
@@ -29,9 +29,9 @@ obiuniq [--batch-size <int>] [--category-attribute|-c <CATEGORY>]...
         [--taxonomy|-t <string>] [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obiuniq >}} specific options:
+#### {{< obi obiuniq >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -43,7 +43,7 @@ obiuniq [--batch-size <int>] [--category-attribute|-c <CATEGORY>]...
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obiuniq --help

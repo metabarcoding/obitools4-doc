@@ -1,19 +1,19 @@
 ---
 archetype: "command"
-title: "Obisummary: generate summary statistics"
+title: "Obisummary"
 date: 2025-01-23
 command: "obisummary"
 url: "/obitools/obisummary"
 weight: 120
 ---
 
-## `obisummary`: generate summary statistics
+# `obisummary`: generate summary statistics
 
-### Description 
+## Description 
 
 Generate summary statistics describing the sequence content of a sequence file.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obisummary [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
@@ -24,9 +24,9 @@ obisummary [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
            [--version] [--yaml-output] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obisummary >}} specific options:
+#### {{< obi obisummary >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -38,7 +38,7 @@ obisummary [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obisummary --help

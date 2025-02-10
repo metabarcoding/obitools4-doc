@@ -1,19 +1,19 @@
 ---
 archetype: "command"
-title: "Obiconvert: Convert a sequence file"
-date: 2025-01-08
+title: "Obiconvert"
+date: 2025-02-10
 command: "obiconvert"
 url: "/obitools/obiconvert"
 weight: 30
 ---
 
-## `obiconvert`: Convert a sequence file
+# `obiconvert`: convert a sequence file
 
-### Description 
+## Description 
 
-Convert a sequence file to fasta, fastq, or json format.
+Convert a sequence file to {{% fasta %}}, {{% fastq %}}, or JSON format.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obiconvert [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
@@ -28,7 +28,7 @@ obiconvert [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
 
 ```
 
-### Options
+## Options
 
 {{< option-sets/input >}}
 
@@ -36,7 +36,7 @@ obiconvert [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obiconvert --help

@@ -1,19 +1,19 @@
 ---
 archetype: "command"
-title: "Obijoin: join annotations from a file to a sequence file"
-date: 2025-01-23
+title: "Obijoin"
+date: 2025-02-10
 command: "obijoin"
 url: "/obitools/obijoin"
 weight: 90
 ---
 
-## `obijoin`: join annotations from a file to a sequence file
+# `obijoin`: join annotations from a file to a sequence file
 
-### Description 
+## Description 
 
 Perform a join operation to transfer annotations from a file to a sequence file.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obijoin --join-with|-j <string> [--batch-size <int>] [--by|-b <string>]...
@@ -28,9 +28,9 @@ obijoin --join-with|-j <string> [--batch-size <int>] [--by|-b <string>]...
         [--update-sequence|-s] [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obijoin >}} specific options:
+#### {{< obi obijoin >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -42,7 +42,7 @@ obijoin --join-with|-j <string> [--batch-size <int>] [--by|-b <string>]...
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obijoin --help

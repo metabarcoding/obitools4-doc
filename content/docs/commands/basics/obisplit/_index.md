@@ -7,13 +7,13 @@ url: "/obitools/obisplit"
 weight: 110
 ---
 
-## `obisplit`
+# `obisplit`:
 
-### Description 
+## Description 
 
 
 
-### Synopsis
+## Synopsis
 
 ```bash
 obisplit [--allows-indels] [--batch-size <int>] [--compress|-Z]
@@ -28,9 +28,9 @@ obisplit [--allows-indels] [--batch-size <int>] [--compress|-Z]
          [--taxonomy|-t <string>] [--template] [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obisplit >}} specific options:
+#### {{< obi obisplit >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -42,7 +42,7 @@ obisplit [--allows-indels] [--batch-size <int>] [--compress|-Z]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obisplit --help

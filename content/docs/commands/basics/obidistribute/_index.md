@@ -1,19 +1,19 @@
 ---
 archetype: "command"
-title: "Obidistribute: split a sequence file into multiple files"
+title: "Obidistribute"
 date: 2025-01-23
 command: "obidistribute"
 url: "/obitools/obidistribute"
 weight: 70
 ---
 
-## `obidistribute`: split a sequence file into multiple files
+# `obidistribute`: split a sequence file into multiple files
 
-### Description 
+## Description 
 
 Distribute a sequence file accross multiple output files.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obidistribute --pattern|-p <string> [--append|-A] [--batch-size <int>]
@@ -29,9 +29,9 @@ obidistribute --pattern|-p <string> [--append|-A] [--batch-size <int>]
               [--solexa] [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obidistribute >}} specific options:
+#### {{< obi obidistribute >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -43,7 +43,7 @@ obidistribute --pattern|-p <string> [--append|-A] [--batch-size <int>]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obidistribute --help

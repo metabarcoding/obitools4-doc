@@ -1,19 +1,19 @@
 ---
 archetype: "command"
-title: "Obigrep: Filter a sequence file"
-date: 2025-01-15
+title: "Obigrep"
+date: 2025-02-10
 command: "obigrep"
 url: "/obitools/obigrep"
 weight: 80
 ---
 
-## `obigrep`: Filter a sequence file
+# `obigrep`: filter a sequence file
 
-### Description 
+## Description 
 
 {{< obi obigrep >}} is a tool to filter a sequence file based on multiple criteria. It allows selecting a subset of sequences based on a set of criteria. Sequences matching all the criteria are kept and printed to the standard output, while the other sequences are discarded. Criteria can apply to the sequence identifier, the sequence itself or the annotations of the sequence.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obigrep [--allows-indels] [--approx-pattern <PATTERN>]...
@@ -37,14 +37,13 @@ obigrep [--allows-indels] [--approx-pattern <PATTERN>]...
         [--taxonomy|-t <string>] [--version] [<args>]
 ```
 
-### Options
+## Options
 
 {{< option-sets/selection >}}
 
-##### Matching the sequence annotations
+### Matching the sequence annotations
 
-
-##### Taxonomy based filtering
+### Taxonomy based filtering
 
 If the user specifies a taxonomy when calling {{< obitools obigrep >}} (see `--taxonomy` option), it is possible to filter the sequences based on taxonomic properties. Each of the following options can be used multiple times if needed to specify multiple taxids or ranks.
 
@@ -68,7 +67,7 @@ If the user specifies a taxonomy when calling {{< obitools obigrep >}} (see `--t
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obigrep --help

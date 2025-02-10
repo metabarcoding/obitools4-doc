@@ -1,19 +1,19 @@
 ---
 archetype: "command"
 title: "Obidemerge"
-date: 2025-01-23
+date: 2025-02-10
 command: "obidemerge"
 url: "/obitools/obidemerge"
 weight: 60
 ---
 
-## `obidemerge`
+# `obidemerge`
 
-### Description 
+## Description 
 
 
 
-### Synopsis
+## Synopsis
 
 ```bash
 obidemerge [--batch-size <int>] [--compress|-Z] [--debug]
@@ -28,9 +28,9 @@ obidemerge [--batch-size <int>] [--compress|-Z] [--debug]
            [--taxonomy|-t <string>] [--version] [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obidemerge >}} specific options:
+#### {{< obi obidemerge >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -42,7 +42,7 @@ obidemerge [--batch-size <int>] [--compress|-Z] [--debug]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obidemerge --help

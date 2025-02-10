@@ -1,19 +1,19 @@
 ---
 archetype: "command"
-title: "Obiannotate: Edit sequence annotations"
-date: 2024-10-09
+title: "Obiannotate"
+date: 2025-02-10
 command: "obiannotate"
 url: "/obitools/obiannotate"
 weight: 10
 ---
 
-## `obiannotate`: Edit sequence annotations
+# `obiannotate`: edit sequence annotations
 
-### Description 
+## Description 
 
 Add or edit annotations associated with sequences in a sequence file.
 
-### Synopsis
+## Synopsis
 
 ```bash
 obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
@@ -44,9 +44,9 @@ obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
             [--version] [--with-taxon-at-rank <RANK_NAME>]... [<args>]
 ```
 
-### Options
+## Options
 
-#### {{< obi obiannotate >}} specific options:
+#### {{< obi obiannotate >}} specific options
 
 - {{< cmd-option name="opt1" short="o" param="PARAM" >}}
   Here the description of the option
@@ -58,7 +58,7 @@ obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obiannotate --help

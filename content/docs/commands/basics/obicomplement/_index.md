@@ -1,18 +1,19 @@
 ---
 archetype: "command"
 title: "Obicomplement"
-date: 2025-01-08
+date: 2025-02-10
 command: "obicomplement"
 url: "/obitools/obicomplement"
 weight: 20
 ---
 
-## `obicomplement`
+# `obicomplement`: get sequences reverse complement
 
-### Description 
+## Description 
 
-{{< obi obicomplement >}} computes the reverse complement of the sequence entries. The output is written by default in FASTA format if the input sequence file does not include quality scores, otherwise it is written in FASTQ format.
-### Synopsis
+Compute the reverse complement of the sequence entries. The output is written by default in {{% fasta %}} format if the input sequence file does not include quality scores, otherwise it is written in {{% fastq %}} format.
+
+## Synopsis
 
 ```bash
 obicomplement [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
@@ -26,7 +27,7 @@ obicomplement [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
               [--solexa] [--taxonomy|-t <string>] [--version] [<args>]
 ```
 
-### Options
+## Options
 
 #### {{< obi obicomplement >}} specific options:
 
@@ -40,7 +41,7 @@ obicomplement [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
 
 {{< option-sets/common >}}
 
-### Examples
+## Examples
 
 ```bash
 obicomplement --help
