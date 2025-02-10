@@ -49,9 +49,44 @@ obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
 
 #### {{< obi obiannotate >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/add-lca-in >}}
+- {{< cmd-options/aho-corasick >}}
+- {{< cmd-options/allows-indels >}}
+- {{< cmd-options/approx-pattern >}}
+- {{< cmd-options/attribute >}}
+- {{< cmd-options/clear >}}
+- {{< cmd-options/cut >}}
+- {{< cmd-options/definition >}}
+- {{< cmd-options/delete-tag >}}
+- {{< cmd-options/has-attribute >}}
+- {{< cmd-options/id-list >}}
+- {{< cmd-options/identifier >}}
+- {{< cmd-options/inverse-match >}}
+- {{< cmd-options/keep >}}
+- {{< cmd-options/lca-error >}}
+- {{< cmd-options/length >}}
+- {{< cmd-options/max-count >}}
+- {{< cmd-options/max-length >}}
+- {{< cmd-options/min-count >}}
+- {{< cmd-options/min-length >}}
+- {{< cmd-options/only-forward >}}
+- {{< cmd-options/paired-mode >}}
+- {{< cmd-options/paired-with >}}
+- {{< cmd-options/pattern >}}
+- {{< cmd-options/pattern-error >}}
+- {{< cmd-options/pattern-name >}}
+- {{< cmd-options/predicate >}}
+- {{< cmd-options/rename-tag >}}
+- {{< cmd-options/scientific-name >}}
+- {{< cmd-options/sequence >}}
+- {{< cmd-options/set-identifier >}}
+- {{< cmd-options/set-tag >}}
+
+#### Taxonomic options
+
+- {{< cmd-options/taxonomy >}}
+- {{< cmd-options/taxonomic-path >}}
+- {{< cmd-options/with-taxon-at-rank >}}
 
 {{< option-sets/input >}}
 
