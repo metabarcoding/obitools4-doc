@@ -61,7 +61,6 @@ If the user specifies a taxonomy when calling {{< obitools obigrep >}} (see `--t
   As an example, the NCBI taxid 74635 corresponding to *Rosa canina* is able to provide information at the *species*, *genus* or *family* level. But, taxid 3764 (*Rosa* genus) is not able to provide information at the *species* level. Many of the taxid related to environmental samples have partial classification and a taxon at the *species* level is not always connected to a taxon at the *genus* level as parent. They can sometimes be connected to a taxon at higher level. 
   {{< /cmd-option >}}
 
-
 {{< option-sets/input >}}
 
 {{< option-sets/output >}}

@@ -30,11 +30,13 @@ obicomplement [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
 
 ## Options
 
-#### {{< obi obicomplement >}} specific options:
+#### {{< obi obicomplement >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/paired-with >}}
+
+#### Taxonomic options
+
+- {{< cmd-options/taxonomy >}}
 
 {{< option-sets/input >}}
 

@@ -1,5 +1,6 @@
 {{ partial "cmd-options/option.html" 
 (dict "name" "paired-mode"
       "param" "forward|reverse|and|or|andnot|xor"
-      "documentation" "")
+      "documentation" `If paired reads are passed to obibrep, that option determines
+            how the conditions are applied to both reads. (default: "forward")`)
 }}

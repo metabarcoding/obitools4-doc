@@ -28,19 +28,11 @@ obicount [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 ## Options
 
-#### {{< obi obicount >}} specific options:
+#### {{< obi obicount >}} specific options
 
-- {{< cmd-option name="variants" short="v" >}}
-  When present, output the number of variants (sequence records) in the sequence file.
-  {{< /cmd-option >}}
-
-- {{< cmd-option name="reads" short="r" >}}
-  When present, output the number of reads (the sum of sequence counts) in the sequence file.
-  {{< /cmd-option >}}
-
-- {{< cmd-option name="symbols" short="s" >}}
-  When present, output the number of symbols (nucleotides) in the sequence file.
-  {{< /cmd-option >}}
+- {{< cmd-options/obicount/variants >}}
+- {{< cmd-options/obicount/reads >}}
+- {{< cmd-options/obicount/symbols >}}
 
 {{< option-sets/input >}}
 

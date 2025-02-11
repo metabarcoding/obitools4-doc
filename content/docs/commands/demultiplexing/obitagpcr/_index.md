@@ -37,9 +37,24 @@ obitagpcr --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
 
 #### {{< obi obitagpcr >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/demultiplexing/forward-reads >}}
+- {{< cmd-options/demultiplexing/reverse-reads >}}
+- {{< cmd-options/demultiplexing/allowed-mismatches >}}
+- {{< cmd-options/demultiplexing/delta >}}
+- {{< cmd-options/demultiplexing/exact-mode >}}
+- {{< cmd-options/demultiplexing/fast-absolute >}}
+- {{< cmd-options/demultiplexing/gap-penalty >}}
+- {{< cmd-options/demultiplexing/keep-errors >}}
+- {{< cmd-options/demultiplexing/min-identity >}}
+- {{< cmd-options/demultiplexing/min-overlap >}}
+- {{< cmd-options/no-order >}}
+- {{< cmd-options/demultiplexing/penalty-scale >}}
+- {{< cmd-options/demultiplexing/reorientate >}}
+- {{< cmd-options/demultiplexing/tag-list >}}
+- {{< cmd-options/demultiplexing/template >}}
+- {{< cmd-options/demultiplexing/unidentified >}}
+- {{< cmd-options/demultiplexing/with-indels >}}
+- {{< cmd-options/demultiplexing/without-stat >}}
 
 {{< option-sets/input >}}
 

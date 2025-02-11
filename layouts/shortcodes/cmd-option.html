@@ -1,1 +1,1 @@
-{{$name := .Get "name"}}{{$short := .Get "short"}}{{$param := .Get "param"}}{{$inner := .Inner}}{{ partial "cmd-options/option.html" (dict "name" $name "short" $short "documentation" $inner) }}
+{{$name := .Get "name"}}{{$short := .Get "short"}}{{$param := .Get "param"}}{{$inner := .Inner}}{{ partial "cmd-options/option.html" (dict "name" $name "short" $short "param" $param "documentation" $inner) }}

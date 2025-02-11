@@ -34,9 +34,18 @@ obiuniq [--batch-size <int>] [--category-attribute|-c <CATEGORY>]...
 
 #### {{< obi obiuniq >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/obiuniq/category-attribute >}}
+- {{< cmd-options/obiuniq/chunk-count >}}
+- {{< cmd-options/in-memory >}}
+- {{< cmd-options/obiuniq/merge >}}
+- {{< cmd-options/obiuniq/na-value >}}
+- {{< cmd-options/no-order >}}
+- {{< cmd-options/obiuniq/no-singleton >}}
+- {{< cmd-options/paired-with >}}
+
+#### Taxonomic options
+
+- {{< cmd-options/taxonomy >}}
 
 {{< option-sets/input >}}
 

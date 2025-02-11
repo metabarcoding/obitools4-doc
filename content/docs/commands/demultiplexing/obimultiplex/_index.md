@@ -34,9 +34,18 @@ obimultiplex [--allowed-mismatches|-e <int>] [--batch-size <int>]
 
 #### {{< obi obimultiplex >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/demultiplexing/allowed-mismatches >}}
+- {{< cmd-options/demultiplexing/keep-errors >}}
+- {{< cmd-options/no-order >}}
+- {{< cmd-options/paired-with >}}
+- {{< cmd-options/demultiplexing/tag-list >}}
+- {{< cmd-options/demultiplexing/template >}}
+- {{< cmd-options/demultiplexing/unidentified >}}
+- {{< cmd-options/demultiplexing/with-indels >}}
+
+#### Taxonomic options
+
+- {{< cmd-options/taxonomy >}}
 
 {{< option-sets/input >}}
 

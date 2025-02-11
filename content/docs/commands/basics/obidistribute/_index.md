@@ -32,11 +32,18 @@ obidistribute --pattern|-p <string> [--append|-A] [--batch-size <int>]
 
 ## Options
 
+#### Required options
+
+- {{< cmd-options/obidistribute/pattern >}}
+
 #### {{< obi obidistribute >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/obidistribute/append >}}
+- {{< cmd-options/obidistribute/batches >}}
+- {{< cmd-options/obidistribute/classifier >}}
+- {{< cmd-options/obidistribute/directory >}}
+- {{< cmd-options/obidistribute/hash >}}
+- {{< cmd-options/obidistribute/na-value >}}
 
 {{< option-sets/input >}}
 

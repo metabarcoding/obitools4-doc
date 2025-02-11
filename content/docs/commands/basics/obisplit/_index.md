@@ -33,9 +33,14 @@ obisplit [--allows-indels] [--batch-size <int>] [--compress|-Z]
 
 #### {{< obi obisplit >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/obisplit/allows-indels >}}
+- {{< cmd-options/obisplit/config >}}
+- {{< cmd-options/obisplit/pattern-error >}}
+- {{< cmd-options/obisplit/template >}}
+
+#### Taxonomic options
+
+- {{< cmd-options/taxonomy >}}
 
 {{< option-sets/input >}}
 

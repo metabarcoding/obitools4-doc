@@ -30,11 +30,22 @@ obicsv [--auto] [--batch-size <int>] [--compress|-Z] [--count] [--debug]
 
 ### Options
 
-#### {{< obi obicsv >}} specific options:
+#### {{< obi obicsv >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/obicsv/auto >}}
+- {{< cmd-options/obicsv/count >}}
+- {{< cmd-options/obicsv/definition >}}
+- {{< cmd-options/obicsv/ids >}}
+- {{< cmd-options/keep >}}
+- {{< cmd-options/obicsv/na-value >}}
+- {{< cmd-options/obipairing >}}
+- {{< cmd-options/obicsv/quality >}}
+- {{< cmd-options/obicsv/sequence >}}
+- {{< cmd-options/obicsv/taxon >}}
+
+#### Taxonomic options
+
+- {{< cmd-options/taxonomy >}}
 
 {{< option-sets/input >}}
 

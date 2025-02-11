@@ -29,9 +29,9 @@ obisummary [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 #### {{< obi obisummary >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/no-order >}}
+- {{< cmd-options/obisummary/map >}}
+- {{< cmd-options/obisummary/yaml-output >}}
 
 {{< option-sets/input >}}
 

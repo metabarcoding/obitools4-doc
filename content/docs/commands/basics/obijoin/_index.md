@@ -31,11 +31,21 @@ obijoin --join-with|-j <string> [--batch-size <int>] [--by|-b <string>]...
 
 ## Options
 
+#### Required options
+
+- {{< cmd-options/obijoin/join-with >}}
+
 #### {{< obi obijoin >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/obijoin/by >}}
+- {{< cmd-options/paired-with >}}
+- {{< cmd-options/obijoin/update-id >}}
+- {{< cmd-options/obijoin/update-quality >}}
+- {{< cmd-options/obijoin/update-sequence >}}
+
+#### Taxonomic options
+
+- {{< cmd-options/taxonomy >}}
 
 {{< option-sets/input >}}
 

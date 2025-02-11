@@ -30,9 +30,13 @@ obimatrix [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 #### {{< obi obimatrix >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/obimatrix/map >}}
+- {{< cmd-options/obimatrix/na-value >}}
+- {{< cmd-options/no-order >}}
+- {{< cmd-options/obimatrix/sample-name >}}
+- {{< cmd-options/obimatrix/three-columns >}}
+- {{< cmd-options/obimatrix/transpose >}}
+- {{< cmd-options/obimatrix/value-name >}}
 
 {{< option-sets/input >}}
 

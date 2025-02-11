@@ -33,9 +33,12 @@ obidemerge [--batch-size <int>] [--compress|-Z] [--debug]
 
 #### {{< obi obidemerge >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/obidemerge/demerge >}}
+- {{< cmd-options/paired-with >}}
+
+#### Taxonomic options
+
+- {{< cmd-options/taxonomy >}}
 
 {{< option-sets/input >}}
 

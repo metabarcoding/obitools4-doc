@@ -31,6 +31,14 @@ obiconvert [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
 
 ## Options
 
+#### {{< obi obiconvert >}} specific options
+
+- {{< cmd-options/paired-with >}}
+
+#### Taxonomic options
+
+- {{< cmd-options/taxonomy >}}
+
 {{< option-sets/input >}}
 
 {{< option-sets/output >}}
