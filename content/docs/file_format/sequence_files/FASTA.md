@@ -19,13 +19,13 @@ for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA) 
 In addition to the classic `fasta ` format, OBITools uses an `extended
 version ` of this format where structured data is included in the title line.
 
-In *fasta* format, a sequence is represented by a title line beginning with a **>** character and the sequences by itself on the following lines using the `iupac ` code. The sequence is generally divided into several lines of the same length (with the exception of the last line, which may be shorter). 
+In *fasta* format, a sequence is represented by a title line starting with a **>** character and the sequences themselves on the following line(s) using the `iupac ` code. The sequence is generally divided into several lines of the same length (with the exception of the last line which may be shorter). 
 
 ```
 >my_sequence this is my pretty sequence
-    ACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGT
-    GTGCTGACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTGTTT
-    AACGACGTTGCAGTACGTTGCAGT
+ACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGT
+GTGCTGACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTACGTTGCAGTGTTT
+AACGACGTTGCAGTACGTTGCAGT
 ```
 
 ## Bibliography
