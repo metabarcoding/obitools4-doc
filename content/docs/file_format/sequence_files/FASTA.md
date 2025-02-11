@@ -16,12 +16,10 @@ url: "/formats/fasta"
 The *fasta* sequence file format is certainly the most widely used sequence file
 format. This is certainly due to its simplicity. It was originally created
 for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA) {{< cite "Pearson:1988aa" >}}.
-OBITools use in more of the classical :ref:`fasta ` format an :ref:`extended
-version ` of this format where structured data are included in the title line.
+In addition to the classic `fasta ` format, OBITools uses an `extended
+version ` of this format where structured data is included in the title line.
 
-In *fasta* format a sequence is represented by a title line beginning with a **>** character and
-the sequences by itself following the :doc:`iupac ` code. The sequence is usually split other 
-several lines of the same length (expect for the last one) 
+In *fasta* format, a sequence is represented by a title line beginning with a **>** character and the sequences by itself on the following lines using the `iupac ` code. The sequence is generally divided into several lines of the same length (with the exception of the last line, which may be shorter). 
 
 ```
 >my_sequence this is my pretty sequence
