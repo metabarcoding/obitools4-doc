@@ -20,7 +20,7 @@ Here is an example with two sequences in a {{% fasta %}} file:
 
 {{< code "two_sequences.fasta" fasta true >}}
 
-The following command allows to count the number of records, and provides a CSV file:
+The following command allows counting the number of records, and provides a CSV file:
 
 ```bash
 obicount two_sequences.fasta
