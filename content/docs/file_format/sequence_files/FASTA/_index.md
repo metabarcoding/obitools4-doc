@@ -13,7 +13,7 @@ url: "/formats/fasta"
 
 # The *FASTA* sequence file format
 
-The *FASTA* sequence file format is probably the most widely used sequence file format. This is probably due to its simplicity. It was originally created for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA) {{< cite "Pearson:1988aa" >}}.
+The *FASTA* sequence file format is the most widely used sequence file format. This is probably due to its simplicity. It was originally created for the Lipman and Pearson [FASTA program](https://en.wikipedia.org/wiki/FASTA) {{< cite "Pearson:1988aa" >}}.
 
 In the *FASTA* format, a sequence is represented by a title line starting with a **>** character, and the sequences themselves follow the [`iupac`]({{< ref "/docs/patterns/dnagrep/#iupac-codes-for-ambiguous-bases" >}}) code. The sequence is usually split into several other lines of the same length (expect for the last one). Several sequences can be stored in the same file. The first line of the next sequence also marks the end of the previous one.
 
@@ -28,7 +28,7 @@ The first word in the title line is the sequence identifier. The rest of the lin
 
 {{< code "two_sequences_obi2.fasta" fasta true >}}
 
-With {{% obitools4 %}} a new format has been introduced to store structured data in the title line. The *key*/*value* annotation pairs are now formatted as a [JSON](https://en.wikipedia.org/wiki/JSON) map object. The definition is stored as an additional *key*/*value* pair using the *key* `definition'.
+With {{% obitools4 %}} a new format has been introduced to store structured data in the title line. The *key*/*value* annotation pairs are now formatted as a [JSON](https://en.wikipedia.org/wiki/JSON) map object. The definition is stored as an additional *key*/*value* pair using the *key* 'definition'.
 
 {{< code "two_sequences_obi4.fasta" fasta true >}}
 

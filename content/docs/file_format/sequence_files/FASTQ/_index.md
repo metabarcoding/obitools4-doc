@@ -17,7 +17,7 @@ The [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) sequence file format is 
 
 In *FASTQ* format, each sequence entry consists of four lines:
 1. A sequence identifier line beginning with an **@** character
-2. The raw sequence letters following the [`iupac`]({{< ref "/docs/patterns/dnagrep/#iupac-codes-for-ambiguous-bases" >}}) code
+2. The raw sequence letters using the [`iupac`]({{< ref "/docs/patterns/dnagrep/#iupac-codes-for-ambiguous-bases" >}}) code
 3. A separator line beginning with a **+** character (optionally followed by the same sequence identifier)
 4. The quality scores encoded in ASCII format
 
