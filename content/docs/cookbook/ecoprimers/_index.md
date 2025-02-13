@@ -770,6 +770,8 @@ ls -l vertebrata*
 
 ### Looking for the *Teleostei* `taxid`
 
+To design a new DNA metabarcode for bony fish, we have first to find the *Teleostei* taxid.
+
 ```bash
 obitaxonomy -t ncbitaxo_20250211.tgz \
               --fixed \
@@ -790,9 +792,11 @@ ecoPrimers -d vertebrata \
            -l 30 -L 150 \
            -r 32443 \
            -c > Teleostei.ecoprimers
+```
 
 - Total pair count : 9407
 - Total good pair count : 407
+
 
 
 ```bash
@@ -836,6 +840,30 @@ head -35 Teleostei.ecoprimers
     14  ACACCGCCCGTCACTCTC      CACTTACCATGTTACGAC      62.5    36.8    51.1    27.7    12      8       GG      3850    0       0.985   3817    0       0.985   2649    0.694      35      121     55.51
 ```
   
+Table result description : 
+> - **column  1** : serial number
+> - **column  2** : primer1
+> - **column  3** : primer2
+> - **column  4** : primer1 Tm without mismatch
+> - **column  5** : primer1 lowest Tm against exemple sequences
+> - **column  6** : primer2 Tm without mismatch
+> - **column  7** : primer2 lowest Tm against exemple sequences
+> - **column  8** : primer1 G+C count
+> - **column  9** : primer2 G+C count
+> - **column 10** : good/bad
+> - **column 11** : amplified example sequence count
+> - **column 12** : amplified counterexample sequence count
+> - **column 13** : yule
+> - **column 14** : amplified example taxa count
+> - **column 15** : amplified counterexample taxa count
+> - **column 16** : ratio of amplified example taxa versus all example taxa (Bc index)
+> - **column 17** : unambiguously identified example taxa count
+> - **column 18** : ratio of specificity unambiguously identified example taxa versus all example taxa (Bs index)
+> - **column 19** : minimum amplified length
+> - **column 20** : maximum amplified length
+> - **column 21** : average amplified length
+
+
 * Primer ID :  11 
 
 &nbsp;
