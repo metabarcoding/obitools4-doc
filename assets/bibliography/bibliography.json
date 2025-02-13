@@ -130,5 +130,53 @@
     "title": "The Sanger FASTQ file format for sequences with quality scores, and the Solexa/Illumina FASTQ variants",
     "type": "article-journal",
     "volume": "38"
+  },
+  {
+    "DOI": "10.1093/nar/gkr732",
+    "ISSN": "0305-1048,1362-4962",
+    "PMID": "21930509",
+    "URL": "http://dx.doi.org/10.1093/nar/gkr732",
+    "abstract": "Using non-conventional markers, DNA metabarcoding allows biodiversity assessment from complex substrates. In this article, we present ecoPrimers, a software for identifying new barcode markers and their associated PCR primers. ecoPrimers scans whole genomes to find such markers without a priori knowledge. ecoPrimers optimizes two quality indices measuring taxonomical range and discrimination to select the most efficient markers from a set of reference sequences, according to specific experimental constraints such as marker length or specifically targeted taxa. The key step of the algorithm is the identification of conserved regions among reference sequences for anchoring primers. We propose an efficient algorithm based on data mining, that allows the analysis of huge sets of sequences. We evaluate the efficiency of ecoPrimers by running it on three different sequence sets: mitochondrial, chloroplast and bacterial genomes. Identified barcode markers correspond either to barcode regions already in use for plants or animals, or to new potential barcodes. Results from empirical experiments carried out on a promising new barcode for analyzing vertebrate diversity fully agree with expectations based on bioinformatics analysis. These tests demonstrate the efficiency of ecoPrimers for inferring new barcodes fitting with diverse experimental contexts. ecoPrimers is available as an open source project at: http://www.grenoble.prabi.fr/trac/ecoPrimers.",
+    "author": [
+      {
+        "family": "Riaz",
+        "given": "Tiayyba"
+      },
+      {
+        "family": "Shehzad",
+        "given": "Wasim"
+      },
+      {
+        "family": "Viari",
+        "given": "Alain"
+      },
+      {
+        "family": "Pompanon",
+        "given": "François"
+      },
+      {
+        "family": "Taberlet",
+        "given": "Pierre"
+      },
+      {
+        "family": "Coissac",
+        "given": "Eric"
+      }
+    ],
+    "container-title": "Nucleic acids research",
+    "id": "Riaz2011-gn",
+    "issue": "21",
+    "issued": {
+      "date-parts": [
+        [
+          2011,
+          11
+        ]
+      ]
+    },
+    "page": "e145",
+    "title": "ecoPrimers: inference of new DNA barcode markers from whole genome sequence analysis",
+    "type": "article-journal",
+    "volume": "39"
   }
 ]
