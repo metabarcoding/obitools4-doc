@@ -12,7 +12,7 @@ weight: 10
 
 ## Description 
 
-A denoising/clustering algorithm to filter out potential PCR-generated spurious sequences.
+A denoising (clustering) algorithm to filter out potential PCR-generated spurious sequences.
 
 ## Synopsis
 
@@ -34,9 +34,13 @@ obiclean [--batch-size <int>] [--compress|-Z] [--debug] [--distance|-d <int>]
 
 #### {{< obi obiclean >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/alignments/distance >}}
+- {{< cmd-options/alignments/head >}}
+- {{< cmd-options/alignments/min-eval-rate >}}
+- {{< cmd-options/alignments/ratio >}}
+- {{< cmd-options/alignments/sample >}}
+- {{< cmd-options/alignments/save-graph >}}
+- {{< cmd-options/alignments/save-ratio >}}
 
 {{< option-sets/input >}}
 

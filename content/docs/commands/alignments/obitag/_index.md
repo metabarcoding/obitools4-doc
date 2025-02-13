@@ -17,16 +17,29 @@ A Least Common Ancestor-based algorithm for taxonomic sequence annotation.
 ## Synopsis
 
 ```bash
-obitag [OPTIONS] [ARGS]
+obitag --reference-db|-R <FILENAME> [--batch-size <int>] [--compressed|-Z]
+           [--debug] [--ecopcr] [--embl] [--fasta] [--fasta-output] [--fastq]
+           [--fastq-output] [--force-one-cpu] [--genbank] [--geometric|-G]
+           [--help|-h|-?] [--input-OBI-header] [--input-json-header]
+           [--json-output] [--max-cpu <int>] [--no-order] [--no-progressbar]
+           [--out|-o <FILENAME>] [--output-OBI-header|-O] [--output-json-header]
+           [--paired-with <FILENAME>] [--pprof] [--pprof-goroutine <int>]
+           [--pprof-mutex <int>] [--save-db <FILENAME>] [--skip-empty] [--solexa]
+           [--taxonomy|-t <string>] [--version] [<args>]
 ```
 
 ## Options
 
 #### {{< obi obitag >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/alignments/reference-db >}}
+- {{< cmd-options/alignments/geometric >}}
+- {{< cmd-options/paired-with >}}
+- {{< cmd-options/alignments/save-db >}}
+
+#### Taxonomic options
+
+- {{< cmd-options/taxonomy >}}
 
 {{< option-sets/input >}}
 

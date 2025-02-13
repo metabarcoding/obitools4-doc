@@ -8,7 +8,7 @@ url: "/obitools/obipairing"
 weight: 20
 ---
 
-# `obipairing`: align the forward and reverse paired reads
+# `obipairing`: align forward and reverse paired reads
 
 ## Description 
 
@@ -67,7 +67,7 @@ CAACCAAGCCATTGAGTCTCTGCACCTATCCTTTTCCTTTGTATTCTCGTTCGAGAACCCCCTTGTTTTCTCAAAACACG
 I9IIIIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIIIIIIIIIIII-IIIIIIIIIIIII9II9II9IIIIII9IIIIIII9I9IIIIIIIIIIIIIII-IIIIIIIIIIIIIIIIIIIIIIIIIII9IIIIII-IIIIII99III--9I
 ```
 
-The sequence first sequence of the `forward.fastq` file having the id `LH00534:26:2237MWLT1:2:1101:3663:1096` will be paired with the first sequence of the `reverse.fastq` file having the same id `LH00534:26:2237MWLT1:2:1101:3663:1096`, not because they have the same identifier but because they are both the first sequence of their respective files.
+The first sequence of the `forward.fastq` file having the id `LH00534:26:2237MWLT1:2:1101:3663:1096` will be paired with the first sequence of the `reverse.fastq` file having the same id `LH00534:26:2237MWLT1:2:1101:3663:1096`, not because they have the same identifier but because they are both the first sequence of their respective files.
 
 ### The simplest {{< obi obipairing >}} command
 
@@ -112,13 +112,16 @@ I9--III99IIIIII-IIIIII9IIIIIIIIIIIIIIIIIIIIqqqqqJUUqqaqqaqqqqqqUqqaqQqqqqqqqaqqq
 
 ### The alignment process
 
-{{< obi obipairing >}} will align the reads following a two-step procedure to increase computation speed. The first step aligns the reads using a [FASTA derived algorithm](https://en.wikipedia.org/wiki/FASTA). Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm.
+{{< obi obipairing >}} will align the reads following a two-step procedure to increase computation speed.
+The first step aligns the reads using a [FASTA derived algorithm](https://en.wikipedia.org/wiki/FASTA).
+Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm.
 
 #### The FASTA like first step alignment
 
-That alignment allows for identifying the overlapping region of the reads, its position and its extent. Based on this results the best alignment procedure is selected for the second step, and the parts of the reads to be aligned are determined.
+That alignment allows for identifying the overlapping region of the reads, its position and its extent.
+Based on these results, the best alignment procedure is selected for the second step, and the parts of the reads to be aligned are determined.
 
-### The annotation added to the FASTQ header for each read
+### Annotations added to the FASTQ header for each read
 
 - mode
 - ali_dir
