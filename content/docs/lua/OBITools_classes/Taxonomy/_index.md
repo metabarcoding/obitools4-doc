@@ -8,3 +8,9 @@ weight: 30
 # bookComments: false
 # bookSearchExclude: false
 ---
+
+# The `Taxonomy` class 
+
+## Constructor of `Taxonomy`
+
+## `Taxonomy` Methods

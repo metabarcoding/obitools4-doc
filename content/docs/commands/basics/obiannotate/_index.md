@@ -55,7 +55,7 @@ obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
 - {{< cmd-options/approx-pattern >}}
 - {{< cmd-options/attribute >}}
 - {{< cmd-options/obiannotate/clear >}}
-- {{< cmd-options/cut >}}
+- {{< cmd-options/obiannotate/cut >}}
 - {{< cmd-options/definition >}}
 - {{< cmd-options/delete-tag >}}
 - {{< cmd-options/has-attribute >}}
@@ -78,8 +78,8 @@ obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
 - {{< cmd-options/pattern-name >}}
 - {{< cmd-options/predicate >}}
 - {{< cmd-options/rename-tag >}}
-- {{< cmd-options/require-rank >}}
-- {{< cmd-options/restrict-to-taxon >}}
+- {{< cmd-options/taxonomy/require-rank >}}
+- {{< cmd-options/taxonomy/restrict-to-taxon >}}
 - {{< cmd-options/scientific-name >}}
 - {{< cmd-options/sequence >}}
 - {{< cmd-options/set-identifier >}}
@@ -87,10 +87,10 @@ obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
 
 #### Taxonomic options
 
-- {{< cmd-options/taxonomy >}}
-- {{< cmd-options/taxonomic-rank >}}
-- {{< cmd-options/taxonomic-path >}}
-- {{< cmd-options/with-taxon-at-rank >}}
+- {{< cmd-options/taxonomy/taxonomy >}}
+- {{< cmd-options/taxonomy/taxonomic-rank >}}
+- {{< cmd-options/taxonomy/taxonomic-path >}}
+- {{< cmd-options/taxonomy/with-taxon-at-rank >}}
 
 {{< option-sets/input >}}
 

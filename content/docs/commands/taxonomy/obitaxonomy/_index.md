@@ -32,23 +32,25 @@ obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--debug]
 
 #### {{< obi obitaxonomy >}} specific options
 
-- {{< cmd-options/taxonomy/alternative-names >}}
-- {{< cmd-options/taxonomy/download-ncbi >}}
-- {{< cmd-options/taxonomy/dump >}}
-- {{< cmd-options/taxonomy/extract-taxonomy >}}
-- {{< cmd-options/taxonomy/fixed >}}
-- {{< cmd-options/taxonomy/parents >}}
-- {{< cmd-options/taxonomy/rank >}}
-- {{< cmd-options/taxonomy/rank-list >}}
-- {{< cmd-options/taxonomy/raw-taxid >}}
-- {{< cmd-options/taxonomy/restrict-to-taxon >}}
-- {{< cmd-options/taxonomy/sons >}}
-- {{< cmd-options/taxonomy >}}
-- {{< cmd-options/taxonomy/with-path >}}
-- {{< cmd-options/taxonomy/with-query >}}
-- {{< cmd-options/taxonomy/without-parent >}}
-- {{< cmd-options/taxonomy/without-rank >}}
-- {{< cmd-options/taxonomy/without-scientific-name >}}
+- {{< cmd-options/obitaxonomy/alternative-names >}}
+- {{< cmd-options/obitaxonomy/download-ncbi >}}
+- {{< cmd-options/obitaxonomy/dump >}}
+- {{< cmd-options/obitaxonomy/extract-taxonomy >}}
+- {{< cmd-options/obitaxonomy/fixed >}}
+- {{< cmd-options/obitaxonomy/parents >}}
+- {{< cmd-options/obitaxonomy/rank >}}
+- {{< cmd-options/obitaxonomy/rank-list >}}
+- {{< cmd-options/obitaxonomy/raw-taxid >}}
+- {{< cmd-options/obitaxonomy/restrict-to-taxon >}}
+- {{< cmd-options/obitaxonomy/sons >}}
+- {{< cmd-options/obitaxonomy/with-path >}}
+- {{< cmd-options/obitaxonomy/with-query >}}
+- {{< cmd-options/obitaxonomy/without-parent >}}
+- {{< cmd-options/obitaxonomy/without-rank >}}
+- {{< cmd-options/obitaxonomy/without-scientific-name >}}
+
+#### Taxonomic options
+- {{< cmd-options/taxonomy/taxonomy >}}
 
 {{< option-sets/common >}}
 

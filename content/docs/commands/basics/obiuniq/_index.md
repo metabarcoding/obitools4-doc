@@ -39,13 +39,12 @@ obiuniq [--batch-size <int>] [--category-attribute|-c <CATEGORY>]...
 - {{< cmd-options/in-memory >}}
 - {{< cmd-options/obiuniq/merge >}}
 - {{< cmd-options/obiuniq/na-value >}}
-- {{< cmd-options/no-order >}}
 - {{< cmd-options/obiuniq/no-singleton >}}
 - {{< cmd-options/paired-with >}}
 
 #### Taxonomic options
 
-- {{< cmd-options/taxonomy >}}
+- {{< cmd-options/taxonomy/taxonomy >}}
 
 {{< option-sets/input >}}
 

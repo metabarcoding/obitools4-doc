@@ -47,7 +47,6 @@ obitagpcr --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
 - {{< cmd-options/demultiplexing/keep-errors >}}
 - {{< cmd-options/demultiplexing/min-identity >}}
 - {{< cmd-options/demultiplexing/min-overlap >}}
-- {{< cmd-options/no-order >}}
 - {{< cmd-options/demultiplexing/penalty-scale >}}
 - {{< cmd-options/demultiplexing/reorientate >}}
 - {{< cmd-options/demultiplexing/tag-list >}}

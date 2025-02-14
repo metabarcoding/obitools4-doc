@@ -10,22 +10,22 @@ weight: 1
 bibFile: bibliography/bibliography.json 
 ---
 
-# Designing new barcodes with Ecoprimers
+# Designing new barcodes with ecoPrimers
 
 [`ecoPrimers`](http://metabarcoding.org/ecoprimers) {{< cite "Riaz2011-gn" >}} is a tool for designing new DNA metabarcodes. 
 It is capable of working with a collection of mitochondrial genomes, chloroplast genomes or rRNA nuclear gene clusters. It is an alignment free method, which guarantees its efficiency.
 
-The [`ecoPrimers`](http://metabarcoding.org/ecoprimers) were developed to be used in conjunction with the original OBITools. Therefore, using it with the new {{% obitools4 %}} requires some special care in data preparation.
+The [`ecoPrimers`](http://metabarcoding.org/ecoprimers) program was developed to be used in conjunction with the original *OBITools*. Therefore, using it with the new {{% obitools4 %}} requires some special care in data preparation.
 
 In this recipe we will use [`ecoPrimers`](http://metabarcoding.org/ecoprimers) to design a new bony fish DNA metabarcode.
 
-## Getting [`ecoPrimers`](http://metabarcoding.org/ecoprimers)
+## Installation of [`ecoPrimers`](http://metabarcoding.org/ecoprimers)
 
-[`ecoPrimers`](http://metabarcoding.org/ecoprimers) is available from the [Git metabarcoding](https://git.metabarcoding.org) site at
+[`ecoPrimers`](http://metabarcoding.org/ecoprimers) is available from the git reposiroty of [metabarcoding](https://git.metabarcoding.org) site at
 
 - https://git.metabarcoding.org/obitools/ecoprimers
 
-Installation can be done by cloning the project
+Installation can be done by cloning the project:
 
 ```bash
 git clone https://git.metabarcoding.org/obitools/ecoprimers.git
@@ -38,13 +38,15 @@ You will need to change your current working directory to this `ecoprimers/src` 
 cd ecoprimers/src
 ```
 
-It's now possible to compile the ecoPrimers program using the make command
+It is now possible to compile the ecoPrimers program using the make command:
 
 ```bash
 make
 ```
 
-This command will produce a series of messages on your screen similar to the following. You may get some extra warning messages, but no errors should be reported. If compilation is successful, an `ecoPrimers` executable will be created in the current directory.
+This command will produce a series of messages on your screen similar to the following.
+You may get some extra warning messages, but no errors should be reported.
+If compilation is successful, an `ecoPrimers` executable will be created in the current directory.
 
 ```
 gcc -DMAC_OS_X -M  -o ecoprimer.d ecoprimer.c
@@ -119,8 +121,8 @@ ranlib libthermo.a
 gcc -g  -O5 -m64 -o ecoPrimers ecoprimer.o -LlibecoPCR -Llibecoprimer -Llibthermo -L/usr/local/lib -lecoprimer -lecoPCR -lthermo -lz -lm 
 ```
 
-You can now copy the `ecoPrimers' executable to a directory that is part of your PATH environment variable.
-You can use the following command to list all these directories. On my computer the result is
+You can now copy the `ecoPrimers` executable to a directory that is part of your `PATH` environment variable.
+You can use the following command to list all these directories. For example, the result is:
 
 ```bash
 for p in $path; do echo $p; done | sort -u
@@ -137,16 +139,16 @@ for p in $path; do echo $p; done | sort -u
 /usr/sbin
 ```
 
-From this list you can choose the directory where you want to install the `ecoPrimers' executable.
-`/Users/coissac/bin` can be a good choice, as it is in the path of my home directory, and therefore does not require root privileges to copy the `ecoPrimers` executable into. `/usr/local/bin` is also a good choice, as it is the default directory for installing non-standard software on a UNIX system. When software is installed in `/usr/local/bin`, it is available to all users of the system. However, copying the `ecoPrimers` executable to `/usr/local/bin` requires root privileges.
+From this list you can choose the directory where you want to install the `ecoPrimers` executable.
+Here we can choose the folder `/Users/coissac/bin` to store it, as it is in the path of the home directory, and therefore does not require root privileges to copy the `ecoPrimers` executable into. `/usr/local/bin` is also a good choice, as it is the default directory for installing non-standard software on a UNIX system. When software is installed in `/usr/local/bin`, it is available to all users of the system. However, copying the `ecoPrimers` executable to `/usr/local/bin` requires root privileges.
 
-To install the software for myself without root privileges:
+If we install the software without root privileges:
 
 ```bash
 cp ecoPrimers /Users/coissac/bin
 ```
 
-To install the software for all users on the system, but with root privileges:
+If we install the software for all users on the system, but with root privileges:
 
 ```bash
 sudo cp ecoPrimers /usr/local/bin
@@ -156,7 +158,7 @@ sudo cp ecoPrimers /usr/local/bin
 
 ### What do we need ?
 
-To design a new animal DNA metabarcode we download from the NCBI the following data
+To design a new animal DNA metabarcode, we have to download the following data from the NCBI website:
 
 -   The complete set of whole mitochondrial genomes
 -   The NCBI taxonomy
@@ -165,18 +167,20 @@ To design a new animal DNA metabarcode we download from the NCBI the following d
 
 The file containing the complete set of mitochondrial genomes can be downloaded using your favourite web browser from the [NCBI FTP website](https://ftp.ncbi.nlm.nih.gov/genomes/refseq/mitochondrion).
 
-![](ncbi-ftp.png){fig-align="center"}
+![](ncbi-ftp.png)
 
-You will need to download the Genbank flat file format of the data. The file with the extension `gbff.gz`. This is the only one that contains the link to the NCBI taxonomy for each sequence.
+You will need to download the GenBank flat file format of the data, with extension `gbff.gz`.
+This is the only one that contains the link to the NCBI taxonomy for each sequence.
 
-If you need to download the data on a UNIX computer, you may not have access to a web browser on that system. In this case, you can use the `curl` command line tool to download the file. The `curl` command line tool is available on most UNIX systems and allows you to download files from the Internet by knowing their URL. 
+If you need to download the data on a UNIX computer, you may not have access to a web browser on that system.
+In this case, use the `curl` command to download the file:
 
 ```bash
 curl 'https://ftp.ncbi.nlm.nih.gov/genomes/refseq/mitochondrion/mitochondrion.1.genomic.gbff.gz' \
      > mito.all.gb.gz
 ```
 
-Because the file is compressed, you must use the `zless` command instead of the classic `less` command to inspect the file without decompressing it first. 
+Because the file is compressed, you must use the `zless` command instead of the classic `less` command to inspect the file without decompressing it first:
 
 ```bash
 zless mito.all.gb.gz
@@ -265,9 +269,9 @@ INFO[0000] Downloading NCBI Taxdump to ncbitaxo_20250211.tgz
 downloading 100% ████████████████████████████████████████| (66/66 MB, 5.1 MB/s)   
 ```
 
-By default, the {{< obi obitaxonomy >}} downloads the latest version of the NCBI taxonomy available from the NCBI FTP site and saves it to the current directory in a file named `ncbitaxo_YYYYMMDD.tgz` where `YYYY` is the year, `MM` is the month and `DD` is the day of the download. Here the date is 2025/02/11, so the filename is `ncbitaxo_20250211.tgz`.
+By default, {{< obi obitaxonomy >}} downloads the latest version of the NCBI taxonomy available from the NCBI FTP site and saves it to the current directory in a file named `ncbitaxo_YYYYMMDD.tgz` where `YYYY` is the year, `MM` is the month and `DD` is the day of the download. Here the date is 2025/02/11, so the filename is `ncbitaxo_20250211.tgz`.
 
-You can also specify the filename of the downloaded file using the `--out filename` option. For example
+You can also specify the filename of the downloaded file using the `--out filename` option. For example:
 
 ```bash
 obitaxonomy --download-ncbi --out ncbitaxo.tgz
@@ -278,10 +282,9 @@ obitaxonomy --download-ncbi --out ncbitaxo.tgz
 The NCBI taxonomy dump file contains all the relationships between taxa.
 This information is stored in two files: `nodes.dmp` and `names.dmp`.
 
+- The **nodes.dmp** file:
 
-- file: nodes.dmp
-
-  This file contains the taxonomic hierarchy of the NCBI taxonomy. It is a tabular file 
+  It contains the taxonomic hierarchy of the NCBI taxonomy. It is a tabular file 
   where the columns are separated by a `|` character and some whitespace. 
 
   - The first column is the taxid of the taxon. 
@@ -302,9 +305,9 @@ This information is stored in two files: `nodes.dmp` and `names.dmp`.
 14	|	13	|	species	|	DT	|	0	|	1	|
 ```
 
-- file: `names.dmp`
+- The **names.dmp** file:
 
-  This file contains the scientific names, and a set of alternative names, for all the taxa. It is also a tabular file where the columns are separated by a `|` character and some whitespace. 
+  It contains the scientific names, and a set of alternative names, for all the taxa. It is also a tabular file where the columns are separated by a `|` character and some whitespace. 
 
   - The first column is the taxid of the taxon. 
   - The second column is the name of the taxon. 
@@ -327,12 +330,12 @@ This information is stored in two files: `nodes.dmp` and `names.dmp`.
 14	|	Dictyoglomus thermophilum	|		|	scientific name	|
 ```
 
-The archive contains a `readme.txt` file that contains information about all the files present in the archive.
-Please read it to get the full information about the NCBI taxonomy dump file.
+A `readme.txt` file is present in the archive for more information about the NCBI taxonomy dump file.
 
 ## Preparing the set of complete genomes
 
-With {{% obitools %}}, the favorite format for storing sequences is the {{% fasta %}} format. Therefore, we will use the {{< obi obiconvert >}} tool to convert the genbank files to the {{% fasta %}} format. 
+With {{% obitools %}}, the favorite format for storing sequences is the {{% fasta %}} format.
+Therefore, we will use the {{< obi obiconvert >}} tool to convert the GenBank files into {{% fasta %}} format. 
 
 ```bash
 obiconvert --skip-empty \
@@ -343,9 +346,9 @@ obiconvert --skip-empty \
 head -5 mito.all.fasta
 ```
 
-It is not equivalent downloading directly the fasta formatted file from the NCBI FTP site and downloading the Genbank format, then converting it to the {{% fasta %}} format using {{< obi obiconvert >}}. Only in the later case, the {{% fasta %}} formated file will contain the taxid of the taxon. 
+It is not equivalent downloading directly the fasta formatted file from the NCBI FTP site and downloading a GenBank file that will be converted in {{% fasta %}} format using {{< obi obiconvert >}}. By converting from GenBank format, the {{% fasta %}} formatted file will contain the taxid of the taxon.
 
-Below is presented the five first lines of the new `mito.all.fasta` file
+Here are the first lines of the `mito.all.fasta` file:
 
 ```
 >NC_072933 {"definition":"Echinosophora koreensis mitochondrion, complete genome.","scientific_name":"mitochondrion Echinosophora koreensis","taxid":228658}
@@ -357,7 +360,7 @@ agctatctttcaaggaagtcagtctaagccctaagccaagatctgctttttgccagtcaa
 
 ## Preparing a database for new barcode inference
 
-Three steps are necessary to prepare the database well for new barcode inference.
+Preparing a database for new barcode inference involves three steps:
 
 - Annotate the sequences by their species `taxid`.
 - Make sure that no species is represented much more than the others.
@@ -378,7 +381,7 @@ taxon:1261581 [Vertebrata]@genus,taxon:2008651 [Polysiphonioideae]@subfamily,gen
 taxon:7742 [Vertebrata]@clade,taxon:89593 [Craniata]@subphylum,clade,Vertebrata
 ```
 
-To make the CSV output easier to read, we will use the `csvlook` tool, which displays the CSV file as a nice table. 
+The `csvlook` command allows to have a pretty and more readable table: 
 
 ```bash
 obitaxonomy -t ncbitaxo_20250211.tgz \
@@ -395,10 +398,9 @@ obitaxonomy -t ncbitaxo_20250211.tgz \
 
 Surprisingly, the Latin name *Vertebrata* is shared by two different taxa. The first is a genus and obviously not the one we are looking for. The second is a clade, and it is the one we are looking for. 
 
-#### Looking for the *Vertebrata* genus Taxid
+#### Looking for the *Vertebrata* genus taxid
 
 Just out of curiosity, we are going to search for the taxonomic path *Vertebrata* genus taxid. 
-
 
 ```bash
 obitaxonomy -t ncbitaxo_20250211.tgz \
@@ -421,14 +423,16 @@ obitaxonomy -t ncbitaxo_20250211.tgz \
 
 You can see that *Vertebrata* genus belongs to the *Rhodophyta* phylum, which corresponds to red algae. 
 
-
 ### Re-annotation of sequences to species level and selection of genomes
 
 In order to know how species are represented in the database, and more specifically how many sequences represent each species, we will annotate the sequences with taxonomic information at the species level. We need to do this because some mitochondrial genomes can be annotated at other taxonomic levels, such as subspecies.
 
-{{< obi obiannotate >}} can perform this task using the `--with-taxon-at-rank` option. This option requires you to specify the taxonomic rank at which the annotation should be performed. In our case we will use the rank `species'. The species taxid is stored in the `species_taxid` tag of the sequence.
+{{< obi obiannotate >}} can perform this task using the `--with-taxon-at-rank` option.
+This option requires you to specify the taxonomic rank at which the annotation should be performed.
+In this example case, we have to use the rank `species`.
+The species taxid is stored in the `species_taxid` tag of the sequence.
 
-In the following command we combine three {{< obi obiannotate >}} commands with one {{< obi obiuniq >}} command using the `|` pipe operator. 
+In the following command we combine three {{< obi obiannotate >}} commands with one {{< obi obiuniq >}} command using the `|` pipe operator (see the *General operating principles* section):
 
 ```bash
 obiannotate -t ncbitaxo_20250211.tgz \
@@ -478,14 +482,15 @@ attaattatatttaatagaattaaactatttccttagatatcaaaaatctttatacatca
 
 Look carefully at this latest version of the sequence. The `taxid` tag has been updated to the species taxid, the `ori_taxid` tag contains the original taxid as provided by Genbank, and the `species_taxid` tag also contains the species taxid. 
 
-The last {{< obi obiuniq >}} merges in a single sequence entry all the sequences strictly identical. Here the `-c taxid` option ensures that only sequences with the same taxid are merged. Therefore, two strictly identical sequences not annotated with the same taxid will be kept as two sequence entries. 
+The last {{< obi obiuniq >}} merges in a single sequence entry all the sequences strictly identical.
+Here, the `-c taxid` option ensures that only sequences with the same taxid are merged. Therefore, two strictly identical sequences not annotated with the same taxid will be kept as two sequence entries. 
 
-### Look at the evenness of the Species representation
+### Look at the evenness of the species representation
 
-Our goal here is to do a histogram of the number of sequences per species with the help of UNIX commands. 
+The goal here is to create a histogram representing the number of sequences per species, thanks to UNIX commands. 
 More specifically, how many species are represented by one, two, three or more sequences. 
 
-The last command we will run is the following:
+The last command to run is the following:
 
 ```bash
 obicsv -k taxid mito.one.fasta \
@@ -499,7 +504,7 @@ obicsv -k taxid mito.one.fasta \
 
 But first, try to understand what is going on. 
 
-{{< obi obicsv >}} converts a sequence file into a CSV file. Here because of the `-k taxid` option, the CSV file will only contain the `taxid` tag for every sequence. The `head` command is head to only display the top ten first lines of the result.
+{{< obi obicsv >}} converts a sequence file into a CSV file. Here because of the `-k taxid` option, the CSV file will only contain the `taxid` tag for every sequence. The `head` command is used to display the top ten first lines of the result.
 
 ```bash
 obicsv -k taxid mito.one.fasta \
@@ -539,8 +544,7 @@ taxon:763200 [Arma chinensis]@species
 taxon:2060314 [Neotrygon indica]@species
 ```
 
-As you can see, the first line of the output does not contain the `taxid` column name header present in the previous output. 
-
+As you can see, the first line of the output does not contain the `taxid` column name header present in the previous output.
 In the next command, the `sort` command is used to sort the line to put identical `taxid` values in a row. 
 
 ```bash
@@ -636,8 +640,8 @@ obicsv -k taxid mito.one.fasta \
      └                                        ┘ 
 ```
 
-As you can see, very few taxa are represented by more than one mitochondrial genome, while 17769 species are represented by a single genome. Here we can assume that the mitochondrial genomes are not too much biased in favour of a particular taxon.
-
+Very few taxa are represented by more than one mitochondrial genome, while 17769 species are represented by a single genome.
+Here we can assume that the mitochondrial genomes are not too much biased in favour of a particular taxon.
 
 ### Selection of *vertebrate* genomes
 
@@ -894,7 +898,6 @@ Suppose we decide to focus on the 11<sup>th</sup> pair because it seems to have 
 * identify    2650/3876 Species
 * Size ranging from 54bp to 140bp (mean: 74.75 bp)
 
- 
 ## Testing the new primer pair
 
 To better characterise this pair, we can now use the `obipcr` tool to extract the barcode sequence corresponding to this pair from the learning database. 

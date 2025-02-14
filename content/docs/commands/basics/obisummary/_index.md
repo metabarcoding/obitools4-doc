@@ -29,7 +29,6 @@ obisummary [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 #### {{< obi obisummary >}} specific options
 
-- {{< cmd-options/no-order >}}
 - {{< cmd-options/obisummary/map >}}
 - {{< cmd-options/obisummary/yaml-output >}}
 

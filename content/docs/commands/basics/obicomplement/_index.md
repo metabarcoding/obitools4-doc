@@ -36,7 +36,7 @@ obicomplement [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
 
 #### Taxonomic options
 
-- {{< cmd-options/taxonomy >}}
+- {{< cmd-options/taxonomy/taxonomy >}}
 
 {{< option-sets/input >}}
 

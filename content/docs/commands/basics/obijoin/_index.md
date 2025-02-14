@@ -45,7 +45,7 @@ obijoin --join-with|-j <string> [--batch-size <int>] [--by|-b <string>]...
 
 #### Taxonomic options
 
-- {{< cmd-options/taxonomy >}}
+- {{< cmd-options/taxonomy/taxonomy >}}
 
 {{< option-sets/input >}}
 

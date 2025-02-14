@@ -45,7 +45,7 @@ sequence_id
 
 A `string` parameter representing a nucleic sequence can be provided to the
 `id` method. In this case, the id of the `BioSequence` object is
-substituted by the new string. The method doesn't return anything.
+substituted by the new string. The method does not return anything.
 
 ```lua
 sequence = BioSequence.new("sequence_id","gctagctgtgatgctgatgctagct")
@@ -57,7 +57,6 @@ print(sequence:id())
 sequence_id
 new_id
 ```
-
 
 ### `sequence` : the nucleic sequence
 
@@ -74,7 +73,7 @@ gctagctgtgatgctgatgctagct
 
 A `string` parameter representing a nucleic sequence can be provided to the
 `sequence` method. In this case, the current sequence of the object is
-substituted by the new string. The method doesn't return anything.
+substituted by the new string. The method does not return anything.
 
 ```lua
 sequence = BioSequence.new("sequence_id","gctagctgtgatgctgatgctagct")
@@ -86,8 +85,6 @@ print(sequence:sequence())
 gctagctgtgatgctgatgctagct
 cgatctagcta
 ```
-
-
 
 ### `qualities`
 

@@ -38,7 +38,7 @@ obidemerge [--batch-size <int>] [--compress|-Z] [--debug]
 
 #### Taxonomic options
 
-- {{< cmd-options/taxonomy >}}
+- {{< cmd-options/taxonomy/taxonomy >}}
 
 {{< option-sets/input >}}
 

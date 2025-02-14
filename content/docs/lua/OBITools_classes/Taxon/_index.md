@@ -8,3 +8,9 @@ weight: 40
 # bookComments: false
 # bookSearchExclude: false
 ---
+
+# The `Taxon` class 
+
+## Constructor of `Taxon`
+
+## `Taxon` Methods

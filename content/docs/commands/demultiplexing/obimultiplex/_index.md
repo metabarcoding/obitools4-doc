@@ -36,7 +36,6 @@ obimultiplex [--allowed-mismatches|-e <int>] [--batch-size <int>]
 
 - {{< cmd-options/demultiplexing/allowed-mismatches >}}
 - {{< cmd-options/demultiplexing/keep-errors >}}
-- {{< cmd-options/no-order >}}
 - {{< cmd-options/paired-with >}}
 - {{< cmd-options/demultiplexing/tag-list >}}
 - {{< cmd-options/demultiplexing/template >}}
@@ -45,7 +44,7 @@ obimultiplex [--allowed-mismatches|-e <int>] [--batch-size <int>]
 
 #### Taxonomic options
 
-- {{< cmd-options/taxonomy >}}
+- {{< cmd-options/taxonomy/taxonomy >}}
 
 {{< option-sets/input >}}
 

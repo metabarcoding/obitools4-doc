@@ -40,7 +40,7 @@ obisplit [--allows-indels] [--batch-size <int>] [--compress|-Z]
 
 #### Taxonomic options
 
-- {{< cmd-options/taxonomy >}}
+- {{< cmd-options/taxonomy/taxonomy >}}
 
 {{< option-sets/input >}}
 

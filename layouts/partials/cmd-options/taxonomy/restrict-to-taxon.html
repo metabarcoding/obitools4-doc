@@ -1,6 +1,5 @@
 {{ partial "cmd-options/option.html" 
 (dict "name" "restrict-to-taxon"
       "short" "r"
-      "param" "string"
-      "documentation" `Restrict output to some subclades. (default: [])`) 
-}}
+      "param" "TAXID"
+      "documentation" `Require that the actual taxon of the sequence belongs the provided taxid.`) }}

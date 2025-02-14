@@ -39,7 +39,7 @@ obitag --reference-db|-R <FILENAME> [--batch-size <int>] [--compressed|-Z]
 
 #### Taxonomic options
 
-- {{< cmd-options/taxonomy >}}
+- {{< cmd-options/taxonomy/taxonomy >}}
 
 {{< option-sets/input >}}
 

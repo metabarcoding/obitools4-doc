@@ -45,7 +45,7 @@ obicsv [--auto] [--batch-size <int>] [--compress|-Z] [--count] [--debug]
 
 #### Taxonomic options
 
-- {{< cmd-options/taxonomy >}}
+- {{< cmd-options/taxonomy/taxonomy >}}
 
 {{< option-sets/input >}}
 
