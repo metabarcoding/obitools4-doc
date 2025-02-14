@@ -688,16 +688,16 @@ cd ..
 
 #### Converting the database to the old obitools format
 
-Now {{% obitools4 %}} are storing annotation using the JSON format. 
+Now {{% obitools4 %}} stores the annotations in JSON format. 
 
 ```
->NC_050066 {"definition":"Monochamus alternatus alternatus mitochondrion, complete genome.","ori_taxid":"taxon:2756270 [Monochamus alternatus alternatus]@subspecies","scientific_name":"mitochondrion Monochamus alternatus alternatus","species_name":"Monochamus alternatus","species_taxid":"taxon:192382 [Monochamus alternatus]@species","taxid":"taxon:192382 [Monochamus alternatus]@species"}
+>NC_050066 {"definition":"Monochamus alternatus alternatus mitochondrion, complete genome. ","ori_taxid":"taxon:2756270 [Monochamus alternatus alternatus]@subspecies","scientific_name":"mitochondrion Monochamus alternatus alternatus","species_name":"Monochamus alternatus","species_taxid":"taxon:192382 [Monochamus alternatus]@species","taxid":"taxon:192382 [Monochamus alternatus]@species"}
 aatgaagtgcctgagcaaagggtaattttgatagaattagtaacgtgaattttcaccttc
 attaattatatttaatagaattaaactatttccttagatatcaaaaatctttatacatca
 ...
 ```
 
-When the original OBITools stored annotation a `key=value;` format.
+The original OBITools stored the annotation in a `key=value;` format.
 
 ```
 >NC_050066 ori_taxid=taxon:2756270 [Monochamus alternatus alternatus]@subspecies; scientific_name=mitochondrion Monochamus alternatus alternatus; species_name=Monochamus alternatus; species_taxid=taxon:192382 [Monochamus alternatus]@species; taxid=taxon:192382 [Monochamus alternatus]@species; count=1;  Monochamus alternatus alternatus mitochondrion, complete genome.
@@ -706,7 +706,7 @@ attaattatatttaatagaattaaactatttccttagatatcaaaaatctttatacatca
 ...
 ```
 
-When option `-O` is added to an {{% obitools4 %}} command, the old OBITools format is used instead of the JSON format.
+When the `-O` option is added to a {{% obitools4 %}} command, the old OBITools format is used instead of the new JSON-based format.
 
 ```bash
 obiconvert -O mito.vert.fasta > mito.vert.old.fasta
@@ -749,12 +749,12 @@ ecoPCRFormat -t ncbitaxo_20250211 \
              mito.vert.old.fasta
 ```
 
-- `-t`option specifies the directory where the taxonomy database is located.
-- `-f` option specifies that the input file is in fasta format.
-- `-n` option specifies the name of the indexed learning database.
+- The `-t` option specifies the directory where the taxonomy database is located.
+- The `-f` option specifies that the input file is in fasta format.
+- The `-n` option specifies the name of the indexed learning database.
 - The last parameter `mito.vert.old.fasta` is the name of the input file containing the sequences to be indexed.
 
-That command will create the following index files:
+This command creates the following index files:
 
 ```bash
 ls -l vertebrata*
@@ -768,7 +768,7 @@ ls -l vertebrata*
 
 ## Selecting the best primer pairs
 
-### Looking for the *Teleostei* `taxid`
+### Searching the *Teleostei* `taxid`
 
 To design a new DNA metabarcode for bony fish, we have first to find the *Teleostei* taxid.
 
@@ -796,20 +796,20 @@ ecoPrimers -d vertebrata \
            -c > Teleostei.ecoprimers
 ```
 
-- The `-d` option allows specifying the learning database, here the vertebrate mitochondrial genome database indexed above.
-- The `-e` option specifies the maximum number of mismatch allowed between the primer and the priming site. The number of mismatches is per primer.
-- The `-3` option, here used with the *2* argument (`-3 2`) indicates that mismatches are disallowed on the 2 last nucleotides (3' extremity) of the primer.
-- The `-l` option specify the minimum length of the barcode (excluding primers) to look for.
-- The `-L` option specify the maximum length of the barcode (excluding primers) to look for.
-- The `-r` indicates to which taxon (here *Teleostei*) `ecoPrimers` will focus on.
-- The `-c` is for specifying that the learning database is constituted of circular genomes.
+- The `-d` option allows you to specify the learning database, here the vertebrate mitochondrial genome database indexed above.
+- The `-e` option specifies the maximum number of mismatches allowed between the primer and the priming site. The number of mismatches is per primer.
+- The `-3` option, used here with the *2* argument (`-3 2`), indicates that no mismatches are allowed on the last two nucleotides (3' end) of the primer.
+- The `-l` option specifies the minimum length of the barcode (excluding primers) to search for.
+- The `-L` option specifies the maximum length of the barcode (excluding primers) to search for.
+- The `-r` indicates which taxon (here *Teleostei*) `ecoPrimers` will focus on.
+- The `-c` indicates that the learning database consists of circular genomes.
 
-After running several minutes, writing on the terminal information about its progression, `ecoPrimer` returns an here indicates that it identified :
+After a few minutes of running and writing information about its progress to the terminal, `ecoPrimer` returns a here, indicating that it has identified :
 
-- Total pair count : 9407
-- Total good pair count : 407
+- Total number of pairs : 9407
+- Total number of good pairs : 407
 
-We can now take a look at the beginning of the result file.
+We can now have a look at the beginning of the result file.
 
 ```bash
 head -35 Teleostei.ecoprimers
@@ -852,10 +852,10 @@ head -35 Teleostei.ecoprimers
     14  ACACCGCCCGTCACTCTC      CACTTACCATGTTACGAC      62.5    36.8    51.1    27.7    12      8       GG      3850    0       0.985   3817    0       0.985   2649    0.694      35      121     55.51
 ```
   
-The result file is composed of two parts. The header, constituted of lines starting with the `#` character, recalls all the parameters used by the `ecoPrimer` algorithms and some statistics about the database and the
+The result file consists of two parts. The header, consisting of lines starting with the `#` character, contains all the parameters used by the `ecoPrimer` algorithms and some statistics about the database and the
 current search.
 
-The second part is a tabular text, describing all the potential primer pairs identified. Just below is detailed the information present in each column.
+The second part is a tabular text describing all potential primer pairs identified. Immediately below this is a detailed description of the information contained in each column.
 
 Table result description : 
 > - **column  1** : serial number
@@ -880,11 +880,9 @@ Table result description :
 > - **column 20** : maximum amplified length
 > - **column 21** : average amplified length
 
-Suppose that we decide to focus on the 11<sup>th</sup> pair because it seems to have relatively good characteristics and especially have a relatively equilibrate melting temperature between the two primers. 
+Suppose we decide to focus on the 11<sup>th</sup> pair because it seems to have relatively good properties and, in particular, a relatively balanced melting temperature between the two primers. 
 
-* Primer ID :  11 
-
-&nbsp;
+- Primer ID :  11 
 
    Primer  | sequence           | tm max | tm min | GC count 
   ---------|--------------------|--------|--------|----------
@@ -899,8 +897,7 @@ Suppose that we decide to focus on the 11<sup>th</sup> pair because it seems to 
  
 ## Testing the new primer pair
 
-To better characterize this pair, we can use now the `obipcr` tool to extract the barcode sequence corresponding to this pair from the learning database. 
-
+To better characterise this pair, we can now use the `obipcr` tool to extract the barcode sequence corresponding to this pair from the learning database. 
 
 ```bash
 obipcr --forward ACACCGCCCGTCACTCTC \
@@ -927,13 +924,13 @@ taacacggtaagtgt
 >NC_045904_sub[919..997] {"count":1,"definition":"Eospalax fontanierii mitochondrion, complete genome.","direction":"forward","forward_error":1,"forward_match":"acaccgcccgtcgctctc","forward_primer":"ACACCGCCCGTCACTCTC","ori_taxid":"taxon:146134 [Eospalax fontanierii]@species","reverse_error":4,"reverse_match":"ccaagcacactttccagt","reverse_primer":"CCAAGTGCACCTTCCGGT","scientific_name":"mitochondrion Eospalax fontanierii","species_name":"Eospalax fontanierii","species_taxid":"taxon:146134 [Eospalax fontanierii]@species","taxid":"taxon:146134 [Eospalax fontanierii]@species"}
 ```
 
-To be able to process the fasta file with R and make some statistics describing the conservation of the barcodes among taxa, of the ability of the barcode to distinguish between taxa, we need to convert the fasta file to CSV format. This can be done using the {{< obi obicsv >}} command. The command when run with the `--auto` option will automatically identify all the tags present in the annotations of the first records and create a CSV file with the corresponding columns.
+To be able to process the fasta file with R and produce some statistics describing the conservation of barcodes between taxa and the ability of the barcode to discriminate between taxa, we need to convert the fasta file to CSV format. This can be done with the command {{< obi obicsv >}}. The command, when run with the `--auto` option, will automatically identify all tags present in the annotations of the first few records and create a CSV file with the corresponding columns.
 
 ```bash
 obicsv --auto -s -i Teleostei_11.fasta > Teleostei_11.csv
 ```
 
-It is now possible to use a combination of the `head` and `csvlook` commands to view the first few lines of the produced CSV file.
+It is now possible to view the first few lines of the generated CSV file using a combination of the `head` and `csvlook` commands.
 
 ```bash
 head Teleostei_11.csv | csvlook
