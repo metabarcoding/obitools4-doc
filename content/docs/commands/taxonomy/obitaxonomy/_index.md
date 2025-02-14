@@ -32,9 +32,23 @@ obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--debug]
 
 #### {{< obi obitaxonomy >}} specific options
 
-- {{< cmd-option name="opt1" short="o" param="PARAM" >}}
-  Here the description of the option
-  {{< /cmd-option >}}
+- {{< cmd-options/taxonomy/alternative-names >}}
+- {{< cmd-options/taxonomy/download-ncbi >}}
+- {{< cmd-options/taxonomy/dump >}}
+- {{< cmd-options/taxonomy/extract-taxonomy >}}
+- {{< cmd-options/taxonomy/fixed >}}
+- {{< cmd-options/taxonomy/parents >}}
+- {{< cmd-options/taxonomy/rank >}}
+- {{< cmd-options/taxonomy/rank-list >}}
+- {{< cmd-options/taxonomy/raw-taxid >}}
+- {{< cmd-options/taxonomy/restrict-to-taxon >}}
+- {{< cmd-options/taxonomy/sons >}}
+- {{< cmd-options/taxonomy >}}
+- {{< cmd-options/taxonomy/with-path >}}
+- {{< cmd-options/taxonomy/with-query >}}
+- {{< cmd-options/taxonomy/without-parent >}}
+- {{< cmd-options/taxonomy/without-rank >}}
+- {{< cmd-options/taxonomy/without-scientific-name >}}
 
 {{< option-sets/common >}}
 
