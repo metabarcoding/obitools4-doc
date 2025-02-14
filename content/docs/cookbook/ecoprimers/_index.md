@@ -21,7 +21,7 @@ In this recipe we will use [`ecoPrimers`](http://metabarcoding.org/ecoprimers) t
 
 ## Getting [`ecoPrimers`](http://metabarcoding.org/ecoprimers)
 
-[`ecoPrimers`(http://metabarcoding.org/ecoprimers) is available from the [Git metabarcoding](https://git.metabarcoding.org) site at
+[`ecoPrimers`](http://metabarcoding.org/ecoprimers) is available from the [Git metabarcoding](https://git.metabarcoding.org) site at
 
 - https://git.metabarcoding.org/obitools/ecoprimers
 
@@ -766,7 +766,7 @@ ls -l vertebrata*
 -rw-r--r--@ 1 coissac  staff   40446318 Feb 11 11:54 vertabrata_001.sdx
 ```
 
-## Running the `ecoPrimers` program
+## Selecting the best primer pairs
 
 ### Looking for the *Teleostei* `taxid`
 
@@ -784,7 +784,9 @@ obitaxonomy -t ncbitaxo_20250211.tgz \
 | taxon:32443 [Teleostei]@infraclass | taxon:41665 [Neopterygii]@subclass | infraclass     | Teleostei       |
 ```
 
-## Selecting the best primer pairs
+### Running the `ecoPrimers` program
+
+The `ecoPrimers` command is responsible for looking for the priming sites. `ecoPrimers` is an alignment free software able to identify conserved regions among a large set of sequences.
 
 ```bash
 ecoPrimers -d vertebrata \
@@ -794,10 +796,20 @@ ecoPrimers -d vertebrata \
            -c > Teleostei.ecoprimers
 ```
 
+- The `-d` option allows specifying the learning database, here the vertebrate mitochondrial genome database indexed above.
+- The `-e` option specifies the maximum number of mismatch allowed between the primer and the priming site. The number of mismatches is per primer.
+- The `-3` option, here used with the *2* argument (`-3 2`) indicates that mismatches are disallowed on the 2 last nucleotides (3' extremity) of the primer.
+- The `-l` option specify the minimum length of the barcode (excluding primers) to look for.
+- The `-L` option specify the maximum length of the barcode (excluding primers) to look for.
+- The `-r` indicates to which taxon (here *Teleostei*) `ecoPrimers` will focus on.
+- The `-c` is for specifying that the learning database is constituted of circular genomes.
+
+After running several minutes, writing on the terminal information about its progression, `ecoPrimer` returns an here indicates that it identified :
+
 - Total pair count : 9407
 - Total good pair count : 407
 
-
+We can now take a look at the beginning of the result file.
 
 ```bash
 head -35 Teleostei.ecoprimers
@@ -840,6 +852,11 @@ head -35 Teleostei.ecoprimers
     14  ACACCGCCCGTCACTCTC      CACTTACCATGTTACGAC      62.5    36.8    51.1    27.7    12      8       GG      3850    0       0.985   3817    0       0.985   2649    0.694      35      121     55.51
 ```
   
+The result file is composed of two parts. The header, constituted of lines starting with the `#` character, recalls all the parameters used by the `ecoPrimer` algorithms and some statistics about the database and the
+current search.
+
+The second part is a tabular text, describing all the potential primer pairs identified. Just below is detailed the information present in each column.
+
 Table result description : 
 > - **column  1** : serial number
 > - **column  2** : primer1
@@ -863,6 +880,7 @@ Table result description :
 > - **column 20** : maximum amplified length
 > - **column 21** : average amplified length
 
+Suppose that we decide to focus on the 11<sup>th</sup> pair because it seems to have relatively good characteristics and especially have a relatively equilibrate melting temperature between the two primers. 
 
 * Primer ID :  11 
 
@@ -873,13 +891,16 @@ Table result description :
    Forward | ACACCGCCCGTCACTCTC |   62.5 |   36.8 |  12      
    Reverse | CCAAGTGCACCTTCCGGT |   60.7 |   28.9 |  11      
  
-&nbsp;
  
 * amplifying  3837/3909 sequences    
 * identify    2650/3876 Species
 * Size ranging from 54bp to 140bp (mean: 74.75 bp)
+
  
 ## Testing the new primer pair
+
+To better characterize this pair, we can use now the `obipcr` tool to extract the barcode sequence corresponding to this pair from the learning database. 
+
 
 ```bash
 obipcr --forward ACACCGCCCGTCACTCTC \
@@ -906,13 +927,13 @@ taacacggtaagtgt
 >NC_045904_sub[919..997] {"count":1,"definition":"Eospalax fontanierii mitochondrion, complete genome.","direction":"forward","forward_error":1,"forward_match":"acaccgcccgtcgctctc","forward_primer":"ACACCGCCCGTCACTCTC","ori_taxid":"taxon:146134 [Eospalax fontanierii]@species","reverse_error":4,"reverse_match":"ccaagcacactttccagt","reverse_primer":"CCAAGTGCACCTTCCGGT","scientific_name":"mitochondrion Eospalax fontanierii","species_name":"Eospalax fontanierii","species_taxid":"taxon:146134 [Eospalax fontanierii]@species","taxid":"taxon:146134 [Eospalax fontanierii]@species"}
 ```
 
-convert the fasta file to CSV
+To be able to process the fasta file with R and make some statistics describing the conservation of the barcodes among taxa, of the ability of the barcode to distinguish between taxa, we need to convert the fasta file to CSV format. This can be done using the {{< obi obicsv >}} command. The command when run with the `--auto` option will automatically identify all the tags present in the annotations of the first records and create a CSV file with the corresponding columns.
 
 ```bash
 obicsv --auto -s -i Teleostei_11.fasta > Teleostei_11.csv
 ```
 
-and display the beginning of the table
+It is now possible to use a combination of the `head` and `csvlook` commands to view the first few lines of the produced CSV file.
 
 ```bash
 head Teleostei_11.csv | csvlook
