@@ -12,7 +12,7 @@ weight: 30
 
 ## Description 
 
-The `obipcr` program is the successor of [`ecoPCR`](https://metabarcoding.org/ecopcr). It is known as an electronic PCR software.
+The `obipcr` program is the successor of [`ecoPCR`](https://metabarcoding.org/ecopcr). It is known as an in silico PCR software.
 
 ## Synopsis
 
