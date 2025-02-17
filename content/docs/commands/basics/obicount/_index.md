@@ -4,10 +4,10 @@ category: "basics"
 title: "obicount"
 date: 2025-02-10
 command: "obicount"
-category: basics
 url: "/obitools/obicount"
 weight: 40
 ---
+
 
 # `obicount`: counting sequence records
 
@@ -30,9 +30,17 @@ obicount [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 #### {{< obi obicount >}} specific options
 
-- {{< cmd-options/obicount/variants >}}
-- {{< cmd-options/obicount/reads >}}
-- {{< cmd-options/obicount/symbols >}}
+- {{< cmd-option name="variants" short="v" >}}
+  When present, output the number of variants (sequence records) in the sequence file.
+  {{< /cmd-option >}}
+
+- {{< cmd-option name="reads" short="r" >}}
+  When present, output the number of reads (the sum of sequence counts) in the sequence file.
+  {{< /cmd-option >}}
+
+- {{< cmd-option name="symbols" short="s" >}}
+  When present, output the number of symbols (nucleotides) in the sequence file.
+  {{< /cmd-option >}}
 
 {{< option-sets/input >}}
 
@@ -64,10 +72,6 @@ obicount my_sequence_file.fasta | csvtomd
 ```
 
 ```
-INFO[0000] Number of workers set 16
-INFO[0000] Found 1 files to process
-INFO[0000] xxx.fastq.gz mime type: text/fastq
-
 entities  |  n
 ----------|---------
 variants  |  43221
@@ -82,10 +86,6 @@ obicount my_sequence_file.fasta | csvlook
 ```
 
 ```
-INFO[0000] Number of workers set 16
-INFO[0000] Found 1 files to process
-INFO[0000] xxx.fastq.gz mime type: text/fastq
-
 | entities |         n |
 | -------- | --------- |
 | variants |    43 221 |
