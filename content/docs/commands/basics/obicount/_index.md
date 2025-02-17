@@ -100,10 +100,6 @@ obicount -v --reads my_sequence_file.fasta | csvlook
 ```
 
 ```
-INFO[0000] Number of workers set 16
-INFO[0000] Found 1 files to process
-INFO[0000] xxx.fastq.gz mime type: text/fastq
-
 | entities |      n |
 | -------- | ------ |
 | variants | 43 221 |
@@ -117,13 +113,10 @@ obicount my_sequence_file.fasta.gz | csvlook
 ```
 
 ```
-INFO[0000] Number of workers set 16
-INFO[0000] Found 1 files to process
-INFO[0000] xxx.fastq.gz mime type: text/fastq
-
 | entities |         n |
 | -------- | --------- |
 | variants |    43 221 |
 | reads    |    43 221 |
 | symbols  | 4 391 530 |
 ```
+
