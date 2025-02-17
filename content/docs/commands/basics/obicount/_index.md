@@ -13,7 +13,11 @@ weight: 40
 
 ## Description
 
-Count the sequence records in a sequence file. It returns three pieces of information. The first is the number of sequence variants (the actual number of sequence records in the file). Each sequence record is associated with a *count* attribute (equal to 1 if absent), this number corresponds to the number of times that sequence has been observed in the data set. Thus, the second value returned is the sum of the count values for all sequences. The last value is the number of nucleotides stored in the file, the sum of the sequence lengths.
+Count the sequence records in a sequence file. It returns three pieces of information. The first is the number of sequence variants (the actual number of sequence records in the file). Each sequence record is associated with a `count` attribute (equal to 1 if absent), this number corresponds to the number of times that sequence has been observed in the data set. In the following example, the first sequence record has no `count` attribute and therefore counts for 1, when the second sequence record has a `count` attribute equal to 2.
+
+{{< code "two_sequences.fasta" fasta false>}}
+
+Thus, the second value returned is the sum of the count values for all sequences, 3 for the presented example file. The last value is the number of nucleotides stored in the file, the sum of the sequence lengths.
 
 ## Synopsis
 

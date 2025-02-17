@@ -1,0 +1,6 @@
+>AB061527 {"definition":"Sorex unguiculatus mitochondrial NA, complete genome.","family_name":"Soricidae","family_taxid":9376,"genus_name":"Sorex","genus_taxid":9379,"obicleandb_level":"family","obicleandb_trusted":2.2137847111025621e-13,"species_name":"Sorex unguiculatus","species_taxid":62275,"taxid":62275}
+ttagccctaaacttaggtatttaatctaacaaaaatacccgtcagagaactactagcaat
+agcttaaaactcaaaggacttggcggtgctttatatccct
+>AL355887 {"count":2,"definition":"Human chromosome 14 NA sequence BAC R-179O11 of library RPCI-11 from chromosome 14 of Homo sapiens (Human)XXKW HTG.; HTGS_ACTIVFIN.","family_name":"Hominidae","family_taxid":9604,"genus_name":"Homo","genus_taxid":9605,"obicleandb_level":"genus","obicleandb_trusted":0,"species_name":"Homo sapiens","species_taxid":9606,"taxid":9606}
+ttagccctaaactctagtagttacattaacaaaaccattcgtcagaatactacgagcaac
+agcttaaaactcaaaggacctggcagttctttatatccct
