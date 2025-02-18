@@ -23,18 +23,18 @@ The {{< obi obipairing >}} command requires two input files:
 
 Both files must have the same number of sequences, and the sequences must be in the same order. This means that the first sequence of the forward reads file must correspond to the first sequence of the reverse reads file. {{< obi obipairing >}} will assume this order and only align sequences that occur in the same rank.
 
-Consider the following example, where the forward reads file is [`forward.fastq`]({{< relref "forward.fastq" >}}) and the reverse reads file is [`reverse.fastq`]({{< relref "reverse.fastq" >}}) and both consist of 4 sequences:
+Consider the following example, where the forward reads file is [`forward.fastq`](forward.fastq) and the reverse reads file is [`reverse.fastq`](reverse.fastq) and both consist of 4 sequences:
 
 
 {{< code "forward.fastq" fastq true >}}
   
 {{< code "reverse.fastq" fastq true >}}
 
-The first sequence of the [`forward.fastq`]({{< relref "forward.fastq" >}}) file having the id `LH00534:26:2237MWLT1:2:1101:3663:1096` will be paired with the first sequence of the [`reverse.fastq`]({{< relref "reverse.fastq" >}}) file having the same id `LH00534:26:2237MWLT1:2:1101:3663:1096`, not because they have the same identifier but because they are both the first sequence of their respective files.
+The first sequence of the [`forward.fastq`](forward.fastq) file having the id `LH00534:26:2237MWLT1:2:1101:3663:1096` will be paired with the first sequence of the [`reverse.fastq`](reverse.fastq) file having the same id `LH00534:26:2237MWLT1:2:1101:3663:1096`, not because they have the same identifier but because they are both the first sequence of their respective files.
 
 ### The simplest {{< obi obipairing >}} command
 
-The minimal {{< obi obipairing >}} command to align the [`forward.fastq`]({{< relref "forward.fastq" >}}) and [`reverse.fastq`]({{< relref "reverse.fastq" >}}) files is:
+The minimal {{< obi obipairing >}} command to align the [`forward.fastq`](forward.fastq) and [`reverse.fastq`](reverse.fastq) files is:
 
 ```bash
 obipairing -F forward.fastq -R reverse.fastq > paired.fastq
@@ -52,7 +52,7 @@ graph TD
   classDef obitools fill:#99d57c
 {{< /mermaid >}}
 
-it will produce a file named [`paired.fastq`]({{< relref "paired.fastq" >}}) with the following content:
+it will produce a file named [`paired.fastq`](paired.fastq) with the following content:
 
 {{< code "paired.fastq" fastq true >}}
 
@@ -71,9 +71,9 @@ It is possible to disable this first alignment step at the cost of an increase i
 
 Three tags are added to the FASTQ header for each read to report the results of this first step alignment.
 
-- `paring_fast_count` :
-- `paring_fast_overlap` :
-- `paring_fast_score` :
+- `paring_fast_count` : Number of kmer
+- `paring_fast_overlap` : Length of the overlap as detected by this algorithm in nucleotides.
+- `paring_fast_score` : If normamalized paring_fast_count/(paring_fast_overlap  3) otherwise paring_fast_count
 
 
 
