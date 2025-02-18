@@ -178,5 +178,80 @@
     "title": "ecoPrimers: inference of new DNA barcode markers from whole genome sequence analysis",
     "type": "article-journal",
     "volume": "39"
+  },
+  {
+    "ISSN": "0036-8075",
+    "PMID": "2983426",
+    "URL": "http://www.ncbi.nlm.nih.gov/pubmed/2983426",
+    "abstract": "An algorithm was developed which facilitates the search for similarities between newly determined amino acid sequences and sequences already available in databases. Because of the algorithm’s efficiency on many microcomputers, sensitive protein database searches may now become a routine procedure for molecular biologists. The method efficiently identifies regions of similar sequence and then scores the aligned identical and differing residues in those regions by means of an amino acid replacability matrix. This matrix increases sensitivity by giving high scores to those amino acid replacements which occur frequently in evolution. The algorithm has been implemented in a computer program designed to search protein databases very rapidly. For example, comparison of a 200-amino-acid sequence to the 500,000 residues in the National Biomedical Research Foundation library would take less than 2 minutes on a minicomputer, and less than 10 minutes on a microcomputer (IBM PC).",
+    "author": [
+      {
+        "family": "Lipman",
+        "given": "D J"
+      },
+      {
+        "family": "Pearson",
+        "given": "W R"
+      }
+    ],
+    "container-title": "Science",
+    "id": "Lipman1985-hw",
+    "issue": "4693",
+    "issued": {
+      "date-parts": [
+        [
+          1985,
+          3
+        ]
+      ]
+    },
+    "page": "1435-1441",
+    "title": "Rapid and sensitive protein similarity searches",
+    "type": "article-journal",
+    "volume": "227"
+  },
+  {
+    "DOI": "10.1006/jmbi.1990.9999",
+    "ISSN": "0022-2836",
+    "PMID": "2231712",
+    "URL": "http://dx.doi.org/10.1006/jmbi.1990.9999",
+    "abstract": "A new approach to rapid sequence comparison, basic local alignment search tool (BLAST), directly approximates alignments that optimize a measure of local similarity, the maximal segment pair (MSP) score. Recent mathematical results on the stochastic properties of MSP scores allow an analysis of the performance of this method as well as the statistical significance of alignments it generates. The basic algorithm is simple and robust; it can be implemented in a number of ways and applied in a variety of contexts including straightforward DNA and protein sequence database searches, motif searches, gene identification searches, and in the analysis of multiple regions of similarity in long DNA sequences. In addition to its flexibility and tractability to mathematical analysis, BLAST is an order of magnitude faster than existing sequence comparison tools of comparable sensitivity.",
+    "author": [
+      {
+        "family": "Altschul",
+        "given": "S F"
+      },
+      {
+        "family": "Gish",
+        "given": "W"
+      },
+      {
+        "family": "Miller",
+        "given": "W"
+      },
+      {
+        "family": "Myers",
+        "given": "E W"
+      },
+      {
+        "family": "Lipman",
+        "given": "D J"
+      }
+    ],
+    "container-title": "Journal of molecular biology",
+    "id": "Altschul1990-ey",
+    "issue": "3",
+    "issued": {
+      "date-parts": [
+        [
+          1990,
+          10
+        ]
+      ]
+    },
+    "page": "403-410",
+    "title": "Basic local alignment search tool",
+    "type": "article-journal",
+    "volume": "215"
   }
 ]

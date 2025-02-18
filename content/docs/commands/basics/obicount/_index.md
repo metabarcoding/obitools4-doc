@@ -19,6 +19,19 @@ Count the sequence records in a sequence file. It returns three pieces of inform
 
 Thus, the second value returned is the sum of the count values for all sequences, 3 for the presented example file. The last value is the number of nucleotides stored in the file, the sum of the sequence lengths.
 
+
+{{< mermaid class="workflow" >}}
+graph TD
+  A@{ shape: doc, label: "my_sequences.fastq" }
+  C[obicount]
+  D@{ shape: doc, label: "counts.csv" }
+  A --> C:::obitools
+  C --> D
+  classDef obitools fill:#99d57c
+{{< /mermaid >}}
+
+
+
 ## Synopsis
 
 ```bash
@@ -29,6 +42,8 @@ obicount [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
          [--pprof-mutex <int>] [--reads|-r] [--solexa] [--symbols|-s]
          [--variants|-v] [--version] [<args>]
 ```
+
+
 
 ## Options
 

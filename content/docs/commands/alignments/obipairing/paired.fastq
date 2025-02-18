@@ -1,0 +1,16 @@
+@LH00534:26:2237MWLT1:2:1101:3663:1096 {"ali_dir":"right","ali_length":133,"definition":"1:N:0:AAGATACT+ATGTAAGT","mode":"alignment","paring_fast_count":130,"paring_fast_overlap":133,"paring_fast_score":1,"score":1860,"score_norm":1,"seq_a_single":18,"seq_ab_match":133,"seq_b_single":18}
+acgacgctcttccgatcttccagggcaatcctgagccaaatcttctttttgagaaaaagaaatatataaaatatttcttatttcagataagaaataatattttttcttatctaatattaaagataggtgcagagactcaatggtggattgcagatcggaagagcacacg
++
+II9IIIIIIII9IIIII9qqqqqaqqqqqqqqqqqqqqqqqqaqqqaqqqqqqqqqqqqqqqqqqqqqqaqqqUqqqqqaqqqqqqqqqqqqqqqqqqqqUqaqqqaqqqqqqqqqqqqqqqqqqqqqqqaqqqqqqqqqqqqqqqqqqaaIIIIIIIIIIIIIIIIII
+@LH00534:26:2237MWLT1:2:1101:4643:1096 {"ali_dir":"right","ali_length":107,"definition":"1:N:0:AAGATACT+ATGTAAGT","mode":"alignment","pairing_mismatches":{"(C:12)->(A:40)":121},"paring_fast_count":96,"paring_fast_overlap":107,"paring_fast_score":0.923,"score":1409,"score_norm":0.981,"seq_a_single":44,"seq_ab_match":105,"seq_b_single":44}
+aacatttacatacgctttttccctacacgacgctcttccgatctataacgctcccattgagtctctgcacctatcctttttgattctagtttttatagagaaacacattttctccagattaagatttggctcaggattgcccgagcgttatagatcggaagagcacacgtctgaactccagtcaccagatactat
++
+--9--I-I-9999-99-9I9I9-9-IIIII9I-IIIIIII9IIIqaUaqUqaqqqJaqqqqaaqqqqqaqqqqqqaqqqaqqUqqUqqUaaUqqqUqqqqaqqUqaQUaqaQqaaaqUaqJaqqUqaUaqEaaqaqaqaqqqaaqEqQQqU9-III99III9IIIII9IIIII9IIIIIIIII9I-IIII9IIII
+@LH00534:26:2237MWLT1:2:1101:5327:1096 {"ali_dir":"right","ali_length":110,"definition":"1:N:0:AAGATACT+ATGTAAGT","mode":"alignment","paring_fast_count":107,"paring_fast_overlap":110,"paring_fast_score":1,"score":1540,"score_norm":1,"seq_a_single":41,"seq_ab_match":110,"seq_b_single":41}
+acttacatacactctttccctacacgacgctcttccgatctgcttgtgacccattgagtctctgcacctatccttttcctttgtattctagttcgagaacccccttgttttctcaaaacacggatttggctcaggattgcccttggatggtagatcggaagagcacacgtctgaactccagtcacaagatac
++
+III-II-9III9IIIIIIIIIIIIIIIIIIIIIIIIIIIIIqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@LH00534:26:2237MWLT1:2:1101:5512:1096 {"ali_dir":"right","ali_length":108,"definition":"1:N:0:AAGATACT+ATGTAAGT","mode":"alignment","pairing_mismatches":{"(C:12)->(A:40)":49,"(T:40)->(G:12)":104},"paring_fast_count":97,"paring_fast_overlap":108,"paring_fast_score":0.924,"score":1430,"score_norm":0.981,"seq_a_single":43,"seq_ab_match":106,"seq_b_single":43}
+acacttacatacactctttccctacacgacgctcttccgatctcaaccaaggggcaatcctgagccaaatccgtgttttgagaaaacaagggggttctcgaactagaatacaaaggaaaaggataggtgcagagactcaatggcttggttgagatcggaagagcacacgtctgaactccagtcacaagatacta
++
+I9--III99IIIIII-IIIIII9IIIIIIIIIIIIIIIIIIIIqqqqqJUUqqaqqaqqqqqqUqqaqQqqqqqqqaqqqqqqaqqEqaaqqqqqqqaqqqqqJqaqqaqqqqqaaqqUaqqqqqUaqqaqqqqUaqUqqaqqqaqaqqQaI9I-9-I999-I99III99I9I-III9IIIIIIIIII9IIIII
