@@ -13,7 +13,7 @@ url: "/formats/fastq"
 
 # The *FASTQ* sequence file format
 
-The [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) sequence file format is widely used for storing biological sequences and their corresponding quality scores. It was originally developed at the [Wellcome Trust Sanger Institute](https://www.sanger.ac.uk/) to bundle a {{% fasta %}} sequence together with its quality data {{< cite "Cock2010-wl" >}}. The format has become the *de facto* standard for storing the output of high-throughput sequencing instruments.
+The [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format)  sequence file format is widely used for storing biological sequences and their corresponding quality scores. It was originally developed at the [Wellcome Trust Sanger Institute](https://www.sanger.ac.uk/) to bundle a {{% fasta %}} sequence together with its quality data {{< cite "Cock2010-wl" >}}. The format has become the *de facto* standard for storing the output of high-throughput sequencing instruments.
 
 In *FASTQ* format, each sequence entry consists of four lines:
 1. A sequence identifier line beginning with an **@** character
@@ -51,6 +51,8 @@ ggsave("qality.png",quality)
 
 In *FASTQ* format, the sequence of quality score is encoded as an ASCII string where each score is mapped to an ASCII character. The quality score {{< katex >}}0{{< /katex >}} is encoded as the character `!`. The quality score {{< katex >}}40{{< /katex >}} is encoded as the character `I` (uppercase `i`).
 
+ {{< katex  display=true >}}ASCII\,CODE = Q + 33 {{< /katex >}}
+
 The {{% obitools %}} extend this format by adding structured data to the identifier line. In the previous version of the {{% obitools %}}, the structured data was stored after the sequence identifier in a `key=value;` format, as shown below. The sequence definition was stored as free text after the last `key=value;` pair.
 
 {{< code "two_sequences_obi2.fastq" fastq true >}}
@@ -59,7 +61,7 @@ With {{% obitools4 %}} a new format has been introduced to store structured data
 
 {{< code "two_sequences_obi4.fastq" fastq true >}}
 
-The {{< obi obiconvert >}} command, like all other {{% obitools4 %}} commands, has two options `--output-json-header` and `--output-OBI-header` to choose between the new [JSON](https://en.wikipedia.org/wiki/JSON) format and the old {{% obitools %}} format. The `--output-OBI-header` option can be abbreviated to `-O`. By default, the new [JSON](https://en.wikipedia.org/wiki/JSON) {{% obitools4 %}} format is used, so only the `-O` option is really useful if the old format is required for compatibility with other software.
+The {{< obi obiconvert >}} command, like all other {{% obitools4 %}} commands, has two options `--output-json-header` and `--output-OBI-header` to choose between the new [JSON](https://en.wikipedia.org/wiki/JSON) format and the old {{% obitools %}} format. The `--output-OBI-header` option can be abbreviated to `-O`. By default, the new [JSON](https://en.wikipedia.org/wiki/JSON) {{% obitools4 %}} format is used, so only the `-O` option is really useful if the old format is required for compatibility with another software.
 
 Converting from the new [JSON](https://en.wikipedia.org/wiki/JSON) format to the old {{% obitools %}} format:
 
