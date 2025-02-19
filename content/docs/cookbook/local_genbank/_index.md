@@ -44,12 +44,12 @@ Other divisions exist, but are less useful for metabarcoding ([click here more i
 
 GenBank is distributed in two main formats: {{% fasta %}} and {{% genbank %}}. The {{% fasta %}} format has the advantage of being smaller than the {{% genbank %}} format because all the sequence annotations stored in the {{% genbank %}} format are not present in the {{% fasta %}} format. For metabarcoding, however, the disadvantage is that the {{% fasta %}} format does not contain the sequence taxonomic information stored as a taxon identifier (taxid).
 
-To combine the advantages of both formats, you can download the {{% genbank %}} format and convert it to the {{% fasta %}} format using the {{< obi obiconvert >}} command. The {{< obi obiconvert >}} command takes care to preserve the taxonomic information during the conversion.
+To combine the advantages of both formats, you can download the {{% genbank %}} format and convert it to the {{% fasta %}} format using the {{< obi obiconvert >}} command. The {{< obi obiconvert >}} command ensures that taxonomic information is preserved during conversion.
 
-Network interruptions can occur quite frequently during the process of downloading all these files, so there is a chance of a download failure. To solve this problem, here is a `Make` script that downloads the GenBank files and converts them in {{% fasta %}} files.
-The choice of `Make` allows the download process to be restarted at the point of failure if it fails.
+Network interruptions can occur quite frequently during the process of downloading all these files, so there is a risk of the download failing. To solve this problem, here is a `make` script that downloads the GenBank files and converts them in {{% fasta %}} files.
+The choice of [`make`](https://en.wikipedia.org/wiki/Make_(software)) allows the download process to be restarted at the point of failure if it fails.
 
-To download GenBank, copy the <a href="Makefile" type="text/x-makefile" download="Makefile">`Makefile`</a> file to your local computer in the directory where you want to put the GenBank files. 
+To download GenBank, copy the <a href="Makefile" type="text/x-makefile" download="Makefile">`Makefile`</a> file to your local computer in the directory where you want to store the GenBank files. 
 
 > [!caution] The Makefile script must be called `Makefile` without any extension.
 
@@ -111,9 +111,9 @@ The `Makefile` will create a directory called `Release_###`, where **###** is th
 
 - The `taxonomy` directory contains a copy of the NCBI taxonomy database at the time of download. 
 - The `fasta` directory contains the {{% fasta %}} files sorted by taxonomic division in subdirectories, here `mam` and `rod`. 
-- The `stamp` directory allows the `Makefile` script to restart the download process if it fails, without having to download the whole GenBank database again. To free space, the `stamp` directory can be deleted at the end of the download process.
-- The `depends` directory contains a `make` script with all the instructions for downloading the GenBank files. It is first created by the `Makefile` script. It contains instructions for downloading the files that need to be downloaded according to the specified GenBank division. To free space, the `depends` directory can be deleted at the end of the download process.
-- The `tmp` directory is used to store the downloaded GenBank files before they are converted into {{% fasta %}}. It does not normally persist after the download process. To free space, the `tmp` directory can be deleted at the end of the download process if it persists.
+- The `stamp` directory allows the `Makefile` script to restart the download process if it fails, without having to download the whole GenBank database again. To free up space, the `stamp` directory can be deleted at the end of the download process.
+- The `depends` directory contains a `make` script with all the instructions for downloading the GenBank files. It is first created by the `Makefile` script. It contains instructions for downloading the files that need to be downloaded according to the specified GenBank division. To free up space, the `depends` directory can be deleted at the end of the download process.
+- The `tmp` directory is used to store the downloaded GenBank files before they are converted into {{% fasta %}}. It does not normally persist after the download process. To free up space, the `tmp` directory can be deleted at the end of the download process if it persists.
 
 ## The Makefile script for downloading Genbank
 
