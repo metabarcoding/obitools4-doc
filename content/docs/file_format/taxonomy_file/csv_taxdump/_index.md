@@ -202,3 +202,5 @@ obitaxonomy -t betula_subtaxo.csv \
 | taxon:3080005 [Betula nana var. macrophylla]@varietas   | taxon:216990 [Betula nana]@species        | varietas       | Betula nana var. macrophylla |
 | taxon:1623466 [Betula nana subsp. nana]@subspecies      | taxon:216990 [Betula nana]@species        | subspecies     | Betula nana subsp. nana      |
 ```
+
+Using an appropriate sub-taxonomy can significantly reduce the time needed for an {{% obitools %}} to read the taxonomy, compared with the time needed to read the entire taxonomy.
