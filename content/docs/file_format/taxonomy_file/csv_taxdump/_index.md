@@ -33,7 +33,7 @@ taxid,parents,scientific_name,taxonomic_rank
 1,1,root,root
 2ABC,1,Betula,genus
 3,2ABC,Betula nana,species
-4,2ABC,Betula pubescence,species
+4,2ABC,Betula pubescens,species
 ```
 
 The corresponding taxonomic hierarchy is displayed below:
@@ -60,11 +60,11 @@ graph RL
 
 That simple format allows to convert easily with a small UNIX script any available taxonomic hierarchy into a format useable by {{% obitools4 %}}.
 
-## Generating a CSV taxonomy file from another taxonomy
+## Generating a CSV taxonomy file from a larger taxonomy
 
 The {{< obi obitaxonomy >}} command can be used to generate a CSV file from another taxonomy format. The main aim of this command functionality is to extract a subtaxonomy corresponding to a clade from a largest taxonomy.
 
-If it was not already done, a copy of the NCBI taxonomy is downloaded and saved into the `ncbitaxo.tgz` file.
+If it was not already done, a copy of the NCBI taxonomy can be downloaded and saved into the `ncbitaxo.tgz` file.
 
 ```bash
 obitaxonomy --download-ncbi --out ncbitaxo.tgz
@@ -72,7 +72,7 @@ obitaxonomy --download-ncbi --out ncbitaxo.tgz
 
 {{< obi obitaxonomy >}} is used to identify the taxid of the taxon of interest, here the genus *Betula*.
 
-- The **-t** option allows for specifying the just downloaded above taxonomy
+- The **-t** option allows for specifying the file containing the taxonomy
 - The **--rank** option allows for restricting the search to the taxa with the **genus** taxonomic rank
 - The **--fixed** option indicates to look for an exact match with the taxon name
 - `Betula` is the pattern used to match the taxon name.
@@ -91,7 +91,7 @@ obitaxonomy -t ncbitaxo.tgz \
 | taxon:3504 [Betula]@genus | taxon:3514 [Betulaceae]@family | genus          | Betula          |
 ```
 
-A single taxon match all the specified criteria. It has the taxid `3504` or `taxon:3504` if we include the taxonomy code.
+A single taxon meets all the specified criteria. It has the taxid `3504` or `taxon:3504` if we include the taxonomy code.
 
 It is now possible to request {{< obi obitaxonomy >}} for dumping the sub taxonomy corresponding to the `taxon:3504` taxon. The result is saved by redirecting the **stdout** to the file  <a href="betula_subtaxo.csv" download="betula_subtaxo.csv">`betula_subtaxo.csv`</a>.
 
@@ -100,11 +100,12 @@ obitaxonomy -t ncbitaxo.tgz \
             --dump taxon:3504 > betula_subtaxo.csv
 ```
 
-As usual with {{< obi obitaxonomy >}} the result is {{% csv %}} formatted. That allows for using the `csvtk dim` UNIX command from [csvtk program](https://github.com/shenwei356/csvtk) to display the number of columns (four as expected) and of rows, here *131* taxa. Once again `csvlook` is used to pretty print the result as a nice ASCII table:
+As usual with {{< obi obitaxonomy >}} the result is {{% csv %}} formatted. That allows for using the `csvtk dim` UNIX command from [csvtk program](https://github.com/shenwei356/csvtk) to display the number of columns (four as expected) and of rows, here *131* taxa. Once again `csvlook` is used to  print out the result in the form of a nice ASCII table:
+
 
 ```bash
 csvtk dim betula_subtaxo.csv \
-    | csvlook -d ' ' -S
+    | csvlook
 ```
 ```
 | file               | num_cols | num_rows |
