@@ -34,7 +34,7 @@ obitaxonomy --download-ncbi --out ncbitaxo.tgz
 
 ## Structure of the NCBI taxonomy directory
 
-When the archive is unpacked using the following bash commands:
+The `ncbitaxo.tgz` archive can be unpacked using the following bash commands:
 
 ```bash
 mkdir ncbitaxo 
@@ -52,9 +52,8 @@ The `nodes.dmp` file is a tab-separated file, here is the description of the fir
 
 | Field | Description |
 |-------|---------------|
-| `tax_id` | A unique taxonomic identifier composed only of digits (0-9) lower case (a-z) and upper case (A-Z) characters |
+| `tax_id` | A unique taxonomic identifier composed only of digits (0-9) |
 | `parent tax_id` | The taxid of the parent taxon of the current taxon |
-<!-- | `scientific_name` | The name used by the *OBITools* as the scientific name of the taxon | -->
 | `rank` | The taxonomic rank of the taxon (*e.g.* species, genus, family, etc.) |
 
 Here are the first lines of this file:
