@@ -12,7 +12,7 @@ url: "/formats/json"
 
 # The *JSON* sequence file format
 
-To facilitate the exchange of data between different systems, and allow an easy parsing of the data with all the programming languages, {{% obitools %}} propose to export the sequence data in [JSON](https://en.wikipedia.org/wiki/JSON) format. JSON output is requested by adding the `--json-output` option to the command line.
+To facilitate the exchange of data between different systems, and to allow easy parsing of the data with all programming languages, {{% obitools %}} offers to export sequence data in [JSON](https://en.wikipedia.org/wiki/JSON) format. JSON output is requested by adding the `--json-output` option to the command line.
 
 ## Converting FASTA to JSON format
 

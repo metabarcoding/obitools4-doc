@@ -32,7 +32,7 @@ The header section contains essential metadata about the sequence. The following
 - **DEFINITION**: A brief description of the sequence, summarizing its biological significance.
 - **ACCESSION**: Accession number(s) associated with the sequence, which can be used to retrieve the record.
 - **VERSION**: The version number of the sequence record, indicating updates or changes.
-- **KEYWORDS**: Keywords associated with the sequence, aiding in categorization and searchability.
+- **KEYWORDS**: Keywords associated with the sequence, making it easier to categorise and search.
 - **SOURCE**: The organism from which the sequence is derived, including the scientific name.
 - **REFERENCE**: Citations for the sequence, linking it to relevant literature.
 
@@ -84,7 +84,7 @@ FEATURES             Location/Qualifiers
 
 ### Sequence section
 
-The sequence section contains the actual sequence data. It is starting at a line containing only the keyword `ORIGIN` (uppercase), followed by the sequence data. The sequence data is separated by spaces every 10 characters and each line contains 60 nucleotides. The number on the left of the sequence lines indicates the start position of the line in the sequence.
+The sequence section contains the sequence data itself, starting with a line containing only the keyword `ORIGIN` (in uppercase), followed by the sequence data. The sequence data is separated by spaces every 10 characters and each line contains 60 nucleotides. The number on the left of each  sequence lines indicates the start position of the line in the sequence.
 
 ```
 ORIGIN      
@@ -103,7 +103,7 @@ The record concludes with a `//` line, indicating the end of the record. This te
 ## Converting GenBank Flat File to FASTA format
 
 To convert a GenBank flat file to {{% fasta %}} format, you can use the {{< obi obiconvert >}} command.
-The {{% obi obiconvert %}} command extracts from the source feature present in each GenBank record the taxid and scientific name associated with the record to store them in the `taxid` and `scientific_name` tags within the FASTA header.
+The {{% obi obiconvert %}} command extracts the taxid and scientific name associated with each GenBank record and stores them in the `taxid` and `scientific_name` tags in the FASTA header.
 
 ```bash
 obiconvert sample.gb
