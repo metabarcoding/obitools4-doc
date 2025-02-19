@@ -103,7 +103,7 @@ XX
 
 The sequence section contains the actual nucleotide sequence. This section is formatted to enhance readability and is represented in lines of 60 characters. The sequence letters represent nucleotides (A, T, C, G for DNA; A, U, C, G for RNA).
 
-The sequence section begins with **SQ** in first line and includes metadata about the sequence, such as its length and the count of each nucleotide. The sequence itself follows, formatted in lines of 60 characters for clarity. The number on the right of the sequence lines indicates the end position of the line in the sequence.
+The sequence section begins with **SQ** in first line and includes metadata about the sequence, such as its length and the count of each nucleotide. The sequence itself follows, formatted in lines of 60 characters for clarity. The number on the right of each of the sequence lines indicates the end position of the line in the sequence.
 
 ```
 SQ   Sequence 84 BP; 35 A; 16 C; 20 G; 13 T; 0 other;
