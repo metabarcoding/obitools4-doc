@@ -8,6 +8,19 @@ https://obitools4.metabarcoding.org/
 
 The documentation is automatically generated from the source code of the OBITools4-doc repository at each commit.
 
+## Innstalling hugo 
+
+### For Linux (Debian/Ubuntu) 
+You need to install the extended version of Hugo using snap :
+ ```bash
+sudo snap install hugo --channel=extended
+```
+You can check that you have installed the latest version of Hugo (Hugo v0.143.1 or later).
+ ```bash
+hugo version  
+ ```
+
+
 ## Getting a copy of the OBITools4 documentation
 
 For the official OBITools4 developers, the documentation is hosted on GitHub
@@ -38,8 +51,14 @@ Therefore, I recommend using the following extensions to edit the documentation:
 
 When you edit the documentation from VSCodium, I recommend you to open two unix terminals. In one of them, run the following command to start the Hugo server:
 
+* for mac OS :
 ```bash
 hugo server --buildDrafts
+```
+
+* for linux :
+```bash
+hugo server --buildDrafts --config hugo.yaml
 ```
 
 Each time you edit the documentation, your local copy of the documentation will be automatically rebuilt and visible at the URL specified by the `hugo server` command.
