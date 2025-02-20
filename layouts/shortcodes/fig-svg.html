@@ -16,15 +16,22 @@
       {{- $src = .RelPermalink -}}
     {{- end -}}
   {{- end -}}
-  <div style="text-align:center;">
-  <svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin">
+  <div style="display: flex;   justify-content: center;">
+  <svg xmlns="http://www.w3.org/2000/svg" 
+       preserveAspectRatio="xMidYMin" 
+       {{- if .Get "width" -}}
+         {{ with .Get "width" }}width="{{ . }}"{{ end }}
+       {{- end -}}
+       {{- if .Get "height" -}}
+         {{ with .Get "height" }}height="{{ . }}"{{ end }}
+       {{- end -}}>
     {{ .Inner }}
   </svg>
   </div>
   
   {{- if .Get "link" }}</a>{{ end -}}
   {{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
-    <figcaption style="width: 90%; display: block; margin: 0 auto">
+    <figcaption style="display: block; margin: 0 auto">
       {{ with (.Get "title") -}}
         <h4>{{ . }}</h4>
       {{- end -}}
