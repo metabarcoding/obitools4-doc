@@ -8,7 +8,7 @@ https://obitools4.metabarcoding.org/
 
 The documentation is automatically generated from the source code of the OBITools4-doc repository at each commit.
 
-## Innstalling hugo 
+## Installing hugo 
 
 ### For Linux (Debian/Ubuntu) 
 You need to install the extended version of Hugo using snap :
