@@ -115,11 +115,13 @@ The last step of the algorithm is to compute the frequency of the {{< katex >}}\
 This table is the equivalent of a [DNA dot plot](https://en.wikipedia.org/wiki/Dot_plot_(bioinformatics)) and allows to identify the main diagonal of the dot plot.
 
 
-{{< figure
+{{< fig
   src="fasta_dotplot.png"
+  id="dotplot"
   alt="The scatter plot of the shared 4mers between sequences A & B"
-  caption="**Shared 4mer positions**: Each point corresponds to a shared 4mer and is located at their respective positions on Sequence A & B. It corresponds to a thresholded DNA dot plot of both sequences. The red dotted line indicates the diagonal encompassing the more dots (here corresponding to 5 4mers). This diagonal corresponds to a difference of 5 between the postions."
-  class="ma0 w-75"
+  title="Shared 4mer positions:"
+  caption="Each point corresponds to a shared 4mer and is located at their respective positions on Sequence A & B. It corresponds to a thresholded DNA dot plot of both sequences. The red dotted line indicates the diagonal encompassing the more dots (here corresponding to 5 4mers). This diagonal corresponds to a difference of 5 between the postions."
+  
 >}}
 
 

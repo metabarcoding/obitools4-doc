@@ -39,15 +39,16 @@ P(error) = 10^{-\frac{Q}{10}}
 Sequencers typically provide quality scores in the range of {{< katex >}}0{{< /katex >}} to {{< katex >}}40{{< /katex >}}, which corresponds to a probability of error {{< katex >}}P(Error){{< /katex >}} in the range of {{< katex >}}10^{0} = 1{{< /katex >}} to {{< katex >}}10^{-4}{{< /katex >}}. The higher the score, the lower the probability of error.
 
 <!-- 
-
 quality <- ggplot() + geom_function(fun = function(x) 10^(-x/10)) + xlim(0,40) + xlab("Quality") + ylab(expression(P(Error) == 10^{-Q/10})) + theme_minimal() + scale_y_log10()
 ggsave("qality.png",quality) 
 -->
 
-{{< figure src="quality.png" 
+{{< fig src="quality.png" 
+    id="quality-score"
     alt="Quality scores to error probability relationship"
+    title="Quality scores and chance of sequencing error"
     caption="Figure showing the relationship between FASTQ quality scores and error probability" 
-    width="600px" >}}
+>}}
 
 In *FASTQ* format, the sequence of quality score is encoded as an ASCII string where each score is mapped to an ASCII character. The quality score {{< katex >}}0{{< /katex >}} is encoded as the character `!`. The quality score {{< katex >}}40{{< /katex >}} is encoded as the character `I` (uppercase `i`).
 
