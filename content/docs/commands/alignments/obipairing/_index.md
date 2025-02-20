@@ -61,20 +61,16 @@ it will produce a file named [`paired.fastq`](paired.fastq) with the following c
 
 {{< obi obipairing >}} will align the reads following a two-step procedure to increase computation speed.
 The first step aligns the reads using a [FASTA derived algorithm]({{< relref "fasta-like.md" >}}).
-Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm.
+Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm taking into account sequence quality scores present in the {{% fastq %}} files. It is possible to disable this first alignment step at the cost of an increase in the computation time by using the `--exact-mode` option.
 
 
+The first fast alignment step adds three tags are added to the FASTQ header for each read to report the results of this first step alignment.
 
-It is possible to disable this first alignment step at the cost of an increase in the computation time by using the `--exact-mode` option.
-
-`--fasta-absolute`
-
-Three tags are added to the FASTQ header for each read to report the results of this first step alignment.
-
-- `paring_fast_count` : Number of kmer
+- `paring_fast_count` : Number of kmer shared 
 - `paring_fast_overlap` : Length of the overlap as detected by this algorithm in nucleotides.
 - `paring_fast_score` : If normamalized paring_fast_count/(paring_fast_overlap  3) otherwise paring_fast_count
 
+`--fasta-absolute`
 
 
 #### The exact alignment of the overlapping regions

@@ -100,7 +100,8 @@ The diagram shows that the two sequences share four 4mers, above in green. The n
 | TAGC | 04, 08, 12    | 03              | 1, 5, 9           |
 
 
-The last step of the algorithm is to compute the frequency of the differences. And to select the most abundant differences. 
+
+The last step of the algorithm is to compute the frequency of the {{< katex >}}\Delta{{< /katex >}} to select the most abundant one. 
 
 | {{< katex >}}\Delta{{< /katex >}} | Frequency |
 |-------|-----------|
@@ -111,7 +112,18 @@ The last step of the algorithm is to compute the frequency of the differences. A
 | 3     | 1         |
 | 7     | 1         |
 
-The most common differences (Delta) is 5 and was observed five times. Thus, to maximize the sequence similarity, only by shifting one sequence relatively to the other, the best alignment is obtained by shifting B of 5 positions.
+This table is the equivalent of a [DNA dot plot](https://en.wikipedia.org/wiki/Dot_plot_(bioinformatics)) and allows to identify the main diagonal of the dot plot.
+
+
+{{< figure
+  src="fasta_dotplot.png"
+  alt="The scatter plot of the shared 4mers between sequences A & B"
+  caption="**Shared 4mer positions**: Each point corresponds to a shared 4mer and is located at their respective positions on Sequence A & B. It corresponds to a thresholded DNA dot plot of both sequences. The red dotted line indicates the diagonal encompassing the more dots (here corresponding to 5 4mers). This diagonal corresponds to a difference of 5 between the postions."
+  class="ma0 w-75"
+>}}
+
+
+For this example, the most common {{< katex >}}\Delta{{< /katex >}} is 5 and was observed five times. Thus, the sequence similarity between the sequence A and B is maximized by shifting B of 5 positions relatively to A.
 
 ```
 Sequence A: ACGTTAGCTAGCTAGCTAA-----
