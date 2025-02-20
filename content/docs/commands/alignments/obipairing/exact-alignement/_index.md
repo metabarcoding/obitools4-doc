@@ -181,4 +181,3 @@ P(macth | Obs(mismatch)) = \frac{3 \cdot 10^{-\frac{Q_F}{10}} + 3 \cdot 10^{-\fr
 {{< /katex >}}
 
 
- \frac{10^{-\frac{Q_F}{10}} - 10^{-\frac{Q_F + Q_R}{10}}}{3} +  \frac{10^{-\frac{Q_R}{10}} - 10^{-\frac{Q_F + Q_R}{10}}}{3} + \frac{2}{9} \cdot 10^{-\frac{Q_F + Q_R}{10}}
