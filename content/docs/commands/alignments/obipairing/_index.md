@@ -66,7 +66,7 @@ Based on results of the first step, a second alignment step is on the overlappin
 
 The first fast alignment step adds three tags are added to the FASTQ header for each read to report the results of this first step alignment.
 
-- `paring_fast_count` : Number of kmer shared 
+- `paring_fast_count` : Number of kmer shared on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}).
 - `paring_fast_overlap` : Length of the overlap as detected by this algorithm in nucleotides.
 - `paring_fast_score` : If normamalized paring_fast_count/(paring_fast_overlap  3) otherwise paring_fast_count
 
