@@ -68,10 +68,14 @@ The first fast alignment step adds three tags are added to the FASTQ header for 
 
 - `paring_fast_count` : Number of kmer shared on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}).
 - `paring_fast_overlap` : Length of the overlap as detected by this algorithm in nucleotides.
-- `paring_fast_score` : If normamalized paring_fast_count/(paring_fast_overlap  3) otherwise paring_fast_count
+- `paring_fast_score` : The pairing fast score is the number of shared 4mer on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}) (`paring_fast_count`) by the number of 4mer involved in the overlapping region of the reads ({{< katex >}}paring\_fast\_overlap - 3{{< /katex >}})
+  {{< katex  display=true >}}
+  paring\_fast\_score = \frac{paring\_fast\_count}{paring\_fast\_overlap - 3}
+  {{< /katex >}}
 
-`--fasta-absolute`
+- The `--fasta-exact` option allows to change the [best alignment selection]({{< relref "fasta-like#fasta-scores" >}}) from the one with the highest `paring_fast_score` (the default behavior) to the one with the highest `paring_fast_count`.
 
+- The `--exact-mode` option tells {{< obi obiparing >}} to bypass this first alignment step and proceed directly to the exact alignment, at the cost of a largest computation time.
 
 #### The exact alignment of the overlapping regions
 

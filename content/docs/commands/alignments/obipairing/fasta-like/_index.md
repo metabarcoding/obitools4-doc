@@ -101,18 +101,23 @@ The diagram shows that the two sequences share four 4mers, above in green. The n
 
 
 
-The last step of the algorithm is to compute the frequency of the {{< katex >}}\Delta{{< /katex >}} to select the most abundant one. 
+<div id="fasta-scores">The last step of the algorithm is to compute the frequency of the {{< katex >}}\Delta{{< /katex >}}, and the relative score as the frequency normalized by the number of kmers involved in the overlap, to select the best one.
 
-| {{< katex >}}\Delta{{< /katex >}} | Frequency |
-|-------|-----------|
-| 5     | 5         |
-| 1     | 4         |
-| 9     | 3         |
-| -3    | 2         |
-| 3     | 1         |
-| 7     | 1         |
+{{< katex  display=true >}}
+  RelScore = \frac{Frequency}{length(overlap) - 3}
+{{< /katex >}}
+</div>
 
-This table is the equivalent of a [DNA dot plot](https://en.wikipedia.org/wiki/Dot_plot_(bioinformatics)) and allows to identify the main diagonal of the dot plot.
+| {{< katex >}}\Delta{{< /katex >}} | Frequency | RelScore = Frequency/(Overlap - 3) |
+|-------|-----------|--------------|
+| 5     | 5         | 0.455        |
+| 9     | 3         | 0.428        |
+| 1     | 4         | 0.267        |
+| -3    | 2         | 0.154        |
+| 7     | 1         | 0.111        |
+| 3     | 1         | 0.077        |
+
+This table is the equivalent of a [DNA Dot Plot](https://en.wikipedia.org/wiki/Dot_plot_(bioinformatics)). A {{< katex >}}\Delta{{< /katex >}} corresponds to a diagonal on the dot plot. By default, {{< obi obipairing >}} considers as the best diagonal, which is equivalent to the best alignment by shifting sequences only (no insertions or deletions allowed in the overlap region), the one with the highest *RelScore*. If the `--fasta-absolute` option is used, the best diagonal is the one with the highest *Frequency*.
 
 
 {{< fig
@@ -125,12 +130,12 @@ This table is the equivalent of a [DNA dot plot](https://en.wikipedia.org/wiki/D
 >}}
 
 
-For this example, the most common {{< katex >}}\Delta{{< /katex >}} is 5 and was observed five times. Thus, the sequence similarity between the sequence A and B is maximized by shifting B of 5 positions relatively to A.
+For this example, diagonal having the largest *RelScore* (0.455) corresponds to a {{< katex >}}\Delta{{< /katex >}} of 5 and was observed five times. Thus, the sequence similarity between the sequence A and B is maximized by shifting B of 5 positions relatively to A.
 
 ```
 Sequence A: ACGTTAGCTAGCTAGCTAA-----
 Sequence B: -----CGCTAGCTAGCTAATTTGG
-Overlap   :      ++++++++++++++  
+Overlap   :      .+++++++++++++  
 ```
 
 This delimits the overlapping region between the two reads.
