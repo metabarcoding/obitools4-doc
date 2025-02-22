@@ -96,7 +96,7 @@ theme:
 
 module:
   mounts:
-    - source: 'static'
-      target: 'static'
-    - source: 'images'
-      target: 'static/images'
+  - source: 'static'
+    target: 'static'
+  - source: 'images'
+    target: 'static/images'

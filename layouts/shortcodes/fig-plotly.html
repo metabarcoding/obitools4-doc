@@ -1,0 +1,46 @@
+<figure {{ with .Get "class" }} class="{{ . }}"{{ end }} 
+  {{- if .Get "id" -}}
+    {{ with .Get "id" }} id="{{ . }}"{{ end }}
+  {{- end -}}
+  style="border: solid; border-radius: 30px; box-shadow: 0 0 0 10px #f3f5f6 inset;   padding: 1em;"
+  >
+  
+  {{- if .Get "link" -}}
+  <a href="{{ .Get "link" }}"{{ with .Get "target" }} target="{{ . }}"{{ end }}{{ with .Get "rel" }} rel="{{ . }}"{{ end }}>
+  {{- end -}}
+
+  {{- $u := urls.Parse (.Get "src") -}}
+  {{- $src := $u.String -}}
+  {{- if not $u.IsAbs -}}
+    {{- with or (.Page.Resources.Get $u.Path) (resources.Get $u.Path) -}}
+      {{- $src = .RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+  <div style="display: flex;   justify-content: center;">
+{{ $json := .Get "json" }}
+{{ $height := .Get "height" | default "200px" }}
+<div id="{{$json}}" class="plotly" style="height:{{$height}};"></div>
+<script>
+  d3.json({{ $json }}).then(function (fig) {
+      Plotly.newPlot('{{$json}}', fig.data, fig.layout, { responsive: true });
+  });
+</script>
+</div>
+  
+{{- if .Get "link" }}</a>{{ end -}}
+{{- if or (or (.Get "title") (.Get "caption")) (.Get "attr") -}}
+  <figcaption style="display: block; margin: 0 auto">
+    {{ with (.Get "title") -}}
+      <h4>{{ . }}</h4>
+    {{- end -}}
+    {{- if or (.Get "caption") (.Get "attr") -}}<p>
+      {{- .Get "caption" | markdownify -}}
+      {{- with .Get "attrlink" }}
+        <a href="{{ . }}">
+      {{- end -}}
+      {{- .Get "attr" | markdownify -}}
+      {{- if .Get "attrlink" }}</a>{{ end }}</p>
+    {{- end }}
+  </figcaption>
+{{- end }}
+</figure>

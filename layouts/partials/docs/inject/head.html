@@ -1,1 +1,5 @@
 <link rel="stylesheet" type="text/css" href="{{ "hugo-cite.css" | absURL }}" />
+{{- if .Params.plotly -}}
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
+{{- end -}}

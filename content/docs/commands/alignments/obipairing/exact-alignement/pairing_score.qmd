@@ -1,0 +1,149 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r}
+library(tidyverse)
+library(plotly)
+library(matrixStats)
+```
+
+```{r}
+log_sum_exp <- function(a,b) {
+  m <- map2_dbl(a,b,max)
+  m + log(exp(a-m)+exp(b-m))
+}
+```
+
+$$
+\log(1 - e^b) = \log\left(-e^{(1-b)}\right)
+$$
+
+```{r}
+log1m_exp <- function(b) {
+  if (any(b >= 0)) {
+    stop(glue::glue("b must be negative (b={b})"))
+  }
+  return(log(-expm1(b)))  # expm1(b) = exp(b) - 1, pour éviter les erreurs d'arrondi
+}
+```
+
+$$
+\log(e^a - e^b) = a + \log(1 - e^{b-a})
+$$
+
+```{r}
+log_diff_exp <- function(a, b) {
+  # Vérifier si a > b pour éviter des résultats indéfinis
+  if (any(a < b)) {
+    stop(glue::glue("Erreur : a ({a}) doit etre strictement sup�rieur � b ({b}) pour que e^a - e^b soit positif."))
+  }
+  
+  # Calculer log(e^a - e^b) de manière stable
+  ifelse(a == b, -Inf,a + log1m_exp(b-a))
+}
+```
+
+$$
+P_{error} = 10^{-\frac{Q}{10}}
+$$
+
+$$
+\begin{aligned}
+q_F &= -\frac{Q_F}{10} \cdot \log(10) \\
+q_R &= -\frac{Q_R}{10} \cdot \log(10) \\ 
+P(macth | Obs(match)) &= (1-e^{q_F}) (1-e^{q_R}) + (1-e^{q_F})\frac{e^{q_R}}{4}+ (1-e^{q_R})\frac{e^{q_F}}{4} + \frac{e^{q_F+q_R}}{4} \\
+&=1 - e^{q_R} - e^{q_F} + e^{q_F+q_R} + \frac{e^{q_R}}{4} - \frac{e^{q_F+q_R}}{4} + \frac{e^{q_F}}{4} - \frac{e^{q_F+q_R}}{4} + \frac{e^{q_F+q_R}}{4} \\
+&= \frac{4 - 4e^{q_F} - 4e^{q_R} + 4e^{q_F+q_R} + e^{q_F} + e^{q_R} - e^{q_F+q_R}}{4} \\
+&= \frac{4 - 3e^{q_F}- 3e^{q_R} + 3e^{q_F+q_R}}{4}\\
+&= \frac{4 - 3(e^{q_F}+e^{q_R}-e^{q_F+q_R})}{4} \\
+&= 1 - \frac{3}{4}\left(e^{q_F}+e^{q_R}-e^{q_F+q_R}\right)
+\end{aligned}
+$$
+
+```{r}
+Pm_match_observed <- function(Q_F, Q_R) {
+  l10 <- log(10)
+  l3 <- log(3)
+  l4 <- log(4)
+
+  q_F <- -Q_F/10*l10
+  q_R <- -Q_R/10*l10
+  
+  term1 <- log_sum_exp(q_F,q_R)
+  term2 <- log_diff_exp(term1,q_F+q_R) + l3 - l4
+  
+  log1m_exp(term2)
+}
+```
+
+$$
+\begin{aligned}
+P(macth | Obs(mismatch)) &= \frac{(1-e^{q_F})e^{q_R}}{4} + \frac{(1-e^{q_R})e^{q_F}}{4} + \frac{e^{q_F+q_R}}{4} \\
+&= \frac{(1-e^{q_F})e^{q_R} + (1-e^{q_R})e^{q_F} + e^{q_F+q_R}}{4} \\
+&= \frac{e^{q_R} - e^{q_F+q_R} + e^{q_F} - e^{q_F+q_R} + e^{q_F+q_R}}{4} \\
+&= \frac{e^{q_F} + e^{q_R} - e^{q_F+q_R}}{4}
+\end{aligned}
+$$
+
+```{r}
+Pm_mismatch_observed <- function(Q_F, Q_R) {
+  l10 <- log(10)
+  l3 <- log(3)
+  l4 <- log(4)
+
+  q_F <- -Q_F/10*l10
+  q_R <- -Q_R/10*l10
+  
+  term1 <- log_sum_exp(q_F,q_R)
+  log_diff_exp(term1,q_F+q_R) - l4
+}
+```
+
+```{r}
+score_match_observed <- function(Q_F, Q_R) {
+  Pm_match_observed(Q_F,Q_R) - log1m_exp(Pm_match_observed(Q_F,Q_R)) 
+}
+
+score_mismatch_observed <- function(Q_F, Q_R) {
+   Pm_mismatch_observed(Q_F,Q_R) - log1m_exp(Pm_mismatch_observed(Q_F,Q_R)) 
+}
+```
+
+```{r}
+scores <- expand_grid(QF=0:40,QR=0:40) %>%
+  mutate(score_match_observed = round(score_match_observed(QF,QR),2),
+         score_mismatch_observed = round(score_mismatch_observed(QF,QR),2))
+```
+
+```{r}
+plot_match <- plot_ly(scores, 
+        x=~QF, y=~QR, z=~score_match_observed, 
+        type="mesh3d") %>%
+    layout(
+        plot_bgcolor = "#bababa",
+        scene = list(
+            xaxis = list(title = "Q forward read"),   # Change x/y/z axis title
+            yaxis = list(title = "Q reverse read"),
+            zaxis = list(title = "Score match")))
+```
+
+```{r}
+plot_mismatch <- plot_ly(scores, 
+        x=~QF, y=~QR, z=~score_mismatch_observed, 
+        type="mesh3d") %>%
+    layout(
+        plot_bgcolor = "#bababa",
+        scene = list(
+            xaxis = list(title = "Q forward read"),   # Change x/y/z axis title
+            yaxis = list(title = "Q reverse read"),
+            zaxis = list(title = "Score mismatch")))
+```
+
+```{r}
+write(plotly_json(plot_match,FALSE),"content/docs/commands/alignments/obipairing/exact-alignment/match.json")
+write(plotly_json(plot_mismatch,FALSE),"content/docs/commands/alignments/obipairing/exact-alignment/mismatch.json")
+
+```

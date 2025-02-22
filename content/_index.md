@@ -22,10 +22,4 @@ bookSearchExclude: true
 > Don't hesitate to contribute and comment on [GitHub](https://github.com/metabarcoding/obitools4-doc)
 
 
-{{< button relref="/docs/about" >}}About{{< /button >}}
-{{< button relref="/docs/installation" >}}Installation{{< /button >}}
-{{< button relref="/docs/principles" >}}OBITools principles{{< /button >}}
-{{< button relref="/docs/commands" >}}The OBITools commands{{< /button >}}
-{{< button relref="/docs" >}}Full documentation{{< /button >}}
-{{< button relref="/docs/cookbook" >}}Cookbook{{< /button >}}
-{{< button href="https://github.com/metabarcoding/obitools4-doc" >}}Contribute to the doc{{< /button >}}
+{{% button relref="/docs/about" %}}About{{% /button %}} {{% button relref="/docs/installation" %}}Installation{{% /button %}} {{% button relref="/docs/principles" %}}OBITools principles{{% /button %}} {{% button relref="/docs/commands" %}}The OBITools commands{{% /button %}} {{% button relref="/docs" %}}Full documentation{{% /button %}} {{% button relref="/docs/cookbook" %}}Cookbook{{% /button %}} {{% button href="https://github.com/metabarcoding/obitools4-doc" %}}Contribute to the doc{{% /button %}}

@@ -60,7 +60,7 @@ it will produce a file named [`paired.fastq`](paired.fastq) with the following c
 ### The alignment process
 
 {{< obi obipairing >}} will align the reads following a two-step procedure to increase computation speed.
-The first step aligns the reads using a [FASTA derived algorithm]({{< relref "fasta-like.md" >}}).
+The first step aligns the reads using a [FASTA derived algorithm](fasta-like).
 Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm taking into account sequence quality scores present in the {{% fastq %}} files. It is possible to disable this first alignment step at the cost of an increase in the computation time by using the `--exact-mode` option.
 
 

@@ -1,8 +1,9 @@
 ---
 title: "Exact alignment"
 weight: 2
+params:
+  plotly: true
 ---
-
 ## Exact alignment of paired reads
 
 When aligning paired reads, depending on the length of the sequenced amplicon compared to the length of the read, two cases can occur:
@@ -132,52 +133,97 @@ In both cases, an exact alignment algorithm based on dynamic programming will co
 
 ## Scoring system
 
-An alignment algorithm needs to define:
+The alignment algorithm used by {{< obi obipairing >}} must define :
 
-- A bonus score for the match between two nucleotides (same nucleotide at the corresponding position)
-- A penalty for a mismatch between two nucleotides (different nucleotides at the corresponding position)
-- A penalty for the insertion or deletion of a nucleotide (gap) in one of the two reads.
+- A {{< katex >}} score > 0 {{< /katex >}} for the match between two nucleotides (same nucleotide at the same position in the alignment).
+  Thus, the accumulation of matches during the alignment process will increase the alignment score.
+- A {{< katex >}} score < 0 {{< /katex >}} for a mismatch between two nucleotides (different nucleotides at the same position in the alignment).
+  Thus, the accumulation of mismatches during the alignment process will decrease the alignment score.
+- A {{< katex >}} score < 0 {{< /katex >}} for an insertion or deletion of a nucleotide (gap) in one of the two reads.
+  Thus, the accumulation of insertions or deletions during the alignment process will decrease the alignment score.
 
-The bonus score and the mismatch penalty are estimated from the sequencing quality scores {{< katex >}}Q_F{{< /katex >}} and {{< katex >}}Q_R{{< /katex >}} of the considered two nucleotides on the forward and reverse reads, respectively. The idea is that the quality score is related to the probability of misreading.
+The scores are based on the sequencing quality scores {{< katex >}}Q_F{{< /katex >}} and {{< katex >}}Q_R{{< /katex >}} of the two considered nucleotides on the forward and reverse reads, respectively, because the quality score is related to the probability of an erroneous read.
 
 {{< katex display=true >}}
 P(misreading) = 10^{-\frac{Q}{10}}
 {{< /katex >}}
 
-Thus, if the sequencer reads a nucleotide *X* at position *i*, where *X* represents one of the nucleotides *A*, *C*, *G*, or *T*, with a quality score *Q*, there is a probability {{< katex >}}P(truth = X) = 1 - 10^{-\frac{Q}{10}}{{< /katex >}} that *X* is actually a *X* nucleotide, and a probability {{< katex >}}P(truth \neq X) = 10^{-\frac{Q}{10}}{{< /katex >}} that *X* is actually one of the other three nucleotides. If we assume the equivalence of the four nucleotides, the probability that *X* is one of the three other nucleotides is 
-{{< katex display=true >}}P_F = \frac{10^{-\frac{Q}{10}}}{3} {{< /katex >}}
+Consideration of the reading uncertainty means that if the sequencer reads a nucleotide *X* at position *i*, where *X* represents one of the nucleotides *A*, *C*, *G*, or *T*, with a quality score *Q*, there is a probability {{< katex >}}P(truth = X) = 1 - 10^{-\frac{Q}{10}}{{< /katex >}} that *X* is actually a *X* nucleotide. The complementary probability corresponds to the case where the nature of *X* is unknown. *X* can actually be any of the four nucleotides: {{< katex >}}P(truth \in \{A,C,G,T\}) = 10^{-\frac{Q}{10}}{{< /katex >}}. If we assume the equiprobability of the four nucleotides, this implies that the probability that *X* is actually *Y* one of the four nucleotides is 
+{{< katex display=true >}}P(Y | Obs(X)) = \frac{10^{-\frac{Q}{10}}}{4} {{< /katex >}}
 
-### Probability of a match
 
-#### When a match is observed
+### Estimating the probability of a true match
 
-Thus when the alignment of the forward and the reverse reads pairs two *X* nucleotides, it can be actually a true match or a mistmatch.
-There are two ways of being an actual match:
-
-1. Both nucleotides are actually *X* nucleotides.
-   {{< katex display=true >}}P(case\,1) = 1 - 10^{-\frac{Q_F}{10}} - 10^{-\frac{Q_R}{10}} + 10^{-\frac{Q_F + Q_R}{10}}{{< /katex >}}. 
-2. None of the nucleotides is actually *X* nucleotides but both are the same true nucleotides.
-   {{< katex display=true >}}P(case\,2) = \frac{10^{-\frac{Q_F + Q_R}{10}}}{3} {{< /katex >}}. 
-
-The probability of an actual match when a match is observed is the sum of the probabilities of the two cases.
-
-{{< katex display=true >}}P(match | Obs(match)) = 1 - 10^{-\frac{Q_F}{10}} - 10^{-\frac{Q_R}{10}} + \frac{4}{3} \cdot 10^{-\frac{Q_F + Q_R}{10}} {{< /katex >}}
-
-#### When a mismatch is observed
-
-When a mismatch XY is observed, it can also be actually a match. They are three ways of being an actual match when a mismatch is observed:
-
-1. The X nucleotide is actually *X* but the Y nucleotide is actually *X*
-   {{< katex display=true >}}P(case\,1') = \frac{10^{-\frac{Q_F}{10}} - 10^{-\frac{Q_F + Q_R}{10}}}{3}{{< /katex >}}
-2. The Y nucleotide is actually *Y* but the X nucleotide is actually *Y*
-   {{< katex display=true >}}P(case\,2') = \frac{10^{-\frac{Q_R}{10}} - 10^{-\frac{Q_F + Q_R}{10}}}{3}{{< /katex >}}
-3. None of the nucleotides is actually *X* or *Y* but both are the same true nucleotides.
-   {{< katex display=true >}}P(case\,3') = \frac{2}{9} \cdot 10^{-\frac{Q_F + Q_R}{10}}{{< /katex >}}
-
-The probability of an actual match when a mismatch is observed is the sum of the probabilities of the three cases.
+Where {{< katex >}}Q_F{{< /katex >}} and {{< katex >}}Q_R{{< /katex >}} are the forward and reverse sequencing quality scores, respectively, let's define the corresponding log probability of misreading:
 
 {{< katex display=true >}}
-P(macth | Obs(mismatch)) = \frac{3 \cdot 10^{-\frac{Q_F}{10}} + 3 \cdot 10^{-\frac{Q_R}{10}} - 4 \cdot 10^{-\frac{Q_F + Q_R}{10}}}{9}
+\begin{aligned}
+q_F &= -\frac{Q_F}{10} \cdot \log(10) \\
+q_R &= -\frac{Q_R}{10} \cdot \log(10) 
+\end{aligned}
 {{< /katex >}}
 
 
+#### When a match is observed
+
+So, if the alignment of the forward and reverse reads matches two *X*
+nucleotides, it may actually be a true match or a true mismatch.
+
+There are three ways to get a true match:
+1. The two nucleotides are actually *X* nucleotides.
+   {{< katex display=true >}}P(case\,1) = (1-e^{q_F}) (1-e^{q_R}){{{< /katex >}}. 
+2. One nucleotide is read correctly, the second is not, but it's still *X* nucleotides.
+   {{< katex display=true >}}P(case\,2) = (1-e^{q_F})\frac{e^{q_R}}{4}+ (1-e^{q_R})\frac{e^{q_F}}{4}{{< /katex >}}. 
+3. Neither nucleotide is read correctly, but both are the same true nucleotides.
+   {{< katex display=true >}}P(case\,3) = \frac{e^{q_F+q_R}}{4} {{< /katex >}}. 
+
+If a match is observed, the sum of the probabilities of these three cases is the probability of an actual match.
+
+{{< katex display=true >}}
+\begin{aligned}
+P(macth | Obs(match)) &= 1 - \frac{3}{4}\left(e^{q_F}+e^{q_R}-e^{q_F+q_R}\right)
+\end{aligned}
+{{< /katex >}}
+
+
+#### When a mismatch is observed
+
+If a mismatch *XY* is observed, it can also be an actual match. There are three ways to be an actual match when a mismatch is observed:
+
+1. The X nucleotide is actually *X* and the Y nucleotide is also actually an *X*.
+   {{< katex display=true >}}P(case\,1') = \frac{(1-e^{q_F})e^{q_R}}{4} {{< /katex >}}
+2. The Y nucleotide is actually *Y* and the X nucleotide is actually a *Y*.
+   {{< katex display=true >}}P(case\,2') = \frac{(1-e^{q_R})e^{q_F}}{4}{{< /katex >}}
+3. Neither nucleotide is actually an *X* or a *Y*, but both are the same true nucleotides.
+   {{< katex display=true >}}P(case\,3') = \frac{e^{q_F+q_R}}{4}{{< /katex >}}
+
+If a mismatch is observed, the sum of the probabilities of these three cases is the probability of an actual match.
+
+{{< katex display=true >}}
+\begin{aligned}
+P(macth | Obs(mismatch)) &= \frac{e^{q_F} + e^{q_R} - e^{q_F+q_R}}{4}
+\end{aligned}
+{{< /katex >}}
+
+
+### Match and Mismatch Score
+
+{{< obi obipairing >}} uses as the score for match and mismatch the log odd ratio between the probability of being a true match given the observation and the probability of being a true mismatch given the observation.
+
+{{< katex display=true >}}
+\begin{aligned}
+Score_{i,j} &= \log P(match_{i,j}) - \log P(mismatch_{i,j}) \\
+\\
+ &=\log P(match_{i,j}) - \log [1-P(match_{i,j})]
+\end{aligned}
+{{< /katex >}}
+
+{{< fig-plotly json="match.json" height="500px" modebar="false" 
+    title="Match scores according to the sequencing quality score"
+    caption="The score is a log odd ratio between the probability of a match and the probability of a mismatch. Here, when a match is considered during the alignment. If the sequencing quality score is 0 for at least one of the read, the chance of a match is 0.25, when the chance of a mismatch is 0.75. The match score is -1.1. Oppositely when both reads have a sequencing quality score of 40, the chance of a match close to 1, and close 1/10,000 for a mismatch. The match score becomes 8.8."
+ >}} 
+
+{{< fig-plotly json="mismatch.json" height="500px" modebar="false" 
+    title="Mismatch scores according to the sequencing quality score"
+    caption="The score is a log odd ratio between the probability of a match and the probability of a mismatch. Here, when a mismatch is considered during the alignment. If the sequencing quality score is 0 for at least one of the read, the chance of a match is 0.25, when the chance of a mismatch is 0.75. The mismatch score is therefore equal to the match score -1.1. Oppositely when both reads have a sequencing quality score of 40, the chance of a mismatch close to 1, and close 5/100,000 for a match. The mismatch score becomes -9.9."
+ >}}
