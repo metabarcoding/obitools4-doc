@@ -83,7 +83,7 @@ If a mismatch is observed, the sum of the probabilities of these three cases is 
 
 {{< katex display=true >}}
 \begin{aligned}
-P(macth | Observed(mismatch), QF, QR) &= \frac{e^{q_F} + e^{q_R} - e^{q_F+q_R}}{4}
+P(match | Observed(mismatch), QF, QR) &= \frac{e^{q_F} + e^{q_R} - e^{q_F+q_R}}{4}
 \end{aligned}
 {{< /katex >}}
 
@@ -267,7 +267,7 @@ The normal behavior of {{< obi obipairing >}}, is to decide for left or right al
 
 ## Which parts of the reads the aligned using the exact alignment algorithm?
 
-The default behavior of {{< obi obipairing >}} is to rely on the [FASTA derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) to decide which part of the reads to align. The [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) estimate heuristically the best shift to apply, and therefore, overlapping region of the reads. The exact alignment algorithm is then applied to that overlapping region augmented of {{< katex >}}\Delta{{< /katex >}} nucleotides on each side. By default, the value of {{< katex >}}\Delta{{< /katex >}} is set to 5. The user can change this value by setting the `--delta` option. Doing this extension of the overlapping region allows the exact alignment algorithm to be less sensitive to the approximation done by the [FASTA derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) when determining the overlapping region. 
+The default behavior of {{< obi obipairing >}} is to rely on the [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) to decide which part of the reads to align. The [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) estimate heuristically the best shift to apply, and therefore, overlapping region of the reads. The exact alignment algorithm is then applied to that overlapping region augmented of {{< katex >}}\Delta{{< /katex >}} nucleotides on each side. By default, the value of {{< katex >}}\Delta{{< /katex >}} is set to 5. The user can change this value by setting the `--delta` option. Doing this extension of the overlapping region allows the exact alignment algorithm to be less sensitive to the approximation done by the [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) when determining the overlapping region. 
 
 In the exact mode (option `--exact-mode`), the exact alignment algorithm is applied to the full pair of reads, which increases the computation time.
 

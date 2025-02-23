@@ -60,7 +60,7 @@ it will produce a file named [`paired.fastq`](paired.fastq) with the following c
 ### The alignment process
 
 {{< obi obipairing >}} will align the reads following a two-step procedure to increase computation speed.
-The first step aligns the reads using a [FASTA derived algorithm](fasta-like).
+The first step aligns the reads using a [FASTA-derived algorithm](fasta-like).
 Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm taking into account sequence quality scores present in the {{% fastq %}} files. It is possible to disable this first alignment step at the cost of an increase in the computation time by using the `--exact-mode` option.
 
 
@@ -69,13 +69,13 @@ The first fast alignment step adds three tags are added to the FASTQ header for 
 - `paring_fast_count` : Number of kmer shared on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}).
 - `paring_fast_overlap` : Length of the overlap as detected by this algorithm in nucleotides.
 - `paring_fast_score` : The pairing fast score is the number of shared 4mer on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}) (`paring_fast_count`) by the number of 4mer involved in the overlapping region of the reads ({{< katex >}}paring\_fast\_overlap - 3{{< /katex >}})
-  {{< katex  display=true >}}
+  {{< katex display=true >}}
   paring\_fast\_score = \frac{paring\_fast\_count}{paring\_fast\_overlap - 3}
   {{< /katex >}}
 
-- The `--fasta-exact` option allows to change the [best alignment selection]({{< relref "fasta-like#fasta-scores" >}}) from the one with the highest `paring_fast_score` (the default behavior) to the one with the highest `paring_fast_count`.
+- The `--fasta-exact` option allows changing the [best alignment selection]({{< relref "fasta-like#fasta-scores" >}}) from the one with the highest `paring_fast_score` (the default behavior) to the one with the highest `paring_fast_count`.
 
-- The `--exact-mode` option tells {{< obi obiparing >}} to bypass this first alignment step and proceed directly to the exact alignment, at the cost of a largest computation time.
+- The `--exact-mode` option tells {{< obi obipairing >}} to bypass this first alignment step and proceed directly to the exact alignment, at the cost of a largest computation time.
 
 #### The exact alignment of the overlapping regions
 
@@ -141,20 +141,20 @@ obipairing --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
   Compute absolute fast score, this option has no effect in exact mode (default: false).
   {{< /cmd-option >}}
 
-- {{< cmd-option name="gap-penality" short="G" param="FLOAT64" >}}
+- {{< cmd-option name="gap-penalty" short="G" param="FLOAT64" >}}
   Gap penalty expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000)
   {{< /cmd-option >}}
 
 - {{< cmd-option name="min-identity" short="X" param="FLOAT64" >}}
-  Minimum identity between ovelaped regions of the reads to consider the alignment (default: 0.900000).
+  Minimum identity between overlapped regions of the reads to consider the alignment (default: 0.900000).
   {{< /cmd-option >}}
 
 - {{< cmd-option name="min-overlap" param="INTEGER" >}}
   Minimum overlap between both the reads to consider the alignment (default: 20).
   {{< /cmd-option >}}
 
-- {{< cmd-option name="penality-scale" param="FLOAT64" >}}
-  Scale factor applied to the mismatch score and the gap penality (default 1).
+- {{< cmd-option name="penalty-scale" param="FLOAT64" >}}
+  Scale factor applied to the mismatch score and the gap penalty (default 1).
   {{< /cmd-option >}}
 
 - {{< cmd-option name="without-stat" short="S" >}}
