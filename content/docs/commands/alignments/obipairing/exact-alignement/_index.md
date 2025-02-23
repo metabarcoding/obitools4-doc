@@ -22,12 +22,12 @@ The alignment algorithm used by {{< obi obipairing >}} must define :
 The scores are based on the sequencing quality scores {{< katex >}}Q_F{{< /katex >}} and {{< katex >}}Q_R{{< /katex >}} of the two considered nucleotides on the forward and reverse reads, respectively, because the quality score is related to the probability of an erroneous read, or more exactly the probability that the actual *X* base read is unknown.
 
 {{< katex display=true >}}
-P(X\,\text{is unknown}) = 10^{-\frac{Q}{10}}
+P(X\, \text{is unknown}) = 10^{-\frac{Q}{10}}
 {{< /katex >}}
 
-Consideration of the reading uncertainty means that if the sequencer reads a nucleotide *X* at position *i*, where *X* is one of the nucleotides *A*, *C*, *G*, or *T*, with a quality score *Q*, there is a probability {{< katex >}}P(truth = X) {{< /katex >}} that *X* is actually a *X* nucleotide. 
+Consideration of the reading uncertainty means that if the sequencer reads a nucleotide *X* at position *i*, where *X* is one of the nucleotides *A*, *C*, *G*, or *T*, with a quality score *Q*, there is a probability {{< katex >}}P(truth = X) {{< /katex >}} that *X* is actually an *X* nucleotide. 
 
-{{< katex  display=true >}}P(truth = X) = 1 - 10^{-\frac{Q}{10}}{{< /katex >}} 
+{{< katex display=true >}}P(truth = X) = 1 - 10^{-\frac{Q}{10}}{{< /katex >}} 
 
 The complementary probability corresponds to the case where the nature of *X* is unknown. *X* can actually be any of the four nucleotides. If we assume the equiprobability of the four nucleotides, this implies that the probability that *X* is actually *Y* one of the four nucleotides is 
 
@@ -193,7 +193,7 @@ Gap\,Penalty = Score(40,40 | Observed(mismatch)) \times GapWeigth
 2. The amplicon is shorter than the read: each read contains the entire amplicon.
 
   {{< fig-svg 
-      title="Aligning paired reads with a amplicon shorter than the read"
+      title="Aligning paired reads with an amplicon shorter than the read"
       caption="When two paired reads are aligned to recover a full amplicon that is shorter than the reads (blue rectangle), it defines two flanking regions (red rectangles) that are not aligned and correspond to the 3' ends of the reads, and an overlap region (green rectangle) at the 5' ends of the reads that must be aligned." 
       height="200"
       width="350"
@@ -236,7 +236,7 @@ Gap\,Penalty = Score(40,40 | Observed(mismatch)) \times GapWeigth
 
     <!-- Forward Read (upper arrow) -->
     <path class="arrow" d="M 110 80 L 310 80" />
-    
+
     <path class="arrow-head" d="M 310 80 L 300 75 L 300 85 Z" />
     <text class="label" x="100" y="85">5'</text>
     <text class="label" x="315" y="85">3'</text>

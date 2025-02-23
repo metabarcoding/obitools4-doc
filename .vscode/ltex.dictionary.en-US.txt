@@ -20,3 +20,12 @@ metabarcode
 OBITools
 metabarcodes
 Reannotation
+obipairing
+katex
+frac
+cdot
+Illumina
+fig-svg
+gap-pelnalty
+modebar
+fig-plotly

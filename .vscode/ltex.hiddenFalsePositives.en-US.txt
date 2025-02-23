@@ -1,0 +1,5 @@
+{"rule":"SPACE_BEFORE_PARENTHESIS","sentence":"^\\Q{{< katex display=true >}} \\begin{aligned} P(match | Observed(match), QF, QR) &= 1 - \\frac{3}{4}\\left(e^{q_F}+e^{q_R}-e^{q_F+q_R}\\right) \\end{aligned} {{< /katex >}}\\E$"}
+{"rule":"SPACE_BEFORE_PARENTHESIS","sentence":"^\\Q{{< katex display=true >}} \\begin{aligned} Score(QF,QR) = \\log &P(match | Observed(match|mismatch), QF, QR) - \\\\ & \\log P(mismatch | Observed(match|mismatch), QF, QR) \\end{aligned} {{< /katex >}}\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q{{< katex display=true >}} \\begin{aligned} Gap\\,Penalty = Score(40,40 | Observed(mismatch)) \\times GapWeigth \\end{aligned} {{< /katex >}}\nLeft and right alignment\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q{{< obi obipairing >}} uses a gap penalty estimated as the score of a mismatch between two nucleotides with a quality score of 40, scaled by a constant value (GapWeight).\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q{{< katex display=true >}} \\begin{aligned} Gap\\,Penalty = Score(40,40 | Observed(mismatch)) \\times GapWeigth \\end{aligned} {{< /katex >}}\nLeft and right alignment\\E$"}
