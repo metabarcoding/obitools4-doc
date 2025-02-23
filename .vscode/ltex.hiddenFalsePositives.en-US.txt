@@ -32,3 +32,4 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qscore_norm: \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q divided by \\E(?:Dummy|Ina|Jimmy-|Dummy-|Maniquí-|Maniquíes-)[0-9]+\\Q.\\E$"}
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qpairing_mismatches`: A description of the mismatches between the reads.\\E$"}
 {"rule":"DASH_RULE","sentence":"^\\Q{{< katex display=true >}}Q_{consensus} = \\log_{10} \\left(10^{-\\frac{Q_max}{10}} \\cdot \\frac{1 - 10^{-\\frac{Q_min}{10}}}{4} \\right){{< /katex >}}\nIn case of an insertion or a deletion, the gap will be affected with a quality of 0 and the mismatch rules will be applied.\\E$"}
+{"rule":"DASH_RULE","sentence":"^\\Q{{< katex display=true >}}Q_{consensus} = \\log_{10} \\left(10^{-\\frac{Q_max}{10}} \\cdot \\frac{1 - 10^{-\\frac{Q_min}{10}}}{4} \\right){{< /katex >}}\nIn case of an insertion or deletion, the gap will be affected with a quality of 0 and the mismatch rules will be applied.\\E$"}
