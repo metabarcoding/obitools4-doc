@@ -5,6 +5,7 @@ date: 2025-02-10
 command: obipairing
 category: alignments
 url: "/obitools/obipairing"
+bookCollapseSection: true
 weight: 20
 ---
 
@@ -60,9 +61,11 @@ it will produce a file named [`paired.fastq`](paired.fastq) with the following c
 ### The alignment process
 
 {{< obi obipairing >}} will align the reads following a two-step procedure to increase computation speed.
+
+#### A fast alignment to determine quickly the overlap
+
 The first step aligns the reads using a [FASTA-derived algorithm](fasta-like).
 Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm taking into account sequence quality scores present in the {{% fastq %}} files. It is possible to disable this first alignment step at the cost of an increase in the computation time by using the `--exact-mode` option.
-
 
 The first fast alignment step adds three tags are added to the FASTQ header for each read to report the results of this first step alignment.
 
@@ -79,24 +82,40 @@ The first fast alignment step adds three tags are added to the FASTQ header for 
 
 #### The exact alignment of the overlapping regions
 
-`--delta`
+Once the overlap has been quickly identified using the [FASTA-derived algorithm] (fasta-like), the overlapping region as detected in this first step is extended by {{< katex >}}\delta{{< /katex >}} nucleotides at each end ({{< katex >}}\delta = 5{{< /katex >}} by default and can be defined with the `--delta` option) to be exactly aligned using a [semi-global alignment algorithm](exact-alignment) taking into account the sequence quality scores present in the {{% fastq %}} files. There are two versions of this algorithm, [the *left-align* and the *right-align* version](exact-alignment/#left-and-right-alignment). Which one is used, left or right, depends on the length of the amplicon. Amplicons longer than the read length will be aligned with the left version. The shorter ones are aligned with the right version.
 
+When the `--exact-mode` option is used, full length reads are aligned twice, once with the left version and once with the right version. The alignment with the highest score is used. This consequently increases the computation time.
 
+The exact alignment step adds the following tags to the FASTQ header for each read to report the quality of the alignment.
 
-### Annotations added to the FASTQ header for each read
+- `ali_dir`: indicates the mode of the used exact alignment *left* or *right*.
+- `ali_length`: The length of the aligned overlapping region (including gaps).
+- `seq_a_single`: The length of the unaligned region on the forward read.
+- `seq_ab_match`: The number of matches in the aligned overlapping region.
+- `seq_b_single`: The length of the unaligned region on the reverse read.
+- `score`: The row score of the alignment (the sum of the [elementary scores for each aligned position]({{< relref "exact-alignment#scoring-system">}})).
+- `score_norm`: `seq_ab_match` divided by `ali_length`.
+- `pairing_mismatches`: A description of the mismatches between the reads. It is expressed as a JSON map with keys describing the mismatch and values corresponding to the position of the mismatch in the reconstructed full length amplicon.
+  ```json
+  {"(C:12)->(A:40)":49,"(T:40)->(G:12)":104}
+  ```
+  This example describes the two mismatches found in the overlapping region:
+    - A *C* with a quality score of 12 on the forward read is aligned to an *A* with a quality score of 40 on the reverse read at position 49.
+    - A *T* with a quality score of 40 on the forward read aligns to a *G* with a quality score of 12 on the reverse read at position 104.
 
-- mode
-- ali_dir
-- ali_length
-- paring_fast_count
-- paring_fast_overlap
-- paring_fast_score
-- score
-- score_norm
-- seq_a_single
-- seq_ab_match
-- seq_b_single
-- pairing_mismatches
+### Building the consensus sequence
+
+If the overlap length is below a threshold (20 by default, and can be set using the `--min-overlap` option), or the `score_norm` is below an identity threshold (0.9 by default, and can be set using the `--min-identity` option), no consensus is computed for the read pair. Both sequences are only pasted together with a set of `.` separating the forward read and the reverse complementary sequence of the reverse read. In this case, the sequence is tagged with a `mode` attribute set to `join`.
+
+If the overlap is long enough and the identity is sufficient, a consensus sequence is built to maximize the global sequencing quality of the reconstructed amplicon. The non-aligned regions are reported as they are. The overlapping regions are transcribed as follows:
+- For each match, the base observed on both reads is conserved, and the quality score is increased to reflect the congruence of the two reads. 
+  {{< katex display=true >}}Q_{consensus} = Q_F + Q_R{{< /katex >}}
+- If there is a mismatch, the base with the highest quality score is retained and its quality score is decreased to reflect the discrepancy between the two reads (with {{< katex >}}Q_{max} = max(Q_F, Q_R){{< /katex >}} and {{< katex >}}Q_{min} = min(Q_F, Q_R){{< /katex >}}).
+  {{< katex display=true >}}Q_{consensus} = \log_{10} \left(10^{-\frac{Q_max}{10}} \cdot \frac{1 - 10^{-\frac{Q_min}{10}}}{4} \right){{< /katex >}}
+- In case of an insertion or a deletion, the gap will be affected with a quality of 0 and the mismatch rules will be applied. This means that insertions and deletions are always considered as insertions in the consensus sequence.
+  
+A `mode` attribute set to `alignment` will be added to the consensus sequence annotations.
+
 
 ## Synopsis
 
