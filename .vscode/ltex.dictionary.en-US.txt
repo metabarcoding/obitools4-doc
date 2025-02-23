@@ -29,3 +29,6 @@ fig-svg
 gap-pelnalty
 modebar
 fig-plotly
+FASTA-derived
+fasta-like
+relref

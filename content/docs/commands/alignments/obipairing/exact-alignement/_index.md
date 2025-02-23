@@ -251,4 +251,24 @@ Gap\,Penalty = Score(40,40 | Observed(mismatch)) \times GapWeigth
   {{< /fig-svg >}}
 
 
-In both cases, an exact alignment algorithm based on dynamic programming will consider the red regions as gaps, which in our case must not penalize the alignment score. The best solution for aligning the two reads to find the overlap is to use a semi-global alignment (end-gap free), but asymmetrically. To solve the first case, where the amplicon is longer than the reads, gaps at the *5'* ends of the reads should be free, but gaps at the *3'* ends of the reads should be penalized. To solve the second case, gap penalties should be applied in the opposite direction. In all cases, gaps within the overlap (green part) must be penalized.
+In both cases, an exact alignment algorithm based on dynamic programming will consider the red regions as gaps, which in our case must not penalize the alignment score. The best solution for aligning the two reads to find the overlap is to use a semi-global (end-gap free) alignment, but asymmetric. To solve the first case, where the amplicon is longer than the reads, gaps at the *5'* ends of the reads should be free, but gaps at the *3'* ends of the reads should be penalized. To solve the second case, gap penalties should be applied in the opposite direction. In all cases, gaps within the overlap (green part) must be penalized.
+
+### Left Alignment
+
+The left alignment mode corresponds to the first case where the amplicon is longer than the reads. It does not penalize the alignment score for gaps at the *5'* ends of the reads, but does penalize the alignment score for gaps at the *3'* ends of the reads and gaps within the overlap. It is called *left alignment* because the forward read is shifted to the left compared to the reverse read. 
+
+### Right Alignment
+
+The right alignment mode corresponds to the second case where the amplicon is shorter than the reads. It penalizes the alignment score for gaps at the *5'* ends of the reads and gaps within the overlap, but does not penalize the alignment score for gaps at the *3'* ends of the reads. It is called *right alignment* because the forward read is shifted to the right compared to the reverse read. 
+
+### Choosing the alignment method
+
+The normal behavior of {{< obi obipairing >}}, is to decide for left or right alignment mode based on the result of running the [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}). If the [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) specifies that forward reads must be shifted to the left, the left alignment mode is used, otherwise the right alignment mode is used. If the [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) is not run (by setting the `--exact-mode' option), both left and right alignments are run and the one that gives the best alignment score is selected. 
+
+## Which parts of the reads the aligned using the exact alignment algorithm?
+
+The default behavior of {{< obi obipairing >}} is to rely on the [FASTA derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) to decide which part of the reads to align. The [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) estimate heuristically the best shift to apply, and therefore, overlapping region of the reads. The exact alignment algorithm is then applied to that overlapping region augmented of {{< katex >}}\Delta{{< /katex >}} nucleotides on each side. By default, the value of {{< katex >}}\Delta{{< /katex >}} is set to 5. The user can change this value by setting the `--delta` option. Doing this extension of the overlapping region allows the exact alignment algorithm to be less sensitive to the approximation done by the [FASTA derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) when determining the overlapping region. 
+
+In the exact mode (option `--exact-mode`), the exact alignment algorithm is applied to the full pair of reads, which increases the computation time.
+
+
