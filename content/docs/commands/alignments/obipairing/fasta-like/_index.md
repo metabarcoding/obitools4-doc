@@ -12,13 +12,13 @@ bibFile: bibliography/bibliography.json
 
 #### The FASTA-like first step of alignment
 
-The [FASTA algorithm](https://en.wikipedia.org/wiki/FASTA) {{< cite Lipman1985-hw >}} can be considered as the ancestor of BLAST {{< cite Altschul1990-ey >}}.  It has the advantage of being easy to implement. It primarily calculates the best shift to apply between the two sequences under consideration to minimize the [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) (number of differences) between them. This alignment algorithm is used in {{< obi obipairing >}} to locate the overlapping region of the reads, their position and their size. Based on these results, the best alignment method for the second step is selected and the parts of the reads to align are determined. 
+The [FASTA algorithm](https://en.wikipedia.org/wiki/FASTA) {{< cite Lipman1985-hw >}} can be considered as the ancestor of BLAST {{< cite Altschul1990-ey >}}.  It has the advantage of being easy to implement. It primarily calculates the best shift to apply between the two sequences under consideration to minimize the [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) (number of differences) between them. This alignment algorithm is used in {{< obi obipairing >}} to determine the position and the size of the overlapping region of paired-end reads. These two criteria will guide the [exact alignment method]({{% relref "/docs/commands/alignments/obipairing/exact-alignment" %}}) for the subsequent step, and determine the segments of the reads to align. 
 
-The algorithm builds a table of 4mers (DNA word of length 4) with their positions for the forward and reverse reads. 
+The FASTA-like algorithm builds a table of 4mers (DNA word of length 4) with their positions for the forward and reverse reads. 
 
-As an example, consider two short reads A: `ACGTTAGCTAGCTAGCTAA` and B: `CGCTAGCTAGCTAATTTGG` of 19 nucleotides each, with positions numbered from 00 to 18:
+To illustrate, let us consider two short reads, A: `ACGTTAGCTAGCTAGCTAA` and B: `CGCTAGCTAGCTAATTTGG`, each of 19 nucleotides, with positions indexed from 00 to 18:
 
-The sequences are both composed of {{< katex >}}19 - 4 + 1 = 16{{< /katex >}} overlapping 4mers. An illustration of the overlapping 4mer is shown below for sequence A:
+The sequences are both composed of {{< katex >}}19 - 4 + 1 = 16{{< /katex >}} overlapping 4mers. An illustration of the overlapping 4mers is shown below for sequence A:
 
 ```
 0000000000111111111
@@ -33,7 +33,7 @@ ACGT AGCT GCTA CTAA
     TAGC AGCT GCTA
 ```
 
-The 4mer indices of both the sequences can be compared together as follows:
+The 4mer indices of sequences A and B can then be compared as follows:
 
 {{< mermaid class="workflow">}}
 graph LR
@@ -90,7 +90,9 @@ end
 
 {{< /mermaid >}}
 
-The diagram shows that the two sequences share four 4mers, above in green. The next step is to compute {{< katex >}}\Delta = Pos_A - Pos_B{{< /katex >}} for all the shared 4mers. If a 4mer occurs more than once, all the combinations of the differences are considered for that 4mer. 
+The diagram above indicates that the two sequences share four 4mers, highlighted in green. 
+
+Next, the algorithm computes {{< katex >}}\Delta = Pos_A - Pos_B{{< /katex >}} for each 4mer shared between sequences A and B. If a 4mer occurs more than once, all the combinations of the differences are considered for that 4mer. 
 
 | 4mer | positions on A | positions on B | {{< katex >}}\Delta{{< /katex >}}       |
 |------|---------------|-----------------|-------------------|
@@ -101,12 +103,14 @@ The diagram shows that the two sequences share four 4mers, above in green. The n
 
 
 
-<div id="fasta-scores">The last step of the algorithm is to compute the frequency of the {{< katex >}}\Delta{{< /katex >}}, and the relative score as the frequency normalized by the number of kmers involved in the overlap, to select the best one.
+<div id="fasta-scores"> </div>
+
+Then, for each {{< katex >}}\Delta{{< /katex >}} value, the algorithm computes its frequency, as well its relative score (*RelScore*), expressed as the frequency of the {{< katex >}}\Delta{{< /katex >}} value normalized by the number of 4mers involved in the overlap. This allows to identify the best {{< katex >}}\Delta{{< /katex >}} value, i.e. the one having the highest *RelScore*
 
 {{< katex  display=true >}}
-  RelScore = \frac{Frequency}{length(overlap) - 3}
+  RelScore = \frac{Frequency}{length(overlap) - (4-1)}
 {{< /katex >}}
-</div>
+
 
 | {{< katex >}}\Delta{{< /katex >}} | Frequency | RelScore = Frequency/(Overlap - 3) |
 |-------|-----------|--------------|
@@ -117,7 +121,9 @@ The diagram shows that the two sequences share four 4mers, above in green. The n
 | 7     | 1         | 0.111        |
 | 3     | 1         | 0.077        |
 
-This table is the equivalent of a [DNA Dot Plot](https://en.wikipedia.org/wiki/Dot_plot_(bioinformatics)). A {{< katex >}}\Delta{{< /katex >}} corresponds to a diagonal on the dot plot. By default, {{< obi obipairing >}} considers as the best diagonal, which is equivalent to the best alignment by shifting sequences only (no insertions or deletions allowed in the overlap region), the one with the highest *RelScore*. If the `--fasta-absolute` option is used, the best diagonal is the one with the highest *Frequency*.
+The table above is the equivalent of a [DNA Dot Plot](https://en.wikipedia.org/wiki/Dot_plot_(bioinformatics)). A {{< katex >}}\Delta{{< /katex >}} value corresponds to one diagonal in the dot plot. By default, {{< obi obipairing >}}  considers the diagonal with the highest *RelScore* as the optimal alignment, i.e. the best shift-only alignment (no insertions or deletions allowed in the overlap). 
+
+If the `--fasta-absolute` option is used, the best {{< katex >}}\Delta{{< /katex >}} (or diagonal) is the one exhibiting the highest *Frequency*.
 
 
 {{< fig
@@ -125,12 +131,12 @@ This table is the equivalent of a [DNA Dot Plot](https://en.wikipedia.org/wiki/D
   id="dotplot"
   alt="The scatter plot of the shared 4mers between sequences A & B"
   title="Shared 4mer positions:"
-  caption="Each point corresponds to a shared 4mer and is located at their respective positions on Sequence A & B. It corresponds to a thresholded DNA dot plot of both sequences. The red dotted line indicates the diagonal encompassing the more dots (here corresponding to 5 4mers). This diagonal corresponds to a difference of 5 between the postions."
+  caption="This plot is a thresholded DNA dot plot of both sequences. Each point corresponds to a shared 4mer and is located at its respective positions on sequences A & B. The red dotted line indicates the diagonal with the greatest number of dots, here representing five overlapping 4mers and corresponding to a positional difference of 5 between sequences."
   
 >}}
 
 
-For this example, diagonal having the largest *RelScore* (0.455) corresponds to a {{< katex >}}\Delta{{< /katex >}} of 5 and was observed five times. Thus, the sequence similarity between the sequence A and B is maximized by shifting B of 5 positions relatively to A.
+In this example, the diagonal having the largest *RelScore* (0.455) corresponds to a {{< katex >}}\Delta{{< /katex >}} value of 5, which was observed five times. Thus, the sequence similarity between the sequences A and B is maximized by shifting B of 5 positions relatively to A.
 
 ```
 Sequence A: ACGTTAGCTAGCTAGCTAA-----
