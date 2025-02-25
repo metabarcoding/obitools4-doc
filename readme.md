@@ -211,7 +211,7 @@ Currently, the documentation uses the obitools4 as present in the `V4.3` branch 
 To be able to get that version of the obitools4, you have to clone the repository:
 
 ```bash
-git clone --recursive git@github.com:metabarcoding/obitools4.git
+git clone --recursive https://github.com/metabarcoding/obitools4.git
 ```
 
 You can now enter the `obitools4` directory:

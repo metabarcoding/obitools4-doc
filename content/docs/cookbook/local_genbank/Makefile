@@ -3,7 +3,7 @@ FTPNCBI=ftp.ncbi.nlm.nih.gov
 GBURL=https://$(FTPNCBI)/genbank
 GBRELEASE_URL=$(GBURL)/GB_Release_Number
 
-TAXOURL=$(FTPNCBI)/pub/taxonomy/taxdump.tar.gz
+TAXOURL=https://$(FTPNCBI)/pub/taxonomy/taxdump.tar.gz
 
 GBRELEASE:=$(shell curl $(GBRELEASE_URL))
 
@@ -35,11 +35,13 @@ endif
 all: depends directories
 	@make downloads
 
-downloads: taxonomy fasta_files 
+downloads: taxonomy fasta_files FORCE
 	@echo Genbank Release number $(GBRELEASE)
 	@echo all divisions : $(GBDIV_ALL)
 
-.PHONY: all directories depends taxonomy fasta_files
+FORCE:
+
+.PHONY: all directories depends taxonomy fasta_files FORCE
 
 depends: directories Release_$(GBRELEASE)/depends/gbfiles.d Makefile
 
