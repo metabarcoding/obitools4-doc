@@ -67,7 +67,7 @@ obicount [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
 
 ## Examples
 
-By default the {{< obi obicount >}} command will output the number of variants, reads and symbols in the sequence file.
+By default, the {{< obi obicount >}} command will output the number of variants, reads and symbols in the sequence file.
 
 ```bash
 obicount my_sequence_file.fasta
@@ -84,7 +84,7 @@ reads,43221
 symbols,4391530
 ```
 
-The output is in CSV format and can avantageously transformed to Markdown for a prettier output using the [`csvtomd`](https://github.com/brentp/csvtomd) command.
+The output is in CSV format and can advantageously transform to Markdown for a prettier output using the [`csvtomd`](https://github.com/brentp/csvtomd) command.
 
 ```bash
 obicount my_sequence_file.fasta | csvtomd
@@ -98,7 +98,7 @@ reads     |  43221
 symbols   |  4391530
 ```
 
-the conversion can also be done with the `csvlook` command from the [csvkit](https://csvkit.readthedocs.io/) package.
+The conversion can also be done with the `csvlook` command from the [csvkit](https://csvkit.readthedocs.io/) package.
 
 ```bash
 obicount my_sequence_file.fasta | csvlook
@@ -125,7 +125,7 @@ obicount -v --reads my_sequence_file.fasta | csvlook
 | reads    | 43 221 |
 ```
 
-As for all the OBITools commands, the input file can be compressed with gzip.
+As for all the OBITools commands, the input file can be compressed with GZIP.
 
 ```bash
 obicount my_sequence_file.fasta.gz | csvlook

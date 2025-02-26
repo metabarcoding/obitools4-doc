@@ -40,3 +40,10 @@ param
 obicsv
 obidistribute
 examplarized
+dectect-chimera
+obiclean
+dereplicated
+obiuniq
+obigrep
+min-eval-rate
+csvkit
