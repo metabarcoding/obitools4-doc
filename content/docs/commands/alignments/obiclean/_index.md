@@ -50,7 +50,7 @@ Two pieces of information are used:
   
 The result of the {{< obi obiclean >}} algorithm is the classification of each sequence set into one of three classes: `head`, `internal` or `singleton`.
 
-Consider two sequences *S1* and *S2* that occur in the same sample (PCR). *S1* is a sequence variant of S2* if and only if
+Consider two sequences *S1* and *S2* that occur in the same sample (PCR). *S1* is a sequence variant of *S2* if and only if
 
 - The ratio of the number of occurrences of *S1* and *S2* is less than the parameter *R*. 
     {{< katex display=true >}}
@@ -431,6 +431,8 @@ Most edges in the graph connect a PCR variant sequence to its parent sequence. O
 
 Below we run the {{< obi obiclean >}} command with several different values for the `--ratio` option, ranging from 1 to 0.01. For each run, the number of MOTUs produced is printed by piping the output of {{< obi obiclean >}} to the {{< obi obicount >}} and `csvlook` commands.
 
+- Run with a ratio of 1
+
 ```
 obiclean -r 1 -H wolf_uniq.fasta.gz \
   | obicount | csvlook
@@ -442,6 +444,8 @@ obiclean -r 1 -H wolf_uniq.fasta.gz \
 | reads    |  35 111 |
 | symbols  | 203 349 |
 ```
+
+- Run with a ratio of 1/2
 
 ```
 obiclean -r 0.5 -H wolf_uniq.fasta.gz \
@@ -455,6 +459,7 @@ obiclean -r 0.5 -H wolf_uniq.fasta.gz \
 | symbols  | 203 349 |
 ```
 
+- Run with a ratio of 1/10
 
 ```
 obiclean -r 0.1 -H wolf_uniq.fasta.gz \
@@ -467,6 +472,8 @@ obiclean -r 0.1 -H wolf_uniq.fasta.gz \
 | reads    |  35 757 |
 | symbols  | 243 515 |
 ```
+
+- Run with a ratio of 1/100
 
 ```
 obiclean -r 0.01 -H wolf_uniq.fasta.gz \
