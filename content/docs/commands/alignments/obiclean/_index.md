@@ -414,7 +414,7 @@ gzcat wolf_ratio_R1.csv.gz \
    [-1.4, -1.2) ┤ 2                                        
 ```
 
-The file [`wolf_ratio_R1.csv.gz`](wolf_ratio_R1.csv.gz) decribes the following number of edges (look the number of rows in the CSV file):
+The file [`wolf_ratio_R1.csv.gz`](wolf_ratio_R1.csv.gz) describes the following number of edges (look the number of rows in the CSV file):
 
 
 ```bash
