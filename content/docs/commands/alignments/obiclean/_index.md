@@ -240,9 +240,9 @@ obiclean -r 0.1 \
 ```
 | entities |      n |
 | -------- | ------ |
-| variants |     13 |
-| reads    | 12 697 |
-| symbols  |  1 297 |
+| variants |     12 |
+| reads    | 12 695 |
+| symbols  |  1 197 |
 ```
 
 This is equivalent to post-filtering the result of the {{< obi obiclean >}} command using the following {{< obi obigrep >}} command:
@@ -258,9 +258,9 @@ obiclean -r 0.1 \
 ```
 | entities |      n |
 | -------- | ------ |
-| variants |     13 |
-| reads    | 12 697 |
-| symbols  |  1 297 |
+| variants |     12 |
+| reads    | 12 695 |
+| symbols  |  1 197 |
 ```
 
 
