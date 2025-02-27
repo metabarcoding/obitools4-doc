@@ -33,7 +33,7 @@ Consider the following example, where the forward reads file is [`forward.fastq`
 
 The first sequence of the [`forward.fastq`](forward.fastq) file having the id `M01334:147:000000000-LBRVD:1:1101:14968:1570` will be paired with the first sequence of the [`reverse.fastq`](reverse.fastq) file having the same id `M01334:147:000000000-LBRVD:1:1101:14968:1570`, not because they have the same identifier but because they are both the first sequence of their respective files.
 
-### The simplest {{< obi obipairing >}} command
+### The simplest *obipairing* command
 
 The minimal {{< obi obipairing >}} command to align the [`forward.fastq`](forward.fastq) and [`reverse.fastq`](reverse.fastq) files is:
 
@@ -137,7 +137,7 @@ obipairing --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
 
 ## Options
 
-#### {{< obi obipairing >}} mandatory options
+#### *obipairing* mandatory options
 
 - {{< cmd-option name="forward-reads" short="F" param="FILENAME" >}}
   The name of the file containing the forward reads.

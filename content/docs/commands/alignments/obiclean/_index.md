@@ -282,7 +282,7 @@ obiclean [--batch-size <int>] [--compressed|-Z] [--debug]
 
 ## Options
 
-### {{< obi obiclean >}} specific options
+### *obiclean* specific options
 
 #### Clustering algorithm options
 
