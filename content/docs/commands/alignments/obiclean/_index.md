@@ -286,28 +286,43 @@ obiclean [--batch-size <int>] [--compressed|-Z] [--debug]
 
 #### Clustering algorithm options
 
-- {{< cmd-options/alignments/distance >}}
-- {{< cmd-options/alignments/ratio >}}
-- {{< cmd-options/alignments/sample >}}
+- {{< cmd-option name="distance" short="d" param="INTEGER" >}}
+  Maximum numbers of differences between two variant sequences. (default: 1)
+  {{< /cmd-option >}}
+- {{< cmd-option name="ratio" short="r" param="FLOAT" >}}
+  Threshold ratio between counts (rare/abundant counts) of two sequence records so that the less abundant one is a variant of the more abundant (default: 1.00).
+  {{< /cmd-option >}}
+- {{< cmd-option name="sample" short="s" param="STRING" >}}
+  Attribute containing sample descriptions (default: "sample").  
+  {{< /cmd-option >}}
 
 #### Chimera detection options
 
 - {{< cmd-option name="detect-chimera" >}}
-  Detect chimera sequences. (default: false)  
+  Enable chimera detection. (default: false)  
   {{< /cmd-option >}}
 
 #### Filtering options
 
-- {{< cmd-options/alignments/head >}}
+- {{< cmd-option name="head" short="H" >}}
+  Remove from the result data set, the sequences annotated as spurious in all the samples (default: false).
+  {{< /cmd-option >}}
 - {{< cmd-option name="min-sample-count" param="INTEGER" >}}
   Minimum number of samples a sequence must be present in to be considered in the analysis. (default: 1)  
   {{< /cmd-option >}}
 
 #### Dumping internal clustering data 
 
-- {{< cmd-options/alignments/min-eval-rate >}}
-- {{< cmd-options/alignments/save-graph >}}
-- {{< cmd-options/alignments/save-ratio >}}
+- {{< cmd-option name="save-graph" param="DIRNAME" >}}
+  Save the clustering graph for each sample in a GML file in the directory precised as parameter of the option (default: false).
+  {{< /cmd-option >}}
+- {{< cmd-option name="save-ratio" param="FILENAME" >}}
+  Create a CSV file containing abundance ratio statistics for the edges of the clustering graphs above the `--min-eval-rate` threshold.
+  If the option `-Z` is used conjointly with the option `--save-graph`, moreover the result file, the ratio CSV file is also compressed using GZIP.
+  {{< /cmd-option >}}
+- {{< cmd-option name="min-eval-rate" param="INTEGER" >}}
+  The minimum abundance of the destination sequence of an edge to be stored in the CSV file produced by the `--save-ratio` option (default: 1000).
+  {{< /cmd-option >}}
 
 ### shared options
 
@@ -319,6 +334,150 @@ obiclean [--batch-size <int>] [--compressed|-Z] [--debug]
 
 ## Examples
 
+### Determining the ratio parameter
+
+The ratio parameter (option `-r`) defines the ratio threshold between the frequency of the variant of a sequence and its original sequence. It allows deciding between two closely related true sequences and a true sequence with its variant. To get an idea of the ratio threshold to use, we can use the `obiclean` command with the `--save-ratio` option. This option creates a CSV file containing the abundance ratio statistics from the edges of the clustering graphs. Only a subset of the edges are kept in the CSV file:
+
+- Those corresponding to a single mutation (distance between the original and the mutated sequence is 1).
+- Those where the original sequence has a weight greater than the threshold (determined by the `--min-eval-rate` option).
+
+The last condition is used to avoid estimating the ratio from edges with too few sequences, to limit the stochastic effect on the estimation of the ratio.
+
 ```bash
-obiclean --help
+obiclean -Z \
+         --save-ratio wolf_ratio_R1.csv.gz  \
+         wolf_uniq.fasta.gz > wolf_clean_R1.fasta.gz
 ```
+
+The `--save-ratio` requires a parameter `FILENAME` that is the name of the CSV file to create. The file is compressed using GZIP if the option `-Z` is used.
+
+```bash
+gzcat wolf_ratio_R1.csv.gz | head | csvlook
+```
+```
+| Sample      | Origin_id                                                  | Origin_status | Origin | Mutant | Origin_Weight | Mutant_Weight | Origin_Count | Mutant_Count | Position | Origin_length |  A |  C |  G |  T |
+| ----------- | ---------------------------------------------------------- | ------------- | ------ | ------ | ------------- | ------------- | ------------ | ------------ | -------- | ------------- | -- | -- | -- | -- |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       44 |            99 | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       72 |            99 | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       42 |            99 | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       57 |            99 | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       76 |            99 | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       73 |            99 | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       16 |            99 | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       32 |            99 | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       73 |            99 | 35 | 25 | 16 | 23 |
+```
+
+The ratio CSV file [`wolf_ratio_R1.csv.gz`](wolf_ratio_R1.csv.gz) contains the following columns:
+
+- `Sample`: The name of the sample where the observation is done.
+- `Origin_id`: The ID of the original sequence corresponding to described mutant.
+- `Origin_status`: The status of the original sequence in the sample.
+- `Origin`: Original sequence at the mutation site.
+- `Mutant`: Mutant sequence at the mutation site.
+- `Origin_Weight`: Observed weight of the original sequence in the sample.
+- `Mutant_Weight`: Observed weight of the mutant sequence in the sample.
+- `Origin_Count`: Observed count of the original sequence in the sample.
+- `Mutant_Count`: Observed count of the mutant sequence in the sample.
+- `Position`: Position of the mutation in the original sequence.
+- `Origin_length`: Length of the original sequence.
+- `A`: Count of *A* nucleotides in the original sequence.
+- `C`: Count of *C* nucleotides in the original sequence.
+- `G`: Count of *G* nucleotides in the original sequence.
+- `T`: Count of *T* nucleotides in the original sequence.
+
+From the file [`wolf_ratio_R1.csv.gz`](wolf_ratio_R1.csv.gz), a histogram of the ratio of the weight of the mutant to the weight of the original can be plotted using the following command:
+
+```bash
+gzcat wolf_ratio_R1.csv.gz \
+    | octosql -o csv "select log10(float(Mutant_Weight) / float(Origin_Weight)) as ratio 
+                        from stdin.csv" \
+    | uplot -H hist -n 25
+```
+```
+                                  ratio
+                ┌                                        ┐ 
+   [-4.2, -4.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 107                    
+   [-4.0, -3.8) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 200    
+   [-3.8, -3.6) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 208   
+   [-3.6, -3.4) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 119                  
+   [-3.4, -3.2) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 145              
+   [-3.2, -3.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 146             
+   [-3.0, -2.8) ┤▇▇▇▇▇▇▇▇▇▇▇▇ 71                           
+   [-2.8, -2.6) ┤▇▇▇▇▇▇▇▇ 45                               
+   [-2.6, -2.4) ┤▇▇▇▇ 26                                   
+   [-2.4, -2.2) ┤▇ 6                                       
+   [-2.2, -2.0) ┤▇ 7                                       
+   [-2.0, -1.8) ┤ 2                                        
+   [-1.8, -1.6) ┤ 0                                        
+   [-1.6, -1.4) ┤ 0                                        
+   [-1.4, -1.2) ┤ 2                                        
+```
+
+The file [`wolf_ratio_R1.csv.gz`](wolf_ratio_R1.csv.gz) decribes the following number of edges (look the number of rows in the CSV file):
+
+
+```bash
+gzcat wolf_ratio_R1.csv.gz \
+  | csvtk dim
+```
+```
+file  num_cols  num_rows
+-           15     1,084
+```
+
+
+Most edges in the graph connect a PCR variant sequence to its parent sequence. Only a few edges correspond to a connection between two closely related true sequences that differ only by a single mutation; they are not frequent enough to distort the shape of the distribution. Therefore, this histogram can be considered as the distribution of the ratio between a variant sequence and its parent sequence. We can observe that no ratio in this histogram is greater than {{< katex >}}10^{-1}{{</ katex >}}, and only 4 out of 1084 edges have a ratio greater than {{< katex >}}10^{-2}{{</ katex >}}. Using the `--ratio 0.1` option will not split any edges, using the `--ratio 0.01` option will split 4 edges over the edges used for the statistics. Because of all the edges discarded from the ratio table (involving too few original sequences), the effect on the number of MOTUs produced may be greater.
+
+Below we run the {{< obi obiclean >}} command with several different values for the `--ratio` option, ranging from 1 to 0.01. For each run, the number of MOTUs produced is printed by piping the output of {{< obi obiclean >}} to the {{< obi obicount >}} and `csvlook` commands.
+
+```
+obiclean -r 1 -H wolf_uniq.fasta.gz \
+  | obicount | csvlook
+```
+```
+| entities |       n |
+| -------- | ------- |
+| variants |   2 046 |
+| reads    |  35 111 |
+| symbols  | 203 349 |
+```
+
+```
+obiclean -r 0.5 -H wolf_uniq.fasta.gz \
+  | obicount | csvlook
+```
+```
+| entities |       n |
+| -------- | ------- |
+| variants |   2 046 |
+| reads    |  35 111 |
+| symbols  | 203 349 |
+```
+
+
+```
+obiclean -r 0.1 -H wolf_uniq.fasta.gz \
+  | obicount | csvlook
+```
+```
+| entities |       n |
+| -------- | ------- |
+| variants |   2 449 |
+| reads    |  35 757 |
+| symbols  | 243 515 |
+```
+
+```
+obiclean -r 0.01 -H wolf_uniq.fasta.gz \
+  | obicount | csvlook
+```
+```
+| entities |       n |
+| -------- | ------- |
+| variants |   3 215 |
+| reads    |  37 546 |
+| symbols  | 319 820 |
+```
+
+As you can see, the number of MOTUs produced increases as the `-ratio` option decreases, but the ratio of 0.5 has no effect on the number of MOTUs produced compared to the default ratio of 1.0.
