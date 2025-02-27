@@ -47,3 +47,5 @@ obiuniq
 obigrep
 min-eval-rate
 csvkit
+DIRNAME
+MOTUs
