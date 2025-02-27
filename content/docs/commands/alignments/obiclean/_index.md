@@ -45,7 +45,7 @@ The algorithm implemented in {{< obi obiclean >}} aims to remove punctual PCR er
 
 Two pieces of information are used:
 
-- The 'count' attributes of the sequence set.
+- The **count** attributes of the sequence set.
 - The pairwise sequence similarities calculated in each set of sequences belonging to a sample.
   
 The result of the {{< obi obiclean >}} algorithm is the classification of each sequence set into one of three classes: `head`, `internal` or `singleton`.
