@@ -49,3 +49,7 @@ min-eval-rate
 csvkit
 DIRNAME
 MOTUs
+pyrosequencing
+gloentry
+LECA
+Solexa

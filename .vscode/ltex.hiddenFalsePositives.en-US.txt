@@ -51,3 +51,4 @@
 {"rule":"ARROWS","sentence":"^\\Q{{< mermaid class=\"workflow\" >}} graph TD A@{ shape: doc, label: \"my_sequences.fastq\" } Cobicount D@{ shape: doc, label: \"counts.csv\" } A --> C:::obitools C --> D classDef obitools fill:#99d57c {{< /mermaid >}}\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q{{< mermaid class=\"workflow\" >}} graph TD A@{ shape: doc, label: \"my_sequences.fastq\" } Cobicount D@{ shape: doc, label: \"counts.csv\" } A --> C:::obitools C --> D classDef obitools fill:#99d57c {{< /mermaid >}}\\E$"}
 {"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q{{< mermaid class=\"workflow\" >}} graph TD A@{ shape: doc, label: \"my_sequences.fastq\" } Cobicount D@{ shape: doc, label: \"counts.csv\" } A --> C:::obitools C --> D classDef obitools fill:#99d57c {{< /mermaid >}}\\E$"}
+{"rule":"EN_COMPOUNDS_MULTI_CORE","sentence":"^\\QThis also allows parallelization of the code to take advantage of the multi-core architectures of today's computers.\\E$"}
