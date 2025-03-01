@@ -25,7 +25,7 @@ An installation script that compiles the new {{< gloentry "obitools4" >}} on you
 The easiest way to run it is to copy and paste the following command into your terminal:
 
 ```bash
-curl -L https://metabarcoding.org/obitools4/install.sh | bash
+curl -L https://raw.githubusercontent.com/metabarcoding/obitools4/master/install_obitools.sh | bash
 ```
 
 By default, the script installs the {{< gloentry "obitools4" >}} commands and other associated files into the `/usr/local` directory. The names of the commands in the new {{< gloentry "obitools4" >}} are mostly identical to those in previous {{< gloentry "obitools" >}}. Therefore, installing the new {{< gloentry "obitools" >}} may hide or delete the old ones. If you want both versions to be available on your system, the installation script offers two options:
@@ -38,7 +38,7 @@ By default, the script installs the {{< gloentry "obitools4" >}} commands and ot
 You can use these options by following the installation command:
 
 ```bash
-curl -L https://metabarcoding.org/obitools4/install.sh | \
+curl -L https://raw.githubusercontent.com/metabarcoding/obitools4/master/install_obitools.sh | \
       bash -s -- --install-dir test_install --obitools-prefix k
 ```
 

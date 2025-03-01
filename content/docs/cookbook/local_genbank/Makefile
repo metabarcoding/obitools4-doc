@@ -32,14 +32,15 @@ ifeq (0, $(words $(findstring $(MAKECMDGOALS), $(NODEPS))))
 endif
 
 
-all: depends directories
+all: depends directories FORCE
 	@make downloads
 
-downloads: taxonomy fasta_files FORCE
+downloads: taxonomy fasta_files 
 	@echo Genbank Release number $(GBRELEASE)
 	@echo all divisions : $(GBDIV_ALL)
 
 FORCE:
+	@sleep 1
 
 .PHONY: all directories depends taxonomy fasta_files FORCE
 
