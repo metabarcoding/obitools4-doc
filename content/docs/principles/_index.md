@@ -13,7 +13,7 @@ weight: 22
 
 {{% obitools %}} are not a metabarcoding data analysis pipeline, but a set of tools for developing customized analysis, while avoiding the black-box effect of a ready-to-use pipeline. A particular effort in the development of {{% obitools4 %}} has been to use data formats that can be easily interfaced with other software.
 
-{{% obitools %}} corresponds to a set of UNIX commands that are used from a command line interface, also named a terminal, to perform various tasks on DNA sequence files. A UNIX command can be considered as a process that takes a set of inputs and produces a set of outputs.
+{{% obitools %}} correspond to a set of UNIX commands that are used from a command line interface, also named a terminal, to perform various tasks on DNA sequence files. A UNIX command can be considered as a process that takes a set of inputs and produces a set of outputs.
 
 {{< mermaid class="workflow" >}}
 graph LR
@@ -43,7 +43,7 @@ graph LR
   classDef obitools fill:#99d57c
 {{< /mermaid >}}
 
-If nothing is specified, the UNIX system connects standard input to the terminal keyboard and standard output to the terminal screen. So if you run the {{< obi obiconvert >}} command in your terminal without any arguments, it will appear to stop and do nothing, when in fact it is waiting for you to type something on the keyboard. To stop it, just press *Ctrl+D* or *Ctrl+C*. *Ctrl+D* terminates the input and stops the program. *Ctrl+C* kills the program.
+If nothing is specified, the UNIX system connects standard input to the terminal keyboard and standard output to the terminal screen. So if you run, as example, the {{< obi obiconvert >}} command in your terminal without any arguments, it will appear to stop and do nothing, when in fact it is waiting for you to type something on the keyboard. To stop it, just press *Ctrl+D* or *Ctrl+C*. *Ctrl+D* terminates the input and stops the program. *Ctrl+C* kills the program.
 
 ## Specifying the input data
 
@@ -213,9 +213,68 @@ fdcgacgcagcggag
 
 ### The key names
 
-Keys can be any string. Their names are case-sensitive. The keys `count`, `Count` and `COUNT` are all considered to different keys. Some key names are reserved by the {{% obitools %}} and have special meanings. 
+Keys can be any string. Their names are case-sensitive. The keys `count`,
+`Count` and `COUNT` are all considered to different keys. Some key names are
+reserved by the {{% obitools %}} and have special meanings (*e.g.* `count`
+contains if present an integer value indication how many times that sequence has
+been observed, `taxid` that contains string value corresponding to a taxonomic
+identifier from a taxonomy). 
 
 ### The tag values
 
-The values can be any string, integer, float, or boolean values. Values can also be of composite types but with some limitations compared to the [JSON](https://en.wikipedia.org/wiki/JSON) format. 
+The values can be any string, integer, float, or boolean values. Values can also
+be of composite types but with some limitations compared to the
+[JSON](https://en.wikipedia.org/wiki/JSON) format. In {{% obitools4 %}} annotations
+you are not allowed to nest composite type. A list cannot contain a list or a map.
 
+A list is an ordered set of values, here as example a set of integer values:
+
+```json
+[1,3,2,12]
+```
+
+A map is a set of values indexed by a key which is a string. Here as example a
+map of integer values:
+
+```json
+{"toto":4,"titi":10,"tutu":1}
+```
+
+Maps are notably used by {{< obi obiuniq >}} to aggregate information collected
+from the merged sequence records.
+
+```fasta
+>my_seq_O1 {"merged_sample":{"sample1":45,"sample_2":33}}
+gctagctagctgtgatgtcgtagttgctgatgctagtgctagtcgtaaaaaat
+```
+
+Using the {{< obi obiannotate >}} command, it is possible to edit these annotations,
+by adding some new ones, deleting some others, renaming keys or changing values. 
+
+> [!CAUTION]
+> You are free to add, edit and delete even the {{% obitools4 %}}
+> reserved keys to mimic the results of an {{% obitools4 %}} commands. But take
+> care of the impact of such manually modified values. It is of better usage, to
+> not change reserved annotation keys.
+
+## {{% obitools4 %}} and the taxonomic information
+
+## Manipulating paired sequence files with {{% obitools4 %}}
+
+Notably Illumina sequencing machines are providing paired-sequence data set.
+The two paired reads correspond to two sequencing of the same DNA molecule from both
+its ends. We are commonly speaking of the forward and reverse reads.
+
+Today, such paired reads are provided to the biologist as two {{% fastq %}} files.
+The assumption on these files is that the two reads corresponding to
+sequencing of the same DNA molecule occur in both the file at the same rank. If
+manipulations of the data leading to the deletion or insertion of sequences in
+those files are not done conjointly, it is highly probable that they will run
+out of phasing, leading the both sequence not anymore occurring at the same
+rank.
+
+{{< code "forward.fastq" fastq true >}}
+  
+{{< code "reverse.fastq" fastq true >}}
+
+In the two files above, the first sequence of the [`forward.fastq`](forward.fastq) file having the id `M01334:147:000000000-LBRVD:1:1101:14968:1570` will be paired with the first sequence of the [`reverse.fastq`](reverse.fastq) file having the same id `M01334:147:000000000-LBRVD:1:1101:14968:1570`, not because they have the same identifier but because they are both the first sequence of their respective files.

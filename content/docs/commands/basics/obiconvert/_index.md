@@ -35,9 +35,7 @@ obiconvert [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
 
 - {{< cmd-options/paired-with >}}
 
-#### Taxonomic options
-
-- {{< cmd-options/taxonomy/taxonomy >}}
+{{< option-sets/taxonomy >}}
 
 {{< option-sets/input >}}
 

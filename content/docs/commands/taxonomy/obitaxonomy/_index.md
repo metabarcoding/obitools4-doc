@@ -40,7 +40,6 @@ obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--debug]
 - {{< cmd-options/obitaxonomy/parents >}}
 - {{< cmd-options/obitaxonomy/rank >}}
 - {{< cmd-options/obitaxonomy/rank-list >}}
-- {{< cmd-options/obitaxonomy/raw-taxid >}}
 - {{< cmd-options/obitaxonomy/restrict-to-taxon >}}
 - {{< cmd-options/obitaxonomy/sons >}}
 - {{< cmd-options/obitaxonomy/with-path >}}

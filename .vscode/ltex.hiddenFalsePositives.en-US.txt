@@ -52,3 +52,11 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q{{< mermaid class=\"workflow\" >}} graph TD A@{ shape: doc, label: \"my_sequences.fastq\" } Cobicount D@{ shape: doc, label: \"counts.csv\" } A --> C:::obitools C --> D classDef obitools fill:#99d57c {{< /mermaid >}}\\E$"}
 {"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q{{< mermaid class=\"workflow\" >}} graph TD A@{ shape: doc, label: \"my_sequences.fastq\" } Cobicount D@{ shape: doc, label: \"counts.csv\" } A --> C:::obitools C --> D classDef obitools fill:#99d57c {{< /mermaid >}}\\E$"}
 {"rule":"EN_COMPOUNDS_MULTI_CORE","sentence":"^\\QThis also allows parallelization of the code to take advantage of the multi-core architectures of today's computers.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qis conserved\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qoption is set.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qis conserved.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qallow loading a taxonomy database when they are processing sequence data.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qduring the processing of the command.\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qtaxon:9606 [Homo sapiens]@species\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qoption is set, the command stop and exit with an error at the first non-valid\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qencountred in input data.\\E$"}

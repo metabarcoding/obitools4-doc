@@ -1,0 +1,4 @@
+{{ $url := printf "Indicate that sequence data is following the <a href=\"%s\">CSV</a> format."  (ref . "/docs/file_format/sequence_files/csv.md")}}
+{{ partial "cmd-options/option.html" 
+(dict "name" "csv"
+      "documentation" $url ) }}

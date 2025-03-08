@@ -1,0 +1,47 @@
+{{ "#### Check *taxids* against a taxonomy" | markdownify}}
+
+<i>OBITools4</i> allow loading a taxonomy database when they are processing
+sequence data. If done, the command checks the validity of <i>taxids</i> during
+the processing of the command. Three cases can occur:
+
+<ul>
+    <li>The taxon is valid</li>
+    <li>The taxon is no more valid, but a new one replaces it</li>
+    <li>The taxon is no more valid, and no new taxid exists to replace it.</li>
+</ul>
+
+In the first case, the obitools normalize the writing of the taxid in the form:
+
+<pre>
+    TAXCOD:TAXID [SCIENTIFIC NAME]@RANK
+</pre>
+
+As example with the NCBI taxonomy the human taxid looks like :
+
+<pre>
+    taxon:9606 [Homo sapiens]@species
+</pre>
+
+That rewriting doesn't happen if the <b>--raw-taxid</b> option is set.
+In that case only the raw <i>taxid</i> is conserved.
+
+<pre>
+    9606
+</pre>
+
+In the second case, a warning message is logged on the standard error. If the
+<b>--update-taxid</b> is set, the command will update the expired <i>taxid</i>
+to the new equivalent one, and the valid taxon rules apply. Otherwise, the old
+<i>taxid</i> is maintained in the result.
+
+In the last case, a warning message is also issued to the standard error, and 
+non-valid taxid is conserved as is. If the <b>--fail-on-taxonomy</b> option is 
+set, the command stop and exit with an error at the first non-valid <i>taxid</i> 
+encountred in input data.
+
+<ul>
+    <li>{{ partial "cmd-options/taxonomy/taxonomy.html" .}}</li>
+    <li>{{ partial "cmd-options/taxonomy/raw-taxid.html" .}}</li>
+    <li>{{ partial "cmd-options/taxonomy/update-taxid.html" .}}</li>
+    <li>{{ partial "cmd-options/taxonomy/fail-on-taxonomy.html" .}}</li>
+</ul>

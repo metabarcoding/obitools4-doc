@@ -53,3 +53,7 @@ pyrosequencing
 gloentry
 LECA
 Solexa
+TAXCOD
+TAXID
+raw-taxid
+update-taxid

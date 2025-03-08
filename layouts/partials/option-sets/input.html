@@ -1,12 +1,34 @@
 {{ "#### Controlling the input data" | markdownify}}
 
+<I>OBITools4</I> are usually recognizing the format of the input file. They also
+recognize if the input file is compressed using GZIP. But some rare files can be
+wrongly identified, the following options allow the user to force the format,
+thus by passing the format guessing step.
+
+{{ "##### The file format options" | markdownify}}
+
 <ul>
     <li>{{ partial "cmd-options/input/fasta.html" .}}</li>
     <li>{{ partial "cmd-options/input/fastq.html" .}}</li>
     <li>{{ partial "cmd-options/input/embl.html" .}}</li>
+    <li>{{ partial "cmd-options/input/csv.html" .}}</li>
     <li>{{ partial "cmd-options/input/genbank.html" .}}</li>
     <li>{{ partial "cmd-options/input/ecopcr.html" .}}</li>
+</ul>
+
+{{ "##### Controlling the way *OBITools4* are formatting annotations" | markdownify }}
+
+{{ printf "These options only apply to the  <a href=\"%s\">FASTA</a> and  <a href=\"%s\">FASTQ</a> formats" (ref . "/docs/file_format/sequence_files/FASTA.md")  (ref . "/docs/file_format/sequence_files/FASTQ.md") | markdownify }}
+
+<ul>
     <li>{{ partial "cmd-options/input/input-OBI-header.html" .}}</li>
     <li>{{ partial "cmd-options/input/input-json-header.html" .}}</li>
+</ul>
+
+{{ "##### Controlling quality score decoding" | markdownify }}
+
+{{ printf "This option only applies to the <a href=\"%s\">FASTQ</a> formats"  (ref . "/docs/file_format/sequence_files/FASTQ.md") | markdownify }}
+
+<ul>
     <li>{{ partial "cmd-options/input/solexa.html" .}}</li>
 </ul>
