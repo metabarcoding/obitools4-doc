@@ -79,15 +79,23 @@ obiannotate [--add-lca-in <ATTRIBUTE>] [--aho-corasick <string>]
 
 ##### Sequence-related annotation
 
-- {{< cmd-options/obiannotate/aho-corasick >}}
-- {{< cmd-options/length >}}
-- {{< cmd-options/pattern >}}
-- {{< cmd-options/pattern-error >}}
+- {{< cmd-option name="aho-corasick" param="string">}}
+  Adds an aho-corasick attribute with the count of matches of the provided patterns.
+  {{< /cmd-option >}}
+- {{< cmd-option name="length">}}
+  Adds attribute with seq_length as a key and sequence length as a value.
+  {{< /cmd-option >}}
+- {{< cmd-option name="pattern" param="string">}}
+  Adds a pattern attribute containing the pattern, a pattern_match slot indicating the matched sequence, and a pattern_error slot indicating the number difference between the pattern and the match to the sequence.
+  {{< /cmd-option >}}
 - {{< cmd-options/pattern-name >}}
 
 ##### Sequence modification
 
-- {{< cmd-options/obiannotate/cut >}}
+- {{< cmd-option name="cut" param="###:###">}}
+  A pattern describing how to cut the sequence.
+  {{< /cmd-option >}}
+
 
 ##### Taxonomy annotation
 
