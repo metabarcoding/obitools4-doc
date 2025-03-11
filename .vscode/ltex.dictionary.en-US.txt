@@ -57,3 +57,4 @@ TAXCOD
 TAXID
 raw-taxid
 update-taxid
+sequencings

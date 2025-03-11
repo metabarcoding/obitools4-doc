@@ -259,22 +259,155 @@ by adding some new ones, deleting some others, renaming keys or changing values.
 
 ## {{% obitools4 %}} and the taxonomic information
 
+One of the advantages of the {{% obitools %}} is their ability to handle taxonomy annotations.
+Each sequence in a sequence file can be individually taxonomically annotated by adding a `taxid` tag to it. Although several annotation tags can be related to taxonomic information, only the `taxid` tag really matters.
+
+The tags associated with taxonomic annotations fall into three categories
+- `taxid` The main taxonomic annotation
+- Any tag ending with the suffix `_taxid` contains secondary taxid annotations, such as `family_taxid` which contains the taxid at the family level.
+- Text tags ending with `_name`, such as `scientific_name` or `family_name`, which contain the textual representation corresponding to the taxids.
+
+The last category is only for user convenience, to make the taxonomic information more humanly understandable. The second category is also to help the user, knowing that any selection based on the taxonomy implemented by {{% obitools4 %}} is based only on the `taxid` tag.
+
+Taxonomic identifiers, *taxid*, are short strings that uniquely identify a taxon within a taxonomy. It is important to rely on *taxid* rather than Latin names to identify taxa, as several taxa share the same Latin name (*e.g.* Vertebrata is also a genus of red algae).
+
+For example, in the (NCBI taxonomy)[https://www.ncbi.nlm.nih.gov/taxonomy] the species *Homo sapiens* has the taxid *9606* and belongs to the genus *Homo*, which has the taxid *9605*. Although all NCBI taxids are numeric, the {{% obitools4 %}} treats them as strings: `"9606"` and `"9605"`.
+
+The minimal way to specify a taxid to obitools is to provide this short string: `"9606"` or `"9605"`.
+
+If the `--taxonomy` or `-t` option, which takes a filename as parameter, is used when calling a {{% obitools %}} command, the corresponding taxonomy will be loaded and every taxid present in a file (`taxid` and `*_taxid` tags) will be checked against the taxonomy. To download a copy of the (NCBI taxonomy)[https://www.ncbi.nlm.nih.gov/taxonomy] you can use the {{< obi obitaxonomy >}} command:
+
+```bash
+obitaxonomy --download-ncbi --out ncbitaxo.tgz
+```
+
+This will create a new file `ncbitaxo.tgz` containing a local copy of the complete taxonomy.
+
+The first consequence of this check is that all taxa are rewritten in their long form. `"9606"` becomes `"taxon:9606 [Homo sapien]@species"`:
+
+- `taxon`: is the taxonomy code (`taxon` is for the (NCBI taxonomy)[https://www.ncbi.nlm.nih.gov/taxonomy]).
+- 9606`: is the taxid
+- Homo sapiens`: is the scientific name
+- `species`: is the taxonomic rank
+
+So the long form of a taxid can be written as `"TAXOCOD:TAXID [SCIENTIFIC NAME]@RANK"`.
+
+If you look at the following files, you can see that the `taxid` tag is set to `62275` and `9606` for the first and second sequences respectively:
+
+{{< code "two_sequences.fasta" "fasta" true >}}
+
+If you use {{< obi obiconvert >}} without specifying a taxonomy, its only action is to convert the numeric taxids (`62275` and `9606`) to their string equivalents (`"62275"` and `"9606"`).
+
+```bash
+obiconvert two_sequences.fasta
+```
+```fasta
+>AB061527 {"count":1,"definition":"Sorex unguiculatus mitochondrial NA, complete genome.","family_name":"Soricidae","family_taxid":"9376","genus_name":"Sorex","genus_taxid":"9379","obicleandb_level":"family","obicleandb_trusted":2.2137847111025621e-13,"species_name":"Sorex unguiculatus","species_taxid":"62275","taxid":"62275"}
+ttagccctaaacttaggtatttaatctaacaaaaatacccgtcagagaactactagcaat
+agcttaaaactcaaaggacttggcggtgctttatatccct
+>AL355887 {"count":2,"definition":"Human chromosome 14 NA sequence BAC R-179O11 of library RPCI-11 from chromosome 14 of Homo sapiens (Human)XXKW HTG.; HTGS_ACTIVFIN.","family_name":"Hominidae","family_taxid":"9604","genus_name":"Homo","genus_taxid":"9605","obicleandb_level":"genus","obicleandb_trusted":0,"species_name":"Homo sapiens","species_taxid":"9606","taxid":"9606"}
+ttagccctaaactctagtagttacattaacaaaaccattcgtcagaatactacgagcaac
+agcttaaaactcaaaggacctggcagttctttatatccct
+```
+
+If the previously downloaded NCBI taxonomy is specified to {{<obi obiconvert >}}, the output of the command will be as follows. You will notice that this time the taxa are given in their long form. The scientific name and taxonomic rank are also given.
+
+```bash
+obiconvert -t ncbitaxo.tgz two_sequences.fasta
+```
+```fasta
+>AB061527 {"count":1,"definition":"Sorex unguiculatus mitochondrial NA, complete genome.","family_name":"Soricidae","family_taxid":"taxon:9376 [Soricidae]@family","genus_name":"Sorex","genus_taxid":"taxon:9379 [Sorex]@genus","obicleandb_level":"family","obicleandb_trusted":2.2137847111025621e-13,"species_name":"Sorex unguiculatus","species_taxid":"taxon:62275 [Sorex unguiculatus]@species","taxid":"taxon:62275 [Sorex unguiculatus]@species"}
+ttagccctaaacttaggtatttaatctaacaaaaatacccgtcagagaactactagcaat
+agcttaaaactcaaaggacttggcggtgctttatatccct
+>AL355887 {"count":2,"definition":"Human chromosome 14 NA sequence BAC R-179O11 of library RPCI-11 from chromosome 14 of Homo sapiens (Human)XXKW HTG.; HTGS_ACTIVFIN.","family_name":"Hominidae","family_taxid":"taxon:9604 [Hominidae]@family","genus_name":"Homo","genus_taxid":"taxon:9605 [Homo]@genus","obicleandb_level":"genus","obicleandb_trusted":0,"species_name":"Homo sapiens","species_taxid":"taxon:9606 [Homo sapiens]@species","taxid":"taxon:9606 [Homo sapiens]@species"}
+ttagccctaaactctagtagttacattaacaaaaccattcgtcagaatactacgagcaac
+agcttaaaactcaaaggacctggcagttctttatatccct
+```
+
+
+If the check reveals that taxid is not described in the taxonomy, a warning is emitted by the {{% obitools4 %}}.
+As example, the {{< obi obiconvert >}} command applied to the following file:
+
+{{< code "four_sequences.fasta" "fasta" true >}}
+
+provides the following warning:
+
+```bash
+obiconvert -t ncbitaxo.tgz four_sequences.fasta
+```
+```
+INFO[0000] Number of workers set 16                     
+INFO[0000] Found 1 files to process                     
+INFO[0000] four_sequences.fasta mime type: text/fasta   
+INFO[0000] On output use JSON headers                   
+INFO[0000] Output is done on stdout                     
+INFO[0000] Data is writen to stdout                     
+INFO[0000] NCBI Taxdump Tar Archive detected: ncbitaxo.tgz 
+INFO[0000] Loading Taxonomy nodes                       
+INFO[0003] 2653519 Taxonomy nodes read                  
+INFO[0003] Loading Taxon names                          
+INFO[0005] 2653519 taxon names read                     
+INFO[0005] Loading Merged taxa                          
+INFO[0005] 88919 merged taxa read                       
+WARN[0005] AF023201: Taxid 67561 has to be updated to taxon:305503 [Lepidomeda copei]@species 
+WARN[0005] JN897380: Taxid 1114968 has to be updated to taxon:2734678 [Neotrypaea thermophila]@species 
+WARN[0005] KC236422: Taxid: 5799994 is unknown from taxonomy (Taxid 5799994 is not part of the taxonomy NCBI Taxonomy) 
+```
+
+Among the four sequences, only the first sequence is in the NCBI Taxonomy. The other three sequences are not in the NCBI Taxonomy. The second and the third sequences are in the NCBI Taxonomy, but with different taxids. The fourth sequence is not in the NCBI Taxonomy. 
+
+In the output, only the first sequence *AY189646* has
+
+```fasta
+>AY189646 {"count":1,"definition":"Homo sapiens clone arCan119 12S ribosomal RNA gene, partial sequence; mitochondrial gene for mitochondrial product.","species_name":"Homo sapiens","taxid":"taxon:9606 [Homo sapiens]@species"}
+ttagccctaaacctcaacagttaaatcaacaaaactgctcgccagaacactacgrgccac
+agcttaaaactcaaaggacctggcggtgcttcatatccct
+>AF023201 {"count":1,"definition":"Snyderichthys copei 12S ribosomal RNA gene, mitochondrial gene for mitochondrial RNA, complete sequence.","species_name":"Snyderichthys copei","taxid":"67561"}
+tcagccataaacctagatgtccagctacagttagacatccgcccgggtactacgagcatt
+agcttgaaacccaaaggacctgacggtgccttagaccccc
+>JN897380 {"count":1,"definition":"Nihonotrypaea thermophila mitochondrion, complete genome.","species_name":"Nihonotrypaea thermophila","taxid":"1114968"}
+tagccttaacaaacatactaaaatattaaaagttatggtctctaaatttaaaggatttgg
+cggtaatttagtccag
+>KC236422 {"count":1,"definition":"Nihonotrypaea japonica mitochondrion, complete genome.","species_name":"Nihonotrypaea japonica","taxid":"5799994"}
+cagctttaacaaacatactaaaatattaaaagttatggtctctaaatttaaaggatttgg
+cggtaatttagtccag
+```
+
 ## Manipulating paired sequence files with {{% obitools4 %}}
 
-Notably Illumina sequencing machines are providing paired-sequence data set.
-The two paired reads correspond to two sequencing of the same DNA molecule from both
-its ends. We are commonly speaking of the forward and reverse reads.
+Sequencing machines, particularly Illumina machines, produce paired-read data sets.
+The two paired reads correspond to two sequencings of the same DNA molecule from either end. They are commonly referred to as 'forward reads' and 'reverse reads'.
 
-Today, such paired reads are provided to the biologist as two {{% fastq %}} files.
-The assumption on these files is that the two reads corresponding to
-sequencing of the same DNA molecule occur in both the file at the same rank. If
-manipulations of the data leading to the deletion or insertion of sequences in
-those files are not done conjointly, it is highly probable that they will run
-out of phasing, leading the both sequence not anymore occurring at the same
-rank.
+Today, these paired reads are provided to the biologist in the form of two {{% fastq %}} files.
+These files assume that the two reads corresponding to the sequencing of the same DNA molecule are in the same position in the two files. If the data manipulations that delete or insert sequences in these files are not performed symmetrically, it is very likely that they will be out of phase, so that the two sequences will no longer be in the same position.
 
 {{< code "forward.fastq" fastq true >}}
   
 {{< code "reverse.fastq" fastq true >}}
 
-In the two files above, the first sequence of the [`forward.fastq`](forward.fastq) file having the id `M01334:147:000000000-LBRVD:1:1101:14968:1570` will be paired with the first sequence of the [`reverse.fastq`](reverse.fastq) file having the same id `M01334:147:000000000-LBRVD:1:1101:14968:1570`, not because they have the same identifier but because they are both the first sequence of their respective files.
+In the two files above, the first sequence of the [`forward.fastq`](forward.fastq) file with the ID `M01334:147:000000000-LBRVD:1:1101:14968:1570` is paired with the first sequence of the [`reverse.fastq`](reverse.fastq) file with the same ID `M01334:147:000000000-LBRVD:1:1101:14968:1570`, not because they have the same identifier, but because they are both the first sequence of their respective files.
+
+Some of the {{% obitools4 %}} commands, such as {{< obi obiconvert >}}, {{< obi obigrep >}} or {{< obi obiannotate >}} offer a `--paired-with` option. This option takes a filename as a parameter. It tells the {{% obitools4 %}} command that the file given as an argument is paired with the file being processed. Therefore, the {{% obitools4 %}} commands will process both the forward and reverse files in parallel.
+
+Because the `--paired-with` option makes the {{% obitools4 %}} command process two files, it also produces two result files. Therefore, standard output cannot be used to return the results. Therefore, when using the `--paired-with` option, the `--out` option must be used. The `--out` option takes a filename as a parameter and tells the {{% obitools4 %}} command to write the result to the specified file. As a single filename is given, the {{% obitools4 %}} command modifies this filename by adding a suffix `_R1` and `_R2` to create two filenames.
+
+```bash
+obiconvert --paired-with reverse.fastq \
+           --out result.fasta \
+           --fasta-output \
+           forward.fastq 
+```
+
+This command processes the [`forward.fastq`](forward.fastq) and the [`reverse.fastq`](reverse.fastq) as two paired files. It then converts them into two fasta files named [`result_R1.fasta`](result_R1.fasta) and [`result_R2.fasta`](result_R2.fasta) for the forward and reverse reads respectively.
+
+```bash
+ls -l *.fast?
+```
+```
+-rw-r--r--@ 1 myself  staff  1504  8 mar 15:09 forward.fastq
+-rw-r-----@ 1 myself  staff   964  8 mar 17:36 result_R1.fasta
+-rw-r-----@ 1 myself  staff   964  8 mar 17:36 result_R2.fasta
+-rw-r--r--@ 1 myself  staff  1504  8 mar 15:09 reverse.fastq
+```
+
+The `ls` command is used here to see the results of the above {{< obi obiconvert >}} command, with the two resulting files and their names built by adding the suffixes at the end of the filename just before the extension.

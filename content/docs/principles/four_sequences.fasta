@@ -1,0 +1,12 @@
+>AY189646 {"count":1,"definition":"Homo sapiens clone arCan119 12S ribosomal RNA gene, partial sequence; mitochondrial gene for mitochondrial product.","species_name":"Homo sapiens","taxid":"taxon:9606 [Homo sapiens]@species"}
+ttagccctaaacctcaacagttaaatcaacaaaactgctcgccagaacactacgrgccac
+agcttaaaactcaaaggacctggcggtgcttcatatccct
+>AF023201 {"count":1,"definition":"Snyderichthys copei 12S ribosomal RNA gene, mitochondrial gene for mitochondrial RNA, complete sequence.","species_name":"Snyderichthys copei","taxid":"67561"}
+tcagccataaacctagatgtccagctacagttagacatccgcccgggtactacgagcatt
+agcttgaaacccaaaggacctgacggtgccttagaccccc
+>JN897380 {"count":1,"definition":"Nihonotrypaea thermophila mitochondrion, complete genome.","species_name":"Nihonotrypaea thermophila","taxid":"1114968"}
+tagccttaacaaacatactaaaatattaaaagttatggtctctaaatttaaaggatttgg
+cggtaatttagtccag
+>KC236422 {"count":1,"definition":"Nihonotrypaea japonica mitochondrion, complete genome.","species_name":"Nihonotrypaea japonica","taxid":"5799994"}
+cagctttaacaaacatactaaaatattaaaagttatggtctctaaatttaaaggatttgg
+cggtaatttagtccag
