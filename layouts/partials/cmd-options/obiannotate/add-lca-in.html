@@ -1,7 +1,4 @@
 {{ partial "cmd-options/option.html" 
 (dict "name" "add-lca-in" 
-      "param" "SLOT_NAME"
-      "documentation" `From the taxonomic annotation of the sequence (taxid slot or merged_taxid slot),
-      a new slot named <SLOT_NAME> is added with the taxid of the lowest common ancester corresponding
-      to the current annotation.`) 
-}}
+      "param" "ATTRIBUTE"
+      "documentation" "From the taxonomic annotation of the sequence (taxid slot or merged_taxid slot), a new slot named `ATTRIBUTE` is added with the taxid of the lowest common ancester corresponding to the current annotation.") }}
