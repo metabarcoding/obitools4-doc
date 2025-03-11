@@ -49,48 +49,43 @@ obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
 
 #### {{< obi obiannotate >}} specific options
 
-- {{< cmd-options/obiannotate/add-lca-in >}}
-- {{< cmd-options/obiannotate/aho-corasick >}}
-- {{< cmd-options/allows-indels >}}
-- {{< cmd-options/approx-pattern >}}
-- {{< cmd-options/attribute >}}
+##### Identifier modification
+
+- {{< cmd-options/set-identifier >}}
+
+##### Tag modification
+
 - {{< cmd-options/obiannotate/clear >}}
-- {{< cmd-options/obiannotate/cut >}}
-- {{< cmd-options/definition >}}
 - {{< cmd-options/delete-tag >}}
-- {{< cmd-options/has-attribute >}}
-- {{< cmd-options/id-list >}}
-- {{< cmd-options/identifier >}}
-- {{< cmd-options/ignore-taxon >}}
-- {{< cmd-options/inverse-match >}}
 - {{< cmd-options/keep >}}
-- {{< cmd-options/obiannotate/lca-error >}}
+- {{< cmd-options/rename-tag >}}
+- {{< cmd-options/set-tag >}}
+
+##### Sequence-related annotation
+
 - {{< cmd-options/length >}}
-- {{< cmd-options/max-count >}}
-- {{< cmd-options/max-length >}}
-- {{< cmd-options/min-count >}}
-- {{< cmd-options/min-length >}}
-- {{< cmd-options/only-forward >}}
-- {{< cmd-options/paired-mode >}}
-- {{< cmd-options/paired-with >}}
 - {{< cmd-options/pattern >}}
 - {{< cmd-options/pattern-error >}}
 - {{< cmd-options/pattern-name >}}
-- {{< cmd-options/predicate >}}
-- {{< cmd-options/rename-tag >}}
-- {{< cmd-options/taxonomy/require-rank >}}
-- {{< cmd-options/taxonomy/restrict-to-taxon >}}
-- {{< cmd-options/scientific-name >}}
-- {{< cmd-options/sequence >}}
-- {{< cmd-options/set-identifier >}}
-- {{< cmd-options/set-tag >}}
 
-#### Taxonomic options
+##### Sequence modification
+
+- {{< cmd-options/obiannotate/cut >}}
+
+##### Taxonomy annotation
+
+- {{< cmd-options/obiannotate/add-lca-in >}}
+- {{< cmd-options/obiannotate/lca-error >}}
+- {{< cmd-options/scientific-name >}}
+- {{< cmd-options/scientific-name >}}
+
+#### Taxonomy options
 
 - {{< cmd-options/taxonomy/taxonomy >}}
 - {{< cmd-options/taxonomy/taxonomic-rank >}}
 - {{< cmd-options/taxonomy/taxonomic-path >}}
 - {{< cmd-options/taxonomy/with-taxon-at-rank >}}
+
 
 {{< option-sets/input >}}
 
