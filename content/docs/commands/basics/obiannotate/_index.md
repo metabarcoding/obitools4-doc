@@ -99,19 +99,30 @@ obiannotate [--add-lca-in <ATTRIBUTE>] [--aho-corasick <string>]
 
 ##### Taxonomy annotation
 
-- {{< cmd-options/obiannotate/add-lca-in >}}
-- {{< cmd-options/obiannotate/lca-error >}}
-- {{< cmd-options/scientific-name >}}
-- {{< cmd-options/scientific-name >}}
+- {{< cmd-option name="add-lca-in" param="ATTRIBUTE">}}
+  From the taxonomic annotation of the sequence (taxid attribute or merged_taxid attribute), a new attribute named `ATTRIBUTE` is added with the taxid of the lowest common ancestor corresponding to the current annotation.
+  {{< /cmd-option >}}
+- {{< cmd-option name="lca-error" param="#.###">}}
+  Error rate tolerated on the taxonomical description during the lowest common ancestor. At most a fraction of lca-error of the taxonomic information can disagree with the estimated LCA. (default: 0.000000)
+  {{< /cmd-option >}}
+- {{< cmd-option name="scientific-name">}}
+  Annotates the sequence with its scientific name.
+  {{< /cmd-option >}}
 
 #### Taxonomy options
 
 {{< option-sets/taxonomy >}}
 
-- {{< cmd-options/taxonomy/taxonomic-rank >}}
-- {{< cmd-options/taxonomy/taxonomic-path >}}
-- {{< cmd-options/taxonomy/with-taxon-at-rank >}}
-
+- {{< cmd-option name="taxonomic-rank">}}
+  Annotates the sequence with its taxonomic rank.
+  {{< /cmd-option >}}
+- {{< cmd-option name="taxonomic-path">}}
+  Annotates the sequence with its taxonomic path.
+  {{< /cmd-option >}}
+- {{< cmd-option name="with-taxon-at-rank">}}
+  Adds taxonomic annotation at taxonomic rank `RANK_NAME`.
+  {{< /cmd-option >}}
+  
 {{< option-sets/selection >}}
 
 {{< option-sets/input >}}
