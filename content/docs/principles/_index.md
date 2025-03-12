@@ -354,9 +354,9 @@ WARN[0005] JN897380: Taxid 1114968 has to be updated to taxon:2734678 [Neotrypae
 WARN[0005] KC236422: Taxid: 5799994 is unknown from taxonomy (Taxid 5799994 is not part of the taxonomy NCBI Taxonomy) 
 ```
 
-Among the four sequences, only the first sequence is in the NCBI Taxonomy. The other three sequences are not in the NCBI Taxonomy. The second and the third sequences are in the NCBI Taxonomy, but with different taxids. The fourth sequence is not in the NCBI Taxonomy. 
+Of the four sequences, only the first sequence has a taxid known from the NCBI taxonomy. The other three sequences have taxids that are not part of the NCBI taxonomy. In fact, the second and third sequences have taxids that were known in the NCBI taxonomy, but are now transferred to other taxids. The fourth sequence has a taxid that is actually unknown in the NCBI taxonomy. 
 
-In the output, only the first sequence *AY189646* has
+Since only the first sequence *AY189646* has a known taxid in the output, the taxids are rewritten in long format only for this sequence. For the other three sequences, the taxids are left as they are. Nevertheless, the four sequences are present in the output.
 
 ```fasta
 >AY189646 {"count":1,"definition":"Homo sapiens clone arCan119 12S ribosomal RNA gene, partial sequence; mitochondrial gene for mitochondrial product.","species_name":"Homo sapiens","taxid":"taxon:9606 [Homo sapiens]@species"}
@@ -370,6 +370,73 @@ tagccttaacaaacatactaaaatattaaaagttatggtctctaaatttaaaggatttgg
 cggtaatttagtccag
 >KC236422 {"count":1,"definition":"Nihonotrypaea japonica mitochondrion, complete genome.","species_name":"Nihonotrypaea japonica","taxid":"5799994"}
 cagctttaacaaacatactaaaatattaaaagttatggtctctaaatttaaaggatttgg
+cggtaatttagtccag
+```
+
+If the `--update-taxid` option is used, the {{% obitools4 %}} command will update the taxids of the sequences that have been transferred to other taxids. When run on the same sequence file, you can see the same three warnings, but the first two warnings announce the update of the taxids.
+
+```bash
+obiconvert -t ncbitaxo.tgz --update-taxid four_sequences.fasta
+```
+```
+WARN[0007] AF023201: Taxid: 67561 is updated to taxon:305503 [Lepidomeda copei]@species 
+WARN[0007] JN897380: Taxid: 1114968 is updated to taxon:2734678 [Neotrypaea thermophila]@species 
+WARN[0007] KC236422: Taxid: 5799994 is unknown from taxonomy (Taxid 5799994 is not part of the taxonomy NCBI Taxonomy) 
+```
+
+In the output, the taxids are rewritten in long format for the first sequence as before, but also for the next two sequences, taking into account the update of their taxids.
+
+```fasta
+>AY189646 {"count":1,"definition":"Homo sapiens clone arCan119 12S ribosomal RNA gene, partial sequence; mitochondrial gene for mitochondrial product.","species_name":"Homo sapiens","taxid":"taxon:9606 [Homo sapiens]@species"}
+ttagccctaaacctcaacagttaaatcaacaaaactgctcgccagaacactacgrgccac
+agcttaaaactcaaaggacctggcggtgcttcatatccct
+>AF023201 {"count":1,"definition":"Snyderichthys copei 12S ribosomal RNA gene, mitochondrial gene for mitochondrial RNA, complete sequence.","species_name":"Snyderichthys copei","taxid":"taxon:305503 [Lepidomeda copei]@species"}
+tcagccataaacctagatgtccagctacagttagacatccgcccgggtactacgagcatt
+agcttgaaacccaaaggacctgacggtgccttagaccccc
+>JN897380 {"count":1,"definition":"Nihonotrypaea thermophila mitochondrion, complete genome.","species_name":"Nihonotrypaea thermophila","taxid":"taxon:2734678 [Neotrypaea thermophila]@species"}
+tagccttaacaaacatactaaaatattaaaagttatggtctctaaatttaaaggatttgg
+cggtaatttagtccag
+>KC236422 {"count":1,"definition":"Nihonotrypaea japonica mitochondrion, complete genome.","species_name":"Nihonotrypaea japonica","taxid":"5799994"}
+cagctttaacaaacatactaaaatattaaaagttatggtctctaaatttaaaggatttgg
+cggtaatttagtccag
+```
+
+If the `--fail-on-taxonomy` option is used, the {{% obitools4 %}} command will abort if it encounters a taxid that is not in the NCBI taxonomy. If it is run on the same sequence file, you will see the error message that stops the command on the reading of the last sequence annotated with a taxid that is not in the NCBI taxonomy. If the `--update-taxid` option was not used, the command would also have aborted on the sequence AF023201.
+
+```bash
+obiconvert -t ncbitaxo.tgz --update-taxid --fail-on-taxonomy four_sequences.fasta
+```
+```
+WARN[0007] AF023201: Taxid: 67561 is updated to taxon:305503 [Lepidomeda copei]@species 
+WARN[0007] JN897380: Taxid: 1114968 is updated to taxon:2734678 [Neotrypaea thermophila]@species 
+FATA[0007] KC236422: Taxid: 5799994 is unknown from taxonomy (Taxid 5799994 is not part of the taxonomy NCBI Taxonomy) 
+```
+
+To remove the invalid taxids from your file, you can use {{< obi obigrep >}} to preserve only sequences with a valid taxid.
+This is the role of the `--valid-taxid' option.
+
+```bash
+obigrep -t ncbitaxo.tgz \
+        --update-taxid \
+        --valid-taxid four_sequences.fasta
+```
+```
+WARN[0006] KC236422: Taxid: 5799994 is unknown from taxonomy (Taxid 5799994 is not part of the taxonomy NCBI Taxonomy) 
+WARN[0006] AF023201: Taxid: 67561 is updated to taxon:305503 [Lepidomeda copei]@species 
+WARN[0006] JN897380: Taxid: 1114968 is updated to taxon:2734678 [Neotrypaea thermophila]@species 
+```
+
+If the same three warnings occur, you will notice that only the first three sequences are preserved in the resulting file.
+
+```fasta
+>AY189646 {"count":1,"definition":"Homo sapiens clone arCan119 12S ribosomal RNA gene, partial sequence; mitochondrial gene for mitochondrial product.","species_name":"Homo sapiens","taxid":"taxon:9606 [Homo sapiens]@species"}
+ttagccctaaacctcaacagttaaatcaacaaaactgctcgccagaacactacgrgccac
+agcttaaaactcaaaggacctggcggtgcttcatatccct
+>AF023201 {"count":1,"definition":"Snyderichthys copei 12S ribosomal RNA gene, mitochondrial gene for mitochondrial RNA, complete sequence.","species_name":"Snyderichthys copei","taxid":"taxon:305503 [Lepidomeda copei]@species"}
+tcagccataaacctagatgtccagctacagttagacatccgcccgggtactacgagcatt
+agcttgaaacccaaaggacctgacggtgccttagaccccc
+>JN897380 {"count":1,"definition":"Nihonotrypaea thermophila mitochondrion, complete genome.","species_name":"Nihonotrypaea thermophila","taxid":"taxon:2734678 [Neotrypaea thermophila]@species"}
+tagccttaacaaacatactaaaatattaaaagttatggtctctaaatttaaaggatttgg
 cggtaatttagtccag
 ```
 
