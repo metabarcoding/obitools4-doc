@@ -17,15 +17,15 @@ weight: 10
 The original {{< obi obiclean >}} algorithm is a denoising (clustering) algorithm designed to filter out potential PCR-generated spurious sequences. 
 
 This new version of {{< obi obiclean >}} adds two additional filters:
-- A filter to set a threshold for the minimum number of samples a sequence must be present in to be retained (default: 1, can be changed using the `--min-sample-count` option). 
+- A filter to set a threshold for the minimum number of samples (PCRs) a sequence must be present to be retained (default: 1, can be changed using the `--min-sample-count` option). 
 - A naive chimera detection algorithm. This is an experimental feature. It is not run by default. It can be enabled with the `--dectect-chimera` option.
 
 {{< obi obiclean >}} can run in two modes:
 
-- A tagging mode where no sequences are actually removed from the data set, they are just tagged. It is your responsibility to remove the sequences you don't want based on these tags and your filter rules, using other {{% obitools %}} commands.
-- A filter mode in which sequences that are considered to be false sequences by {{< obi obiclean >}} are removed from the data set.
+- A tagging mode where no sequences are actually removed from the data set, they are just tagged. It is your responsibility to remove the sequences you do not want based on these tags and your filter rules, using {{< obi obigrep >}}.
+- A filter mode in which sequences that are considered to be artifactual sequences by {{< obi obiclean >}} are removed from the data set.
 
-{{< obi obiclean >}} relies on per-sample sequence abundance information to apply its algorithms. Therefore, the input data set must first be dereplicated using the {{< obi obiuniq >}} command with the `-m sample` option.
+{{< obi obiclean >}} relies on per-sample (PCR) sequence abundance information to apply its algorithms. Therefore, the input data set must first be dereplicated using the {{< obi obiuniq >}} command with the `-m sample` option.
 
 {{< mermaid class="workflow" >}}
 graph TD
@@ -118,13 +118,13 @@ agcttaaaactcaaaggacttggcggtgctttataccctt
 ### Tags added to each sequence by the clustering algorithm
 
 - `obiclean_head`: `true` if the sequence is a *head* or *singleton* in at least one sample, `false` otherwise.
-- obiclean_samplecount: The number of samples the sequence occurs in the data set (here 2).
-- obiclean_headcount: The number of samples where the sequence is classified as *head* (here 0).
-- obiclean_internalcount: The number of samples where the sequence is classified as *internal* (here 2).
-- obiclean_singletoncount: The number of samples where the sequence is classified as *singleton* (here 0).
-- `obiclean_status`: A JSON map indexed by the name of the sample in which the sequence was found. The value indicates the classification of the sequence in this sample: `i` for *internal*, `s` for *singleton* or `h` for *head*.
-- `obiclean_weight`: A JSON map indexed by the name of the sample in which the sequence was found. The value indicates the number of times the sequence and its derivatives were found in this sample (here 5 for sample *15a_F73081*).
-- `obiclean_mutation`: A JSON map indexed by sequence `id`s. Each entry of the map contains the sequence `id` of the parent sequence and the position of the mutation between the parent sequence and the sequence in the variant. Only sequences belonging to the class *internal* in at least one sample are annotated with this tag.
+- obiclean_samplecount: the number of samples the sequence occurs in the data set (here 2).
+- obiclean_headcount: the number of samples where the sequence is classified as *head* (here 0).
+- obiclean_internalcount: the number of samples where the sequence is classified as *internal* (here 2).
+- obiclean_singletoncount: the number of samples where the sequence is classified as *singleton* (here 0).
+- `obiclean_status`: a JSON map indexed by the name of the sample in which the sequence was found. The value indicates the classification of the sequence in this sample: `i` for *internal*, `s` for *singleton* or `h` for *head*.
+- `obiclean_weight`: a JSON map indexed by the name of the sample in which the sequence was found. The value indicates the number of times the sequence and its derivatives were found in this sample (here 5 for sample *15a_F73081*).
+- `obiclean_mutation`: a JSON map indexed by sequence `id`s. Each entry of the map contains the sequence `id` of the parent sequence and the position of the mutation between the parent sequence and the sequence in the variant. Only sequences belonging to the class *internal* in at least one sample are annotated with this tag.
   
   Here: `(a)->(g)@26` indicates that the `a` in the parent sequence `HELIUM_000100422_612GNAAXX:7:22:2603:18023#0/1_sub[28..127]` in this variant has been replaced by a `g` at position 26.
 
@@ -175,7 +175,7 @@ Which reads as
 
 ## Filtering the output
 
-### Remove sequences annotated as spurious.
+### Removal of sequences annotated as artifacts.
 
 By default, {{< obi obiclean >}} only annotates each sequence with different tags describing its classification in the different samples. Therefore, there are as many sequences in the result file as in the input file. This can be verified using the {{< obi obicount >}} command on the previous input and result files, [`wolf_uniq.fasta.gz`](wolf_uniq.fasta.gz) and [`wolf_clean_chimera.fasta.gz`](wolf_clean_chimera.fasta.gz) respectively.
 
@@ -201,7 +201,7 @@ obicount wolf_uniq_chimera.fasta.gz | csvlook
 | symbols  | 428 403 |
 ```
 
-{{< obi obiclean >}} can be run in filter mode, which removes a sequence from the result sequence set if it is considered spurious in all samples in which it occurs. Spurious sequences are those classified as *internal* or *chimeric*.
+{{< obi obiclean >}} can be run in filter mode, allowing a sequence to be removed from the resulting sequence set if it is considered artifactual in all samples where it appears. Artifactual sequences are those classified as *internal* or *chimeric*.
 
 This filtering is done by setting the `-H` option.
 
@@ -224,10 +224,10 @@ obicount wolf_clean_chimera_head.fasta.gz | csvlook
 | symbols  | 230 953 |
 ```
 
-### Remove sequences occurring in less than *k* samples
+### Remove sequences occurring in less than *k* samples (PCRs)
 
-It can be considered as reasonable to remove a sequence that occurs in less than *k* samples, especially if PCR technical replicates have been realized and several samples of the data set actually corresponds to these technical replicates of a single biological sample. By default, the minimum number of samples is set to 1. This means that no sequences are discarded by this filter. The `-min-sample-count` option allows setting this threshold at an upper value.
-A value of *2* has already a strong effect:
+It may be considered reasonable to eliminate a sequence present in fewer than k samples, particularly if technical PCR replicates have been performed and several samples in the dataset actually correspond to these technical replicates of a single biological sample. By default, the minimum number of samples is set to 1, meaning that no sequences are rejected by this filter. The `-min-sample-count` option can be used to set this threshold to a higher value. 
+A value of *2* already has a significant effect:
 
 ```bash
 obiclean -r 0.1 \
@@ -287,41 +287,41 @@ obiclean [--batch-size <int>] [--compressed|-Z] [--debug]
 #### Clustering algorithm options
 
 - {{< cmd-option name="distance" short="d" param="INTEGER" >}}
-  Maximum numbers of differences between two variant sequences. (default: 1)
+  maximum numbers of differences between two variant sequences. (default: 1)
   {{< /cmd-option >}}
 - {{< cmd-option name="ratio" short="r" param="FLOAT" >}}
-  Threshold ratio between counts (rare/abundant counts) of two sequence records so that the less abundant one is a variant of the more abundant (default: 1.00).
+  threshold ratio between counts (rare/abundant counts) of two sequence records so that the less abundant one is a variant of the more abundant (default: 1.00).
   {{< /cmd-option >}}
 - {{< cmd-option name="sample" short="s" param="STRING" >}}
-  Attribute containing sample descriptions (default: "sample").  
+  name of the attribute containing sample descriptions (default: "sample").  
   {{< /cmd-option >}}
 
 #### Chimera detection options
 
 - {{< cmd-option name="detect-chimera" >}}
-  Enable chimera detection. (default: false)  
+  enable chimera detection. (default: false)  
   {{< /cmd-option >}}
 
 #### Filtering options
 
 - {{< cmd-option name="head" short="H" >}}
-  Remove from the result data set, the sequences annotated as spurious in all the samples (default: false).
+  remove from the result data set, the sequences annotated as spurious in all the samples (default: false).
   {{< /cmd-option >}}
 - {{< cmd-option name="min-sample-count" param="INTEGER" >}}
-  Minimum number of samples a sequence must be present in to be considered in the analysis. (default: 1)  
+  minimum number of samples a sequence must be present in to be considered in the analysis. (default: 1)  
   {{< /cmd-option >}}
 
 #### Dumping internal clustering data 
 
 - {{< cmd-option name="save-graph" param="DIRNAME" >}}
-  Save the clustering graph for each sample in a GML file in the directory precised as parameter of the option (default: false).
+  save the clustering graph for each sample (PCR) in a GML file in the directory precised as parameter of the option (default: false).
   {{< /cmd-option >}}
 - {{< cmd-option name="save-ratio" param="FILENAME" >}}
-  Create a CSV file containing abundance ratio statistics for the edges of the clustering graphs above the `--min-eval-rate` threshold.
-  If the option `-Z` is used conjointly with the option `--save-graph`, moreover the result file, the ratio CSV file is also compressed using GZIP.
+  create a CSV file containing abundance ratio statistics for the edges of the clustering graphs above the `--min-eval-rate` threshold.
+  If the option `-Z` is used conjointly with the option `--save-graph`, in addition to the result file, the ratio CSV file is also compressed using GZIP.
   {{< /cmd-option >}}
 - {{< cmd-option name="min-eval-rate" param="INTEGER" >}}
-  The minimum abundance of the destination sequence of an edge to be stored in the CSV file produced by the `--save-ratio` option (default: 1000).
+  the minimum abundance of the destination sequence of an edge to be stored in the CSV file produced by the `--save-ratio` option (default: 1000).
   {{< /cmd-option >}}
 
 ### shared options
@@ -336,12 +336,12 @@ obiclean [--batch-size <int>] [--compressed|-Z] [--debug]
 
 ### Determining the ratio parameter
 
-The ratio parameter (option `-r`) defines the ratio threshold between the frequency of the variant of a sequence and its original sequence. It allows deciding between two closely related true sequences and a true sequence with its variant. To get an idea of the ratio threshold to use, we can use the `obiclean` command with the `--save-ratio` option. This option creates a CSV file containing the abundance ratio statistics from the edges of the clustering graphs. Only a subset of the edges are kept in the CSV file:
+The ratio parameter (option `-r`) defines the ratio threshold between the frequency of the variant of a sequence and its original sequence. It can be used to distinguish between two closely related true sequences and a true sequence with its variant. To get an idea of the ratio threshold to use, the `obiclean` command with the `--save-ratio` option can be used. This option creates a CSV file containing the abundance ratio statistics from the edges of the clustering graphs. Only a subset of the edges are kept in the CSV file:
 
 - Those corresponding to a single mutation (distance between the original and the mutated sequence is 1).
 - Those where the original sequence has a weight greater than the threshold (determined by the `--min-eval-rate` option).
 
-The last condition is used to avoid estimating the ratio from edges with too few sequences, to limit the stochastic effect on the estimation of the ratio.
+The last condition is used to avoid estimating the ratio from edges with too few sequences, in order to limit the stochastic effect on ratio estimation.
 
 ```bash
 obiclean -Z \

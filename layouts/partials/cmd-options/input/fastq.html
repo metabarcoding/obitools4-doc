@@ -1,4 +1,4 @@
-{{ $url := printf "Indicate that sequence data is following the <a href=\"%s\">fastq</a> format."  (ref . "/docs/file_format/sequence_files/FASTQ.md")}}
+{{ $url := printf "indicates that sequence data is in <a href=\"%s\">fastq</a> format."  (ref . "/docs/file_format/sequence_files/FASTQ.md")}}
 {{ partial "cmd-options/option.html" 
       (dict "name" "fastq"
             "documentation" $url ) }}

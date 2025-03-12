@@ -1,4 +1,4 @@
-{{ $url := printf "Indicate that sequence data is following the <a href=\"%s\">GenBank flatfile</a> format."  (ref . "/docs/file_format/sequence_files/genbank.md")}}
+{{ $url := printf "indicates that sequence data is in <a href=\"%s\">GenBank flatfile</a> format."  (ref . "/docs/file_format/sequence_files/genbank.md")}}
 {{ partial "cmd-options/option.html" 
       (dict "name" "genbank"
             "documentation" $url ) }}

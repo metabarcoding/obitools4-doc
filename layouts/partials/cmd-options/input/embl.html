@@ -1,4 +1,4 @@
-{{ $url := printf "Indicate that sequence data is following the <a href=\"%s\">EMBL-ENA flatfile</a> format."  (ref . "/docs/file_format/sequence_files/embl.md")}}
+{{ $url := printf "indicates that sequence data is in <a href=\"%s\">EMBL-ENA flatfile</a> format."  (ref . "/docs/file_format/sequence_files/embl.md")}}
 {{ partial "cmd-options/option.html" 
       (dict "name" "embl"
             "documentation" $url ) }}
