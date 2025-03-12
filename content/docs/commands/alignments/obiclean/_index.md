@@ -352,20 +352,20 @@ obiclean -Z \
 The `--save-ratio` requires a parameter `FILENAME` that is the name of the CSV file to create. The file is compressed using GZIP if the option `-Z` is used.
 
 ```bash
-gzcat wolf_ratio_R1.csv.gz | head | csvlook
+gzcat wolf_ratio_R1.csv.gz | head | csvlook -I
 ```
 ```
-| Sample      | Origin_id                                                  | Origin_status | Origin | Mutant | Origin_Weight | Mutant_Weight | Origin_Count | Mutant_Count | Position | Origin_length |  A |  C |  G |  T |
+| Sample      | Origin_id                                                  | Origin_status | Origin | Mutant | Origin_Weight | Mutant_Weight | Origin_Count | Mutant_Count | Position | Origin_length | A  | C  | G  | T  |
 | ----------- | ---------------------------------------------------------- | ------------- | ------ | ------ | ------------- | ------------- | ------------ | ------------ | -------- | ------------- | -- | -- | -- | -- |
-| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       44 |            99 | 35 | 25 | 16 | 23 |
-| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       72 |            99 | 35 | 25 | 16 | 23 |
-| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       42 |            99 | 35 | 25 | 16 | 23 |
-| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       57 |            99 | 35 | 25 | 16 | 23 |
-| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       76 |            99 | 35 | 25 | 16 | 23 |
-| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       73 |            99 | 35 | 25 | 16 | 23 |
-| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       16 |            99 | 35 | 25 | 16 | 23 |
-| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       32 |            99 | 35 | 25 | 16 | 23 |
-| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      |        12 830 |          True |       10 385 |         True |       73 |            99 | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      | 12830         | 1             | 10385        | 1            | 44       | 99            | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      | 12830         | 1             | 10385        | 1            | 72       | 99            | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      | 12830         | 1             | 10385        | 1            | 42       | 99            | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      | 12830         | 1             | 10385        | 1            | 57       | 99            | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      | 12830         | 1             | 10385        | 1            | 76       | 99            | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      | 12830         | 1             | 10385        | 1            | 73       | 99            | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      | 12830         | 1             | 10385        | 1            | 16       | 99            | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      | 12830         | 1             | 10385        | 1            | 32       | 99            | 35 | 25 | 16 | 23 |
+| 26a_F040644 | HELIUM_000100422_612GNAAXX:7:5:15939:5437#0/1_sub[28..126] | h             | a      | -      | 12830         | 1             | 10385        | 1            | 73       | 99            | 35 | 25 | 16 | 23 |
 ```
 
 The ratio CSV file [`wolf_ratio_R1.csv.gz`](wolf_ratio_R1.csv.gz) contains the following columns:
