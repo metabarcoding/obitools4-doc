@@ -11,9 +11,9 @@ weight: 22
 
 # General operating principles for {{% obitools %}}
 
-{{% obitools %}} are not a metabarcoding data analysis pipeline, but a set of tools for developing customized analysis, while avoiding the black-box effect of a ready-to-use pipeline. A particular effort in the development of {{% obitools4 %}} has been to use data formats that can be easily interfaced with other software.
+{{% obitools %}}are not a metabarcoding data analysis pipeline, but a set of tools for developing customized analyses, while avoiding the black-box effect of a ready-to-use pipeline. A particular effort in the development of {{% obitools4 %}} has been to use data formats that can be easily interfaced with other software.
 
-{{% obitools %}} correspond to a set of UNIX commands that are used from a command line interface, also named a terminal, to perform various tasks on DNA sequence files. A UNIX command can be considered as a process that takes a set of inputs and produces a set of outputs.
+{{% obitools %}} correspond to a set of UNIX commands that are executed from a command line interface, also known as a terminal, to perform various tasks on DNA sequence files. A UNIX command can be considered as a process that takes a set of inputs and produces a set of outputs.
 
 {{< mermaid class="workflow" >}}
 graph LR
@@ -31,7 +31,7 @@ graph LR
   classDef obitools fill:#99d57c
 {{< /mermaid >}}
 
-Most {{% obitools %}} take a single input file and produce a single output file. Among the inputs, one has a special status, the standard input (*stdin*). Symmetrically, there is the standard output (*stdout*). By default, as any other UNIX command, the {{% obitools %}} read their data from *stdin* and write their results to *stdout*.
+Most {{% obitools %}} take a single file as input and produce a single file as output. Among the inputs, one has a special status: the standard input (*stdin*). Symmetrically, there is the standard output (*stdout*). By default, like any other UNIX command, the {{% obitools %}} reads its data from *stdin* and write its results to *stdout*.
 
 {{< mermaid class="workflow" >}}
 graph LR
@@ -43,11 +43,11 @@ graph LR
   classDef obitools fill:#99d57c
 {{< /mermaid >}}
 
-If nothing is specified, the UNIX system connects standard input to the terminal keyboard and standard output to the terminal screen. So if you run, as example, the {{< obi obiconvert >}} command in your terminal without any arguments, it will appear to stop and do nothing, when in fact it is waiting for you to type something on the keyboard. To stop it, just press *Ctrl+D* or *Ctrl+C*. *Ctrl+D* terminates the input and stops the program. *Ctrl+C* kills the program.
+If nothing is specified, the UNIX system connects standard input to the terminal keyboard and standard output to the terminal screen. So, for example, if you enter the {{< obi obiconvert >}} command in your terminal without any arguments, it will appear to stop and do nothing, when in fact it is waiting for you to type something on the keyboard. To stop it, just press *Ctrl+D* or *Ctrl+C*. *Ctrl+D* ends typing and stops the program. *Ctrl+C* kills the program.
 
 ## Specifying the input data
 
-{{% obitools %}} are dedicated to process DNA sequence files. Thus, most of them accept as inputs DNA sequence files. They can be formatted in the most common sequence file formats, {{% fasta %}}, {{% fastq %}}, {{% embl %}} and {{% genbank %}} flat files. Data can also be provided as CSV files. The {{% obitools %}} usually recognize the file format of the input data, but options are provided to force a specific format (*i.e.* `--fasta`, `--fastq`, `--genbank`, `--embl`).
+{{% obitools %}} are designed to process DNA sequence files. Most of them therefore accept DNA sequence files as input. They can be formatted in the most common sequence file formats, {{% fasta %}}, {{% fastq %}}, {{% embl %}} and {{% genbank %}} flat files. Data can also be supplied as CSV files. The {{% obitools %}} generally recognize the file format of input data, but options are provided to force a specific format (*i.e.* `--fasta`, `--fastq`, `--genbank`, `--embl`).
 
 The most common way to specify the file containing the DNA sequences to be processed is to specify its name as an argument. Here is an example using {{< obi obicount >}} to count the number of DNA sequences in a file named `my_file.fasta`.
 
@@ -55,13 +55,13 @@ The most common way to specify the file containing the DNA sequences to be proce
 obicount my_file.fasta
 ```
 
-But it is also possible to pass the data using the Unix redirection mechanism (*i.e.* `>` and `<`, [more details](https://en.wikipedia.org/wiki/Redirection_(computing))).
+But it is also possible to pass data using the Unix redirection mechanism (*i.e.* `>` and `<`, [more details](https://en.wikipedia.org/wiki/Redirection_(computing))).
 
 ```bash
 obicount < my_file.fasta
 ```
 
-The {{% obitools %}} can also be used to process a set of files. In this case, the {{% obitools %}} will process the files in the order in which they appear on the command line.
+{{% obitools %}} can also be used to process a set of files. In this case, {{% obitools %}} will process the files in the order in which they appear on the command line.
 
 ```bash
 obicount my_file1.fasta my_file2.fasta my_file3.fasta
