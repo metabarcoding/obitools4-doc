@@ -12,7 +12,7 @@ weight: 80
 
 ## Description 
 
-{{< obi obigrep >}} is a tool to filter a sequence file based on multiple criteria. It allows selecting a subset of sequences based on a set of criteria. Sequences matching all the criteria are kept and printed to the standard output, while the other sequences are discarded. Criteria can apply to the sequence identifier, the sequence itself or the annotations of the sequence.
+{{< obi obigrep >}} is a tool that allows a subset of sequences to be selected based on a set of criteria. Sequences from the input data set that match all criteria are retained and printed in the result, while the other sequences are discarded. The criteria can be based on the sequence identifier, the sequence itself or the annotations of the sequence.
 
 ## Synopsis
 
