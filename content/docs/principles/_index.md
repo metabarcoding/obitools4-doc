@@ -275,7 +275,7 @@ For example, in the NCBI taxonomy [https://www.ncbi.nlm.nih.gov/taxonomy], the s
 The way to specify a taxid to obitools is to provide this short string: `"9606"` or `"9605"`.
 <!-- I removed "minimal" in "minimal way" -->
 
-If the `--taxonomy` or `-t` option, which takes a filename as parameter, is used when calling a {{% obitools %}} command, the corresponding taxonomy will be loaded and every taxid present in a file (`taxid` and `*_taxid` tags) will be checked against the taxonomy. To download a copy of the (NCBI taxonomy)[https://www.ncbi.nlm.nih.gov/taxonomy] you can use the {{< obi obitaxonomy >}} command:
+If the `--taxonomy` or `-t` option, which takes a filename as parameter, is used when calling a {{% obitools %}} command, the corresponding taxonomy will be loaded and every taxid present in a file (`taxid` and `*_taxid` tags) will be checked against the taxonomy. To download a copy of the NCBI taxonomy [https://www.ncbi.nlm.nih.gov/taxonomy] you can use the {{< obi obitaxonomy >}} command:
 
 ```bash
 obitaxonomy --download-ncbi --out ncbitaxo.tgz
