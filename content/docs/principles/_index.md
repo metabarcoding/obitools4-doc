@@ -473,4 +473,4 @@ ls -l *.fast?
 -rw-r--r--@ 1 myself  staff  1504  8 mar 15:09 reverse.fastq
 ```
 
-The `ls` command is used here to see the results of the above {{< obi obiconvert >}} command, with the two resulting files and their names built by adding the suffixes _R1 and _R2 at the end of the filename just before the extension.
+The `ls` command is used here to see the results of the above {{< obi obiconvert >}} command, with the two resulting files and their names built by adding the suffixes `_R1` or `_R2` at the end of the filename just before the extension.
