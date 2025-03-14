@@ -280,7 +280,7 @@ If the `--taxonomy` or `-t` option, which takes a filename as parameter, is used
 ```bash
 obitaxonomy --download-ncbi --out ncbitaxo.tgz
 ```
-
+<!-- It may be informative to give a rought time it will last - Is it possible to download just a section of the taxonomy? -->
 This will create a new `ncbitaxo.tgz` file containing a local copy of the complete taxonomy.
 
 The first consequence of this check is that all taxa are rewritten in their long form. `"9606"` becomes `"taxon:9606 [Homo sapiens]@species"`:
@@ -468,7 +468,7 @@ obiconvert --paired-with reverse.fastq \
 ```
 
 This command processes the [`forward.fastq`](forward.fastq) and the [`reverse.fastq`](reverse.fastq) as two paired files. It then converts them into two fasta files named [`result_R1.fasta`](result_R1.fasta) and [`result_R2.fasta`](result_R2.fasta) for the forward and reverse reads respectively.
-
+<!-- With obigrep, if a sequence is removed from forward.fastq, will the reverse sequence removed from reverse.fastq, even of the obigrep should not remove it. In other words, will you always preserve the pairing between forward.fastq and reverse.fastq?-->
 ```bash
 ls -l *.fast?
 ```
@@ -478,5 +478,6 @@ ls -l *.fast?
 -rw-r-----@ 1 myself  staff   964  8 mar 17:36 result_R2.fasta
 -rw-r--r--@ 1 myself  staff  1504  8 mar 15:09 reverse.fastq
 ```
-
-The `ls` command is used here to see the results of the above {{< obi obiconvert >}} command, with the two resulting files and their names built by adding the suffixes at the end of the filename just before the extension.
+<!-- *.fast? or *.fastq in the command?-->
+The `ls` command is used here to see the results of the above {{< obi obiconvert >}} command, with the two resulting files and their names built by adding the suffixes _R1 and _R2 at the end of the filename just before the extension.
+<!-- Is the format for _R1 and _R2 correct?-->
