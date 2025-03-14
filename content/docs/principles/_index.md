@@ -161,8 +161,6 @@ Both methods will produce the same result, a file named <a href="two_sequences_c
 ## Combining {{% obitools %}} commands using pipes
 
 Since {{% obitools %}} are UNIX commands, and their default behaviour is to read their input from *stdin* and write their output to *stdout*, it is possible to combine them using the Unix pipe mechanism (*i.e.* `|`). For example, you can reverse-complement the file `two_sequences.fasta` with the command {{% obi obicomplement %}}, and then count the number of DNA sequences in the resulting file with the command {{% obi obicount %}}, without saving the intermediate results, by linking the *stdout* of {{% obi obicomplement %}} to the *stdin* of {{% obi obicount %}}.
-<!-- I suggest to use obigrep instead of obicomplement as the first command. obigrep can be to select sequences longer (or shorter) than xxx bp. As a consequence, the file two_sequence.fasta should be changed -->
-
 
 ```bash
 obicomplement two_sequences.fasta | obicount 
@@ -270,35 +268,33 @@ The last category is intended solely to facilitate the user's task, to make taxo
 
 Taxonomic identifiers, *taxid*, are short strings that uniquely identify a taxon within a taxonomy. It is important to rely on *taxid* rather than Latin names to identify taxa, as several taxa share the same Latin name (*e.g.* Vertebrata is also a genus of red algae).
 
-For example, in the NCBI taxonomy [https://www.ncbi.nlm.nih.gov/taxonomy], the species *Homo sapiens* has the taxid *9606* and belongs to the genus *Homo*, which has the taxid *9605*. Although all NCBI taxids are numeric, the {{% obitools4 %}} treats them as strings: `"9606"` and `"9605"`.
+For example, in the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy), the species *Homo sapiens* has the taxid *9606* and belongs to the genus *Homo*, which has the taxid *9605*. Although all NCBI taxids are numeric, the {{% obitools4 %}} treats them as strings: `"9606"` and `"9605"`.
 
-The way to specify a taxid to obitools is to provide this short string: `"9606"` or `"9605"`.
-<!-- I removed "minimal" in "minimal way" -->
+The one way to specify a taxid to obitools is to provide this short string: `"9606"` or `"9605"`.
 
-If the `--taxonomy` or `-t` option, which takes a filename as parameter, is used when calling a {{% obitools %}} command, the corresponding taxonomy will be loaded and every taxid present in a file (`taxid` and `*_taxid` tags) will be checked against the taxonomy. To download a copy of the NCBI taxonomy [https://www.ncbi.nlm.nih.gov/taxonomy] you can use the {{< obi obitaxonomy >}} command:
+If the `--taxonomy` or `-t` option, which takes a filename as parameter, is used when calling a {{% obitools %}} command, the corresponding taxonomy will be loaded and every taxid present in a file (`taxid` and `*_taxid` tags) will be checked against the taxonomy. To download a copy of the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy) you can use the {{< obi obitaxonomy >}} command:
 
 ```bash
 obitaxonomy --download-ncbi --out ncbitaxo.tgz
 ```
-<!-- It may be informative to give a rought time it will last - Is it possible to download just a section of the taxonomy? -->
+
 This will create a new `ncbitaxo.tgz` file containing a local copy of the complete taxonomy.
 
 The first consequence of this check is that all taxa are rewritten in their long form. `"9606"` becomes `"taxon:9606 [Homo sapiens]@species"`:
 
-- `taxon`: is the taxonomy code (`taxon` is for the NCBI taxonomy [https://www.ncbi.nlm.nih.gov/taxonomy]).
+- `taxon`: is the taxonomy code (`TAXOCOD` is `taxon` for the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy)).
 - `9606`: is the taxid
 - `Homo sapiens`: is the scientific name
 - `species`: is the taxonomic rank
 
 So the long form of a taxid can be written as `"TAXOCOD:TAXID [SCIENTIFIC NAME]@RANK"`.
-<!-- Is it TAXOCOD or Taxon? Taxon refers to the NCBI taxonomy, and TAXOCOD to any other taxonomy? I suggest to add this information about TAXOCOD -->
 
 If you look at the following files, you can see that the `taxid` tag is set to `62275` and `9606` for the first and second sequences respectively:
 
 {{< code "two_sequences.fasta" "fasta" true >}}
 
-If you use {{< obi obiconvert >}} without specifying a taxonomy, its only action is to convert the numeric taxids (`62275` and `9606`) to their string equivalents (`"62275"` and `"9606"`).
-<!-- Here I do not understand, because it is written above that the taxid are considered as a string, and you indicate that the taxids are numeric -->
+If you use {{< obi obiconvert >}} without specifying a taxonomy, its only action is to convert potential old numeric taxids (`62275` and `9606`) to their string equivalents (`"62275"` and `"9606"`).
+
 ```bash
 obiconvert two_sequences.fasta
 ```
@@ -311,7 +307,7 @@ ttagccctaaactctagtagttacattaacaaaaccattcgtcagaatactacgagcaac
 agcttaaaactcaaaggacctggcagttctttatatccct
 ```
 
-If the previously downloaded NCBI taxonomy is specified to {{<obi obiconvert >}}, the output of the command will be as follows. You will notice that, this time, the taxa are given in their long form. The scientific name and taxonomic rank are also given.
+If the previously downloaded [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy) is specified to {{<obi obiconvert >}}, the output of the command will be as follows. You will notice that, this time, the taxa are given in their long form. The scientific name and taxonomic rank are also given.
 
 ```bash
 obiconvert -t ncbitaxo.tgz two_sequences.fasta
@@ -325,10 +321,8 @@ ttagccctaaactctagtagttacattaacaaaaccattcgtcagaatactacgagcaac
 agcttaaaactcaaaggacctggcagttctttatatccct
 ```
 
-
 If the check reveals that taxid is not present in the taxonomy, a warning is issued by the {{% obitools4 %}}.
 As example, the {{< obi obiconvert >}} command applied to the following file:
-<!-- I changed "is not described in the taxonomy" by "is not present in the taxonomy" -->
 
 {{< code "four_sequences.fasta" "fasta" true >}}
 
@@ -356,7 +350,7 @@ WARN[0005] JN897380: Taxid 1114968 has to be updated to taxon:2734678 [Neotrypae
 WARN[0005] KC236422: Taxid: 5799994 is unknown from taxonomy (Taxid 5799994 is not part of the taxonomy NCBI Taxonomy) 
 ```
 
-Of the four sequences, only the first sequence has a taxid known from the NCBI taxonomy. The other three sequences have taxids that are not part of the NCBI taxonomy. In fact, the second and third sequences have taxids that were known in the NCBI taxonomy, but are now transferred to other taxids. The fourth sequence has a taxid that is actually unknown in the NCBI taxonomy. 
+Of the four sequences, only the first sequence has a taxid known from the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy). The other three sequences have taxids that are not part of the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy). In fact, the second and third sequences have taxids that were known in the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy), but are now transferred to other taxids. The fourth sequence has a taxid that is actually unknown in the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy). 
 
 Since only the first sequence *AY189646* has a known taxid in the output, the taxids are rewritten in long form for this sequence only. For the other three sequences, the taxids are left as they were before. Nevertheless, all four sequences are present in the output.
 
@@ -403,7 +397,7 @@ cagctttaacaaacatactaaaatattaaaagttatggtctctaaatttaaaggatttgg
 cggtaatttagtccag
 ```
 
-If the `--fail-on-taxonomy` option is used, the {{% obitools4 %}} command will abort if it encounters a taxid that is not in the NCBI taxonomy. If it is run on the same sequence file, you will see the error message that stops the command when reading the last sequence annotated with a taxid that is not in the NCBI taxonomy. If the `--update-taxid` option was not used, the command would also have been aborted on the sequence AF023201.
+If the `--fail-on-taxonomy` option is used, the {{% obitools4 %}} command will abort if it encounters a taxid that is not in the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy). If it is run on the same sequence file, you will see the error message that stops the command when reading the last sequence annotated with a taxid that is not in the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy). If the `--update-taxid` option was not used, the command would also have been aborted on the sequence AF023201.
 
 ```bash
 obiconvert -t ncbitaxo.tgz --update-taxid --fail-on-taxonomy four_sequences.fasta
@@ -468,7 +462,7 @@ obiconvert --paired-with reverse.fastq \
 ```
 
 This command processes the [`forward.fastq`](forward.fastq) and the [`reverse.fastq`](reverse.fastq) as two paired files. It then converts them into two fasta files named [`result_R1.fasta`](result_R1.fasta) and [`result_R2.fasta`](result_R2.fasta) for the forward and reverse reads respectively.
-<!-- With obigrep, if a sequence is removed from forward.fastq, will the reverse sequence removed from reverse.fastq, even of the obigrep should not remove it. In other words, will you always preserve the pairing between forward.fastq and reverse.fastq?-->
+
 ```bash
 ls -l *.fast?
 ```
@@ -478,6 +472,5 @@ ls -l *.fast?
 -rw-r-----@ 1 myself  staff   964  8 mar 17:36 result_R2.fasta
 -rw-r--r--@ 1 myself  staff  1504  8 mar 15:09 reverse.fastq
 ```
-<!-- *.fast? or *.fastq in the command?-->
+
 The `ls` command is used here to see the results of the above {{< obi obiconvert >}} command, with the two resulting files and their names built by adding the suffixes _R1 and _R2 at the end of the filename just before the extension.
-<!-- Is the format for _R1 and _R2 correct?-->
