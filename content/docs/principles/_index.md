@@ -458,7 +458,7 @@ In the two files above, the first sequence of the [`forward.fastq`](forward.fast
 
 Some of the {{% obitools4 %}} commands, such as {{< obi obiconvert >}}, {{< obi obigrep >}} or {{< obi obiannotate >}} offer a `--paired-with` option. This option takes a filename as a parameter. It tells the {{% obitools4 %}} command that the file given as an argument is paired with the file being processed. Therefore, the {{% obitools4 %}} commands will process both the forward and reverse files in parallel.
 
-Because the `--paired-with` option makes the {{% obitools4 %}} command process two files, it also produces two result files. Therefore, standard output cannot be used to return the results. Therefore, when using the `--paired-with` option, the `--out` option must be used. The `--out` option takes a filename as a parameter and tells the {{% obitools4 %}} command to write the result to the specified file. As a single filename is given, the {{% obitools4 %}} command modifies this filename by adding a suffix `_R1` and `_R2` to create two filenames.
+As the `--paired-with` option allows the {{% obitools4 %}} command to process two files, it also produces two result files. As a result, standard output cannot be used to return the results. Therefore, when using the `--paired-with` option, the `--out` option must be used. The `--out` option takes a filename as a parameter and tells the {{% obitools4 %}} command to write the result to the specified file. As a single filename is given, the {{% obitools4 %}} command modifies this filename by adding a suffix `_R1` or `_R2` to create two filenames.
 
 ```bash
 obiconvert --paired-with reverse.fastq \
