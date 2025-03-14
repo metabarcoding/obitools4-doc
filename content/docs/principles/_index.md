@@ -73,15 +73,15 @@ The wildcard character (*i.e.* `*`) can be used to specify a set of files to be 
 obicount my_file*.fasta
 ```
 
-If the files are in a subdirectory, the directory name can be specified, without the need to specify any file name. In that case, the {{% obitools %}} will process all the sequence files present in the subdirectory. The search for the sequence files is done recursively in the specified directory and all its subdirectories.
+If the files are located in a subdirectory, the directory name can be specified, without the need to specify any file name. In that case, {{% obitools %}} will process all the sequence files present in the subdirectory. Sequence files are searched recursively in the specified directory and all its sub-directories.
 
 ```bash
 obicount my_sub_directory
 ```
 
-The files considered as DNA sequence files are those with the file extension `.fasta`, `.fastq`, `.genbank` or `.embl`, `.seq` or `.dat`. Files with the second extension `.gz` (*e.g.* `.fasta.gz`) are also considered to be DNA sequence files and are processed without having to uncompressed them.
+Files considered to be DNA sequence files are those with the extension `.fasta`, `.fastq`, `.genbank` or `.embl`, `.seq` or `.dat`. Files with the second extension `.gz` (*e.g.* `.fasta.gz`) are also considered to be DNA sequence files and are processed without the need for decompression.
 
-Imagine a folder called `Genbank` which contains a complete copy of the Genbank database organized into subdirectories, one per division. Each division subdirectory contains a set of {{% fasta %}} compressed (`.gz`) files.
+Imagine a folder called `Genbank` containing a complete copy of the Genbank database organized into subdirectories, one per division. Each division subdirectory contains a set of {{% fasta %}} compressed (`.gz`) files.
 
 ```
 . 📂 Genbank
@@ -124,27 +124,27 @@ obicount Genbank
 
 ## Specifying what to do with the output
 
-By default, {{% obitools %}} write their output to standard output (*stdout*), which means that the results of a command are printed to the terminal screen. 
+By default, {{% obitools %}} write their output to standard output (*stdout*), which means that the results of a command are printed out on the terminal screen. 
 
-Most {{% obitools %}} produce sequence files as output. The output sequence file is in {{% fasta %}} or {{% fastq %}} format, depending on whether it contains quality scores ({{% fastq %}}) or not ({{% fasta %}}). The output format for sequence files can be forced using the `--fasta-output` or `--fastq-output` options. If the `--fastq-output` option is used for a data set without quality information, a default quality score of 40 will be used for each nucleotide. A third option is the `--json-output` option, which outputs the data in a {{% json %}} format.
+Most {{% obitools %}} produce sequence files as output. The output sequence file is in {{% fasta %}} or {{% fastq %}} format, depending on whether it contains quality scores ({{% fastq %}}) or not ({{% fasta %}}). The output format of sequence files can be forced using the `--fasta-output` or `--fastq-output` options. If the `--fastq-output` option is used for a dataset without quality information, a default quality score of 40 will be assigned to each nucleotide. A third option is the `--json-output` option, which produces data in {{% json %}} format.
 
-Except for {{< obi obisummary >}}, the {{% obitools %}} which produce other
-types of data output them in CSV format. The {{< obi obisummary >}} command
+With the exception of the {{< obi obisummary >}} command, the {{% obitools %}} which produce other
+types of data return them in CSV format. The {{< obi obisummary >}} command
 returns its results in [JSON](https://en.wikipedia.org/wiki/JSON) or
-[YAML](https://en.wikipedia.org/wiki/YAML) format.
+[YAML](https://en.wikipedia.org/wiki/YAML) formats.
 
 The {{< obi obicomplement >}} command computes the reverse-complement of the DNA sequences provided as input. 
 
 {{< code "two_sequences.fasta" fasta true >}} 
 
-If the `two_sequences.fasta` file is processed with the {{< obi obicomplement >}} command, without indicating the output file name, the result is written to terminal screen.
+If the `two_sequences.fasta` file is processed with the {{< obi obicomplement >}} command, without indicating the name of the output file, the result is written to the terminal screen.
 
 ```bash
 obicomplement two_sequences.fasta
 ```
 {{< code "two_sequences_comp.fasta" fasta false >}} 
 
-To save the results in a file, two possible options are available. The first one is to redirect the output to a file, as in the following example.
+There are two options for saving the results to a file. The first is to redirect the output to a file, as in the following example.
 
 ```bash
 obicomplement two_sequences.fasta > two_sequences_comp.fasta
@@ -160,7 +160,7 @@ Both methods will produce the same result, a file named <a href="two_sequences_c
 
 ## Combining {{% obitools %}} commands using pipes
 
-As the {{% obitools %}} are UNIX commands, and their default behaviour is to read their input from *stdin* and write their output to *stdout*, it is possible to combine them using the Unix pipe mechanism (*i.e.* `|`). For example, you can reverse-complement the file `two_sequences.fasta` with the command {{% obi obicomplement %}}, and then count the number of DNA sequences in the resulting file with the command {{% obi obicount %}}, without saving the intermediate results, by linking the *stdout* of {{% obi obicomplement %}} to the *stdin* of {{% obi obicount %}}.
+Since {{% obitools %}} are UNIX commands, and their default behaviour is to read their input from *stdin* and write their output to *stdout*, it is possible to combine them using the Unix pipe mechanism (*i.e.* `|`). For example, you can reverse-complement the file `two_sequences.fasta` with the command {{% obi obicomplement %}}, and then count the number of DNA sequences in the resulting file with the command {{% obi obicount %}}, without saving the intermediate results, by linking the *stdout* of {{% obi obicomplement %}} to the *stdin* of {{% obi obicount %}}.
 <!-- I suggest to use obigrep instead of obicomplement as the first command. obigrep can be to select sequences longer (or shorter) than xxx bp. As a consequence, the file two_sequence.fasta should be changed -->
 
 
@@ -203,7 +203,7 @@ obicomplement two_sequences.fasta | obicount | uplot barplot -H -d,
 
 ## The tagging system of {{% obitools %}}
 
-The {{% obitools %}} provide several tools to perform computations on the sequences. The result of such a computation may be the selection of a subset of the input sequences, a modification of the sequences themselves, or it may only lead to the estimation of some properties of the sequences. In the latter case, the {{% obitools %}} stores the estimated properties of the associated sequence in a {{% fasta %}} or {{% fastq %}} file. To achieve this, the {{% obitools %}} add structured information in the form of a JSON map to the header of each sequence. The JSON map allows the results of calculations to be stored in key-value pairs. Each {{% obitools %}} command adds one or more key-value pairs to the JSON map as needed to annotate a sequence. Below is an example of a {{% fasta %}} formatted sequence with a JSON map added to its header containing three key-value pairs: `count` associated with the value `2`, `is_annotated` associated with the value `true` and `xxxx` associated with the value `yyyy`.
+{{% obitools %}} provide several tools for performing computations on the sequences. The result of such a computation may be the selection of a subset of the input sequences, a modification of the sequences themselves, or it may only lead to the estimation of some sequence properties. In the latter case, {{% obitools %}} store the estimated properties of the relevant sequence in a {{% fasta %}} or {{% fastq %}} file. To achieve this, {{% obitools %}} add structured information in the form of a JSON map to the header of each sequence. The JSON map allows calculation results to be stored in key-value pairs. Each {{% obitools %}} command adds one or more key-value pairs to the JSON map as required to annotate a sequence. Below is an example of a {{% fasta %}} formatted sequence with a JSON map added to its header containing three key-value pairs: `count` associated with the value `2`, `is_annotated` associated with the value `true` and `xxxx` associated with the value `yyyy`.
 
 ```
 >sequence1 {"count": 2, "is_annotated": true, "xxxx": "yyy"}
@@ -213,27 +213,27 @@ fdcgacgcagcggag
 
 ### The key names
 
-Keys can be any string. Their names are case-sensitive. The keys `count`,
-`Count` and `COUNT` are all considered to different keys. Some key names are
-reserved by the {{% obitools %}} and have special meanings (*e.g.* `count`
-contains if present an integer value indication how many times that sequence has
-been observed, `taxid` that contains string value corresponding to a taxonomic
+Keys can be any string of characters. Their names are case-sensitive. The keys `count`,
+`Count` and `COUNT` are all considered to be different keys. Some key names are
+reserved by {{% obitools %}} and have special meanings (*e.g.* `count`
+contains, if present, an integer value indicating how many times this sequence has
+been observed, `taxid` contains a string corresponding to a taxonomic
 identifier from a taxonomy). 
 
 ### The tag values
 
-The values can be any string, integer, float, or boolean values. Values can also
+Values can be strings, integers, floats, or boolean values. Values can also
 be of composite types but with some limitations compared to the
 [JSON](https://en.wikipedia.org/wiki/JSON) format. In {{% obitools4 %}} annotations
-you are not allowed to nest composite type. A list cannot contain a list or a map.
+it is not possible to nest composite types. A list cannot contain a list or a map.
 
-A list is an ordered set of values, here as example a set of integer values:
+A list is an ordered set of values, in this case a set of integer values:
 
 ```json
 [1,3,2,12]
 ```
 
-A map is a set of values indexed by a key which is a string. Here as example a
+A map is a set of values indexed by a key, which is a string. As an example, here is a
 map of integer values:
 
 ```json
@@ -248,14 +248,13 @@ from the merged sequence records.
 gctagctagctgtgatgtcgtagttgctgatgctagtgctagtcgtaaaaaat
 ```
 
-Using the {{< obi obiannotate >}} command, it is possible to edit these annotations,
-by adding some new ones, deleting some others, renaming keys or changing values. 
+Using the {{< obi obiannotate >}} command, it is possible to edit these annotations, adding new ones, deleting others, renaming keys or changing values. 
 
 > [!CAUTION]
 > You are free to add, edit and delete even the {{% obitools4 %}}
-> reserved keys to mimic the results of an {{% obitools4 %}} commands. But take
-> care of the impact of such manually modified values. It is of better usage, to
-> not change reserved annotation keys.
+> reserved keys to mimic the results of an {{% obitools4 %}} commands. But beware
+> of the impact of these manually modified values. It is best not to
+> modified reserved annotation keys.
 
 ## {{% obitools4 %}} and the taxonomic information
 
