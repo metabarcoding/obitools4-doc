@@ -93,7 +93,7 @@ The exact alignment step adds the following tags to the FASTQ header for each re
 - `seq_a_single`: The length of the unaligned region on the forward read.
 - `seq_ab_match`: The number of matches in the aligned overlapping region.
 - `seq_b_single`: The length of the unaligned region on the reverse read.
-- `score`: The row score of the alignment (the sum of the [elementary scores for each aligned position]({{< relref "exact-alignment#scoring-system">}})).
+- `score`: The raw score of the alignment (the sum of the [elementary scores for each aligned position]({{< relref "exact-alignment#scoring-system">}})).
 - `score_norm`: `seq_ab_match` divided by `ali_length`.
 - `pairing_mismatches`: A description of the mismatches between the reads (this tag is not added if the `--without-stat` is set). It is expressed as a JSON map with keys describing the mismatch and values corresponding to the position of the mismatch in the reconstructed full length amplicon.
   ```json

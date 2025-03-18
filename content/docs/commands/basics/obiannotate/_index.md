@@ -68,7 +68,7 @@ obiannotate [--add-lca-in <ATTRIBUTE>] [--aho-corasick <string>]
   Deletes attribute named `KEY`. When this attribute is missing, the sequence record is skipped and the next one is examined.
   {{< /cmd-option >}}
 - {{< cmd-option name="keep" param="KEY" short="k">}}
-  Keeps only attribute with key `KEY`. Several -k options can be combined.
+  Keeps only attribute named `KEY`. Several -k options can be combined.
   {{< /cmd-option >}}
 - {{< cmd-option name="rename-tag" param="NEW_NAME=OLD_NAME" short="R">}}
   Changes attribute name `OLD_NAME` to `NEW_NAME`. When attribute named `OLD_NAME` is missing, the sequence record is skipped and the next one is examined.
@@ -86,7 +86,7 @@ obiannotate [--add-lca-in <ATTRIBUTE>] [--aho-corasick <string>]
   Adds attribute with seq_length as a key and sequence length as a value.
   {{< /cmd-option >}}
 - {{< cmd-option name="pattern" param="string">}}
-  Adds a pattern attribute containing the pattern, a pattern_match slot indicating the matched sequence, and a pattern_error slot indicating the number difference between the pattern and the match to the sequence.
+  Adds a pattern attribute containing the pattern, a pattern_match attribute indicating the matched sequence, and a pattern_error slot indicating the number difference between the pattern and the match to the sequence.
   {{< /cmd-option >}}
 - {{< cmd-options/pattern-name >}}
 
@@ -99,8 +99,8 @@ obiannotate [--add-lca-in <ATTRIBUTE>] [--aho-corasick <string>]
 
 ##### Taxonomy annotation
 
-- {{< cmd-option name="add-lca-in" param="ATTRIBUTE">}}
-  From the taxonomic annotation of the sequence (taxid attribute or merged_taxid attribute), a new attribute named `ATTRIBUTE` is added with the taxid of the lowest common ancestor corresponding to the current annotation.
+- {{< cmd-option name="add-lca-in" param="KEY">}}
+  From the taxonomic annotation of the sequence (taxid attribute or merged_taxid attribute), a new attribute named `KEY` is added with the taxid of the lowest common ancestor corresponding to the current annotation.
   {{< /cmd-option >}}
 - {{< cmd-option name="lca-error" param="#.###">}}
   Error rate tolerated on the taxonomical description during the lowest common ancestor. At most a fraction of lca-error of the taxonomic information can disagree with the estimated LCA. (default: 0.000000)
