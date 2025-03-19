@@ -351,8 +351,11 @@ symbols,2486
 Once denoising has been done, the next step in diet analysis is to
 assign the barcodes to the corresponding taxa (species, genus, etc.),
 in order to get the complete list of the taxa associated to each sample.
+
 The taxonomic assignment of sequences requires a reference database to
-detect all possible taxa to be identified in samples.
+detect all possible taxa to be identified in samples, which is provided in 
+this tutorial as `db_v05_r117_indexed.fasta` (see "Build a reference database" 
+documentation for more information about the reference database).
 It is then based on sequence comparison between sample
 sequences and reference sequences.
 
@@ -362,7 +365,7 @@ The current and complete taxonomy from the NCBI is available online,
 it is possible to download it with the following command:
 
 ```bash
-curl http://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz > taxdump.tar.gz
+curl http://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz
 ```
 
 A copy of this `taxdump.tar.gz` file is also available into the tutorial archive.
