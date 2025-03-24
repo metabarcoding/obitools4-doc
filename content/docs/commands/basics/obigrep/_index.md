@@ -14,6 +14,64 @@ weight: 80
 
 {{< obi obigrep >}} is a tool that allows a subset of sequences to be selected based on a set of criteria. Sequences from the input data set that match all criteria are retained and printed in the result, while the other sequences are discarded. The criteria can be based on the sequence identifier, the sequence itself or the annotations of the sequence.
 
+Criteria of selection can target various aspects of the sequence data, such as:
+
+* The sequence identifier (ID)
+* The annotations of the sequence.
+* The sequence itself
+
+### Selection based on sequence identifier (ID)
+
+There are two ways for selecting sequences based on their identifier: 
+
+* The usage of a [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) with option `-I`
+* The usage of a list of identifiers (IDs) provided in a file with option `--id-list`
+  
+On the following five-sequences trial file:
+
+{{< code "five_ids.fasta" fastq true >}}
+
+To select sequences with IDs "seqA1" and "seqB1", you can use the command
+
+```bash
+obigrep -I '^seq[AB]1$' five_ids.fasta
+```
+```
+>seqA1 
+cgatgctgcatgctagtgctagtcgat
+>seqB1 
+tagctagctagctagctagctagctagcta
+```
+
+the explanation of the regular pattern `^seq[AB]1$` is:
+- the `^` at the start means the string should start with that pattern
+- `seq` is the exact match for this string
+- `[AB]` means any character in the set {A, B}
+- `1` is the exact match for this character
+- `$` ending the pattern means the string should end with that pattern
+
+If the starting `^` had been omitted, the pattern would have matched any sequence ID that contains "seq" followed by a character in the set {A, B} and ending with "1", as example the ids `my_seqA1` or `my_seqB1` would have been matched. 
+
+If the ending `$` had been omitted, the pattern would have matched any sequence ID that starts with "seq" followed by a character in the set {A, B} and contains "1", as example the ids `seqA102` or `seqB1023456789` would have been matched.
+
+Another solution to extract these sequence IDs would be to use a text file containing them, one per line as follows:
+
+{{< code "seqAB.txt" txt true >}}
+
+This `seqAB.txt` is then usable as an index file by {{< obi obigrep >}}:
+
+```bash
+obigrep --id-list seqAB.txt five_ids.fasta
+```
+```
+>seqA1 
+cgatgctgcatgctagtgctagtcgat
+>seqB1 
+tagctagctagctagctagctagctagcta
+```
+
+
+
 ## Synopsis
 
 ```bash
