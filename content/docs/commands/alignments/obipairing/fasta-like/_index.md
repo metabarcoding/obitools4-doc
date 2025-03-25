@@ -10,7 +10,7 @@ weight: 1
 bibFile: bibliography/bibliography.json 
 ---
 
-#### The FASTA-like first step of alignment
+#### The FASTA-like first step of alignment {#fasta-alignment}
 
 The [FASTA algorithm](https://en.wikipedia.org/wiki/FASTA) {{< cite Lipman1985-hw >}} can be considered as the ancestor of BLAST {{< cite Altschul1990-ey >}}.  It has the advantage of being easy to implement. It primarily calculates the best shift to apply between the two sequences under consideration to minimize the [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) (number of differences) between them. This alignment algorithm is used in {{< obi obipairing >}} to determine the position and the size of the overlapping region of paired-end reads. These two criteria will guide the [exact alignment method]({{% relref "/docs/commands/alignments/obipairing/exact-alignment" %}}) for the subsequent step, and determine the segments of the reads to align. 
 

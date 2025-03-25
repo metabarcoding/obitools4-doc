@@ -12,22 +12,22 @@ weight: 80
 
 ## Description 
 
-{{< obi obigrep >}} is a tool that allows a subset of sequences to be selected based on a set of criteria. Sequences from the input data set that match all criteria are retained and printed in the result, while the other sequences are discarded. The criteria can be based on the sequence identifier, the sequence itself or the annotations of the sequence.
+{{< obi obigrep >}} is a tool for selecting a subset of sequences based on a set of criteria. Sequences from the input data set that match all criteria are retained and printed in the result, while the other sequences are discarded. The criteria can be based on the sequence identifier, the sequence itself or the annotations on the sequence.
 
-Criteria of selection can target various aspects of the sequence data, such as:
+Selection criteria can be based on different aspects of the sequence data, such as
 
-* The sequence identifier (ID)
-* The annotations of the sequence.
+* The sequence identifier (ID) 
+* The sequence annotations
 * The sequence itself
 
 ### Selection based on sequence identifier (ID)
 
-There are two ways for selecting sequences based on their identifier: 
+There are two ways to select sequences based on their identifier: 
 
-* The usage of a [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) with option `-I`
-* The usage of a list of identifiers (IDs) provided in a file with option `--id-list`
+* Using a [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) with option `-I`
+* Using a list of identifiers (IDs) provided in a file with option `--id-list`
   
-On the following five-sequences trial file:
+On the following five-sequences sample file:
 
 {{< code "five_ids.fasta" fastq true >}}
 
@@ -43,22 +43,23 @@ cgatgctgcatgctagtgctagtcgat
 tagctagctagctagctagctagctagcta
 ```
 
-the explanation of the regular pattern `^seq[AB]1$` is:
-- the `^` at the start means the string should start with that pattern
-- `seq` is the exact match for this string
-- `[AB]` means any character in the set {A, B}
-- `1` is the exact match for this character
-- `$` ending the pattern means the string should end with that pattern
+The explanations for the regular pattern `^seq[AB]1$` are
 
-If the starting `^` had been omitted, the pattern would have matched any sequence ID that contains "seq" followed by a character in the set {A, B} and ending with "1", as example the ids `my_seqA1` or `my_seqB1` would have been matched. 
+- the `^` at the beginning means that the string should start with that pattern 
+- `seq` is an exact match for that string 
+- `[AB]` means any character in the set {A, B} 
+- `1` is an exact match for that character 
+- `$` at the end of the pattern means that the string should end with that pattern.
 
-If the ending `$` had been omitted, the pattern would have matched any sequence ID that starts with "seq" followed by a character in the set {A, B} and contains "1", as example the ids `seqA102` or `seqB1023456789` would have been matched.
+ If the starting `^` had been omitted, the pattern would have matched any sequence ID containing "seq" followed by a character from the set {A, B} and ending with "1", for example the IDs `my_seqA1` or `my_seqB1` would have been matched. 
 
-Another solution to extract these sequence IDs would be to use a text file containing them, one per line as follows:
+If the ending '$' had been omitted, the pattern would have matched any sequence ID starting with 'seq' followed by a character in the set {A, B} and containing '1', e.g. the ids `seqA102` or `seqB1023456789` would have been matched.
+
+Another solution to extract these sequence IDs would be to use a text file containing them, one per line, as follows
 
 {{< code "seqAB.txt" txt true >}}
 
-This `seqAB.txt` is then usable as an index file by {{< obi obigrep >}}:
+This `seqAB.txt` can then be used as an index file by  {{< obi obigrep >}}:
 
 ```bash
 obigrep --id-list seqAB.txt five_ids.fasta
@@ -70,6 +71,31 @@ cgatgctgcatgctagtgctagtcgat
 tagctagctagctagctagctagctagcta
 ```
 
+### Selection based on the annotations
+
+The `obigrep` tool can also be used to select sequences based on their annotations. Annotation are constituted by all the tags and values added to each sequence header in the {{% fasta %}}/{{% fastq %}} file. For instance, if you have a sequence file with the following headers:
+
+{{< code "five_tags.fasta" fastq true >}}
+
+#### Selecting sequences having a tag whatever its value
+
+```bash
+obigrep -A "count" five_tags.fasta
+```
+```
+>seqA1 {"count":1,"taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqA2 {"count":5,"taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+>seqC1 {"count":15,"taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgctgcatgctagtgctagtcgatga
+>seqB2 {"count":25,"toto":"bar"}
+tagctagctagctagctagctagctagcta
+```
+
+Only four sequences are retained, the sequence `seqB1` is excluded because it does not have the tag `count`.
+
+#### Selecting sequences having a tag with a specific value 
 
 
 ## Synopsis
