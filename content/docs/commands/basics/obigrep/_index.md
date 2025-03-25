@@ -79,24 +79,52 @@ The `obigrep` tool can also be used to select sequences based on their annotatio
 
 #### Selecting sequences having a tag whatever its value
 
+The `-A` option allows for selecting sequences having the given attribute whatever its value. In the following example, all the sequences having the `count` attribute are selected.
+
 ```bash
 obigrep -A "count" five_tags.fasta
 ```
 ```
->seqA1 {"count":1,"taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
 cgatgctgcatgctagtgctagtcgat
->seqA2 {"count":5,"taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
 gtagctagctagctagctagctagctaga
->seqC1 {"count":15,"taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
 cgatgctgcatgctagtgctagtcgatga
->seqB2 {"count":25,"toto":"bar"}
+>seqB2 {"count":25,"tata":"bar"}
 tagctagctagctagctagctagctagcta
 ```
 
 Only four sequences are retained, the sequence `seqB1` is excluded because it does not have the tag `count`.
 
-#### Selecting sequences having a tag with a specific value 
+#### Selecting sequences having a tag with a specific value
 
+The `-A` option allows for selecting sequences having the given attribute affected to a value matching the provided [regular pattern]({{% ref "docs/patterns/regular.md" %}}). In the following example, only the sequence *seqA1* having the `toto` attribute valued to `titi` is selected.
+
+```bash
+obigrep -a toto="titi" five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+```
+
+As the value is a [regular pattern]({{% ref "docs/patterns/regular.md" %}}), it is possible to be less strict, and as example,
+the next command will select all the sequences having the `toto` attribute valued with a value starting (`^` at the beginning of the expression) by a `t`.
+
+```bash
+obigrep -a toto="^t" five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqB1 {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+tagctagctagctagctagctagctagcta
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+```
+
+Sequence `seqC1` is excluded because its `toto` attribute is valued with `foo` which doesn't start by a `t` when `seqB2` is excluded because it doesn't have a `toto` attribute.
 
 ## Synopsis
 
