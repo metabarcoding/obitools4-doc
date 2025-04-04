@@ -71,13 +71,39 @@ cgatgctgcatgctagtgctagtcgat
 tagctagctagctagctagctagctagcta
 ```
 
+### Selection based on sequence definition
+
+Each sequence record may have a sequence definition describing the sequence. In {{% fasta %}} or {{% fastq %}} format, this definition is in the header of each sequence record after the second word (the first being the sequence id), or after the annotations between braces in the {{% obitools4 %}} extended version of these formats.
+
+{{< code "three_def.fasta" fasta true >}}
+
+In the `three_def.fasta` example file:
+
+- `seqA1` has no definition
+- `seqB1` definition is `my beautiful sequence`
+- `seqA2` definition is `my pretty sequence`
+
+The `-D` or `--definition` allows you to specify a [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) to select only sequences whose definition matches the pattern. The example below selects sequences with a definition containing the word `pretty`.
+
+```bash
+obigrep -D pretty three_def.fasta
+```
+```
+>seqA2 {"count":10,"definition":"my pretty sequence"}
+gtagctagctagctagctagctagctaga
+```
+
+As you can see in the results, all the {{% obitools4 %}} include the definition present in the original file as a new annotation tag called `definition`. So it is actually this tag that is tested by the `-D` option.
+
 ### Selection based on the annotations
 
-The `obigrep` tool can also be used to select sequences based on their annotations. Annotation are constituted by all the tags and values added to each sequence header in the {{% fasta %}}/{{% fastq %}} file. For instance, if you have a sequence file with the following headers:
+#### Selection based on any annotation
 
-{{< code "five_tags.fasta" fastq true >}}
+The {{< obi obigrep >}} tool can also be used to select sequences based on their annotations. Annotation are constituted by all the tags and values added to each sequence header in the {{% fasta %}}/{{% fastq %}} file. For instance, if you have a sequence file with the following headers:
 
-#### Selecting sequences having a tag whatever its value
+{{< code "five_tags.fasta" fasta true >}}
+
+##### Selecting sequences having a tag whatever its value
 
 The `-A` option allows for selecting sequences having the given attribute whatever its value. In the following example, all the sequences having the `count` attribute are selected.
 
@@ -97,9 +123,9 @@ tagctagctagctagctagctagctagcta
 
 Only four sequences are retained, the sequence `seqB1` is excluded because it does not have the tag `count`.
 
-#### Selecting sequences having a tag with a specific value
+##### Selecting sequences having a tag with a specific value
 
-The `-A` option allows for selecting sequences having the given attribute affected to a value matching the provided [regular pattern]({{% ref "docs/patterns/regular.md" %}}). In the following example, only the sequence *seqA1* having the `toto` attribute valued to `titi` is selected.
+The `-a` option allows for selecting sequences having the given attribute affected to a value matching the provided [regular pattern]({{% ref "docs/patterns/regular.md" %}}). In the following example, only the sequence *seqA1* having the `toto` attribute containing the value `titi` is selected.
 
 ```bash
 obigrep -a toto="titi" five_tags.fasta
@@ -109,8 +135,8 @@ obigrep -a toto="titi" five_tags.fasta
 cgatgctgcatgctagtgctagtcgat
 ```
 
-As the value is a [regular pattern]({{% ref "docs/patterns/regular.md" %}}), it is possible to be less strict, and as example,
-the next command will select all the sequences having the `toto` attribute valued with a value starting (`^` at the beginning of the expression) by a `t`.
+As the value is a [regular pattern]({{% ref "docs/patterns/regular.md" %}}), it is possible to be less strict, and for example,
+the following command will select all sequences with the `toto` attribute containing a value beginning (`^` at the start of the expression) with `t`.
 
 ```bash
 obigrep -a toto="^t" five_tags.fasta
@@ -124,7 +150,226 @@ tagctagctagctagctagctagctagcta
 gtagctagctagctagctagctagctaga
 ```
 
-Sequence `seqC1` is excluded because its `toto` attribute is valued with `foo` which doesn't start by a `t` when `seqB2` is excluded because it doesn't have a `toto` attribute.
+The sequence `seqC1` is excluded because its `toto` attribute contains the value `foo`, which does not begin with `t`, while `seqB2` is excluded because it does not have a `toto` attribute.
+
+#### Selection based on the sequence abundances
+
+In amplicon sequencing experiments, a sequence may be observed many times. The {{< obi obiuniq >}} command can be used to dereplicate strictly identical sequences. The number of strictly identical sequence reads merged into a single sequence record is stored in the `count` annotation tag of that sequence record. It is common to filter out sequences that are too rare or too abundant, depending on the purpose of the experiment. There are two ways to select sequence records based on this `count` tag.
+
+- the `--min-count` or `-c` options, followed by a numeric argument, select sequence records with a `count` greater than or equal to that argument.
+- The `--max-count` or `-c` options, followed by a numeric argument, select sequence records with a `count` less than or equal to that argument.
+
+> [!NOTICE] 
+> If the `count` tag is missing from a data set, it is assumed to be equal to *1*.
+
+```bash
+obigrep -c 2 five_tags.fasta
+```
+```
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgctgcatgctagtgctagtcgatga
+>seqB2 {"count":25,"tata":"bar"}
+tagctagctagctagctagctagctagcta
+```
+
+Remove singleton sequences (sequences observed only once), here the sequences `seqA1` having a `count` tag equal to *1*, and `seqB1` having no `count` tag defined. 
+
+The next command excludes from its results all the sequences occurring at least ten times.
+
+```bash
+obigrep -C 10 five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqB1 {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+tagctagctagctagctagctagctagcta
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+```
+
+As usual, both options can be combined
+
+```bash
+obigrep -c 2 -C 10 five_tags.fasta
+```
+```
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+```
+
+#### Selection based on taxonomic annotation.
+
+The taxonomy based selection is always based on the `taxid` attribute of a sequence, even it this one carry other taxonomic information stored in other attribute like `scientific_name` or `family_taxid`. To be able to use the taxonomy based selection with {{< obi obigrep >}}, it is mandatory to load a taxonomy using the `-t` or `--taxonomy` option.
+
+##### Selecting sequences belonging a clade
+
+If you don't have a taxonomy dump already downloaded, you must at first download one using the following {{< obi obitaxonomy >}} command.
+The taxonomy will be stored in a file named `ncbitaxo.tgz`. It is possible to provide this compressed archive later on to other {{% obitools4 %}}.
+
+```bash
+obitaxonomy --download-ncbi --out ncbitaxo.tgz
+```
+
+To select the sequences belonging the *Homo sapiens* species, the first step is to extract from the downloaded taxonomy the taxid corresponding to the species of interest using the {{< obi obitaxonomy >}} command. 
+
+- The `-t` option indicates the taxonomy to load
+- The `--fixed` option indicates to consider the query string as the exact name of the species, not as a [regular pattern]({{% ref "docs/patterns/regular.md" %}}).
+- The `--rank species` indicates that our interest is only on taxa having the **species** taxonomic rank.
+- `"Homo sapiens"` is the query string used to match the taxonomy names.
+
+The `csvlook` command aims to present nicely the {{% csv %}} output of {{< obi obitaxonomy >}}.
+
+```bash
+obitaxonomy -t ncbitaxo.tgz --fixed --rank species "Homo sapiens" | csvlook -I
+```
+```
+| taxid                             | parent                  | taxonomic_rank | scientific_name |
+| --------------------------------- | ----------------------- | -------------- | --------------- |
+| taxon:9606 [Homo sapiens]@species | taxon:9605 [Homo]@genus | species        | Homo sapiens    |
+```
+
+The {{< obi obigrep >}} option to select sequences belonging a taxon is `-r` or `--restrict-to-taxon`. The option requires as argument the taxid of the clade of interest, here `9606` for *Homo sapiens*. 
+
+```bash
+obigrep -t ncbitaxo.tgz -r taxon:9606 five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqB1 {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+tagctagctagctagctagctagctagcta
+```
+
+Only sequences *seqA1* and *seqB1* annotated as belonging to the target clade *Homo sapiens* or one of its subspecies *Homo sapiens neanderthalensis* are retained. Sequence *seqA2* is not retained as it is annotated at genus level as Homo and therefore does not belong to the Homo sapiens clade, nor is sequence *seqC1* annotated at family level as *Hominidae*. The last sequence *seqB2* has no taxonomic annotation and is therefore considered to be annotated at the root of taxonomy and therefore not part of the Homo sapiens species clade.
+
+##### Excluding sequences belonging a clade
+
+The `-i`or `--ignore-taxon` in its long form, does the opposite selection of the `-r` option presented above. It retains only sequences not belonging the target clade taxid passed as its argument.
+
+```bash
+obigrep -t ncbitaxo.tgz -i taxon:9606 five_tags.fasta
+```
+```
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgctgcatgctagtgctagtcgatga
+>seqB2 {"count":25,"tata":"bar"}
+tagctagctagctagctagctagctagcta
+```
+
+Here only the sequence *seqA2*, *seqC1* and *seqB2* are retained because none of them belongs the *Homo sapiens* species.
+
+##### Keep only sequence with taxonomic information at a given rank
+
+A taxid, when associated with a taxonomy, not only provides information at its taxonomic rank, but also allows retrieval of information at any rank above it. For example, from a species taxid, it is expected that by querying the taxonomy it will be possible to retrieve the taxid of the corresponding genus or family. {{< obi obigrep >}} allows you to select sequences annotated by a taxid capable of providing information at a given taxonomic rank using the `--require-rank` option.
+
+To retrieve all ranks defined by a taxonomy, it is possible to use the {{< obi obitaxonomy >}} command with the `-l` option.
+
+```bash
+obitaxonomy -t ncbitaxo.tgz -l | csvlook
+```
+```
+| rank             |
+| ---------------- |
+| domain           |
+| phylum           |
+| class            |
+| suborder         |
+| subcohort        |
+| superphylum      |
+| subspecies       |
+| varietas         |
+| subgenus         |
+| parvorder        |
+| acellular root   |
+| genotype         |
+| subtribe         |
+| subkingdom       |
+| subfamily        |
+| kingdom          |
+| isolate          |
+| superorder       |
+| section          |
+| subvariety       |
+| genus            |
+| serogroup        |
+| tribe            |
+| forma            |
+| infraclass       |
+| superclass       |
+| serotype         |
+| no rank          |
+| family           |
+| species group    |
+| subclass         |
+| infraorder       |
+| pathogroup       |
+| realm            |
+| order            |
+| biotype          |
+| species subgroup |
+| species          |
+| strain           |
+| clade            |
+| cohort           |
+| series           |
+| cellular root    |
+| morph            |
+| subphylum        |
+| forma specialis  |
+| superfamily      |
+| subsection       |
+```
+
+This allows us to check that the **species** rank is defined and to filter the `five_tags.fasta` test file to retain only sequences with information available at the **species** level.
+
+```bash
+obigrep -t ncbitaxo.tgz --require-rank species five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqB1 {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+tagctagctagctagctagctagctagcta
+```
+
+Only two sequences are selected by this command, because `seqA1` is annotated at the **species** level, and `seqB1` is annotated at the **subspecies** taxonomic rank, which allows for retrieving **species** level information. 
+
+`seqA2` and `seqC1` are discarded as they are annotated at genus and family level respectively, while `seqB2` is discarded as it is not taxonomically annotated and is therefore considered to be annotated at the root of the taxonomy.
+
+
+##### Keep only sequences annotated with valid taxids
+
+
+
+{{< code "six_invalid.fasta" fasta true >}}
+
+```bash
+obigrep -t ncbitaxo.tgz --valid-taxid six_invalid.fasta
+```
+```bash
+WARN[0005] seqD1: Taxid: taxon:9607 is unknown from taxonomy (Taxid taxon:9607 is not part of the taxonomy NCBI Taxonomy) 
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqB1 {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+tagctagctagctagctagctagctagcta
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgctgcatgctagtgctagtcgatga
+```
+
+### Selection based on the sequence
+
+#### Selection based on the sequence length
+
+
 
 ## Synopsis
 

@@ -1,0 +1,12 @@
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqB1 {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+tagctagctagctagctagctagctagcta
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgctgcatgctagtgctagtcgatga
+>seqB2 {"count":25,"tata":"bar"}
+tagctagctagctagctagctagctagcta
+>seqD1 {"taxid":"taxon:9607"}
+gctagctagctgacgatgcatgcgtaggtgcagttgcgta
