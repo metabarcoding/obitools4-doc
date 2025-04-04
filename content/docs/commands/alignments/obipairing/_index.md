@@ -67,35 +67,37 @@ it will produce a file named [`paired.fastq`](paired.fastq) with the following c
 The first step aligns the reads using a [FASTA-derived algorithm](fasta-like).
 Based on results of the first step, a second alignment step is on the overlapping region only using an exact dynamic programming algorithm taking into account sequence quality scores present in the {{% fastq %}} files. It is possible to disable this first alignment step at the cost of an increase in the computation time by using the `--exact-mode` option.
 
-The first fast alignment step adds three tags are added to the FASTQ header for each read to report the results of this first step alignment.
+The first fast alignment step adds three tags to the FASTQ header for each sequence record to indicate the results of this first step alignment.
 
-- `paring_fast_count` : Number of kmer shared on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}).
-- `paring_fast_overlap` : Length of the overlap as detected by this algorithm in nucleotides.
-- `paring_fast_score` : The pairing fast score is the number of shared 4mer on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}) (`paring_fast_count`) by the number of 4mer involved in the overlapping region of the reads ({{< katex >}}paring\_fast\_overlap - 3{{< /katex >}})
+- `paring_fast_count` : Number of 4mer shared on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}).
+- `pairing_fast_overlap` : Length in nucleotides of the overlap as detected by this algorithm.
+- `pairing_fast_score` : The pairing fast score is the number of shared 4mer on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}) (`pairing_fast_count`) divided by the number of 4mer involved in the overlapping region of the forward and reverse reads ({{< katex >}}pairing\_fast\_overlap - 3{{< /katex >}})
   {{< katex display=true >}}
-  paring\_fast\_score = \frac{paring\_fast\_count}{paring\_fast\_overlap - 3}
+  pairing\_fast\_score = \frac{pairing\_fast\_count}{pairing\_fast\_overlap - 3}
   {{< /katex >}}
 
-- The `--fasta-exact` option allows changing the [best alignment selection]({{< relref "fasta-like#fasta-scores" >}}) from the one with the highest `paring_fast_score` (the default behavior) to the one with the highest `paring_fast_count`.
+There are two options for controlling this first step.
 
-- The `--exact-mode` option tells {{< obi obipairing >}} to bypass this first alignment step and proceed directly to the exact alignment, at the cost of a largest computation time.
+- The `--fasta-exact` option allows changing the [best alignment selection]({{< relref "fasta-like#fasta-scores" >}}) from the one with the highest `pairing_fast_score` (the default behavior) to the one with the highest `pairing_fast_count`.
+
+- The `--exact-mode` option tells {{< obi obipairing >}} to bypass this first alignment step and proceed directly to exact alignment, at the cost of a longer computation time.
 
 #### The exact alignment of the overlapping regions
 
-Once the overlap has been quickly identified using the [FASTA-derived algorithm](fasta-like), the overlapping region as detected in this first step is extended by {{< katex >}}\Delta{{< /katex >}} nucleotides at each end ({{< katex >}}\Delta = 5{{< /katex >}} by default and can be defined with the `--delta` option) to be exactly aligned using a [semi-global alignment algorithm](exact-alignment) taking into account the sequence quality scores present in the {{% fastq %}} files. There are two versions of this algorithm, [the *left-align* and the *right-align* version](exact-alignment/#left-and-right-alignment). Which one is used, left or right, depends on the length of the amplicon. Amplicons longer than the read length will be aligned with the left version. The shorter ones are aligned with the right version.
+Once the overlap has been quickly identified using the [FASTA-derived algorithm](fasta-like), the overlapping region as detected in this first step is extended by {{< katex >}}\Delta{{< /katex >}} nucleotides at each end ({{< katex >}}\Delta = 5{{< /katex >}} by default and can be defined with the `--delta` option) to be exactly aligned using a [semi-global alignment algorithm](exact-alignment) taking into account the sequence quality scores present in the {{% fastq %}} files. There are two versions of this algorithm, [the *left-align* and the *right-align* version](exact-alignment/#left-and-right-alignment). The version used, left or right, depends on the length of the amplicon. Amplicons longer than the read length will be aligned with the left version. The shorter ones are aligned with the right version.
 
-When the `--exact-mode` option is used, full length reads are aligned twice, once with the left version and once with the right version. The alignment with the highest score is used. This consequently increases the computation time.
+When the `--exact-mode` option is used, full length reads are aligned twice, once with the left version and once with the right version. The alignment with the highest score is used. This consequently increases computation time.
 
 The exact alignment step adds the following tags to the FASTQ header for each read to report the quality of the alignment.
 
 - `ali_dir`: indicates the mode of the used exact alignment *left* or *right*.
-- `ali_length`: The length of the aligned overlapping region (including gaps).
-- `seq_a_single`: The length of the unaligned region on the forward read.
-- `seq_ab_match`: The number of matches in the aligned overlapping region.
-- `seq_b_single`: The length of the unaligned region on the reverse read.
-- `score`: The raw score of the alignment (the sum of the [elementary scores for each aligned position]({{< relref "exact-alignment#scoring-system">}})).
+- `ali_length`: the length of the aligned overlapping region (including gaps).
+- `seq_a_single`: the length of the unaligned region on the forward read.
+- `seq_ab_match`: the number of matches in the aligned overlapping region.
+- `seq_b_single`: the length of the unaligned region on the reverse read.
+- `score`: the raw score of the alignment (the sum of the [elementary scores for each aligned position]({{< relref "exact-alignment#scoring-system">}})).
 - `score_norm`: `seq_ab_match` divided by `ali_length`.
-- `pairing_mismatches`: A description of the mismatches between the reads (this tag is not added if the `--without-stat` is set). It is expressed as a JSON map with keys describing the mismatch and values corresponding to the position of the mismatch in the reconstructed full length amplicon.
+- `pairing_mismatches`: a description of the mismatches between the reads (this tag is not added if the `--without-stat` is set). It is expressed as a JSON map with keys describing the mismatch and values corresponding to the position of the mismatch in the reconstructed full length amplicon.
   ```json
   {"(C:39)->(A:16)":102,"(C:39)->(A:17)":121,"(T:40)->(A:14)":101}
   ```
@@ -109,9 +111,9 @@ The exact alignment step adds the following tags to the FASTQ header for each re
 If the overlap length is below a threshold (20 by default, and can be set with the `--min-overlap` option), or the `score_norm` is below an identity threshold (0.9 by default, and can be set with the `--min-identity` option), no consensus is computed for the read pair. Both sequences are only pasted together with a set of `.` separating the forward read and the reverse complementary sequence of the reverse read. In this case, the sequence is tagged with a `mode` attribute set to `join`.
 
 If the overlap is long enough and the identity is sufficient, a consensus sequence is built to maximize the global sequencing quality of the reconstructed amplicon. The non-aligned regions are reported as is. The overlapping regions are transcribed as follows:
-- For each match, the base observed on both reads is conserved, and the quality score is increased to reflect the congruence of the two reads. 
+- For each match, the nucleotide observed on both reads is retained, and the quality score is increased to reflect the congruence of the two reads. 
   {{< katex display=true >}}Q_{consensus} = Q_F + Q_R{{< /katex >}}
-- If there is a mismatch, the base with the highest quality score is retained and its quality score is decreased to reflect the discrepancy between the two reads (with {{< katex >}}Q_{max} = max(Q_F, Q_R){{< /katex >}} and {{< katex >}}Q_{min} = min(Q_F, Q_R){{< /katex >}}).
+- If there is a mismatch, the nucleotide with the highest quality score is retained and its quality score is decreased to reflect the discrepancy between the two reads (with {{< katex >}}Q_{max} = max(Q_F, Q_R){{< /katex >}} and {{< katex >}}Q_{min} = min(Q_F, Q_R){{< /katex >}}).
   {{< katex display=true >}}Q_{consensus} = \log_{10} \left(10^{-\frac{Q_max}{10}} \cdot \frac{1 - 10^{-\frac{Q_min}{10}}}{4} \right){{< /katex >}}
 - In case of an insertion or deletion, the gap will be affected with a quality of 0 and the mismatch rules will be applied. This means that insertions and deletions will always be considered as insertions in the consensus sequence.  
   
@@ -150,35 +152,35 @@ obipairing --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
 #### Other {{< obi obipairing >}} specific options
 
 - {{< cmd-option name="delta" short="D" param="INTEGER" >}}
-  Length added to the fast-detected overlap for the exact alignment algorithm (default: 5 nucleotides).  
+  length added to the overlap detected by the fast algorithm before being forwarded to the exact alignment algorithm (default: 5 nucleotides).  
   {{< /cmd-option >}}
 
 - {{< cmd-option name="exact-mode" >}}
-  Do not run fast alignment heuristic. (default: a fast algorithm is run at first to accelerate the final exact alignment).  
+  do not run fast alignment heuristic. (default: a fast algorithm is run at first to accelerate the final exact alignment).  
   {{< /cmd-option >}}
 
 - {{< cmd-option name="fast-absolute" >}}
-  Compute absolute fast score, this option has no effect in exact mode (default: false).
+  compute absolute fast score, this option has no effect in exact mode (default: false).
   {{< /cmd-option >}}
 
 - {{< cmd-option name="gap-penalty" short="G" param="FLOAT64" >}}
-  Gap penalty expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000)
+  gap penalty expressed as the multiply factor applied to the mismatch score between two nucleotides with a quality of 40 (default 2). (default: 2.000000)
   {{< /cmd-option >}}
 
 - {{< cmd-option name="min-identity" short="X" param="FLOAT64" >}}
-  Minimum identity between overlapped regions of the reads to consider the alignment (default: 0.900000).
+  minimum identity between overlapped regions of the reads to consider the alignment (default: 0.900000).
   {{< /cmd-option >}}
 
 - {{< cmd-option name="min-overlap" param="INTEGER" >}}
-  Minimum overlap between both the reads to consider the alignment (default: 20).
+  minimum overlap between both the reads to consider the alignment (default: 20).
   {{< /cmd-option >}}
 
 - {{< cmd-option name="penalty-scale" param="FLOAT64" >}}
-  Scale factor applied to the mismatch score and the gap penalty (default 1).
+  scale factor applied to the mismatch score and the gap penalty (default 1).
   {{< /cmd-option >}}
 
 - {{< cmd-option name="without-stat" short="S" >}}
-  Remove alignment statistics from the produced consensus sequences (default: false).
+  remove alignment statistics from the produced consensus sequences (default: false).
   {{< /cmd-option >}}
 
 {{< option-sets/input >}}
@@ -213,22 +215,24 @@ obicsv -k mode paired.fastq | uplot -H count
 It is possible to use the {{< obi obidistribute >}} tool to separate the reads according to their `mode` attribute, which is set to `join` or `alignment`:
 
 ```bash
-obidistribute -p "paired_%s.fastq" -c mode paired.fastq
+obidistribute -p "paired_%s.fastq" \
+              -c mode \
+              paired.fastq
 ```
 
 This command will produce two files named `paired_join.fastq` and `paired_alignment.fastq` containing the sequences with `mode` set to `join` and `alignment` respectively.
 
-Looking at the contents of the `paired_join.fastq` file, we can see that the first pair of reads was not aligned because the `score_norm` tag is less than the default identity threshold of 0.9, while the second pair of reads was aligned because the length of the overlap (`ali_length` tag) is less than the default minimum overlap of 20.
+Looking at the content of the `paired_join.fastq` file, we can see that the first pair of reads was not aligned because the `score_norm` tag is less than the default identity threshold of 0.9, while the second pair of reads was not aligned because the length of the overlap (`ali_length` tag) is less than the default minimum overlap of 20.
 
 {{< code "paired_join.fastq" "fastq" true >}}
 
-Looking at the contents of the `paired_alignment.fastq` file, we can see (`mode` tag) that the first pair of reads was aligned using the *right* version of the exact alignment algorithm, while the second pair of reads was aligned using the *left* version.
+Looking at the contents of the `paired_alignment.fastq` file, we can see (`ali_dir` tag) that the first pair of reads was aligned using the *right* version of the exact alignment algorithm, while the second pair of reads was aligned using the *left* version.
 
 {{< code "paired_alignment.fastq" "fastq" true >}}
 
 ### Pairing the reads in exact mode
 
-The `--exact-mode` option can be used to align the reads in exact mode. This option bypasses the first fast alignment step and aligns the overlapping region of the reads using the exact alignment algorithm. This option increases the calculation time. 
+The `--exact-mode` option can be used to align the reads in exact mode. This option bypasses the first fast alignment step and aligns the overlapping region of the reads using the exact alignment algorithm. This option increases the computation time. 
 
 ```bash
 obipairing -F forward.fastq -R reverse.fastq \
@@ -237,7 +241,7 @@ obipairing -F forward.fastq -R reverse.fastq \
 {{< code "paired_exact.fastq" "fastq" true >}}
 
 For this trivial data set, both results, `paired.fastq` and `paired_exact.fastq`, are identical with respect to the consensus sequence.
-But the annotations are different. Using the UNIX diff command, it's possible to compare the two files:
+But the annotations are different. Using the UNIX diff command, it is possible to compare the two files:
 
 ```bash
 diff -u paired.fastq paired_exact.fastq
