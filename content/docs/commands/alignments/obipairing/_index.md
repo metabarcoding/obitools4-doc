@@ -13,7 +13,7 @@ weight: 20
 
 ## Description 
 
-When DNA metabarcoding sequences are generated as paired reads on the Illumina platform, {{< obi obipairing >}} aims to align both forward and reverse reads to generate full length amplicon sequences.
+When DNA metabarcoding sequences are generated as paired reads on the Illumina platform, {{< obi obipairing >}} aims to align forward and reverse reads to generate full length amplicon sequences.
 
 ### Input data
 
@@ -22,7 +22,7 @@ The {{< obi obipairing >}} command requires two input files:
 - One file contains the forward reads.
 - The second file contains the reverse reads.
 
-Both files must have the same number of sequences, and the sequences must be in the same order. This means that the first sequence of the forward reads file must correspond to the first sequence of the reverse reads file. {{< obi obipairing >}} will assume this order and only align sequences that occur in the same rank.
+Both files must contain the same number of sequences, and the sequences must be in the same order. This means that the first sequence of the forward reads file must correspond to the first sequence of the reverse reads file. {{< obi obipairing >}} will take this order into account and will only align sequences that are in the same rank.
 
 Consider the following example, where the forward reads file is [`forward.fastq`](forward.fastq) and the reverse reads file is [`reverse.fastq`](reverse.fastq) and both consist of 4 sequences:
 
