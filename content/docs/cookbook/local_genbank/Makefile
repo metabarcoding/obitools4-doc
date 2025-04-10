@@ -40,7 +40,6 @@ downloads: taxonomy fasta_files
 	@echo all divisions : $(GBDIV_ALL)
 
 FORCE:
-	@sleep 1
 
 .PHONY: all directories depends taxonomy fasta_files FORCE
 

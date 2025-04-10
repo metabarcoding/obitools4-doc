@@ -1,0 +1,8 @@
+@param,matching,strict
+@param,primer_mismatches,2
+@param,indels,false
+experiment,sample,sample_tag,forward_primer,reverse_primer
+wolf_diet,13a_F730603,aattaac,TTAGATACCCCACTATGC,TAGAACAGGCTCCTCTAG
+wolf_diet,15a_F730814,gaagtag,TTAGATACCCCACTATGC,TAGAACAGGCTCCTCTAG
+wolf_diet,26a_F040644,gaatatc,TTAGATACCCCACTATGC,TAGAACAGGCTCCTCTAG
+wolf_diet,29a_F260619,gcctcct,TTAGATACCCCACTATGC,TAGAACAGGCTCCTCTAG

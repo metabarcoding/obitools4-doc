@@ -1,0 +1,24 @@
+>HELIUM_000100422_612GNAAXX:7:118:3572:14633#0/1_sub[28..126] {"count":10172,"merged_sample":{"26a_F040644":10172},"obiclean_head":true,"obiclean_headcount":1,"obiclean_internalcount":0,"obiclean_samplecount":1,"obiclean_singletoncount":0,"obiclean_status":{"26a_F040644":"h"},"obiclean_weight":{"26a_F040644":12205}}
+ttagccctaaacataaacattcaataaacaagaatgttcgccagagtactactagcaaca
+gcctgaaactcaaaggacttggcggtgctttacatccct
+>HELIUM_000100422_612GNAAXX:7:99:9351:13090#0/1_sub[28..127] {"count":260,"merged_sample":{"29a_F260619":260},"obiclean_head":true,"obiclean_headcount":1,"obiclean_internalcount":0,"obiclean_samplecount":1,"obiclean_singletoncount":0,"obiclean_status":{"29a_F260619":"h"},"obiclean_weight":{"29a_F260619":337}}
+ttagccctaaacacaaataattacacaaacaaaattgttcaccagagtactagcggcaac
+agcttaaaactcaaaggacttggcggtgctttataccctt
+>HELIUM_000100422_612GNAAXX:7:108:10111:9078#0/1_sub[28..127] {"count":7146,"merged_sample":{"13a_F730603":7146},"obiclean_head":true,"obiclean_headcount":1,"obiclean_internalcount":0,"obiclean_samplecount":1,"obiclean_singletoncount":0,"obiclean_status":{"13a_F730603":"h"},"obiclean_weight":{"13a_F730603":8039}}
+ctagccttaaacacaaatagttatgcaaacaaaactattcgccagagtactaccggcaat
+agcttaaaactcaaaggacttggcggtgctttataccctt
+>HELIUM_000100422_612GNAAXX:7:38:14204:12725#0/1_sub[28..126] {"count":87,"merged_sample":{"26a_F040644":87},"obiclean_head":true,"obiclean_headcount":1,"obiclean_internalcount":0,"obiclean_samplecount":1,"obiclean_singletoncount":0,"obiclean_status":{"26a_F040644":"h"},"obiclean_weight":{"26a_F040644":202}}
+ttagccctaaacataaacattcaataaacaagaatgttcgccagaggactactagcaata
+gcttaaaactcaaaggacttggcggtgctttatatccct
+>HELIUM_000100422_612GNAAXX:7:30:9942:4495#0/1_sub[28..126] {"count":95,"merged_sample":{"26a_F040644":11,"29a_F260619":84},"obiclean_head":true,"obiclean_headcount":1,"obiclean_internalcount":0,"obiclean_samplecount":2,"obiclean_singletoncount":1,"obiclean_status":{"26a_F040644":"s","29a_F260619":"h"},"obiclean_weight":{"26a_F040644":12,"29a_F260619":105}}
+ttagccctaaacataagctattccataacaaaataattcgccagagaactactagcaaca
+gattaaacctcaaaggacttggcagtgctttatacccct
+>HELIUM_000100422_612GNAAXX:7:51:16702:19393#0/1_sub[28..127] {"count":12004,"merged_sample":{"15a_F730814":7465,"29a_F260619":4539},"obiclean_head":true,"obiclean_headcount":2,"obiclean_internalcount":0,"obiclean_samplecount":2,"obiclean_singletoncount":0,"obiclean_status":{"15a_F730814":"h","29a_F260619":"h"},"obiclean_weight":{"15a_F730814":8822,"29a_F260619":5789}}
+ttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcaat
+agcttaaaactcaaaggacttggcggtgctttataccctt
+>HELIUM_000100422_612GNAAXX:7:84:14502:1617#0/1_sub[28..127] {"count":319,"merged_sample":{"29a_F260619":319},"obiclean_head":true,"obiclean_headcount":1,"obiclean_internalcount":0,"obiclean_samplecount":1,"obiclean_singletoncount":0,"obiclean_status":{"29a_F260619":"h"},"obiclean_weight":{"29a_F260619":376}}
+ttagccctaaacacaagtaattattataacaaaattattcgccagagtactaccggcaat
+agcttaaaactcaaaggacttggcggtgctttataccctt
+>HELIUM_000100422_612GNAAXX:7:50:10637:6527#0/1_sub[28..126] {"count":366,"merged_sample":{"13a_F730603":13,"15a_F730814":5,"26a_F040644":347,"29a_F260619":1},"obiclean_head":true,"obiclean_headcount":1,"obiclean_internalcount":0,"obiclean_samplecount":4,"obiclean_singletoncount":3,"obiclean_status":{"13a_F730603":"s","15a_F730814":"s","26a_F040644":"h","29a_F260619":"s"},"obiclean_weight":{"13a_F730603":17,"15a_F730814":5,"26a_F040644":468,"29a_F260619":1}}
+ttagccctaaacatagataattttacaacaaaataattcgccagaggactactagcaata
+gcttaaaactcaaaggacttggcggtgctttatatccct

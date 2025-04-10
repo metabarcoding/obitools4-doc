@@ -42,14 +42,16 @@ tar zxvf wolf_diet_dataset.tgz
 It creates a `wolf_data` directory with the following data files:
 
 - Two {{% fastq %}} files resulting from the aGA IIx (Illumina) paired-end (2 x 108 bp) sequencing of DNA extracted and amplified from four wolf feces:
-    - `wolf_F.fastq` with the forward sequences
-    - `wolf_R.fastq` with the reverse sequences
+    - [`wolf_F.fastq`](wolf_data/wolf_F.fastq) with the forward sequences
+    - [`wolf_R.fastq`](wolf_data/wolf_R.fastq) with the reverse sequences
 
-- A tabulated file for sample demultiplexing, named `wolf_diet_ngsfilter.txt`, with primer and tag sequences for each sample.
+- A tabulated file for sample demultiplexing, named [`wolf_diet_ngsfilter.csv`](wolf_data/wolf_diet_ngsfilter.csv), with primer and tag sequences for each sample.
 The tags correspond to short and specific sequences added to the 5\' end of each primer to distinguish the different samples.
 
-- The reference database in {{% fasta %}} format named `db_v05_r117_indexed.fasta`, which has been extracted from the
-from EMBL release 117 (see "build a reference database" documentation for details)
+- The reference database in {{% fasta %}} format named
+  [`db_v05_r117.fasta.gz`](wolf_data/db_v05_r117.fasta.gz), which has been
+  extracted from the from EMBL release 117 (see "build a reference database"
+  documentation for details)
 
 We recommend creating a new folder for the results, to separate them from the raw data:
 
@@ -99,7 +101,7 @@ The first sequence record of `wolf_assembled.fastq` can be obtained by the comma
 head -n 4 results/wolf_assembled.fastq
 ```
 ```
-@HELIUM_000100422_612GNAAXX:7:108:5640:3823#0/1 {"ali_dir":"left","ali_length":62,"mode":"alignment","pairing_mismatches":{"(T:26)->(G:13)":62,"(T:34)->(G:18)":48},"paring_fast_count":53,"paring_fast_overlap":62,"paring_fast_score":0.898,"score":1826,"score_norm":0.968,"seq_a_single":46,"seq_ab_match":60,"seq_b_single":46}
+@HELIUM_000100422_612GNAAXX:7:108:5640:3823#0/1 {"ali_dir":"left","ali_length":62,"mode":"alignment","pairing_fast_count":53,"pairing_fast_overlap":62,"pairing_fast_score":0.898,"pairing_mismatches":{"(T:26)->(G:13)":62,"(T:34)->(G:18)":48},"score":1826,"score_norm":0.968,"seq_a_single":46,"seq_ab_match":60,"seq_b_single":46}
 ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattgttcgccagagtactaccggcaatagcttaaaactcaaaggacttggcggtgctttatacccttctagaggagcctgttctaaggaggcgg
 +
 CCCCCCCBCCCCCCCCCCCCCCCCCCCCCCBCCCCCBCCCCCCC<CcDccbe[`F`accXV=TA\RYU\\ee_e[XZ[XEEEEEEEEEE?EEEEEEEEEEDEEEEEEECCCCCCCCCCCCCCCCCCCCCCCACCCCCACCCCCCCCCCCCCCCC
@@ -107,16 +109,34 @@ CCCCCCCBCCCCCCCCCCCCCCCCCCCCCCBCCCCCBCCCCCCC<CcDccbe[`F`accXV=TA\RYU\\ee_e[XZ[XE
 
 ## Assign each sequence record to the corresponding sample and marker combination
 
-Each sequence record is assigned to its corresponding sample and marker using the data provided in the file `wolf_diet_ngsfilter.txt`.
+Each sequence record is assigned to its corresponding sample and marker using the data provided in the file [`wolf_diet_ngsfilter.csv`](wolf_data/wolf_diet_ngsfilter.csv).
 This file follows the required format for {{% obi obimultiplex %}} program.
 
-It contains one line per sample, with the name of the experiment (several experiments can be included in the same file),
-the tags (*e.g.* `aattaac` if a same tag has been used on each extremity of the PCR products, or `aattaac:gaagtag` if two different tags were used),
-the sequence of the forward primer, the sequence of the reverse primer, the letter `T` or `F` for sample identification using
-the forward primer and tag only or using both primers and both tags, respectively (see {{% obi obimultiplex %}} for details).
+{{< code "wolf_data/wolf_diet_ngsfilter.csv" csv true >}}
+
+The minimal file is a {{% csv %}} containing at least these five columns.
+The order of the column is not mandatory.
+
+- **experiment**: the name of the experiment (several experiments can be
+  included in the same file)
+- **sample**: the name of the sample (PCR)
+- **sample_tag**: the tags (*e.g.* `aattaac` if a same tag has been used on each
+  extremity of the PCR products, or `aattaac:gaagtag` if two different tags were
+  used)
+- **forward_primer**: the sequence of the forward primer
+- **reverse_primer**: the sequence of the reverse primer
+
+Some extra lines can be added in front. They start with the `@param` value.
+Here three parameters are set. 
+
+- `@param,matching,strict`: The tags are match strictly without allowing any mismatches.
+- `@param,primer_mismatches,2`: The primers are matched allowing for two diferences
+- `@param,indels,false`: Theses differences cannot be insertions or deletions (only mismatches)  
+  
+see {{% obi obimultiplex %}} for details.
 
 ```bash
-obimultiplex -s wolf_data/wolf_diet_ngsfilter.txt \
+obimultiplex -s wolf_data/wolf_diet_ngsfilter.csv \
              -u results/unidentified.fastq \
              results/wolf_assembled.fastq \
              > results/wolf_assembled_assigned.fastq
@@ -124,16 +144,20 @@ obimultiplex -s wolf_data/wolf_diet_ngsfilter.txt \
 
 This command creates two files:
 
--   `unidentified.fastq` with the sequences that failed to be assigned to a sample/marker combination
--   `wolf_assembled_assigned.fastq` with the sequence records that were properly assigned to a sample/marker combination
+-   [`unidentified.fastq`](results/unidentified.fastq) with the sequences that
+    failed to be assigned to a sample/marker combination
+-   [`wolf_assembled_assigned.fastq`](results/wolf_assembled_assigned.fastq)
+    with the sequence records that were properly assigned to a sample/marker
+    combination
 
-Note that each sequence record of the `wolf_assembled_assigned.fastq` file
-contains only the barcode sequence as the sequences of primers and tags
-are removed by the {{% obi obimultiplex %}} program. Information concerning the 
-experiment, sample, primers and tags is added as attributes in the 
-sequence header.
+Note that each sequence record of the
+[`wolf_assembled_assigned.fastq`](results/wolf_assembled_assigned.fastq) file
+contains only the barcode sequence as the sequences of primers and tags are
+removed by the {{% obi obimultiplex %}} program. Information concerning the
+experiment, sample, primers and tags is added as attributes in the sequence
+header.
 
-For instance, the first sequence record of `wolf_assembled_assigned.fastq` is:
+For instance, the first sequence record of [`wolf_assembled_assigned.fastq`](results/wolf_assembled_assigned.fastq) is:
 
 ```
 @HELIUM_000100422_612GNAAXX:7:108:5640:3823#0/1_sub[28..127] {"ali_dir":"left","ali_length":62,"experiment":"wolf_diet","mode":"alignment","obimultiplex_amplicon_rank":"1/1","obimultiplex_direction":"forward","obimultiplex_forward_error":0,"obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_matching":"strict","obimultiplex_forward_primer":"ttagataccccactatgc","obimultiplex_forward_proposed_tag":"gcctcct","obimultiplex_forward_tag":"gcctcct","obimultiplex_forward_tag_dist":0,"obimultiplex_reverse_error":0,"obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_matching":"strict","obimultiplex_reverse_primer":"tagaacaggctcctctag","obimultiplex_reverse_proposed_tag":"gcctcct","obimultiplex_reverse_tag":"gcctcct","obimultiplex_reverse_tag_dist":0,"pairing_mismatches":{"(T:26)->(G:13)":35,"(T:34)->(G:18)":21},"paring_fast_count":53,"paring_fast_overlap":62,"paring_fast_score":0.898,"sample":"29a_F260619","score":1826,"score_norm":0.968,"seq_a_single":46,"seq_ab_match":60,"seq_b_single":46}
@@ -162,7 +186,7 @@ obiuniq -m sample \
         > results/wolf_assembled_assigned_uniq.fasta
 ```
 
-The first sequence record of `wolf_assembled_assigned_uniq.fasta` is:
+The first sequence record of [`wolf_assembled_assigned_uniq.fasta`](results/wolf_assembled_assigned_uniq.fasta) is:
 
 ```
 >HELIUM_000100422_612GNAAXX:7:99:12017:19418#0/1_sub[28..127] {"ali_dir":"left","ali_length":62,"count":1,"experiment":"wolf_diet","merged_sample":{"29a_F260619":1},"mode":"alignment","obimultiplex_amplicon_rank":"1/1","obimultiplex_direction":"forward","obimultiplex_forward_error":0,"obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_matching":"strict","obimultiplex_forward_primer":"ttagataccccactatgc","obimultiplex_forward_proposed_tag":"gcctcct","obimultiplex_forward_tag":"gcctcct","obimultiplex_forward_tag_dist":0,"obimultiplex_reverse_error":0,"obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_matching":"strict","obimultiplex_reverse_primer":"tagaacaggctcctctag","obimultiplex_reverse_proposed_tag":"gcctcct","obimultiplex_reverse_tag":"gcctcct","obimultiplex_reverse_tag_dist":0,"pairing_mismatches":{"(A:02)->(C:07)":54,"(A:02)->(G:17)":59,"(C:02)->(G:10)":42},"paring_fast_count":43,"paring_fast_overlap":62,"paring_fast_score":0.729,"sample":"29a_F260619","score":567,"score_norm":0.935,"seq_a_single":46,"seq_ab_match":58,"seq_b_single":46}
@@ -183,7 +207,7 @@ obiannotate -k count -k merged_sample \
   > results/wolf_assembled_assigned_simple.fasta
 ```
 
-The first five sequence records of `wolf_assembled_assigned_simple.fasta` become:
+The first five sequence records of [`wolf_assembled_assigned_simple.fasta`](results/wolf_assembled_assigned_simple.fasta) become:
 
 ```
 >HELIUM_000100422_612GNAAXX:7:99:12017:19418#0/1_sub[28..127] {"count":1,"merged_sample":{"29a_F260619":1}}
@@ -217,21 +241,18 @@ are not variants of another sequence with a count greater than 5% of their own c
 (`-r 0.05` option). See the {{% obi obiclean %}} documentation for details.
 
 ```bash
-obiclean -s sample -r 0.05 -H \
+obiclean -s sample -r 0.05 --detect-chimera -H \
          results/wolf_assembled_assigned_simple.fasta \
          > results/wolf_assembled_assigned_simple_clean.fasta
 ```
 
-One of the sequence records of `wolf_assembled_assigned_simple_clean.fasta` is:
+One of the sequence records of [`wolf_assembled_assigned_simple_clean.fasta`](results/wolf_assembled_assigned_simple_clean.fasta) is:
 
 ```
->HELIUM_000100422_612GNAAXX:7:56:19300:10949#0/1_sub[28..127] {"count":37,"merged_sample":{"29a_F260619":37},"obiclean_head":true,"obiclean_headcount":1,"obiclean_internalcount":0,"obiclean_samplecount":1,"obiclean_singletoncount":0,"obiclean_status":{"29a_F260619":"h"},"obiclean_weight":{"29a_F260619":43}}
-ttagccctaaacacaagtaattaatataacaaaattgttcaccagagtactagcggcaac
+>HELIUM_000100422_612GNAAXX:7:3:3008:16359#0/1_sub[28..127] {"count":1,"merged_sample":{"29a_F260619":1},"obiclean_head":true,"obiclean_headcount":0,"obiclean_internalcount":0,"obiclean_samplecount":1,"obiclean_singletoncount":1,"obiclean_status":{"29a_F260619":"s"},"obiclean_weight":{"29a_F260619":1}}
+ttagccctaaacacaagtaattaatataacaaaattattcgacagagtaccaccggcaat
 agcttaaaactcaaaggacttggcggtgctttataccctt
 ```
-
-To remove potential chimeric sequences, or amplification or sequencing errors (artifacts),
-we discard the rare sequence variants.
 
 #### Get some statistics about the sequence counts {.unnumbered}
 
@@ -240,9 +261,9 @@ obicount results/wolf_assembled_assigned_simple_clean.fasta
 ```
 ```
 entities,n
-variants,765
-reads,33823
-symbols,75668
+variants,715
+reads,33762
+symbols,70775
 ```
 
 The dataset contains 765 sequence variants corresponding to 33823 sequence reads.
@@ -252,109 +273,228 @@ named *singletons*, let us see how many singletons there are:
 ```bash
 obigrep -p 'sequence.Count() == 1' \
         results/wolf_assembled_assigned_simple_clean.fasta |\
-        obicount
+        obicount | csvlook
 ```
 ```
-entities,n
-variants,649
-reads,649
-symbols,64497
+| entities |      n |
+| -------- | ------ |
+| variants |    604 |
+| reads    |    604 |
+| symbols  | 60 101 |
 ```
 
-In our dataset, there are 649 singletons (or variants).
+In our dataset, there are 649 singletons (or variants). These singleton
+sequences are more likely to be errors than true sequences. It is generally
+accepted to discard them. The {{< obi obigrep >}} command retains only sequences
+that occur at least twice in the data set.
 
-Using *R* and the `ROBIFastread` package able to read headers of the fasta files produced by *OBITools*,
-we can get more complete statistics on the sqrt-transformed distribution of occurrencies.
-
-```r
-# Import libraries
-library(ROBIFastread)
-library(ggplot2)
-
-# Import the fasta file
-seqs <- read_obifasta("results/wolf_assembled_assigned_simple_clean.fasta", keys="count")
-
-# Plot occurencies
-ggplot(data=seqs, mapping=aes(x=count)) +
-  geom_histogram(bins=100) +
-  scale_y_sqrt() +
-  scale_x_sqrt() +
-  geom_vline(xintercept=10, col="red", lty=2) +
-  xlab("Number of occurrencies of a variant") +
-  ylab("Count") +
-  ggtitle("Variants occurencies distribution (sqrt-transformed)") +
-  theme_minimal()
+```bash
+obigrep -c 2 \
+        results/wolf_assembled_assigned_simple_clean.fasta \
+        > results/wolf_assembled_no_singleton.fasta
 ```
-![variants-plot](variants-plot.png)
 
-The red dotted vertical line is placed at the level of variants that appear exactly 10 times (count=10).
-This represents the threshold at which we wish to retain sequence variants.
-Below this threshold, we consider that the variant is not abundant enough in the dataset to be considered
-a true sequence, but a potential artifact because it is too rare. 
-Singletons correspond to variants whose count is 1.
+To get some insight into the distribution of the sequence among the samples, we can use {{< obi obisummary >}}. This command will provide a summary of the data set including the number of sequence reads, sequence variants and singleton occurring in each sample. Here singleton has to be interpreted as sequence variants occurring a single time in the sample.
 
+```bash
+obisummary --yaml results/wolf_assembled_no_singleton.fasta
+```
+```yaml
+annotations:
+    keys:
+        map:
+            merged_sample: 111
+            obiclean_mutation: 5
+            obiclean_status: 111
+            obiclean_weight: 111
+        scalar:
+            count: 111
+            obiclean_head: 111
+            obiclean_headcount: 111
+            obiclean_internalcount: 111
+            obiclean_samplecount: 111
+            obiclean_singletoncount: 111
+    map_attributes: 4
+    scalar_attributes: 6
+    vector_attributes: 0
+count:
+    reads: 33158
+    total_length: 10674
+    variants: 111
+samples:
+    sample_count: 4
+    sample_stats:
+        13a_F730603:
+            obiclean_bad: 0
+            reads: 7318
+            singletons: 1
+            variants: 22
+        15a_F730814:
+            obiclean_bad: 0
+            reads: 7503
+            singletons: 5
+            variants: 18
+        26a_F040644:
+            obiclean_bad: 0
+            reads: 10963
+            singletons: 1
+            variants: 49
+        29a_F260619:
+            obiclean_bad: 0
+            reads: 7374
+            singletons: 7
+            variants: 36
+```
+
+As example, for the sample *29a_F260619*, *7374* reads were obtained, distributed in *36* sequence variants. Among them *7* occur only once.
+
+If we consider that we are not interested in sequence representing less than a percent of the diet, we can filter out every sequence occurring in the dataset less than one percent of *7,000* times, i.e., less than *70* times.
+
+To have an idea of the effect of this filter, we can run the following command to plot the distribution of the `count` attribute in the dataset:
+
+```bash
+obicsv -k count results/wolf_assembled_no_singleton.fasta \
+     | tail -n +2 \
+     | sort -n \
+     | uniq -c \
+     | awk '{print $2,$1}' \
+     | uplot -d ' ' barplot 
+```
+```
+         ┌                                        ┐ 
+       2 ┤■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■ 43.0   
+       3 ┤■■■■■■■■ 10.0                             
+       4 ┤■■■■■■ 8.0                                
+       5 ┤■■■■■■■ 9.0                               
+       6 ┤■■■■ 5.0                                  
+       7 ┤■■■ 4.0                                   
+       8 ┤■■ 2.0                                    
+       9 ┤■■ 2.0                                    
+      10 ┤■■ 2.0                                    
+      11 ┤■ 1.0                                     
+      12 ┤■■ 2.0                                    
+      13 ┤■■ 2.0                                    
+      14 ┤■ 1.0                                     
+      15 ┤■ 1.0                                     
+      16 ┤■ 1.0                                     
+      17 ┤■ 1.0                                     
+      19 ┤■ 1.0                                     
+      20 ┤■ 1.0                                     
+      22 ┤■ 1.0                                     
+      26 ┤■ 1.0                                     
+      37 ┤■ 1.0                                     
+      38 ┤■ 1.0                                     
+      43 ┤■ 1.0                                     
+      69 ┤■ 1.0                                     
+      87 ┤■ 1.0                                     
+      95 ┤■ 1.0                                     
+     260 ┤■ 1.0                                     
+     319 ┤■ 1.0                                     
+     366 ┤■ 1.0                                     
+    2007 ┤■ 1.0                                     
+    7146 ┤■ 1.0                                     
+   10172 ┤■ 1.0                                     
+   12004 ┤■ 1.0                                     
+         └                                        ┘                                  
+```
+
+The Y axis is the `count` attribute (the number of occurrences of the sequence in the dataset), and the X axis is the count of sequence occurring that number of times. As example 43 sequences occur twice in the data set.
+
+From that distribution, we can see that using this 1% filter, we will keep only the 9 sequence variants occurring at least 87 times in the total data set.
+
+```bash
+obigrep -c 70 \
+        results/wolf_assembled_no_singleton.fasta \
+        > results/wolf_assembled_1_percent.fasta
+```
+
+```bash
+obicount results/wolf_assembled_1_percent.fasta \
+  | csvlook
+```
+```
+| entities |      n |
+| -------- | ------ |
+| variants |      9 |
+| reads    | 32 456 |
+| symbols  |    800 |
+```
+
+## Some st
 In a similar way, it is also possible to plot the distribution of the sequence length.
 
-```r
-ggplot(data=seqs, mapping=aes(x=nchar(sequence))) +
-  geom_histogram() +
-  scale_y_log10() +
-  geom_vline(xintercept = 80, col="red", lty=2) +
-  xlab("Sequence lengths in base pair") +
-  ylab("Count") +
-  ggtitle("Sequence length log-distribution") +
-  theme_minimal()
+```bash
+obiannotate --length \
+            results/wolf_assembled_1_percent.fasta\
+     | obicsv -k seq_length \
+     | uplot -H hist -n 20
 ```
-![length-plot](length-plot.png)
+```
+                                 seq_length
+                  ┌                                        ┐ 
+   [  0.0,   5.0) ┤▇▇▇▇▇▇▇▇▇ 1                               
+   [  5.0,  10.0) ┤ 0                                        
+   [ 10.0,  15.0) ┤ 0                                        
+   [ 15.0,  20.0) ┤ 0                                        
+   [ 20.0,  25.0) ┤ 0                                        
+   [ 25.0,  30.0) ┤ 0                                        
+   [ 30.0,  35.0) ┤ 0                                        
+   [ 35.0,  40.0) ┤ 0                                        
+   [ 40.0,  45.0) ┤ 0                                        
+   [ 45.0,  50.0) ┤ 0                                        
+   [ 50.0,  55.0) ┤ 0                                        
+   [ 55.0,  60.0) ┤ 0                                        
+   [ 60.0,  65.0) ┤ 0                                        
+   [ 65.0,  70.0) ┤ 0                                        
+   [ 70.0,  75.0) ┤ 0                                        
+   [ 75.0,  80.0) ┤ 0                                        
+   [ 80.0,  85.0) ┤ 0                                        
+   [ 85.0,  90.0) ┤ 0                                        
+   [ 90.0,  95.0) ┤ 0                                        
+   [ 95.0, 100.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 4   
+   [100.0, 105.0) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 4   
+                  └                                        ┘ 
+                                  Frequency
+```
 
-The red dotted vertical line represents the threshold at 80 bp, above which we wish to keep the sequences, 
-otherwise considered too short so as potential artefacts.
-
-#### Keep only the sequences having a count greater or equal to 10 and a length shorter than 80 bp  {.unnumbered}
-
-Based on the previous observation, first we set a threshold to keep only the sequences that appear at least 10 times (count ≥ 10),
-thanks to {{% obi obigrep %}}.
-
-The `-p` option means that the python expression `count>=10` must be evaluated to 
-`True` for each sequence to be kept, and the `-l` option allows us to remove sequences
-shorter than 80 bp, as we know that the amplified 12S-V5 barcode for vertebrates must have a length around 100 bp.
+The metabarcode sequence is supposed to be about 100 bp long, but few sequences are very short (<10 bp). We filter these short sequences out with {{% obi obigrep %}}:
 
 ```bash
-obigrep -l 80 \
-        -p 'sequence.Count() >= 10' \
-        results/wolf_assembled_assigned_simple_clean.fasta \
-        > results/wolf_assembled_assigned_simple_clean_c10l80.fasta
+obigrep -l 50 \
+        results/wolf_assembled_1_percent.fasta \
+        > results/wolf_assembled_no_short.fasta
 ```
 
-The first sequence record of `results/wolf_assembled_assigned_simple_clean_c10l80.fasta` is:
- 
-```
->HELIUM_000100422_612GNAAXX:7:56:19300:10949#0/1_sub[28..127] {"count":37,"merged_sample":{"29a_F260619":37},"obiclean_head":true,"obiclean_headcount":1,"obiclean_internalcount":0,"obiclean_samplecount":1,"obiclean_singletoncount":0,"obiclean_status":{"29a_F260619":"h"},"obiclean_weight":{"29a_F260619":43}}
-ttagccctaaacacaagtaattaatataacaaaattgttcaccagagtactagcggcaac
-agcttaaaactcaaaggacttggcggtgctttataccctt
-```
-
-Count the sequences after these filtering steps:
+On the new file [wolf_assembled_no_short.fasta](results/wolf_assembled_no_short.fasta), it is possible to check again the distribution of sequence lengths:
 
 ```bash
-obicount results/wolf_assembled_assigned_simple_clean_c10l80.fasta
+obiannotate --length \
+            results/wolf_assembled_no_short.fasta \
+     | obicsv -k seq_length \
+     | uplot -H hist
 ```
 ```
-entities,n
-variants,25
-reads,30816
-symbols,2486
+                                 seq_length
+                  ┌                                        ┐ 
+   [ 99.0,  99.5) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 4   
+   [ 99.5, 100.0) ┤ 0                                        
+   [100.0, 100.5) ┤▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 4   
+                  └                                        ┘ 
+                                  Frequency
 ```
+
+{{< code "results/wolf_assembled_no_short.fasta" fasta true >}}
+
 
 ## Taxonomic assignment of sequences
 
-Once denoising has been done, the next step in diet analysis is to
+Once the denoising of the data has been done, the next step in diet analysis is to
 assign the barcodes to the corresponding taxa (species, genus, etc.),
 in order to get the complete list of the taxa associated to each sample.
 
 The taxonomic assignment of sequences requires a reference database to
 detect all possible taxa to be identified in samples, which is provided in 
-this tutorial as `db_v05_r117_indexed.fasta` (see "Build a reference database" 
+this tutorial as `db_v05_r117.fasta` (see "Build a reference database" 
 documentation for more information about the reference database).
 It is then based on sequence comparison between sample
 sequences and reference sequences.
@@ -365,11 +505,10 @@ The current and complete taxonomy from the NCBI is available online,
 it is possible to download it with the following command:
 
 ```bash
-curl http://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz
+obitaxonomy --download-ncbi --out ncbitaxo.tgz
 ```
 
-A copy of this `taxdump.tar.gz` file is also available into the tutorial archive.
-Note that the NCBI taxonomy is daily updated, but this version is correct to use.
+A full copy of the [NCBI taxonomy](https://www.ncbi.nlm.nih.gov/taxonomy) is now locally stored in the `ncbitaxo.tgz` file.
 
 #### Assign the sequences {.unnumbered}
 
@@ -377,19 +516,13 @@ Thanks to the reference database, taxonomic assignment can be
 carried out with {{% obi obitag %}}:
 
 ```bash
-obitag -t wolf_data/taxdump.tar.gz \
-       -R wolf_data/db_v05_r117_indexed.fasta \
-       results/wolf_assembled_assigned_simple_clean_c10l80.fasta \
-       > results/wolf_assembled_assigned_simple_clean_c10l80_taxo.fasta
+obitag -t ncbitaxo.tgz \
+       -R wolf_data/db_v05_r117.fasta.gz \
+       results/wolf_assembled_no_short.fasta \
+       > results/wolf_assembled_taxo.fasta
 ```
 
-The first sequence record of `wolf_assembled_assigned_simple_clean_c10l80_taxo.fasta` is:
-
-```
->HELIUM_000100422_612GNAAXX:7:56:19300:10949#0/1_sub[28..127] {"count":37,"merged_sample":{"29a_F260619":37},"obiclean_head":true,"obiclean_headcount":1,"obiclean_internalcount":0,"obiclean_samplecount":1,"obiclean_singletoncount":0,"obiclean_status":{"29a_F260619":"h"},"obiclean_weight":{"29a_F260619":43},"obitag_bestid":0.96,"obitag_bestmatch":"AJ885202","obitag_match_count":1,"obitag_rank":"NA","obitag_similarity_method":"lcs","taxid":"NA"}
-ttagccctaaacacaagtaattaatataacaaaattgttcaccagagtactagcggcaac
-agcttaaaactcaaaggacttggcggtgctttataccctt
-```
+{{< code "results/wolf_assembled_taxo.fasta" fasta true >}}
 
 The {{% obi obitag %}} command adds several attributes in the sequence record header, like:
 
@@ -398,7 +531,6 @@ the reference database that best aligns to the query sequence
 - `obitag_bestid:FLOAT` where FLOAT\*100 is the identity percent between
 the best match sequence and the query sequence
 - `taxid:TAXID` where TAXID is the final taxonomy ID assigned to the sequence by {{% obi obitag %}}
-- `scientific_name:NAME` where NAME is the scientific name of the assigned taxid
 
 ## Generate the contingency table of results
 
@@ -410,42 +542,55 @@ obiannotate  --delete-tag=obiclean_head \
              --delete-tag=obiclean_internalcount \
              --delete-tag=obiclean_samplecount \
              --delete-tag=obiclean_singletoncount \
-             results/wolf_assembled_assigned_simple_clean_c10l80_taxo.fasta \
-             > results/wolf_final.fasta
+             results/wolf_assembled_taxo.fasta \
+             > results/wolf_minimal.fasta
 ```
 
-The first sequence record of `wolf_final.fasta` is then:
- 
-``` 
->HELIUM_000100422_612GNAAXX:7:56:19300:10949#0/1_sub[28..127] {"count":37,"merged_sample":{"29a_F260619":37},"obiclean_status":{"29a_F260619":"h"},"obiclean_weight":{"29a_F260619":43},"obitag_bestid":0.96,"obitag_bestmatch":"AJ885202","obitag_match_count":1,"obitag_rank":"NA","obitag_similarity_method":"lcs","taxid":"NA"}
-ttagccctaaacacaagtaattaatataacaaaattgttcaccagagtactagcggcaac
-agcttaaaactcaaaggacttggcggtgctttataccctt
+{{< code "results/wolf_minimal.fasta" fasta true >}}
+
+```bash
+obiannotate --number results/wolf_minimal.fasta \
+  | obiannotate --set-id 'sprintf("seq%04d",annotations.seq_number)' \
+  > results/wolf_final.fasta
 ```
 
-## Looking at the data in R
+{{< code "results/wolf_final.fasta" fasta true >}}
 
-The results can be imported in *R*.
 
-```r
-# Import libraries
-library(ROBIFastread)
-library(vegan)
-library(magrittr)
+```bash
+obimatrix --map obiclean_weight \
+          results/wolf_final.fasta \
+          > results/wolf_final_occurrency.csv
 
-# Import the results
-diet_data <- read_obifasta("results/wolf_final.fasta") 
-diet_data %<>% extract_features("obitag_bestmatch", "obitag_rank", "scientific_name", "taxid")
-
-# Extract count matrix
-diet_tab <- extract_readcount(diet_data,key="obiclean_weight")
-diet_tab
+csvlook results/wolf_final_occurrency.csv
+```
+```
+| id          | seq0001 | seq0002 | seq0003 | seq0004 | seq0005 | seq0006 | seq0007 | seq0008 |
+| ----------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- | ------- |
+| 29a_F260619 |       0 |     337 |       0 |       0 |     105 |   5 789 |     376 |       1 |
+| 15a_F730814 |       0 |       0 |       0 |       0 |       0 |   8 822 |       0 |       5 |
+| 13a_F730603 |       0 |       0 |   8 039 |       0 |       0 |       0 |       0 |      17 |
+| 26a_F040644 |  12 205 |       0 |       0 |     202 |      12 |       0 |       0 |     468 |
+|             |         |         |         |         |         |         |         |         |
 ```
 
-There are 25 final annotated sequences.
-We can make the following assumptions about wolf diet, based on our samples:
-- 13a_F730603 sample: *Cervus elaphus*
-- 15a_F730814 sample: *Capreolus capreolus*
-- 26a_F040644 sample: *Marmota sp.* (according to the location, it is *Marmota marmota*)
-- 29a_F260619 sample: *Capreolus capreolus*
+```bash
+obicsv --auto -i -s \
+       results/wolf_final.fasta \
+       > results/wolf_final_motus.csv 
 
-Note that we also obtained a few wolf sequences although a wolf-blocking oligonucleotide was used.
+csvlook results/wolf_final_motus.csv
+```
+```
+| id      |  count | obitag_bestid | obitag_bestmatch | obitag_match_count | obitag_rank | obitag_similarity_method | seq_number | taxid                                          | sequence                                                                                             |
+| ------- | ------ | ------------- | ---------------- | ------------------ | ----------- | ------------------------ | ---------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| seq0001 | 10 172 |        0,980… | AY227529         |                  1 | genus       | lcs                      |          1 | taxon:9992 [Marmota]@genus                     | ttagccctaaacataaacattcaataaacaagaatgttcgccagagtactactagcaacagcctgaaactcaaaggacttggcggtgctttacatccct  |
+| seq0002 |    260 |        0,941… | AF154263         |                  9 | infraorder  | lcs                      |          2 | taxon:35500 [Pecora]@infraorder                | ttagccctaaacacaaataattacacaaacaaaattgttcaccagagtactagcggcaacagcttaaaactcaaaggacttggcggtgctttataccctt |
+| seq0003 |  7 146 |        1,000… | AB245427         |                  1 | species     | lcs                      |          3 | taxon:9860 [Cervus elaphus]@species            | ctagccttaaacacaaatagttatgcaaacaaaactattcgccagagtactaccggcaatagcttaaaactcaaaggacttggcggtgctttataccctt |
+| seq0004 |     87 |        0,949… | AY227530         |                  2 | tribe       | lcs                      |          4 | taxon:337730 [Marmotini]@tribe                 | ttagccctaaacataaacattcaataaacaagaatgttcgccagaggactactagcaatagcttaaaactcaaaggacttggcggtgctttatatccct  |
+| seq0005 |     95 |        0,960… | AC187326         |                  1 | subspecies  | lcs                      |          5 | taxon:9615 [Canis lupus familiaris]@subspecies | ttagccctaaacataagctattccataacaaaataattcgccagagaactactagcaacagattaaacctcaaaggacttggcagtgctttatacccct  |
+| seq0006 | 12 004 |        1,000… | AJ885202         |                  1 | species     | lcs                      |          6 | taxon:9858 [Capreolus capreolus]@species       | ttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcaatagcttaaaactcaaaggacttggcggtgctttataccctt |
+| seq0007 |    319 |        1,000… | AJ972683         |                  1 | species     | lcs                      |          7 | taxon:9858 [Capreolus capreolus]@species       | ttagccctaaacacaagtaattattataacaaaattattcgccagagtactaccggcaatagcttaaaactcaaaggacttggcggtgctttataccctt |
+| seq0008 |    366 |        1,000… | AB048590         |                  1 | genus       | lcs                      |          8 | taxon:9611 [Canis]@genus                       | ttagccctaaacatagataattttacaacaaaataattcgccagaggactactagcaatagcttaaaactcaaaggacttggcggtgctttatatccct  |
+```
+
