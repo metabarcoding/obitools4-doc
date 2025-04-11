@@ -12,7 +12,7 @@ weight: 80
 
 ## Description 
 
-{{< obi obigrep >}} is a tool for selecting a subset of sequences based on a set of criteria. Sequences from the input data set that match all criteria are retained and printed in the result, while the other sequences are discarded. The criteria can be based on the sequence identifier, the sequence itself or the annotations on the sequence.
+{{< obi obigrep >}} is a tool for selecting a subset of sequences based on a set of criteria. Sequences from the input dataset that match all the criteria are retained and printed in the result, while other sequences are discarded.
 
 Selection criteria can be based on different aspects of the sequence data, such as
 
@@ -22,7 +22,7 @@ Selection criteria can be based on different aspects of the sequence data, such 
 
 ### Selection based on sequence identifier (ID)
 
-There are two ways to select sequences based on their identifier: 
+There are two ways of selecting sequences according to their identifier: 
 
 * Using a [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) with option `-I`
 * Using a list of identifiers (IDs) provided in a file with option `--id-list`
@@ -45,15 +45,15 @@ tagctagctagctagctagctagctagcta
 
 The explanations for the regular pattern `^seq[AB]1$` are
 
-- the `^` at the beginning means that the string should start with that pattern 
+- the `^` at the beginning means that the string must start with that pattern 
 - `seq` is an exact match for that string 
 - `[AB]` means any character in the set {A, B} 
 - `1` is an exact match for that character 
-- `$` at the end of the pattern means that the string should end with that pattern.
+- `$` at the end of the pattern means that the string must end with that pattern.
 
- If the starting `^` had been omitted, the pattern would have matched any sequence ID containing "seq" followed by a character from the set {A, B} and ending with "1", for example the IDs `my_seqA1` or `my_seqB1` would have been matched. 
+ If the starting `^` had been omitted, the pattern would have matched any sequence ID containing "seq" followed by a character from the set {A, B} and ending with "1", for example the IDs `my_seqA1` or `my_seqB1` would have been selected. 
 
-If the ending '$' had been omitted, the pattern would have matched any sequence ID starting with 'seq' followed by a character in the set {A, B} and containing '1', e.g. the ids `seqA102` or `seqB1023456789` would have been matched.
+If the ending '$' had been omitted, the pattern would have matched any sequence ID starting with 'seq' followed by a character in the set {A, B} and containing '1', e.g. the ids `seqA102` or `seqB1023456789` would have been selected.
 
 Another solution to extract these sequence IDs would be to use a text file containing them, one per line, as follows
 
@@ -73,7 +73,7 @@ tagctagctagctagctagctagctagcta
 
 ### Selection based on sequence definition
 
-Each sequence record may have a sequence definition describing the sequence. In {{% fasta %}} or {{% fastq %}} format, this definition is in the header of each sequence record after the second word (the first being the sequence id), or after the annotations between braces in the {{% obitools4 %}} extended version of these formats.
+Each sequence record can have a sequence definition describing the sequence. In {{% fasta %}} or {{% fastq %}} format, this definition is found in the header of each sequence record after the second word (the first being the sequence id), or after the annotations between braces in the {{% obitools4 %}} extended version of these formats.
 
 {{< code "three_def.fasta" fasta true >}}
 
@@ -83,7 +83,7 @@ In the `three_def.fasta` example file:
 - `seqB1` definition is `my beautiful sequence`
 - `seqA2` definition is `my pretty sequence`
 
-The `-D` or `--definition` allows you to specify a [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) to select only sequences whose definition matches the pattern. The example below selects sequences with a definition containing the word `pretty`.
+The `-D` or `--definition` option lets you specify a [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) to select only those sequences whose definition matches the pattern. The example below selects sequences whose definition contains the word `pretty`.
 
 ```bash
 obigrep -D pretty three_def.fasta
@@ -157,7 +157,7 @@ The sequence `seqC1` is excluded because its `toto` attribute contains the value
 In amplicon sequencing experiments, a sequence may be observed many times. The {{< obi obiuniq >}} command can be used to dereplicate strictly identical sequences. The number of strictly identical sequence reads merged into a single sequence record is stored in the `count` annotation tag of that sequence record. It is common to filter out sequences that are too rare or too abundant, depending on the purpose of the experiment. There are two ways to select sequence records based on this `count` tag.
 
 - the `--min-count` or `-c` options, followed by a numeric argument, select sequence records with a `count` greater than or equal to that argument.
-- The `--max-count` or `-c` options, followed by a numeric argument, select sequence records with a `count` less than or equal to that argument.
+- The `--max-count` or `-C` options, followed by a numeric argument, select sequence records with a `count` less than or equal to that argument.
 
 > [!NOTICE] 
 > If the `count` tag is missing from a data set, it is assumed to be equal to *1*.
@@ -202,18 +202,18 @@ gtagctagctagctagctagctagctaga
 
 #### Selection based on taxonomic annotation.
 
-The taxonomy based selection is always based on the `taxid` attribute of a sequence, even it this one carry other taxonomic information stored in other attribute like `scientific_name` or `family_taxid`. To be able to use the taxonomy based selection with {{< obi obigrep >}}, it is mandatory to load a taxonomy using the `-t` or `--taxonomy` option.
+Taxonomy-based selection is always performed on the `taxid` attribute of a sequence, even if it contains other taxonomic information stored in other attribute such as `scientific_name` or `family_taxid`. To use  taxonomy-based selection with {{< obi obigrep >}}, it is mandatory to load a taxonomy using the `-t` or `--taxonomy` option.
 
 ##### Selecting sequences belonging a clade
 
-If you don't have a taxonomy dump already downloaded, you must at first download one using the following {{< obi obitaxonomy >}} command.
-The taxonomy will be stored in a file named `ncbitaxo.tgz`. It is possible to provide this compressed archive later on to other {{% obitools4 %}}.
+If you do not have a taxonomy dump already downloaded, you must first download one using the following {{< obi obitaxonomy >}} command.
+The taxonomy will be stored in a file named `ncbitaxo.tgz`. This compressed archive can be supplied to other {{% obitools4 %}} at a later date.
 
 ```bash
 obitaxonomy --download-ncbi --out ncbitaxo.tgz
 ```
 
-To select the sequences belonging the *Homo sapiens* species, the first step is to extract from the downloaded taxonomy the taxid corresponding to the species of interest using the {{< obi obitaxonomy >}} command. 
+To select the sequences belonging to the *Homo sapiens* species, the first step is to extract the taxid corresponding to the species of interest from the downloaded taxonomy using the {{< obi obitaxonomy >}} command. 
 
 - The `-t` option indicates the taxonomy to load
 - The `--fixed` option indicates to consider the query string as the exact name of the species, not as a [regular pattern]({{% ref "docs/patterns/regular.md" %}}).
@@ -243,11 +243,11 @@ cgatgctgcatgctagtgctagtcgat
 tagctagctagctagctagctagctagcta
 ```
 
-Only sequences *seqA1* and *seqB1* annotated as belonging to the target clade *Homo sapiens* or one of its subspecies *Homo sapiens neanderthalensis* are retained. Sequence *seqA2* is not retained as it is annotated at genus level as Homo and therefore does not belong to the Homo sapiens clade, nor is sequence *seqC1* annotated at family level as *Hominidae*. The last sequence *seqB2* has no taxonomic annotation and is therefore considered to be annotated at the root of taxonomy and therefore not part of the Homo sapiens species clade.
+Only sequences *seqA1* and *seqB1* annotated as belonging to the target clade *Homo sapiens* or one of its subspecies *Homo sapiens neanderthalensis* are retained. Sequence *seqA2* is not retained as it is annotated at genus level as Homo and therefore does not belong to the Homo sapiens clade, nor is sequence *seqC1* annotated at family level as *Hominidae*. The last sequence *seqB2* has no taxonomic annotation and is therefore considered to be annotated at the root of the taxonomy and no part of the Homo sapiens species clade.
 
 ##### Excluding sequences belonging a clade
 
-The `-i`or `--ignore-taxon` in its long form, does the opposite selection of the `-r` option presented above. It retains only sequences not belonging the target clade taxid passed as its argument.
+The `-i` or `--ignore-taxon` in its long form, performs the reverse selection of the `-r` option presented above. It only retains sequences that do not belong to the taxid target clade passed as an argument.
 
 ```bash
 obigrep -t ncbitaxo.tgz -i taxon:9606 five_tags.fasta
@@ -261,11 +261,11 @@ cgatgctgcatgctagtgctagtcgatga
 tagctagctagctagctagctagctagcta
 ```
 
-Here only the sequence *seqA2*, *seqC1* and *seqB2* are retained because none of them belongs the *Homo sapiens* species.
+Here, only the sequence *seqA2*, *seqC1* and *seqB2* are retained as none of them belongs to the *Homo sapiens* species.
 
 ##### Keep only sequence with taxonomic information at a given rank
 
-A taxid, when associated with a taxonomy, not only provides information at its taxonomic rank, but also allows retrieval of information at any rank above it. For example, from a species taxid, it is expected that by querying the taxonomy it will be possible to retrieve the taxid of the corresponding genus or family. {{< obi obigrep >}} allows you to select sequences annotated by a taxid capable of providing information at a given taxonomic rank using the `--require-rank` option.
+A taxid, when associated with a taxonomy, not only provides information at its taxonomic rank, but also makes it possible to retrieve information at any higher rank. For example, from a species taxid, it is expected that by querying the taxonomy, it will be possible to retrieve the corresponding genus or family taxid. {{< obi obigrep >}} allows you to select sequences annotated by a taxid capable of providing information at a given taxonomic rank using the `--require-rank` option.
 
 To retrieve all ranks defined by a taxonomy, it is possible to use the {{< obi obitaxonomy >}} command with the `-l` option.
 
@@ -339,7 +339,7 @@ tagctagctagctagctagctagctagcta
 
 Only two sequences are selected by this command, because `seqA1` is annotated at the **species** level, and `seqB1` is annotated at the **subspecies** taxonomic rank, which allows for retrieving **species** level information. 
 
-`seqA2` and `seqC1` are discarded as they are annotated at genus and family level respectively, while `seqB2` is discarded as it is not taxonomically annotated and is therefore considered to be annotated at the root of the taxonomy.
+`seqA2` and `seqC1` are discarded as they are annotated at genus and family levels, respectively, while `seqB2` is discarded as it is not taxonomically annotated and is therefore considered to be annotated at the root of the taxonomy.
 
 
 ##### Keep only sequences annotated with valid taxids
