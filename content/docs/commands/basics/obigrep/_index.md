@@ -480,8 +480,27 @@ cgatggctccatgctagtgctagtcgatga
 
 ### Defining you own predicate
 
-You can define your own predicate to filter your data set. A predicate is an expression that, when evaluated, returns a logical value of `True` or `False`. The predicate is defined with the `--predicate` (`-p`) option using the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}). The predicate is evaluated on each sequence in the data set. Sequences that result in a `True` value are retained in the result, while those that result in a `False` value are discarded.
+You can define your own predicate to filter your data set. A predicate is an expression that, when evaluated, returns a logical value of `true` or `false`. The predicate is defined with the `--predicate` (`-p`) option using the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}). The predicate is evaluated on each sequence in the data set. Sequences that result in a `True` value are retained in the result, while those that result in a `False` value are discarded.
 
+As first example the following command that filters out all sequences that have an annotation "count" lesser than 2 and greater than 10 
+
+```bash
+obigrep -c 2 -C 10 five_tags.fasta
+```
+```
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+```
+
+can be substituted by:
+
+```bash
+obigrep -p 'sequence.Count() >= 2 && sequence.Count() <= 10' five_tags.fasta
+```
+```
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+```
 ## Working with paired sequence files
 
 {{% obitools4 %}} can handle paired sequence files. This means that it will process the paired sequences in the two different files together, and in particular for {{< obi obigrep >}} it will apply the same filtering to both sequence files. This ensures that in the result files, each sequence is still paired with its correct counterpart sequence.

@@ -141,11 +141,11 @@ The expression language allows to access to the methods of the **BioSequence** c
 6. **`HasSequence() bool`** - Returns `true` if the sequence is not empty.
 7. **`HasQualities() bool`** - Returns `true` if quality scores exist for this sequence. 
 8. **`Count() int`** - Returns the number of occurrences of the sequence in the data set. 
-9.  **`Taxid() string`** - Returns the taxonomy id associated with this sequence.
+9. **`Taxid() string`** - Returns the taxonomy id associated with this sequence.
     
 ### 🧩 List of Functions Added to the Gval Language
 
-6. **`len`**  
+1. **`len`**  
    Calculates the length of an object (e.g., string, sequence).
    The function accepts as input a sequence, a string, a vector or a map.
    On sequence and string, it returns the length of the input (number of
@@ -194,6 +194,32 @@ The expression language allows to access to the methods of the **BioSequence** c
    ```gval
    ismap(annotations.merged_sample)  // Returns `true` if the `merged_sample` 
                                        // `annotations` is a map
+   ```
+
+8. **`isvector`**
+   **Checks if a value is a vector (list or array).** Returns `true` if the object is a list,
+   and `false` otherwise.
+
+   **Example:**  
+
+   ```gval
+   isvector({"toto":3}) // returns false
+   isvector([1,2,3]) // returns true
+   ```
+
+8. **`elementof`**
+   Extracts an element from a **vector**, a **map** or a **string**. 
+   The function requires two arguments, The container element, and the index to be 
+   extracted. If the index is out of range, it returns an error. If the object is not a vector, map, 
+   or string, it returns an error. When the container object is a vector or a string the index is 
+   expected to be a positive or null integer and when it is a map the index should be a string key.  
+
+   **Example:** 
+
+   ```gval
+   elementof([1,2,3], 0) // returns 1
+   elementof({"a":1,"b":2}, "a")  // returns 1
+   elementof("abc", 0) // returns "a"
    ```
 
 9.  **`sprintf`**  
@@ -372,6 +398,20 @@ The expression language allows to access to the methods of the **BioSequence** c
    bool(0) // returns false   
    ```
 
+14. **`string`**  
+   
+   Converts a value to a string. Fails if conversion is not possible.
+
+   **Examples**  
+
+   ```gval
+   string([1,2,4]) // returns "[1,2,4]"
+   string("Toto") // returns "Toto
+   string(3) // returns "3"
+   string(10.14) // returns "10.14"   
+   ```
+
+
 14. **`ifelse`**  
     Conditional operator: returns `args[1]` if `args[0]` is true, otherwise `args[2]`.
 
@@ -430,6 +470,17 @@ The expression language allows to access to the methods of the **BioSequence** c
     composition("GATCG") // returns map[string]float64{"a":1, "c":1, "g":2, "t":1, "o":0} 
     ```
 
+17. **`qualities`**  
+
+    Returns the quality scores of a biological sequence as an array of float values representing the Phred quality scores for each base in the sequence. The function accepts a single argument of type **BioSequence**.
+
+    **Examples**  
+
+    ```gval
+    qualities(sequence)
+    ```
+
+
 18. **`replace`**  
     Replaces all occurrences of a regular expressions pattern in a string. The function accepts three arguments: the first one is the input string and the second one is the pattern to be replaced. The last argument is what will replace the found pattern in the string. It returns the modified string.
 
@@ -440,3 +491,12 @@ The expression language allows to access to the methods of the **BioSequence** c
     replace("GATCG", "[ACGT]+", "X") // returns "X" 
     ```
 
+19. **`substr`**
+    Extracts a substring from the input string. The function accepts three arguments. The first one is the input string, the second one is the start index and the third one is the length of the substring to be extracted. It returns the extracted substring. Position in the string is zero-based. 
+
+    **Examples**  
+
+    ```gval
+    substr("GATCG", 0, 3) // returns "GAT"
+    substr("GATCG", 1, 4) // returns "ATCG"
+    ```
