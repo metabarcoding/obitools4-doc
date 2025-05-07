@@ -169,9 +169,9 @@ obigrep -c 2 five_tags.fasta
 >seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
 gtagctagctagctagctagctagctaga
 >seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
-cgatgctgcatgctagtgctagtcgatga
+cgatgctccatgctagtgctagtcgatga
 >seqB2 {"count":25,"tata":"bar"}
-tagctagctagctagctagctagctagcta
+cgatggctccatgctagtgctagtcgatga
 ```
 
 Remove singleton sequences (sequences observed only once), here the sequences `seqA1` having a `count` tag equal to *1*, and `seqB1` having no `count` tag defined. 
@@ -256,9 +256,9 @@ obigrep -t ncbitaxo.tgz -i taxon:9606 five_tags.fasta
 >seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
 gtagctagctagctagctagctagctaga
 >seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
-cgatgctgcatgctagtgctagtcgatga
+cgatgctccatgctagtgctagtcgatga
 >seqB2 {"count":25,"tata":"bar"}
-tagctagctagctagctagctagctagcta
+cgatggctccatgctagtgctagtcgatga
 ```
 
 Here, only the sequence *seqA2*, *seqC1* and *seqB2* are retained as none of them belongs to the *Homo sapiens* species.
@@ -369,7 +369,99 @@ cgatgctgcatgctagtgctagtcgatga
 
 #### Selection based on the sequence length
 
+Two options `-l` (`--min-length`) and `-L` (`--max-length`) allow to select sequences based on their length. A sequence is selected if its length is greater or equal to the `--min-length` and less or equal to the `--max-length`. If only one of these options is used, only the specified limit is applied.
 
+In the [`five_tags.fasta`](five_tags.fasta), one sequence is 27 base pairs (bp) long, two are 29 bp and the two last 30 bp long.
+To select only sequences at least 29 bp long the following command can be run
+
+```bash
+obigrep -l 29 five_tags.fasta
+```
+```
+>seqB1 {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+tagctagctagctagctagctagctagcta
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgctccatgctagtgctagtcgatga
+>seqB2 {"count":25,"tata":"bar"}
+cgatggctccatgctagtgctagtcgatga
+```
+
+While select only sequences at most 29 bp long the following command can be run
+
+```bash
+obigrep -L 29 five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgctccatgctagtgctagtcgatga
+```
+
+It is nice to observe than in both cases, the two 29 bp long sequences have been selected.
+
+#### Selection based on the sequence
+
+Sequence records can be selected on the sequence itself. There are two pattern matching algorithms available, depending on the options used:
+* `--sequence` or `-s` : The pattern is a [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) used to match the sequence records. The pattern is not case-sensitive.
+* `--approx-pattern` : This option uses the same algorithm as {{< obi obipcr >}} and {{< obi obimultiplex >}} to locate primers. The description of the pattern follows the [same grammar]({{% ref "docs/patterns/dnagrep/_index.html" %}}).
+  
+While [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) allows for more complex expression in describing the look-up sequence, the [DNA Patterns]({{% ref "docs/patterns/dnagrep/_index.html" %}}) offers the advantage of offering discrepancy between the pattern and the actual sequence (mismatches and indels). To set the number and the type of allowed errors use the `--pattern-error` and the `--allows-indels` options. 
+
+In the next example, sequences containing the pattern `tgc` present twice at list in the sequence eventually separated by any number of bases (`.*`) are searched. This can be expressed as the [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) : `tgc.*tgc`
+
+```bash
+obigrep -s 'tgc.*tgc' five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgctccatgctagtgctagtcgatga
+>seqB2 {"count":25,"tata":"bar"}
+cgatggctccatgctagtgctagtcgatga
+```
+
+If we 
+```bash
+obigrep --approx-pattern gatgctgcat \
+        five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+```
+
+```bash
+obigrep --approx-pattern gatgctgcat \
+        --pattern-error 2 \
+        five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgctccatgctagtgctagtcgatga
+```
+
+```bash
+obigrep --approx-pattern gatgctgcat \
+        --pattern-error 2 \
+        --allows-indels \
+        five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgctccatgctagtgctagtcgatga
+>seqB2 {"count":25,"tata":"bar"}
+cgatggctccatgctagtgctagtcgatga
+```
 
 ## Synopsis
 
