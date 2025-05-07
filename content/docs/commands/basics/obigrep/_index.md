@@ -243,7 +243,7 @@ cgatgctgcatgctagtgctagtcgat
 tagctagctagctagctagctagctagcta
 ```
 
-Only sequences *seqA1* and *seqB1* annotated as belonging to the target clade *Homo sapiens* or one of its subspecies *Homo sapiens neanderthalensis* are retained. Sequence *seqA2* is not retained as it is annotated at genus level as Homo and therefore does not belong to the Homo sapiens clade, nor is sequence *seqC1* annotated at family level as *Hominidae*. The last sequence *seqB2* has no taxonomic annotation and is therefore considered to be annotated at the root of the taxonomy and no part of the Homo sapiens species clade.
+Only sequences *seqA1* and *seqB1* annotated as belonging to the target clade *Homo sapiens* or one of its subspecies *Homo sapiens neanderthalensis* are retained. Sequence *seqA2* is not retained as it is annotated at genus level as *Homo* and therefore does not belong to the *Homo sapiens* clade, nor is sequence *seqC1* annotated at family level as *Hominidae*. The last sequence *seqB2* has no taxonomic annotation and is therefore considered to be annotated at the root of the taxonomy and no part of the *Homo sapiens* species clade.
 
 ##### Excluding sequences belonging a clade
 
@@ -486,7 +486,6 @@ You can define your own predicate to filter your data set. A predicate is an exp
 {{% obitools4 %}} can handle paired sequence files. This means that it will process the paired sequences in the two different files together, and in particular for {{< obi obigrep >}} it will apply the same filtering to both sequence files. This ensures that in the result files, each sequence is still paired with its correct counterpart sequence.
 
 The most important option for manipulating paired sequence files is the `--paired with` option. This option allows you to specify the name of a file containing the sequences to be paired with those in the main sequence file.
-
 
 
 ## Synopsis
