@@ -1,7 +1,7 @@
 ---
 title: "Analysing an Illumina data set"
 weight: 1
-bibFile: bibliography/bibliography.json
+bibFile: bibliography/bibliography.json 
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
@@ -26,10 +26,10 @@ It presents the following analysis steps:
 ## The dataset to analyze and the reference database
 
 The dataset used in this tutorial corresponds to data obtained from the analysis of four wolf scats
-using the protocol published in @Shehzad2012-pn for carnivore diet assessment.
-After extraction of DNA from feces, DNA amplification was performed using the
-primers `TTAGATACCCCACTATGC` and `TAGAACAGGCTCCTCTAG` amplifying the *12S-V5*
-region [@Riaz2011-gn], together with a wolf blocking oligonucleotide.
+using the protocol published in {{< cite Shehzad2012-pn >}} for carnivore diet assessment.
+After extraction of DNA from feces, DNA amplification was performed using the Vert01
+primers (`TTAGATACCCCACTATGC` and `TAGAACAGGCTCCTCTAG` amplifying the *12S-V5*
+region {{< cite Riaz2011-gn >}}), together with a wolf blocking oligonucleotide.
 
 An archive containing all the files needed for the analysis can be downloaded by clicking here: [wolf_diet_dataset](wolf_diet_dataset.tgz) 
 
@@ -61,7 +61,7 @@ mkdir results
 When using the result of a paired-end sequencing with supposedly overlapping forward and reverse reads,
 the first step is to assemble them in order to recover the corresponding full length sequence.
 
-The forward and reverse reads of the same fragment are located at the same line position in both fastqs files. These two files are used as inputs by the {{% obi obipairing %}} program to assembly of the forward and reverse reads. This program then returns the reconstructed sequence as output:
+The forward and reverse reads of the same fragment are located at the same line position in both fastq files. These two files are used as inputs by the {{% obi obipairing %}} program to assemble the forward and reverse reads. This program then returns the reconstructed sequence as output:
 
 ```bash
 obipairing --min-identity=0.8 \
@@ -71,12 +71,12 @@ obipairing --min-identity=0.8 \
            > results/wolf.fastq 
 ```
 
-The `--min-identity` and `--min-overlap` options allow to discard sequences with low alignment quality. In the example command above, a low alignment quality corresponds to paired-end reads overlapping over less than 10 base pairs, or to paired-end reads exhibiting an alignment of less than 80% of identity. Paired-end reads producing such low quality alignments are returned concatenated with an attribute `"mode":"join"`. Those that do not fulfill the above criteria are assembled and the result is returned with the attribute `"mode":"alignment"`. For more information, please refer to the program {{% obi obipairing %}}.
+The `--min-identity` and `--min-overlap` options allow to discard sequences with low alignment quality. In the example command above, a low alignment quality corresponds to paired-end reads overlapping over less than 10 base pairs, or to paired-end reads exhibiting an alignment of less than 80% of identity. Paired-end reads producing such low quality alignments are returned concatenated with an attribute `"mode":"join"`. Those that do not fulfill the above criteria are assembled and the result is returned with the attribute `"mode":"alignment"`. For more information, please refer to the command {{% obi obipairing %}}.
 
-The output of the above procedure can be rapidly checked by looking at the first sequence record of `wolf_assembled.fastq`. This can be done with the {{% obi obihead %}} command:
+The output of the above procedure can be rapidly checked by looking at the first sequence record of `wolf_assembled.fastq`. This can be done with the unix command:
 
 ```bash
-obihead -n 1 results/wolf_assembled.fastq
+head -n 4 results/wolf.fastq
 ```
 ```
 @HELIUM_000100422_612GNAAXX:7:108:5640:3823#0/1 {"ali_dir":"left","ali_length":62,"mode":"alignment","pairing_fast_count":53,"pairing_fast_overlap":62,"pairing_fast_score":0.898,"pairing_mismatches":{"(T:26)->(G:13)":62,"(T:34)->(G:18)":48},"score":1826,"score_norm":0.968,"seq_a_single":46,"seq_ab_match":60,"seq_b_single":46}
@@ -85,26 +85,20 @@ ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattgttcgccagagtactac
 CCCCCCCBCCCCCCCCCCCCCCCCCCCCCCBCCCCCBCCCCCCC<CcDccbe[`F`accXV=TA\RYU\\ee_e[XZ[XEEEEEEEEEE?EEEEEEEEEEDEEEEEEECCCCCCCCCCCCCCCCCCCCCCCACCCCCACCCCCCCCCCCCCCCC
 ```
 
-The same result can be obtained with basic unix commmands:
 
-```bash
-head -n 4 results/wolf_assembled.fastq
-```
-The `-n` option here is equal to 4 because in the [fastq format](https://obitools4.metabarcoding.org/docs/formats/fastq/), the characteristics of one sequence is stored one four lines.  
-
-In both case, one can see here that the sequence displayed has been aligned successfully.
+The `-n 4` option of the head command indicates to print only the first four lines of the file, i.e. to print only the first sequence record (each sequence record in the [fastq format](https://obitools4.metabarcoding.org/docs/formats/fastq/) is stored on four lines).  
 
 
 ## Exclude unpaired reads
 
-Sequences corresponding to unpaired reads exhibit an attribute `"mode":"join"` and cannot be reliably used in downstream analyses. One can remove them from the dataset with the program the program {{% obi obigrep %}} as follows:
+Sequences corresponding to unpaired reads exhibit an attribute `"mode":"join"` and cannot be reliably used in downstream analyses. They can be removed from the dataset using the {{% obi obigrep %}} command, as follows:
 
 ```bash
 obigrep -p 'annotations.mode != "join"' \
         results/wolf.fastq > results/wolf_assembled.fastq
 ```
 
-The `-p` requires a go-like expression, here `annotations.mode != "join"`, which means that
+The `-p` requires a [{{% obitool4 %}} expression]({{< ref "" >}}), here `annotations.mode != "join"`, which means that
 if the value of the `mode` annotation of a sequence is different from `join`,
 then the corresponding sequence record should be kept in the output.
 
@@ -671,3 +665,6 @@ csvlook results/wolf_final_motus.csv
 | seq0008 |    366 |        1,000… | AB048590         |                  1 | genus       | lcs                      |          8 | taxon:9611 [Canis]@genus                       | ttagccctaaacatagataattttacaacaaaataattcgccagaggactactagcaatagcttaaaactcaaaggacttggcggtgctttatatccct  |
 ```
 
+## References
+
+{{< bibliography cited >}}
