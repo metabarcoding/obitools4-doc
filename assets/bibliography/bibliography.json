@@ -132,6 +132,67 @@
     "volume": "38"
   },
   {
+    "DOI": "10.1111/j.1365-294X.2011.05424.x",
+    "ISSN": "0962-1083,1365-294X",
+    "PMID": "22250784",
+    "URL": "https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1365-294X.2011.05424.x?casa_token=sMgIV8aPj3sAAAAA:DK3RQkyJ4_h6gaKZqy812f5RAKccv5xGR84HPrjDslk5lTz2_1cfU4P9w3fJ2zgr6VfLtdutKRicUQo",
+    "abstract": "Diet analysis is a prerequisite to fully understand the biology of a species and the functioning of ecosystems. For carnivores, traditional diet analyses mostly rely upon the morphological identification of undigested remains in the faeces. Here, we developed a methodology for carnivore diet analyses based on the next-generation sequencing. We applied this approach to the analysis of the vertebrate component of leopard cat diet in two ecologically distinct regions in northern Pakistan. Despite being a relatively common species with a wide distribution in Asia, little is known about this elusive predator. We analysed a total of 38 leopard cat faeces. After a classical DNA extraction, the DNA extracts were amplified using primers for vertebrates targeting about 100 bp of the mitochondrial 12S rRNA gene, with and without a blocking oligonucleotide specific to the predator sequence. The amplification products were then sequenced on a next-generation sequencer. We identified a total of 18 prey taxa, including eight mammals, eight birds, one amphibian and one fish. In general, our results confirmed that the leopard cat has a very eclectic diet and feeds mainly on rodents and particularly on the Muridae family. The DNA-based approach we propose here represents a valuable complement to current conventional methods. It can be applied to other carnivore species with only a slight adjustment relating to the design of the blocking oligonucleotide. It is robust and simple to implement and allows the possibility of very large-scale analyses.",
+    "author": [
+      {
+        "family": "Shehzad",
+        "given": "Wasim"
+      },
+      {
+        "family": "Riaz",
+        "given": "Tiayyba"
+      },
+      {
+        "family": "Nawaz",
+        "given": "Muhammad A"
+      },
+      {
+        "family": "Miquel",
+        "given": "Christian"
+      },
+      {
+        "family": "Poillot",
+        "given": "Carole"
+      },
+      {
+        "family": "Shah",
+        "given": "Safdar A"
+      },
+      {
+        "family": "Pompanon",
+        "given": "François"
+      },
+      {
+        "family": "Coissac",
+        "given": "Eric"
+      },
+      {
+        "family": "Taberlet",
+        "given": "Pierre"
+      }
+    ],
+    "container-title": "Molecular ecology",
+    "id": "Shehzad2012-pn",
+    "issue": "8",
+    "issued": {
+      "date-parts": [
+        [
+          2012,
+          4
+        ]
+      ]
+    },
+    "page": "1951-1965",
+    "publisher": "Wiley",
+    "title": "Carnivore diet analysis based on next-generation sequencing: application to the leopard cat (Prionailurus bengalensis) in Pakistan: LEOPARD CAT DIET",
+    "type": "article-journal",
+    "volume": "21"
+  },
+  {
     "DOI": "10.1093/nar/gkr732",
     "ISSN": "0305-1048,1362-4962",
     "PMID": "21930509",
