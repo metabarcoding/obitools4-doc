@@ -9,9 +9,112 @@ weight: 10
 # bookSearchExclude: false
 ---
 
-## The OBITools Expression Language
+## OBITools Expression Language
 
-The OBITools Expression Language is based on the [Gval Language](https://github.com/PaesslerAG/gval). It extends [Gval](https://github.com/PaesslerAG/gval) with additional functions useful for bioinformatics tasks and some predefined variables. The language is designed to compute simple expressions that are used as arguments for options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannotate >}}). So it is a very simple language. For more complex scripting you can use [Lua]({{< ref "/docs/programming/lua" >}}) via the {{< obi obiscript >}} command.
+The OBITools expression language is based on [Gval](https://github.com/PaesslerAG/gval) and extends it with extra functions useful for bioinformatics tasks, as well as predefined variables. It is designed to evaluate simple expressions used as arguments in some OBITools commands (e.g., {{< obi obigrep >}}, {{< obi obiannotate >}}). For more complex scripting, you can use [Lua](/docs/programming/lua) through the {{< obi obiscript >}} command.
+
+### Basic Expressions
+
+Expressions can be literal values, arithmetic or logical operations, or string manipulations.
+
+**Examples:**
+
+- Literal values:
+    ```gval
+    42          // Number
+    "hello"     // String
+    true        // Boolean
+    null        // Null value
+    ```
+
+- Arithmetic operations:
+    ```gval
+    10 + 20 * 2   // 50
+    ```
+
+- Logical operations:
+    ```gval
+    x > 0 && y < 100  // Combined conditions
+    ```
+
+### Parameterized Expressions
+
+Variables can be used in expression to parameterize them. They can be accessed directly or nested inside the expression, depending on their structure and how they are passed to the OBITools commands.
+
+**Examples:**
+
+- Direct access to parameters:
+    ```gval
+    foo > 0          // Checks if `foo` is greater than 0
+    foo.bar == "ok"  // Access to nested key `bar` in `foo`
+    ```
+
+- Nested parameters:
+    ```gval
+    sequence.Qualities()[0]              // Access first element of array `data`
+    annotations["count"]    // Access key `timeout` count map `annotations`
+    ```
+
+### Selectors: Brackets vs Dot
+
+OBITools expression language supports two ways to access nested data:
+
+- Bracket selector (`[]`): for dynamic or complex keys.
+    ```gval
+    foo["key" + "name"]  // Dynamic key concatenation
+    data[1]              // Access second item in an array
+    ```
+
+- Dot selector (`.`): for fixed and alphanumeric keys.
+    ```gval
+    foo.bar.baz  // Access `baz` field in `bar` field of `foo`
+    ```
+
+### Struct Fields and Methods
+
+If the parameters are Go structs, fields and methods can be accessed directly.
+
+**Examples:**
+
+- Access struct fields:
+    ```gval
+    annotations.seq_length + sequence.Count()  // Combine field and method
+    ```
+
+- Nested structures:
+    ```gval
+    annotations.merged_sample.sample_1  // Access nested struct fields
+    ```
+
+### Built-in Features
+
+The expression language includes a rich set of operators and data types:
+
+| Category   | Examples                          |
+|------------|-----------------------------------|
+| Operators  | +, -, *, /, >, ==, &&, \|\|       |
+| Constants  | 42, "hello", true, null           |
+| Functions  | date(), strlen(), format()        |
+| Control    | if-else, ternary ? :, null coalescence ?? |
+
+**Example:**
+
+With the ternary operator conditional expression, you can conditionally assign a value to a variable. If `value` is greater than 100, it will be "high", otherwise "low".
+```gval
+result = (value > 100 ? "high" : "low") ?? "default"
+```
+
+The null coalescence operator (`??`) returns the left-hand side if it's not `null`, otherwise it will return the right-hand side. So in this case, if `value` is `null`, it will be replaced with "default". 
+
+```gval
+value ?? "default"
+```
+
+You can chain several `??` operations together:
+
+```gval
+a ?? b ?? c ?? "fallback"
+```
 
 ### 🧩 List of variables Added to the Gval Language
 
@@ -27,7 +130,8 @@ The expressions are evaluated in the context of a sequence. When evaluating an e
 
 The expression language allows to access to the methods of the **BioSequence** class for the `sequence` variable. For example, you can use `sequence.Len()` returns the length of the sequence and `sequence.Id()` returns its identifier. The same for the **Annotations** class for the `annotations` variable.
 
-The useful methods for the **BioSequence** class are:
+#### 🧩 The useful methods for the **BioSequence** class are:
+
 1. **`Len() int`** - Returns the length of the sequence.
 3. **`String() string`** - Returns the sequence itself as a string.
 2. **`Id() string`** - Returns the identifier of the sequence.
@@ -36,9 +140,10 @@ The useful methods for the **BioSequence** class are:
 5. **`HasDefinition() bool`** - Returns `true` if a definition exists for this sequence.
 6. **`HasSequence() bool`** - Returns `true` if the sequence is not empty.
 7. **`HasQualities() bool`** - Returns `true` if quality scores exist for this sequence. 
-8. **`Qualities() []byte`** - Returns the quality scores as a byte array (only for FASTQ sequences).
+8. **`Count() int`** - Returns the number of occurrences of the sequence in the data set. 
+9.  **`Taxid() string`** - Returns the taxonomy id associated with this sequence.
     
-## 🧩 List of Functions Added to the Gval Language
+### 🧩 List of Functions Added to the Gval Language
 
 6. **`len`**  
    Calculates the length of an object (e.g., string, sequence).
