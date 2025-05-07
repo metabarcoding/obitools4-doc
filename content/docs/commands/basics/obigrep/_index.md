@@ -339,7 +339,7 @@ tagctagctagctagctagctagctagcta
 
 Only two sequences are selected by this command, because `seqA1` is annotated at the **species** level, and `seqB1` is annotated at the **subspecies** taxonomic rank, which allows for retrieving **species** level information. 
 
-`seqA2` and `seqC1` are discarded as they are annotated at genus and family levels, respectively, while `seqB2` is discarded as it is not taxonomically annotated and is therefore considered to be annotated at the root of the taxonomy.
+`seqA2` and `seqC1` are discarded as they are annotated at genus and family levels, respectively. `seqB2` is discarded as it is not taxonomically annotated and is therefore considered to be annotated at the root of the taxonomy.
 
 
 ##### Keep only sequences annotated with valid taxids
@@ -372,7 +372,8 @@ cgatgctgcatgctagtgctagtcgatga
 Two options `-l` (`--min-length`) and `-L` (`--max-length`) allow to select sequences based on their length. A sequence is selected if its length is greater or equal to the `--min-length` and less or equal to the `--max-length`. If only one of these options is used, only the specified limit is applied.
 
 In the [`five_tags.fasta`](five_tags.fasta), one sequence is 27 base pairs (bp) long, two are 29 bp and the two last 30 bp long.
-To select only sequences at least 29 bp long the following command can be run
+
+To select only sequences with a minimum length of 29 bp, the following command can be executed
 
 ```bash
 obigrep -l 29 five_tags.fasta
@@ -388,7 +389,7 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-While select only sequences at most 29 bp long the following command can be run
+To select only sequences with a maximum length of 29 bp, the following command can be executed
 
 ```bash
 obigrep -L 29 five_tags.fasta
@@ -402,7 +403,7 @@ gtagctagctagctagctagctagctaga
 cgatgctccatgctagtgctagtcgatga
 ```
 
-It is nice to observe than in both cases, the two 29 bp long sequences have been selected.
+Interestingly, in both cases, both 29-bp sequences were selected.
 
 #### Selection based on the sequence
 
@@ -410,9 +411,9 @@ Sequence records can be selected on the sequence itself. There are two pattern m
 * `--sequence` or `-s` : The pattern is a [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) used to match the sequence records. The pattern is not case-sensitive.
 * `--approx-pattern` : This option uses the same algorithm as {{< obi obipcr >}} and {{< obi obimultiplex >}} to locate primers. The description of the pattern follows the [same grammar]({{% ref "docs/patterns/dnagrep/_index.html" %}}).
   
-While [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) allows for more complex expression in describing the look-up sequence, the [DNA Patterns]({{% ref "docs/patterns/dnagrep/_index.html" %}}) offers the advantage of offering discrepancy between the pattern and the actual sequence (mismatches and indels). To set the number and the type of allowed errors use the `--pattern-error` and the `--allows-indels` options. 
+While [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) allows for more complex expression in describing the look-up sequence, the [DNA Patterns]({{% ref "docs/patterns/dnagrep/_index.html" %}}) have the advantage of offering discrepancy between the pattern and the actual sequence (mismatches and indels). To set the number and the type of allowed errors use the `--pattern-error` and the `--allows-indels` options. 
 
-In the next example, sequences containing the pattern `tgc` present twice at list in the sequence eventually separated by any number of bases (`.*`) are searched. This can be expressed as the [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) : `tgc.*tgc`
+In the next example, sequences containing the pattern `tgc` present twice at least in the sequence eventually separated by any number of bases (`.*`) are searched. This can be expressed as the [regular pattern]({{% ref "docs/patterns/regular/_index.html" %}}) : `tgc.*tgc`
 
 ```bash
 obigrep -s 'tgc.*tgc' five_tags.fasta
@@ -426,7 +427,7 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-If we are interested in sequence matching the pattern `gatgctgcat`, but want to allow a certain number of errors, we can use the `--approx-pattern` option. Despite its name, this option doesn't allow any errors by default, so for simple patterns like the one we have here, both the `--approx-pattern` and the `-s` options are equivalent.
+If we are interested in sequence matching this pattern `gatgctgcat`, but want to allow a certain number of errors, we can use the `--approx-pattern` option. Despite its name, this option does not allow any errors by default, so for simple patterns like the one we have here, both the `--approx-pattern` and the `-s` options are equivalent.
 
 ```bash
 obigrep --approx-pattern gatgctgcat \
