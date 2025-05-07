@@ -1,6 +1,7 @@
 ---
 title: "Analysing an Illumina data set"
 weight: 1
+bibFile: bibliography/bibliography.json
 # bookFlatSection: false
 # bookToc: true
 # bookHidden: false
