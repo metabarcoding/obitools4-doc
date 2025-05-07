@@ -59,3 +59,4 @@ raw-taxid
 update-taxid
 sequencings
 FASTA
+indels

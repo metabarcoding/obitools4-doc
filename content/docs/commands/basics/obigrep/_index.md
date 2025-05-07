@@ -426,7 +426,8 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-If we 
+If we are interested in sequence matching the pattern `gatgctgcat`, but want to allow a certain number of errors, we can use the `--approx-pattern` option. Despite its name, this option doesn't allow any errors by default, so for simple patterns like the one we have here, both the `--approx-pattern` and the `-s` options are equivalent.
+
 ```bash
 obigrep --approx-pattern gatgctgcat \
         five_tags.fasta
@@ -435,6 +436,17 @@ obigrep --approx-pattern gatgctgcat \
 >seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
 cgatgctgcatgctagtgctagtcgat
 ```
+
+```bash
+obigrep -s gatgctgcat \
+        five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+```
+
+However, `--approx-pattern` can be parameterized using the `--pattern-error` option. The following example allows two errors (differences) between the pattern and the matched sequence. Without a further option, these errors can only be substitutions. Thus, the value defined by `--pattern-error` is the maximum [Hamming distance](https://en.wikipedia.org/wiki/Hamming_distance) between the pattern and the matched sequence.
 
 ```bash
 obigrep --approx-pattern gatgctgcat \
@@ -447,6 +459,8 @@ cgatgctgcatgctagtgctagtcgat
 >seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
 cgatgctccatgctagtgctagtcgatga
 ```
+
+By adding the `--allows-indels` option, obigrep will allow indels in the pattern. This means that it can match sequences where the differences between the pattern and the matched sequence are insertions or deletions. Insertion or deletion of a symbol is considered one error. Therefore, with `--pattern-error 2` and `--allows-indels` you can allow two mismatches, two insertions or deletions, or one mismatch and one indel. In this case, the `--pattern-error' defines the maximum [Levenshtein distance](https://en.wikipedia.org/wiki/Levenshtein_distance) allowed between the pattern and the matched sequence.
 
 ```bash
 obigrep --approx-pattern gatgctgcat \
@@ -462,6 +476,18 @@ cgatgctccatgctagtgctagtcgatga
 >seqB2 {"count":25,"tata":"bar"}
 cgatggctccatgctagtgctagtcgatga
 ```
+
+### Defining you own predicate
+
+You can define your own predicate to filter your data set. A predicate is an expression that, when evaluated, returns a logical value of `True` or `False`. The predicate is defined with the `--predicate` (`-p`) option using the {{% obitools4 %}} expression language. The predicate is evaluated on each sequence in the data set. Sequences that result in a `True` value are retained in the result, while those that result in a `False` value are discarded.
+
+## Working with paired sequence files
+
+{{% obitools4 %}} can handle paired sequence files. This means that it will process the paired sequences in the two different files together, and in particular for {{< obi obigrep >}} it will apply the same filtering to both sequence files. This ensures that in the result files, each sequence is still paired with its correct counterpart sequence.
+
+The most important option for manipulating paired sequence files is the `--paired with` option. This option allows you to specify the name of a file containing the sequences to be paired with those in the main sequence file.
+
+
 
 ## Synopsis
 
