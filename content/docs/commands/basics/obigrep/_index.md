@@ -480,7 +480,7 @@ cgatggctccatgctagtgctagtcgatga
 
 ### Defining you own predicate
 
-You can define your own predicate to filter your data set. A predicate is an expression that, when evaluated, returns a logical value of `True` or `False`. The predicate is defined with the `--predicate` (`-p`) option using the {{% obitools4 %}} expression language. The predicate is evaluated on each sequence in the data set. Sequences that result in a `True` value are retained in the result, while those that result in a `False` value are discarded.
+You can define your own predicate to filter your data set. A predicate is an expression that, when evaluated, returns a logical value of `True` or `False`. The predicate is defined with the `--predicate` (`-p`) option using the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}). The predicate is evaluated on each sequence in the data set. Sequences that result in a `True` value are retained in the result, while those that result in a `False` value are discarded.
 
 ## Working with paired sequence files
 
