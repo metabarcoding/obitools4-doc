@@ -6,7 +6,7 @@ params:
 ---
 # Exact alignment of paired reads
 
-The {{< obi obipairing >}} command uses an exact alignment algorithm based on dynamic programming to finalize the alignment between forward and reverse reads. It corresponds to a semi-global alignment (end-gap free) algorithm but asymmetric, in the sense that the penalization of the gap is not done in the same way at both extremities of the read (see below a dedicated [section](./#left-right)). 
+The {{< obi obipairing >}} command uses an exact alignment algorithm based on dynamic programming to finalize the alignment between forward and reverse reads (the reverse read being reverse-complemented before being aligned). It corresponds to a semi-global alignment (end-gap free) algorithm but asymmetric, in the sense that the penalization of the gap is not done in the same way at both extremities of the read (see below a dedicated [section](./#left-right)). 
 
 ## Scoring system
 
@@ -16,7 +16,7 @@ The alignment algorithm used by {{< obi obipairing >}} relies on the following s
 - **Mismatch**: A negative score ({{< katex >}} score < 0 {{< /katex >}}) is assigned when two nucleotides at the same position in the alignment are different. Thus, the accumulation of mismatches during the alignment process will decrease the alignment score.
 - **Gap**: A negative score ({{< katex >}} score < 0 {{< /katex >}}) is assigne for nucleotide insertion or deletion in one of the two reads. Thus, the accumulation of insertions or deletions during the alignment process will decrease the alignment score.
 
-The scores numerical values are then based on the sequencing quality scores {{< katex >}}Q_F{{< /katex >}} and {{< katex >}}Q_R{{< /katex >}} of the nucleotides from the forward and reverse reads, respectively. The quality score {{< katex >}}Q{{< /katex >}} represents the likelihood of a base-calling error, i.e. that the sequencer assigned (or "called") the incorrect base to (for) a given chromatogram peak, or more exactly, the probability {{< katex >}}P(X\, \text{is unknown}) {{< /katex >}} that the base called, *X*, is actually unknown:
+The scores numerical values are then based on the sequencing quality scores {{< katex >}}Q_F{{< /katex >}} and {{< katex >}}Q_R{{< /katex >}} of the nucleotides from the forward and reverse reads, respectively. The quality score {{< katex >}}Q{{< /katex >}} represents the likelihood of a base-calling error, i.e. that the sequencer assigned (or "called") the incorrect base to (for) a given nucleotide, or more exactly, the probability {{< katex >}}P(X\, \text{is unknown}) {{< /katex >}} that the base called, *X*, is actually unknown:
 
 {{< katex display=true >}}
 P(X\, \text{is unknown}) = 10^{-\frac{Q}{10}}
@@ -250,7 +250,7 @@ Gap\,Penalty = Score(40,40 | Observed(mismatch)) \times GapWeigth
   {{< /fig-svg >}}
 
 
-For both scenarios, an exact alignment algorithm based on dynamic programming will consider the red regions as gaps. However, when paring paired-end reads, these gaps should not penalize the alignment score. The alternative to find the paired-end reads overlap is to use a semi-global (i.e. end-gap free) alignment, but asymmetric, since depending on the above scenario, gap penality should be applied only on one of the two ends of the reads. In the first case scenario, gap penality should not apply at the reads *5'* ends but apply at the reads *3'* ends. In the second case scenario, gap penalties should apply in the opposite direction. And in both cases, gaps insertion within the overlapping region (green part) should be penalized.
+For both scenarios, an exact alignment algorithm based on dynamic programming will consider the red regions as gaps. However, when matching paired-end reads, these gaps should not penalize the alignment score. The alternative to find the paired-end reads overlap is to use a semi-global (i.e. end-gap free) alignment, but asymmetric, since depending on the above scenario, gap penality should be applied only on one of the two ends of the reads. In the first case scenario, gap penality should not apply at the reads *5'* ends but apply at the reads *3'* ends. In the second case scenario, gap penalties should apply in the opposite direction. And in both cases, gaps insertion within the overlapping region (green part) should be penalized.
 
 ### Left Alignment
 
@@ -268,6 +268,6 @@ The default behavior of {{< obi obipairing >}} is to choose between the left or 
 
 The default behavior of {{< obi obipairing >}} is to rely on the [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) to decide which part of the reads to align. The [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) estimate heuristically the best shift to apply, and therefore, the position of the overlapping region. The exact alignment algorithm is then applied to that overlapping region augmented of {{< katex >}}\Delta{{< /katex >}} nucleotides on each side. By default, the value of {{< katex >}}\Delta{{< /katex >}} is set to 5. The user can change this value by setting the `--delta` option. Doing this extension of the overlapping region allows the exact alignment algorithm to be less sensitive to the approximation done by the [FASTA-derived algorithm]({{% relref "/docs/commands/alignments/obipairing/fasta-like" %}}) when determining the overlapping region. 
 
-In the exact mode (option `--exact-mode`), the exact alignment algorithm is applied to the full pair of reads, which increases the computation time.
+In the exact mode (option `--exact-mode`), the exact alignment algorithm is applied to the full pair of reads, increasing calculation time.
 
 
