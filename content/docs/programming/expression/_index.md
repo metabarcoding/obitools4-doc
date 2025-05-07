@@ -11,10 +11,11 @@ weight: 10
 
 ## The OBITools Expression Language
 
-The OBITools Expression Language is based on [Gval language](https://github.com/PaesslerAG/gval). It extends [Gval language](https://github.com/PaesslerAG/gval) with additional functions that are useful for bioinformatics tasks and predefined few variables. The language is designed to be used to compute simple expression usable as arguments for 
-options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannotage >}}). Therefore it is a very simple language. For more complex expressions you might want to use the [Lua]({{< ref "/docs/programming/lua" >}}) through {{< obi obiscript >}}.
+The OBITools Expression Language is based on the [Gval Language](https://github.com/PaesslerAG/gval). It extends [Gval](https://github.com/PaesslerAG/gval) with additional functions useful for bioinformatics tasks and some predefined variables. The language is designed to compute simple expressions that are used as arguments for options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannotate >}}). So it is a very simple language. For more complex scripting you can use [Lua]({{< ref "/docs/programming/lua" >}}) via the {{< obi obiscript >}} command.
 
 ### 🧩 List of variables Added to the Gval Language
+
+The expressions are evaluated in the context of a sequence. When evaluating an expression, these variables are available
 
 1. **`sequence`** - a variable representing current sequence being processed by
    the OBITools command. It is an object of type **BioSequence**.
@@ -24,10 +25,22 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
    name that you can observe in the header of a sequence in a {{% fasta %}} or
    {{% fastq %}} file 
 
+The expression language allows to access to the methods of the **BioSequence** class for the `sequence` variable. For example, you can use `sequence.Len()` returns the length of the sequence and `sequence.Id()` returns its identifier. The same for the **Annotations** class for the `annotations` variable.
 
-### 🧩 List of Functions Added to the Gval Language
+The useful methods for the **BioSequence** class are:
+1. **`Len() int`** - Returns the length of the sequence.
+3. **`String() string`** - Returns the sequence itself as a string.
+2. **`Id() string`** - Returns the identifier of the sequence.
+3. **`Definition() string`**  - Returns the definition part of the header line of the sequence 
+4. **`HasAnnotation() bool`** - Returns `true` if at least one annotation exists for this sequence.
+5. **`HasDefinition() bool`** - Returns `true` if a definition exists for this sequence.
+6. **`HasSequence() bool`** - Returns `true` if the sequence is not empty.
+7. **`HasQualities() bool`** - Returns `true` if quality scores exist for this sequence. 
+8. **`Qualities() []byte`** - Returns the quality scores as a byte array (only for FASTQ sequences).
+    
+## 🧩 List of Functions Added to the Gval Language
 
-1. **`len`**  
+6. **`len`**  
    Calculates the length of an object (e.g., string, sequence).
    The function accepts as input a sequence, a string, a vector or a map.
    On sequence and string, it returns the length of the input (number of
@@ -42,7 +55,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
    len(sequence)  // Returns the length of the biological sequence
    ```
 
-2. **`contains`**  
+7. **`contains`**  
    Checks if a key exists in a map or a substring exists in a string. 
    This function applied on map objects. OBITools maps are indexed by string
    keys. The `contains` required a map object as first parameter and a string
@@ -59,7 +72,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
    contains(annotations,"count")  // // Checks if "gene" is a key in the annotations map
    ```
 
-3. **`ismap`**  
+8. **`ismap`**  
    Checks if an object is a map (key-value structure). That function is a type assertion 
    function it allows for checking that the object provided as parameter is a map. It returns the logical value `true` if the object is a map, otherwise it returns `false`.
 
@@ -78,7 +91,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
                                        // `annotations` is a map
    ```
 
-4. **`sprintf`**  
+9.  **`sprintf`**  
    **Formats a string by replacing placeholders with values**, enabling dynamic
    text generation. It is commonly used to construct messages, file paths, or
    structured data by inserting variables into predefined templates.  
@@ -206,7 +219,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
       sprintf("Percentage: %d%%", 50)  // "Percentage: 50%"
       ```
 
-5. **`subspc`**  
+10. **`subspc`**  
    
    The function accept a string parameter and replaces spaces in a string with underscores (`_`).
    It returns the new substituted string.
@@ -217,7 +230,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
    subspc("Abies alba")  // returns "Abies_alba"
    ```
 
-6. **`int`**  
+11. **`int`**  
    Converts a value to an integer (`int`). Fails if conversion is not possible.
    
    **Examples**  
@@ -227,7 +240,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
    int(3.24) # Returns the integer value 3
    ```
 
-7. **`numeric`**  
+12. **`numeric`**  
    
    Converts a value to a floating-point number (`float64`). Fails if conversion is not possible.
 
@@ -238,7 +251,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
    numeric(3) # Returns the float value 3.0
    ```
 
-8. **`bool`**  
+13. **`bool`**  
    
    Converts a value to a boolean (`bool`). Fails if conversion is not possible.
    Every non-null numeric value is considered as `true`. For `string`, once
@@ -254,7 +267,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
    bool(0) // returns false   
    ```
 
-9.  **`ifelse`**  
+14. **`ifelse`**  
     Conditional operator: returns `args[1]` if `args[0]` is true, otherwise `args[2]`.
 
     **Examples**  
@@ -264,7 +277,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
     ifelse(bool("false"), "yes", "no") // returns "no"
     ```
 
-10. **`gcskew`**  
+15. **`gcskew`**  
     Calculates the GC skew (difference between G and C bases) of a biological sequence.
 
     {{< katex display=true >}}
@@ -279,7 +292,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
     gcskew("GATCG") // returns 0.3333 (1/3)
     ```
 
-11. **`gc`**  
+16. **`gc`**  
     
     Calculates the percentage of G and C bases in a biological sequence. 
    
@@ -299,7 +312,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
                 // in a sequence of five nucleotides)
     ```
 
-12. **`composition`**  
+17. **`composition`**  
     
     Returns the base composition of a biological sequence as a map (`map[string]float64`)
     containing five keys: "a", "c", "g", "t", and "o". The value for each key is the number of occurrences of that base in the sequence, case-insensitive (i.e., both 'A' and 'a' are considered as 'a'). The "o" key represents the number of other characters (nucleotides that are not A, C, G or T) in the sequence. 
@@ -312,7 +325,7 @@ options of some OBITools commands (*e.g.* {{< obi obigrep >}}, {{< obi obiannota
     composition("GATCG") // returns map[string]float64{"a":1, "c":1, "g":2, "t":1, "o":0} 
     ```
 
-13. **`replace`**  
+18. **`replace`**  
     Replaces all occurrences of a regular expressions pattern in a string. The function accepts three arguments: the first one is the input string and the second one is the pattern to be replaced. The last argument is what will replace the found pattern in the string. It returns the modified string.
 
     **Examples**  
