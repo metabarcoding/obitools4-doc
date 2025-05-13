@@ -227,6 +227,30 @@ elementof({"a":1,"b":2}, "a")  // returns 1
 elementof("abc", 0) // returns "a"
 ```
 
+#### **`min`**
+
+Returns the minimum value of a **vector** or a **map**. If the object is not a vector nor a map, but the value is comparable it will return the value itself. If it is not comparable it returns an error. An error is also returned if the **vector** or the **map** is empty.
+
+##### **Example:**
+
+```gval
+min([10,2,3]) // returns 2
+min({"a":10,"b":2}) // returns 2
+min(12) // returns 12
+```
+
+#### **`max`**
+
+Returns the maximum value of a **vector** or a **map**. If the object is not a vector nor a map, but the value is comparable it will return the value itself. If it is not comparable it returns an error. An error is also returned if the **vector** or the **map** is empty.
+
+##### **Example:**
+
+```gval
+max([10,2,3]) // returns 10
+max({"a":10,"b":2})  // returns 10
+max(12) // returns 12
+```
+
 #### **`sprintf`** 
 
 **Formats a string by replacing placeholders with values**, enabling dynamic

@@ -501,6 +501,46 @@ obigrep -p 'sequence.Count() >= 2 && sequence.Count() <= 10' five_tags.fasta
 >seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
 gtagctagctagctagctagctagctaga
 ```
+
+The [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}) provides a `min` and a `max` functions. These functions extract from a `map` or a `vector` its minimum and maximum values respectively. 
+
+On the file [`some_uniq_seq.fasta`](some_uniq_seq.fasta), the `merged_sample` tag present on each sequence indicates how the reads corresponding to it are distributed among samples.
+
+{{< code "some_uniq_seq.fasta" fasta true >}}
+
+It is possible to extract the contingency table from this file using the {{< obi obimatrix >}} command. The `--transpose` option is used to transpose the matrix so that sequences are in rows and samples in columns.
+
+```bash
+obimatrix --transpose some_uniq_seq.fasta \
+  | csvtomd
+```
+```markdown
+id     |  15a_F730814  |  29a_F260619
+-------|---------------|-------------
+Seq_1  |  1            |  1
+Seq_2  |  12           |  10
+Seq_3  |  15           |  7
+```
+
+To select sequences occurring at least ten times in a sample, you have to determine the maximum value of the `merged_sample` tag and compare it to the value ten.
+
+This can be done using a predicate expression:
+
+```bash
+obigrep -p 'max(annotations.merged_sample) >= 10' some_uniq_seq.fasta 
+```
+```
+>Seq_2 {"count":22,"merged_sample":{"15a_F730814":12,"29a_F260619":10}}
+ttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcaat
+atcttaaaactcaaaggacttggcggtgctttataccctt
+>Seq_3 {"count":22,"merged_sample":{"15a_F730814":15,"29a_F260619":7}}
+ttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcgat
+agcttaaaactcaaaggacttggcggtgctttataccctt
+```
+
+In the result, you can observe that `seq_1` is discarded as it occurs in none of the sample
+more than ten time. The maximum occurrence for `seq_1` is *1*.
+
 ## Working with paired sequence files
 
 {{% obitools4 %}} can handle paired sequence files. This means that it will process the paired sequences in the two different files together, and in particular for {{< obi obigrep >}} it will apply the same filtering to both sequence files. This ensures that in the result files, each sequence is still paired with its correct counterpart sequence.
