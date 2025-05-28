@@ -48,7 +48,7 @@ It creates a directory named `wolf_data`, containing the following files:
 - A [csv tabular file](https://obitools4.metabarcoding.org/docs/formats/csv/) for the reads demultiplexing step, named [`wolf_diet_ngsfilter.csv`](wolf_data/wolf_diet_ngsfilter.csv). This file contains the primer and tag sequences used for each sample. The tags correspond to short and specific sequences added to the 5\' end of each primer to distinguish the different samples.
 
 - A reference database in {{% fasta %}} format named
-  [`db_v05_r117.fasta.gz`](wolf_data/db_v05_r117.fasta.gz), extracted from the from EMBL release 117 following the procedure indicated in the tutorial [build a reference database](https://obitools4.metabarcoding.org/docs/cookbook/reference_db/).
+  [`db_v05_r117.fasta.gz`](wolf_data/db_v05_r117.fasta.gz), extracted from the EMBL release 117 following the procedure indicated in the tutorial [build a reference database](https://obitools4.metabarcoding.org/docs/cookbook/reference_db/).
 
 We recommend to create a new folder to store the results and separate them from the raw data:
 
@@ -98,7 +98,7 @@ obigrep -p 'annotations.mode != "join"' \
         results/wolf.fastq > results/wolf_assembled.fastq
 ```
 
-The `-p` requires a [{{% obitool4 %}} expression]({{< ref "" >}}), here `annotations.mode != "join"`, which means that
+The `-p` requires a [{{% obitools4 %}} expression]({{< ref "/docs/programming/expression" >}}), here `annotations.mode != "join"`, which means that
 if the value of the `mode` annotation of a sequence is different from `join`,
 then the corresponding sequence record should be kept in the output.
 
@@ -126,9 +126,9 @@ Other information can be added as extra columns (e.g. position of the sample/PCR
 Some extra lines can be added at the top of this file. They start with the `@param` value.
 Here three parameters have been provided: 
 
-- `@param,matching,strict`: The match between the tags and their corresponding sites in the obtained sequences should be strict, without any mismatches.
-- `@param,primer_mismatches,2`: The match between the primers and their corresponding sites in the obtained sequences can exhibit at most two mismatches.
-- `@param,indels,false`: The mismatches between the primers and their corresponding sites cannot be insertions or deletions, but only substitutions.  
+- `@param,matching,strict`: The match between the sequence of the tags in the file [`wolf_diet_ngsfilter.csv`] and their corresponding sequences in the sequencing data should be strict, without any mismatches.
+- `@param,primer_mismatches,2`: The match between the primers and their corresponding sequences in the sequencing data can exhibit at most two mismatches.
+- `@param,indels,false`: The mismatches between the primers and their corresponding sequences in the sequencing data cannot be insertions or deletions, but only substitutions.  
   
 See {{% obi obimultiplex %}} for more details.
 
@@ -231,11 +231,19 @@ Having all sequences assigned to their respective samples does
 not mean that all these sequences are *biologically* meaningful. Some of
 these sequences can correspond to PCR/sequencing errors, or chimeras.
 
-#### Flagging PCR errors (aka identifying Amplicon Sequence Variants - ASVs) {.unnumbered}
+#### Flagging PCR errors
 
-The {{% obi obiclean %}} program flags sequence variants as potential error generated during
-PCR amplification (flagged as "internal" sequences), genuine sequences (flagged as "head"), or "singeltons" sequences, i.e. sequences for which the program could not identify a variant (see the {{% obi obiclean %}} help page for more details). 
-In the example below, we ask the program to keep only the sequences that are considered as "head" (`-H` option), here sequences that are not variants of another sequence with a count exceeding 5% of their own count (as specified by the `-r 0.05` option). See the {{% obi obiclean %}} documentation for details.
+The {{% obi obiclean %}} program flags sequence variants as:
+- potential error generated during PCR amplification (flagged as `internal` sequences), 
+- genuine sequences:
+  - flagged as `head`, 
+  - or `singletons` sequences, i.e. sequences for which the program could not identify a variant.
+
+In the example below, a sequence is considered as a variant of another one if:
+- both occurred in the same sample (`-s sample`),
+- it exist only a single difference between both sequences (substitution, insertion, or deletion)
+- if the abondance of the variant is less than 5% of the abondance of the main sequence (`-r 0.05` option).
+We ask {{% obi obiclean %}} to keep only the sequences that are considered as genuine `head` or `singleton` in at least one sample (`-H` option). See the {{% obi obiclean %}} documentation for details.
 
 ```bash
 obiclean -s sample -r 0.05 --detect-chimera -H \
@@ -243,7 +251,7 @@ obiclean -s sample -r 0.05 --detect-chimera -H \
          > results/wolf_assembled_assigned_simple_clean.fasta
 ```
 
-Below an example of the sequence records of [`wolf_assembled_assigned_simple_clean.fasta`](results/wolf_assembled_assigned_simple_clean.fasta):
+Below an example of a sequence record of [`wolf_assembled_assigned_simple_clean.fasta`](results/wolf_assembled_assigned_simple_clean.fasta):
 
 ```
 >HELIUM_000100422_612GNAAXX:7:3:3008:16359#0/1_sub[28..127] {"count":1,"merged_sample":{"29a_F260619":1},"obiclean_head":true,"obiclean_headcount":0,"obiclean_internalcount":0,"obiclean_samplecount":1,"obiclean_singletoncount":1,"obiclean_status":{"29a_F260619":"s"},"obiclean_weight":{"29a_F260619":1}}
@@ -251,7 +259,7 @@ ttagccctaaacacaagtaattaatataacaaaattattcgacagagtaccaccggcaat
 agcttaaaactcaaaggacttggcggtgctttataccctt
 ```
 
-The attribute `obiclean_head":true` indicates that this sequence record is considered as a "head", hence a genuine sequence, but the attributes `obiclean_status":{"29a_F260619":"s"}` also indicates that this sequence is actually a "singleton" sequence.
+The attribute `"obiclean_head":true` indicates that this sequence record is considered as a `head`, hence a genuine sequence, but the attributes `"obiclean_status":{"29a_F260619":"s"}` also indicates that this sequence is actually a "singleton" sequence.
 
 #### Getting some statistics on the dataset size 
 
@@ -301,7 +309,7 @@ obigrep -p 'sequence.Count() == 1' \
 To understand the {{< obi obigrep >}} command, you need to know more about the `-p`
 option. This option allows you to specify a predicate function to be applied to
 each sequence in the dataset. If the function returns `True`, the sequence is
-included in the output; if it returns `False`, it's excluded. In this case, we
+included in the output; if it returns `False`, it is excluded. In this case, we
 use a predicate that checks whether the count of sequences (which is what
 `sequence.Count()` gives us) is equal to 1. In our data set, there are 649
 singletons (or variants). These singleton sequences have more chances to be errors
@@ -536,9 +544,9 @@ obitaxonomy --download-ncbi --out ncbitaxo.tgz
 The full copy of the NCBI taxonomy is now locally stored in the `ncbitaxo.tgz` file of your current working
 directory.
 
-### Assigning the sequences a taxon
+### Assigning taxa to the sequences 
 
-Using the reference database [`db_v05_r117.fasta.gz`](wolf_data/db_v05_r117.fasta.gz) and the full NCBI taxonomy, assigning the sequences a taxon can be done with {{% obi obitag %}} as follows:
+Using the reference database [`db_v05_r117.fasta.gz`](wolf_data/db_v05_r117.fasta.gz) and the full NCBI taxonomy, assigning taxa to the sequences can be done with {{% obi obitag %}} as follows:
 
 ```bash
 obitag -t ncbitaxo.tgz \
@@ -583,7 +591,7 @@ The effect of the above command can be seen below:
 {{< code "results/wolf_minimal.fasta" fasta true >}}
 
 The sequence id is very long and refers to some information that is useful for
-the sequencer but useless for us. We can thus change it to make it more readable. This is done in two steps. First, we use the first {{< obi obiannotate >}} 
+analyzing the sequencing process, but useless for us, especially after a {{< obi obiuniq >}} command, as the sequence id correponds to the id of only one of the merged sequences. We can thus change it to make it more readable. This is done in two steps. First, we use the first {{< obi obiannotate >}} 
 command to add a `seq_number` attribute in the sequence header that numbers the sequence from *1*
 to *n*, the number of sequence variants. Second, we use the value of this new attribute to create a new, more readable sequence identifier using the `sprintf` function of the {{% obitools4 %}} expression language. The new sequence identifier is a string consisting of the prefix "seq" followed by the sequence
 number, padded with zeros to make it 4 characters long (e.g., seq0001, seq0002,
