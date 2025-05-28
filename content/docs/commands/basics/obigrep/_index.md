@@ -480,9 +480,9 @@ cgatggctccatgctagtgctagtcgatga
 
 ### Defining you own predicate
 
-You can define your own predicate to filter your data set. A predicate is an expression that, when evaluated, returns a logical value of `true` or `false`. The predicate is defined with the `--predicate` (`-p`) option using the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}). The predicate is evaluated on each sequence in the data set. Sequences that result in a `True` value are retained in the result, while those that result in a `False` value are discarded.
+You can create your own predicate to filter your dataset. A predicate is an expression that returns a logical value of true or false when evaluated. It is defined using the `--predicate` (`-p`) option and the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}). The predicate is evaluated on each sequence in the dataset. Sequences that result in a `true` value are retained in the result, while those that result in a `false` value are discarded.
 
-As first example the following command that filters out all sequences that have an annotation "count" lesser than 2 and greater than 10 
+The following command, for example, filters out all sequences with a *count* annotation of less than 2 and greater than 10.
 
 ```bash
 obigrep -c 2 -C 10 five_tags.fasta
@@ -492,7 +492,7 @@ obigrep -c 2 -C 10 five_tags.fasta
 gtagctagctagctagctagctagctaga
 ```
 
-can be substituted by:
+The following predicate can be used to substitute for it:
 
 ```bash
 obigrep -p 'sequence.Count() >= 2 && sequence.Count() <= 10' five_tags.fasta
@@ -502,13 +502,13 @@ obigrep -p 'sequence.Count() >= 2 && sequence.Count() <= 10' five_tags.fasta
 gtagctagctagctagctagctagctaga
 ```
 
-The [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}) provides a `min` and a `max` functions. These functions extract from a `map` or a `vector` its minimum and maximum values respectively. 
+The [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}) provides `min` and `max` functions. These functions extract the minimum and maximum values from a map or vector, respectively.
 
-On the file [`some_uniq_seq.fasta`](some_uniq_seq.fasta), the `merged_sample` tag present on each sequence indicates how the reads corresponding to it are distributed among samples.
+In the file  [`some_uniq_seq.fasta`](some_uniq_seq.fasta), the 'merged_sample` tag on each sequence indicates how the corresponding reads are distributed among samples.
 
 {{< code "some_uniq_seq.fasta" fasta true >}}
 
-It is possible to extract the contingency table from this file using the {{< obi obimatrix >}} command. The `--transpose` option is used to transpose the matrix so that sequences are in rows and samples in columns.
+It is possible to extract the contingency table from this file using the {{< obi obimatrix >}} command. The `--transpose` option transposes the matrix so that sequences are in rows and samples are in columns.
 
 ```bash
 obimatrix --transpose some_uniq_seq.fasta \
@@ -522,7 +522,7 @@ Seq_2  |  12           |  10
 Seq_3  |  15           |  7
 ```
 
-To select sequences occurring at least ten times in a sample, you have to determine the maximum value of the `merged_sample` tag and compare it to the value ten.
+To select sequences that occur at least ten times in a sample, you have to determine the maximum value of the `merged_sample` tag and compare it to the value ten.
 
 This can be done using a predicate expression:
 
@@ -538,14 +538,122 @@ ttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcgat
 agcttaaaactcaaaggacttggcggtgctttataccctt
 ```
 
-In the result, you can observe that `seq_1` is discarded as it occurs in none of the sample
-more than ten time. The maximum occurrence for `seq_1` is *1*.
+As you can see from the results, `seq_1` is discarded because it does not appear in any of the samples.
+It does not occur more than ten times. The maximum number of occurrences of `seq_1` is *1*.
 
-## Working with paired sequence files
+## Working with paired sequence files:
 
-{{% obitools4 %}} can handle paired sequence files. This means that it will process the paired sequences in the two different files together, and in particular for {{< obi obigrep >}} it will apply the same filtering to both sequence files. This ensures that in the result files, each sequence is still paired with its correct counterpart sequence.
+{{% obitools4 %}} can handle paired sequence files. This means that it processes the paired sequences in the two files together. In particular, for {{< obi obigrep >}}, it will apply the same filtering to both files. This ensures that each sequence in the result files is paired with its correct counterpart.
 
-The most important option for manipulating paired sequence files is the `--paired with` option. This option allows you to specify the name of a file containing the sequences to be paired with those in the main sequence file.
+The most important option for manipulating paired sequence files is the `--paired-with` option. This allows you to specify the name of a file containing sequences to be paired with those in the main sequence file. Since an obitools4 command that processes paired sequences produces two paired result files, the standard output cannot be used to store the results. Instead, you must use the `--out` option to specify where the results should be written.
+
+Considering the two paired input files:
+
+{{< code "forward.fastq" fastq true >}}
+
+{{< code "reverse.fastq" fastq true >}}
+
+To conserve only sequences starting with a **t**, use the following command:
+
+```bash
+obigrep -s '^t' \
+        --paired-with reverse.fastq \
+        --out start_t.fastq \
+        forward.fastq
+```
+
+After running the {< obi obigrep >} command,  if you check the directory contents, you will obtain two new files named [`start_t_R1.fastq`](start_t_R1.fastq) and [`start_t_R2.fastq`](start_t_R2.fastq), in addition to the two input files, [`forward.fastq`](foward.fastq) and [`reverse.fastq`](reverse.fastq).  These file names are created by adding the suffixes `_R1` and `_R2` to the `start_t.fastq` file name specified in the `--out` option. The `start_t_R1.fastq` file (suffix `_R1`) contains the reads from the main file ([`forward.fastq`](foward.fastq)), while `start_t_R2.fastq` (suffix `_R2`) contains the reads from the file specified by the '--paired-with' option ([`reverse.fastq`](reverse.fastq)).
+
+```
+% ls -l
+total 135568
+-rw-r--r--@ 1 coissac  staff      1504 13 mai 18:09 forward.fastq
+-rw-r--r--@ 1 coissac  staff      1504 13 mai 18:09 reverse.fastq
+-rw-r-----@ 1 coissac  staff      1179 13 mai 18:14 start_t_R1.fastq
+-rw-r-----@ 1 coissac  staff      1179 13 mai 18:14 start_t_R2.fastq
+```
+
+Inspecting the file  [`start_t_R1.fastq`](start_t_R1.fastq) makes the effect of  {{< obi obigrep >}} clear. Every sequence starts with **t**.
+
+{{< code "start_t_R1.fastq" fastq true >}}
+However, when we look at the file  [`start_t_R2.fastq`](start_t_R2.fastq), the second sequence starts with a **c**. In fact, the {{< obi obigrep>}} constraint was only applied to the [`forward.fastq`](foward.fastq) file. The sequences were selected from the [`reverse.fastq`](reverse.fastq) file because they are paired with one of the sequences selected from the [`forward.fastq`](foward.fastq) file.
+
+{{< code "start_t_R2.fastq" fastq true >}}
+
+The `--paired-mode` option can be used to specify how the {{< obi obigrep >}} filtering constraints are applied to both files. The option requires an argument that can take four different values:
+
+- `forward`: the selection rules apply only to the forward reads; the reverse reads are selected because they are paired with a selected forward read. This is the default behaviour presented above.
+- `reverse`: the selection rules apply only to the reverse reads; the forward reads are selected because they are paired with a selected reverse read.
+
+```bash
+obigrep -s '^t' \
+        --paired-with reverse.fastq \
+        --paired-mode reverse \
+        --out start_t_rev.fastq \
+        forward.fastq
+```
+
+{{< code "start_t_rev_R1.fastq" fastq true >}}
+
+{{< code "start_t_rev_R2.fastq" fastq true >}}
+
+
+- `and`: the selection rules must be true for both reads of the pair
+
+```bash
+obigrep -s '^t' \
+        --paired-with reverse.fastq \
+        --paired-mode and \
+        --out start_t_and.fastq \
+        forward.fastq
+```
+
+{{< code "start_t_and_R1.fastq" fastq true >}}
+
+{{< code "start_t_and_R2.fastq" fastq true >}}
+
+
+- `or`:  the selection rules must be true for at least one read of the pair. The second read is selected because its counterpart has been selected by the {{< obi obigrep >}} rules.
+
+```bash
+obigrep -s '^t' \
+        --paired-with reverse.fastq \
+        --paired-mode or \
+        --out start_t_or.fastq \
+        forward.fastq
+```
+
+{{< code "start_t_or_R1.fastq" fastq true >}}
+
+{{< code "start_t_or_R2.fastq" fastq true >}}
+
+- `andnot`: the selection rules must be true on the forward sequence but not on the reverse one.
+
+```bash
+obigrep -s '^t' \
+        --paired-with reverse.fastq \
+        --paired-mode andnot \
+        --out start_t_andnot.fastq \
+        forward.fastq
+```
+
+{{< code "start_t_andnot_R1.fastq" fastq true >}}
+
+{{< code "start_t_andnot_R2.fastq" fastq true >}}
+
+- `xor`: the selection rules must be true on only one read of the pair, not on both.
+
+```bash
+obigrep -s '^t' \
+        --paired-with reverse.fastq \
+        --paired-mode xor \
+        --out start_t_xor.fastq \
+        forward.fastq
+```
+
+{{< code "start_t_xor_R1.fastq" fastq true >}}
+
+{{< code "start_t_xor_R2.fastq" fastq true >}}
 
 
 ## Synopsis
