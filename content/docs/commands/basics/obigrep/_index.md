@@ -554,7 +554,7 @@ Considering the two paired input files:
 {{< code "reverse.fastq" fastq true >}}
 
 To conserve only sequences starting with a **t**, use the following command:
-
+<!-- Should it be **t** or **T** ? or it is equivalent? -->
 ```bash
 obigrep -s '^t' \
         --paired-with reverse.fastq \
@@ -562,7 +562,7 @@ obigrep -s '^t' \
         forward.fastq
 ```
 
-After running the {< obi obigrep >} command,  if you check the directory contents, you will obtain two new files named [`start_t_R1.fastq`](start_t_R1.fastq) and [`start_t_R2.fastq`](start_t_R2.fastq), in addition to the two input files, [`forward.fastq`](foward.fastq) and [`reverse.fastq`](reverse.fastq).  These file names are created by adding the suffixes `_R1` and `_R2` to the `start_t.fastq` file name specified in the `--out` option. The `start_t_R1.fastq` file (suffix `_R1`) contains the reads from the main file ([`forward.fastq`](foward.fastq)), while `start_t_R2.fastq` (suffix `_R2`) contains the reads from the file specified by the '--paired-with' option ([`reverse.fastq`](reverse.fastq)).
+After running the {{< obi obigrep >}} command, if you check the directory contents, you will obtain two new files named [`start_t_R1.fastq`](start_t_R1.fastq) and [`start_t_R2.fastq`](start_t_R2.fastq), in addition to the two input files, [`forward.fastq`](foward.fastq) and [`reverse.fastq`](reverse.fastq).  These file names are created by adding the suffixes `_R1` and `_R2` to the `start_t.fastq` file name specified in the `--out` option. The `start_t_R1.fastq` file (suffix `_R1`) contains the reads from the main file ([`forward.fastq`](foward.fastq)), while `start_t_R2.fastq` (suffix `_R2`) contains the reads from the file specified by the '--paired-with' option ([`reverse.fastq`](reverse.fastq)).
 
 ```
 % ls -l
