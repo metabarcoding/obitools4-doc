@@ -152,7 +152,30 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
---rename-tag
+##### Renaming tags
+
+Renaming tags can be useful for accounting for changes in a pipeline, adapting old datasets to new scripts or saving annotations produced by an {{< obitools >}} command before rerunning it with different parameters. Consider the following fasta file:
+
+{{% code "five_tags.fasta" fasta true %}}
+
+If you want to keep the taxonomic annotations as a reference before running the {{< obi obitag >}} command to produce a new one and then be able to compare the new one to the old one later, you can rename the `taxid` tag to `ref_taxid` and then run the {{< obi obitag >}} command, which will set a new 'taxid' tag.
+
+```bash
+obiannotate --rename-tag ref_taxid=taxid  five_tags.fasta
+```
+```
+>seqA1 {"count":1,"ref_taxid":"taxon:9606 [Homo sapiens]@species","tata":"bar","toto":"titi"}
+cgatgctgcatgctagtgctagtcgat
+>seqB1 {"ref_taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","tata":"bar","toto":"tata"}
+tagctagctagctagctagctagctagcta
+>seqA2 {"count":5,"ref_taxid":"taxon:9605 [Homo]@genus","tata":"foo","toto":"tutu"}
+gtagctagctagctagctagctagctaga
+>seqC1 {"count":15,"ref_taxid":"taxon:9604 [Hominidae]@family","tata":"foo","toto":"foo"}
+cgatgctccatgctagtgctagtcgatga
+>seqB2 {"count":25,"tata":"bar"}
+cgatggctccatgctagtgctagtcgatga
+```
+
 
 --number 
 
