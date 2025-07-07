@@ -18,15 +18,17 @@ Perform a join operation to transfer annotations from a file to a sequence file.
 
 ```bash
 obijoin --join-with|-j <string> [--batch-size <int>] [--by|-b <string>]...
-        [--compress|-Z] [--debug] [--ecopcr] [--embl] [--fasta]
-        [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu]
-        [--genbank] [--help|-h|-?] [--input-OBI-header] [--input-json-header]
-        [--json-output] [--max-cpu <int>] [--no-order] [--no-progressbar]
+        [--compress|-Z] [--csv] [--debug] [--ecopcr] [--embl]
+        [--fail-on-taxonomy] [--fasta] [--fasta-output] [--fastq]
+        [--fastq-output] [--force-one-cpu] [--genbank] [--help|-h|-?]
+        [--input-OBI-header] [--input-json-header] [--json-output]
+        [--max-cpu <int>] [--no-order] [--no-progressbar]
         [--out|-o <FILENAME>] [--output-OBI-header|-O] [--output-json-header]
-        [--paired-with <FILENAME>] [--pprof] [--pprof-goroutine <int>]
-        [--pprof-mutex <int>] [--skip-empty] [--solexa]
-        [--taxonomy|-t <string>] [--update-id|-i] [--update-quality|-q]
-        [--update-sequence|-s] [--version] [<args>]
+        [--pprof] [--pprof-goroutine <int>] [--pprof-mutex <int>]
+        [--raw-taxid] [--silent-warning] [--skip-empty] [--solexa]
+        [--taxonomy|-t <string>] [--u-to-t] [--update-id|-i]
+        [--update-quality|-q] [--update-sequence|-s] [--update-taxid]
+        [--version] [--with-leaves] [<args>]
 ```
 
 ## Options

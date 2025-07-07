@@ -35,12 +35,12 @@ graph TD
 ## Synopsis
 
 ```bash
-obicount [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
-         [--fastq] [--force-one-cpu] [--genbank] [--help|-h|-?]
-         [--input-OBI-header] [--input-json-header] [--max-cpu <int>]
-         [--no-order] [--pprof] [--pprof-goroutine <int>]
-         [--pprof-mutex <int>] [--reads|-r] [--solexa] [--symbols|-s]
-         [--variants|-v] [--version] [<args>]
+obicount [--batch-size <int>] [--csv] [--debug] [--ecopcr] [--embl] [--fasta]
+         [--fastq] [--force-one-cpu] [--genbank] [--help|-h|-?]
+         [--input-OBI-header] [--input-json-header] [--max-cpu <int>]
+         [--no-order] [--pprof] [--pprof-goroutine <int>]
+         [--pprof-mutex <int>] [--reads|-r] [--silent-warning] [--solexa]
+         [--symbols|-s] [--u-to-t] [--variants|-v] [--version] [<args>]
 ```
 
 

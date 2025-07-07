@@ -17,12 +17,12 @@ Generate summary statistics describing the sequence content of a sequence file.
 ## Synopsis
 
 ```bash
-obisummary [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
-           [--fastq] [--force-one-cpu] [--genbank] [--help|-h|-?]
+obisummary [--batch-size <int>] [--csv] [--debug] [--ecopcr] [--embl]
+           [--fasta] [--fastq] [--force-one-cpu] [--genbank] [--help|-h|-?]
            [--input-OBI-header] [--input-json-header] [--json-output]
            [--map <string>]... [--max-cpu <int>] [--no-order] [--pprof]
-           [--pprof-goroutine <int>] [--pprof-mutex <int>] [--solexa]
-           [--version] [--yaml-output] [<args>]
+           [--pprof-goroutine <int>] [--pprof-mutex <int>] [--silent-warning]
+           [--solexa] [--u-to-t] [--version] [--yaml-output] [<args>]
 ```
 
 ## Options

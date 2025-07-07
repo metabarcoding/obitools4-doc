@@ -19,15 +19,16 @@ Distribute a sequence file accross multiple output files.
 ```bash
 obidistribute --pattern|-p <string> [--append|-A] [--batch-size <int>]
               [--batches|-n <int>] [--classifier|-c <string>] [--compress|-Z]
-              [--debug] [--directory|-d <string>] [--ecopcr] [--embl]
+              [--csv] [--debug] [--directory|-d <string>] [--ecopcr] [--embl]
               [--fasta] [--fasta-output] [--fastq] [--fastq-output]
               [--force-one-cpu] [--genbank] [--hash|-H <int>] [--help|-h|-?]
               [--input-OBI-header] [--input-json-header] [--json-output]
               [--max-cpu <int>] [--na-value <string>] [--no-order]
               [--no-progressbar] [--out|-o <FILENAME>]
               [--output-OBI-header|-O] [--output-json-header] [--pprof]
-              [--pprof-goroutine <int>] [--pprof-mutex <int>] [--skip-empty]
-              [--solexa] [--version] [<args>]
+              [--pprof-goroutine <int>] [--pprof-mutex <int>]
+              [--silent-warning] [--skip-empty] [--solexa] [--u-to-t]
+              [--version] [<args>]
 ```
 
 ## Options

@@ -17,13 +17,14 @@ Convert a mapping tag from a sequence file to a matrix file in CSV format.
 ## Synopsis
 
 ```bash
-obimatrix [--batch-size <int>] [--debug] [--ecopcr] [--embl] [--fasta]
-          [--fastq] [--force-one-cpu] [--genbank] [--help|-h|-?]
+obimatrix [--batch-size <int>] [--csv] [--debug] [--ecopcr] [--embl]
+          [--fasta] [--fastq] [--force-one-cpu] [--genbank] [--help|-h|-?]
           [--input-OBI-header] [--input-json-header] [--map <string>]
           [--max-cpu <int>] [--na-value <string>] [--no-order] [--pprof]
           [--pprof-goroutine <int>] [--pprof-mutex <int>]
-          [--sample-name <string>] [--solexa] [--three-columns] [--transpose]
-          [--value-name <string>] [--version] [<args>]
+          [--sample-name <string>] [--silent-warning] [--solexa]
+          [--three-columns] [--transpose] [--u-to-t] [--value-name <string>]
+          [--version] [<args>]
 ```
 
 ## Options

@@ -368,9 +368,9 @@ obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
             [--sequence|-s <PATTERN>]... [--set-identifier <EXPRESSION>]
             [--set-tag|-S <KEY=EXPRESSION>]... [--silent-warning]
             [--skip-empty] [--solexa] [--taxonomic-path] [--taxonomic-rank]
-            [--taxonomy|-t <string>] [--update-taxid] [--valid-taxid]
-            [--version] [--with-leaves] [--with-taxon-at-rank <RANK_NAME>]...
-            [<args>]
+            [--taxonomy|-t <string>] [--u-to-t] [--update-taxid]
+            [--valid-taxid] [--version] [--with-leaves]
+            [--with-taxon-at-rank <RANK_NAME>]... [<args>]
 ```
 
 ## Options
