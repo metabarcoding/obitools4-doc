@@ -67,7 +67,7 @@ The first line is mandatory and must contains at least the five column names pre
     is replaced by a hyphen. For example, `aagtag:-` or `-:aagtag`. Consequently, an
     experiments conducted without primer tags must declare a dummy tag: `-:-`.
 
-  > [!CAUTION] For a given primer all the tags must have the same length.
+  > [!CAUTION] For a given primer, all tags must be the same length. However, the tags of a primer pair (i.e. the forward and reverse primers) can be different lengths.
 
 - forward_primer: the forward primer sequence
 - reverse_primer: the reverse primer sequence
@@ -87,6 +87,8 @@ obimultiplex -s samples_simple.csv \
 
 - Sample description
   
+  Each read is attached to a sample (PCR) according to the sample description file. This involves adding two pieces of information to the read: the sample ID and the experiment ID, which represent a group of samples.
+
   - `experiment`: "wolf_diet"
   
     The experiment name imputed to the barcode sequence
@@ -96,6 +98,8 @@ obimultiplex -s samples_simple.csv \
     The sample (PCR) name imputed to the barcode sequence
 
 - Amplicon description
+
+  The second task of {{% obi obimultiplex %}} is to extract the amplified barcode sequence from the read. A read sequence can contain the sequence of a single amplicon or several, depending on the sequencing library preparation protocol.  For each read, {{% obi obimultiplex %}} produces one sequence per amplicon as output. This sequence is annotated by a set of tags that describe the properties of the barcode in question. 
   
   - `obimultiplex_amplicon_rank`: "1/1"
     
@@ -111,6 +115,8 @@ obimultiplex -s samples_simple.csv \
     - "reverse" means, the reverse primer has been identified, then the forward complementary sequence of the forward primer. The sequence of the barcode has been reverse complemented to be always reported as a sequence oriented from the forward to the reverse primer.
   
 - Primer matching
+
+  
   
   - Forward primer:
   
@@ -128,15 +134,15 @@ obimultiplex -s samples_simple.csv \
       allows up to two mismatches. That threshold can be changed using the **--allowed-mismatches** option (or **-e** for the short version option). 
 
   - Reverse primer:
-    - "obimultiplex_reverse_primer":"tagaacaggctcctctag"
+    - `obimultiplex_reverse_primer`:"tagaacaggctcctctag"
 
       The true reverse primer sequence as provided in the {{% obi obimultiplex %}} sample description file.
 
-    - "obimultiplex_reverse_match":"tagaacaggctcgtctag"
+    - `obimultiplex_reverse_match`:"tagaacaggctcgtctag"
 
       The primer sequence as detected in the sequence read.
 
-    - "obimultiplex_reverse_error":1
+    - `obimultiplex_reverse_error`:1
 
       Here one mismatch has been detected between the primer sequence and the read sequence match.
 
