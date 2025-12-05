@@ -19,8 +19,13 @@ refLinksNotFoundURL: /some/other/url
 # Needed for mermaid/katex shortcodes
 markup:
   goldmark:
+    parser:
+      attribute:
+        block: true
+        title: true
     renderer:
       unsafe: true
+    
   tableOfContents:
     startLevel: 1
 
