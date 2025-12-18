@@ -482,7 +482,7 @@ cgatggctccatgctagtgctagtcgatga
 
 You can create your own predicate to filter your dataset. A predicate is an expression that returns a logical value of true or false when evaluated. It is defined using the `--predicate` (`-p`) option and the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}). The predicate is evaluated on each sequence in the dataset. Sequences that result in a `true` value are retained in the result, while those that result in a `false` value are discarded.
 
-The following command, for example, filters out all sequences with a *count* annotation of less than 2 and greater than 10.
+The following command, for example, keeps all sequences with a *count* annotation between 2 and 10, including these values.
 
 ```bash
 obigrep -c 2 -C 10 five_tags.fasta

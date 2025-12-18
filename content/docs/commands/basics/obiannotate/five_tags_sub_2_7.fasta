@@ -1,0 +1,10 @@
+>seqA1_sub[2..7] {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+gatgct
+>seqB1_sub[2..7] {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+agctag
+>seqA2_sub[2..7] {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+tagcta
+>seqC1_sub[2..7] {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+gatgct
+>seqB2_sub[2..7] {"count":25,"tata":"bar"}
+gatggc

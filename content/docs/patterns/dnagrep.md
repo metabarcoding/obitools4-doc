@@ -11,7 +11,7 @@ weight: 20
 
 # DNA Patterns
 
-DNA patterns are useful for describing short DNA sequences like oligonucleotides. They are used by several {{< gloentry "OBITools" >}} like {{< obi obimultiplex >}}, {{< obi obipcr >}} or {{< obi obigrep >}}. The advantage of using DNA patterns over classical regular expressions is that they can be matched with errors. Allowed errors can be simple mismatches, or mismatches and insertions/deletions.
+DNA patterns are useful for describing short DNA sequences like oligonucleotides. They are used by several {{< gloentry "OBITools" >}} like {{< obi obimultiplex >}}, {{< obi obipcr >}} or {{< obi obiannotate >}}. The advantage of using DNA patterns over classical regular expressions is that they can be matched with errors. Allowed errors can be simple mismatches, or mismatches and insertions/deletions.
 
 ## Syntax of a DNA Pattern
 

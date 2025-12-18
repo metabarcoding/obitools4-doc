@@ -12,21 +12,23 @@ weight: 10
 
 ## Description 
 
-`obiannotate` is a tool for editing the sequence records of a dataset. It allows you to add, delete or modify annotations of sequence records, as well as edit the identifier, definition or sequence itself.
+`obiannotate` is a tool for editing sequence records in a dataset. It enables you to add, delete or modify annotations, as well as edit identifiers, definitions and sequences.
 
-There are two particularly important groups of options in {{< obi obiannotate >}}. The first group is shared with {{< obi obigrep >}} and enables the selection of sequences. The second group specifies the changes to be made to the sequence records. In {{< obi obigrep >}}, the selection options determine which sequences the program will retain in its output. In contrast, every sequence in the input dataset is included in the result produced by {{< obi obiannotate >}}; however, only the sequences selected by the selection options are modified according to the editing options. Non-selected sequences are transferred to the result without modification.
+There are two particularly important groups of options in {{< obi obiannotate >}}. The first group, which is shared with {{< obi obigrep >}}, is used to select sequences. The second group specifies the changes to be made to the selected sequence records. In {{< obi obigrep >}}, the selection options determine which sequences the program will retain in its output. By contrast, {{< obi obiannotate >}} includes every sequence occuring in the input dataset in the output file; however, only the sequences selected by the selection options are modified according to the editing options. Non-selected sequences are transferred to the result without modification.
 
 ### The selection options
+
+They correspond to the selection options described in the {{% obi obigrep %}} documentation. 
 
 ### The edition options
 
 #### Edition of the annotations
 
-{{% obitools4 %}} store annotations attached to each sequence using a *tag*/*value* mechanism. The annotation of a sequence if a set of *tags* each of them being associated to a value. Therefor, annotating a sequence is changing this set of *tags* by adding new tags, deleting some others or changing the value associated to a tag.
+{{% obitools4 %}} store annotations attached to each sequence using a *tag*/*value* system. The annotation of a sequence if a set of *tags*, each of them being associated to a value. Therefore, annotating a sequence is changing this set of *tags* by adding new tags, deleting some others, or changing the value associated to a tag.
 
 ##### Adding annotations
 
-To add a new *tag*/*value* pair to a sequence {{< obi obiannotate >}} propose the generic option `--set-tag`
+To add a new *tag*/*value* pair to a sequence, {{< obi obiannotate >}} proposes the generic option `--set-tag`
 Considering the following file:
 
 {{< code "empty.fasta" fasta true >}}
@@ -49,13 +51,12 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-The argument of the `--set-tag` option `foo=3` can be decomposed in two parts separated by the equal sign.
-The left part `foo` is the name of the target tag, the right part is the value to assign to the tag.
+The argument of the `--set-tag` option `foo=3` can be decomposed into two parts separated by an equal sign.
+The left part, `foo`, is the name of the target tag, and the right part is the value to be assigned to the tag.
 
-The left part must be a string when the right part is actually an [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}). Here the expression is simple `3`, which is evaluated to the *3* integer value.
+The left part must be a string. The right part is actually an [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}). Here the expression is a simple `3`, which is evaluated to the *3* integer value.
 
-To assign as string value to a tag, the rigth part of the option argument must be a valid [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}) corresponding to a string: `"bar"` with double quotes flanking the text having to be assigned. But to prevent the Bash UNIX shell to interpret itself the option parameter `foo="bar"`, it has to be protected itself by single quote.
-
+In order to assign a string value to a tag, the right-hand side of the option argument must correspond to a valid [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}) string. For example the text `bar` must be indicated as `"bar"`, with double quotation marks flanking the text to be assigned. However, to prevent the Bash UNIX shell from interpreting the quotation marks, the option value must be protected by a single quotation mark on each side: `'foo="bar"'`.
 ```bash
 obiannotate --set-tag 'foo="bar"' empty.fasta
 ```
@@ -72,7 +73,7 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-As the right part is an expression, it can be more complex and realize some basic computations. In the next example the *foo* tag is valuated with the sequence identifier prefixed by `"bar-"`. 
+As the right part is an expression, it can be more complex and perform some basic computations. In the next example the *foo* tag is assigned a value based on the sequence identifier prefixed by `"bar-"`. 
 
 ```bash
 obiannotate --set-tag 'foo="bar-" + sequence.Id()' empty.fasta
@@ -122,7 +123,7 @@ obigrep -I seqA2  empty.fasta
 gtagctagctagctagctagctagctaga
 ```
 
-The selection options being shared between {{< obi obiannotate >}} and {{< obi obigrep >}}, good method to check which sequences will be modified by {{< obi obiannotate >}} is to check the selection options at first with {{< obi obigrep >}}. Only the sequences present in the {{< obi obigrep >}} output will be edited by {{< obi obiannotate >}}.
+As the selection options are shared between {{< obi obiannotate >}} and {{< obi obigrep >}}, a good method of checking which sequences will be modified by {{< obi obiannotate >}} is to first check the selection options with obigrep. Only sequences present in the {{< obi obigrep >}} output will be edited by {{< obi obiannotate >}}.
 
 ```bash
 obigrep -l 30 empty.fasta
@@ -154,11 +155,11 @@ cgatggctccatgctagtgctagtcgatga
 
 ##### Renaming tags
 
-Renaming tags can be useful for accounting for changes in a pipeline, adapting old datasets to new scripts or saving annotations produced by an {{< obitools >}} command before rerunning it with different parameters. Consider the following fasta file:
+Renaming tags can be useful when accounting for changes in a pipeline, i.e. adapting old datasets to new scripts. It can also be useful for saving annotations produced by an {{< obitools >}} command before rerunning it with different parameters. Consider the following {{% fasta %}} file:
 
 {{% code "five_tags.fasta" fasta true %}}
 
-If you want to keep the taxonomic annotations as a reference before running the {{< obi obitag >}} command to produce a new one and then be able to compare the new one to the old one later, you can rename the `taxid` tag to `ref_taxid` and then run the {{< obi obitag >}} command, which will set a new 'taxid' tag.
+If you want to keep the taxonomic annotations as a reference before running the {{< obi obitag >}} command to produce a new one, so that you can compare the new one to the old one later, you can rename the `taxid` tag to `ref_taxid` and then run the o{{< obi obitag >}}bitag command. This will set a new `taxid` tag.
 
 ```bash
 obiannotate --rename-tag ref_taxid=taxid  five_tags.fasta
@@ -178,7 +179,7 @@ cgatggctccatgctagtgctagtcgatga
 
 ##### Adding a serial number to each sequence
 
-It can be useful to add a serial number to each sequence. This can be done by using the {{< obi obiannotate >}} command with the `--number`. That option will add a new tag to each sequence, with the name `seq_number` valued with an integer value that is incremented for each sequence. 
+Adding a serial number to each sequence can be useful. This can be done using the  {{< obi obiannotate >}} command with the `--number` option. This option adds a new tag to each sequence with the name `seq_number` and an integer value that increments for each sequence.
 
 ```bash
 obiannotate --number empty.fasta
@@ -198,12 +199,103 @@ cgatggctccatgctagtgctagtcgatga
 
 ###### Adding sequence related annotations
 
---length  
---aho-corasick <string> 
---pattern <PATTERN>
-  --pattern-name
-  --pattern-error
-  --allows-indels
+* Annotating sequences with their length
+  
+The sequence length can be added to the annotation using the `--length` option which adds the 
+`seq_length`.
+
+```bash
+obiannotate --length empty.fasta
+```
+```
+>seqA1 {"seq_length":27}
+cgatgctgcatgctagtgctagtcgat
+>seqB1 {"seq_length":30}
+tagctagctagctagctagctagctagcta
+>seqA2 {"seq_length":29}
+gtagctagctagctagctagctagctaga
+>seqC1 {"seq_length":29}
+cgatgctccatgctagtgctagtcgatga
+>seqB2 {"seq_length":30}
+cgatggctccatgctagtgctagtcgatga
+```
+
+* Counting occurrences of a set of patterns 
+
+The `--aho-corasick` option allow for counting the occurrences of a set of patterns stored in a text, one pattern per line. The patterns are strictly matched against both strands of the DNA sequence using the Aho-Corasick multiple pattern matching algorithm. The option requires as argument the name of the file containing these patterns.
+
+{{% code "motifs.txt" txt true %}}
+
+```bash
+obiannotate --aho-corasick motifs.txt empty.fasta 
+```
+```
+>seqA1 {"aho_corasick":2,"aho_corasick_Fwd":2,"aho_corasick_Rev":0}
+cgatgctgcatgctagtgctagtcgat
+>seqB1 
+tagctagctagctagctagctagctagcta
+>seqA2 
+gtagctagctagctagctagctagctaga
+>seqC1 {"aho_corasick":2,"aho_corasick_Fwd":1,"aho_corasick_Rev":1}
+cgatgctccatgctagtgctagtcgatga
+>seqB2 {"aho_corasick":2,"aho_corasick_Fwd":1,"aho_corasick_Rev":1}
+cgatggctccatgctagtgctagtcgatga
+```
+
+When used with the `--aho-corasick` option {{% obi obiannotate %}} adds the three following options:
+
+  - `aho_corasick`: the total number of match on the sequence
+  - `aho_corasick_Fwd`: the number of match on the forward strand
+  - `aho_corasick_Rev`: the number of match on the reverse strand
+
+* Matching a primer against sequences 
+
+It is possible to identify sequences that match a primer using the same algorithm than the one used by {{% obi obipcr %}} or {{% obi obimultiplex %}}. Four options controle this feature:
+
+- `--pattern <PATTERN>`: the primer sequence to be searched. The pattern is following the [DNA Pattern grammar]({{< ref "../../../patterns/dnagrep" >}}) allowing to use the IUPAC DNA codes and to indicates non mutable positions.
+- `--pattern-error <INT>` : the maximum error allowed when matching the primer. Default is 0.
+
+```bash
+obiannotate --pattern tagctagctcgctagcta \
+            --pattern-error 3 \
+            empty.fasta
+```
+```
+>seqA1 
+cgatgctgcatgctagtgctagtcgat
+>seqB1 {"pattern":"tagctagctcgctagcta","pattern_error":1,"pattern_location":"1..18","pattern_match":"tagctagctagctagcta"}
+tagctagctagctagctagctagctagcta
+>seqA2 {"pattern":"tagctagctcgctagcta","pattern_error":1,"pattern_location":"2..19","pattern_match":"tagctagctagctagcta"}
+gtagctagctagctagctagctagctaga
+>seqC1 
+cgatgctccatgctagtgctagtcgatga
+>seqB2 
+cgatggctccatgctagtgctagtcgatga
+```
+
+- `--pattern-name <STRING>`
+  
+```bash
+obiannotate --pattern tagctagctcgctagcta \
+            --pattern-error 3 \
+            --pattern-name primer1 \
+            empty.fasta
+```
+```
+>seqA1 
+cgatgctgcatgctagtgctagtcgat
+>seqB1 {"primer1_error":1,"primer1_location":"1..18","primer1_match":"tagctagctagctagcta","primer1_pattern":"tagctagctcgctagcta"}
+tagctagctagctagctagctagctagcta
+>seqA2 {"primer1_error":1,"primer1_location":"2..19","primer1_match":"tagctagctagctagcta","primer1_pattern":"tagctagctcgctagcta"}
+gtagctagctagctagctagctagctaga
+>seqC1 
+cgatgctccatgctagtgctagtcgatga
+>seqB2 
+cgatggctccatgctagtgctagtcgatga
+```
+
+- `--allows-indels`: by default the program will not allow indels in patterns, but you can use this option to enable them. When enabled, an error can be a mismatch or an insertion/deletion.
+
 
 ###### Edit taxonomy related annotations
 
@@ -223,8 +315,7 @@ cgatggctccatgctagtgctagtcgatga
 
 ##### Deleting annotations
 
-There are three options that allow for deleting annotations associated with a sequence.
-The easiest one is `--clear`. It removes every annotation associated to a sequence.
+There are three options for deleting annotations associated with a sequence. The easiest is the `--clear` option. This command removes all annotations associated with a sequence.
 
 Considering the fasta sequence file
 
@@ -248,7 +339,7 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-If you combine a selection option, here `-C 10` which selects all the sequences occurring at most ten times, and the `--clear` option, you will delete annotations only on selected sequences. For other sequences the annotations are kept.
+Combining the `-C 10` selection option, which selects all sequences that occur at most ten times, and the `--clear` option will delete annotations only on the selected sequences. The annotations on other sequences are kept.
 
 ```bash
 obiannotate -C 10 --clear five_tags.fasta
@@ -266,7 +357,7 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-It is possible to delete a given tag based on its name using the `--delete-tag` option. In the following example the **taxid** tag is deleted. As the **seqB2** sequence does not exhibe a **taxid** tag, it is not affected.
+Using the `--delete-tag` option, it is possible to delete a tag based on its name. In the following example, the **taxid** tag is deleted. The se**seqB2**qB2 sequence is not affected because it does not exhibit a **taxid** tag.
 
 ```bash
 obiannotate --delete-tag taxid five_tags.fasta
@@ -284,7 +375,7 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-Several  `--delete-tag`  options can be inserted in a single {{< obi obiannotate >}} command.
+You can insert several `--delete-tag` options in a single {{< obi obiannotate >}} command.
 
 ```bash
 obiannotate --delete-tag taxid \
@@ -304,7 +395,7 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-The last way to delete annotations is indirect. It is based on the `--keep` option, indicating the annotation to be kept. Consequently, all the other tags, the not kept, are deleted
+The last method for deleting annotations is indirect. It is based on the `--keep` option, which indicates which annotation should be kept. Consequently, all the other tags that are not kept are deleted.
 
 ```bash
 obiannotate --keep taxid five_tags.fasta
@@ -322,7 +413,7 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-Similarly to `--delete-tag` several `--keep` options can be provided to keep several annotations.
+Similarly to the `--delete-tag` option, several `--keep` options can be provided to keep multiple annotations.
 
 ```bash
 obiannotate --keep taxid \
@@ -347,7 +438,7 @@ cgatggctccatgctagtgctagtcgatga
 
 #### Edition of the identifier
 
-The identifier of a sequence can be updated by using the `--set-id` option. One of the most useful use cases of this option is to substitute the long id generated by the sequencer, by a new short one based on a number incremented from sequence to sequence, as the one generated by the `--number` option. To achieve this, one can use two piped {{< obi obiannotate >}} commands. The first adds the `seq_number` annotation to the sequences, and then the second updates the sequence id from this newly added `seq_number` tag.
+You can update the identifier of a sequence using the `--set-id` option. One useful application of this option is substituting the long id generated by the sequencer with a new, short id based on a number incremented from sequence to sequence, as with the id generated by the `--number` option. To do so, use two piped {{< obi obiannotate >}} commands. The first command adds the `seq_number` annotation to the sequences. Then, the second command updates the sequence id from the newly added `seq_number` tag.
 
 ```bash
 obiannotate --number empty.fasta \
@@ -366,15 +457,103 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-The `sprintf` function of the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}) is used to format sequence identifiers. It requires a format string, in this case `"motus_%04d"`, which describes how the new identifier will be generated. In this case, `%04d` will be replaced by the second argument of the `sprintf()` function, `annotations.seq_number`, which is the number associated with the sequence in the file. `d` indicates a decimal integer value, and the `4` in front specifies that this number will be padded to 4 digits. The `0` before the `4` indicates that the number will be padded with zeros.
 
-The result of the `printf` function can be seen in the results presented. The first sequence is given the identifier `motus_0001`, the second is given the identifier `motus_0002`, and so on.
-#### Edition of the definition
+The `sprintf` function in the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}) is used to format sequence identifiers. It requires a format string, `"motus_%04d"` in this case, which describes how the new identifier will be generated. The `%04d` in the format string will be replaced by the second argument of the `sprintf` function, `annotations.seq_number`. This argument is the number associated with the sequence in the file. The `d` specifies that the number is a decimal integer, and the `4` specifies that the number will be padded to four digits. The `0` before the `4` specifies that the number will be padded with zeros.
+
+The results of the `printf` function are presented above. The first sequence is identified as `motus_0001`, the second as `motus_0002`, and so on.
 
 #### Edition of the sequence
 
---cut <###:###>    
---sequence
+##### Extracting a fragment of the sequence
+
+You can extract a fragment of a sequence using the `--cut` option. This option requires an argument in the form of `#:###`, where `#` is the start position and `###` is the end position of the fragment. Position numbering is one-based, and the fragment includes the limits.
+<!-- J'ai relu jusqu'ici -->
+
+```bash
+obiannotate --cut 2:7 five_tags.fasta > five_tags_sub_2_7.fasta
+```
+{{< code "five_tags_sub_2_7.fasta" fasta true >}}
+
+If `#` is absent the fragment extracted starts from the beginning of the sequence.
+
+```bash
+obiannotate --cut :7 five_tags.fasta 
+```
+```
+>seqA1_sub[1..7] {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+cgatgct
+>seqB1_sub[1..7] {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+tagctag
+>seqA2_sub[1..7] {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gtagcta
+>seqC1_sub[1..7] {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatgct
+>seqB2_sub[1..7] {"count":25,"tata":"bar"}
+cgatggc
+```
+
+If `###` is absent the fragment extracted ends at the end of the sequence.
+
+```bash
+obiannotate --cut 2: five_tags.fasta 
+```
+```
+>seqA1_sub[2..27] {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+gatgctgcatgctagtgctagtcgat
+>seqB1_sub[2..30] {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+agctagctagctagctagctagctagcta
+>seqA2_sub[2..29] {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+tagctagctagctagctagctagctaga
+>seqC1_sub[2..29] {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+gatgctccatgctagtgctagtcgatga
+>seqB2_sub[2..30] {"count":25,"tata":"bar"}
+gatggctccatgctagtgctagtcgatga
+```
+
+Following python usage negative coordinates have to be considered from the end of the sequence. `-1` is the last position of the sequence, `-2` is the second last position of the sequence, and so on.
+
+```bash
+obiannotate --cut='-7:-2' five_tags.fasta 
+```
+```
+>seqA1_sub[22..26] {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+gtcga
+>seqB1_sub[25..29] {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+tagct
+>seqA2_sub[24..28] {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+gctag
+>seqC1_sub[24..28] {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+cgatg
+>seqB2_sub[25..29] {"count":25,"tata":"bar"}
+cgatg
+```
+
+> [!WARNING] 
+> When using negative coordinates like in the above command to not confuse the shell interpretor,
+> the option has to be written followed by the `=` sign without space between the option and the value: `--cut='-7:-2'` 
+
+##### Editing the sequence itself
+
+The nucleic sequence of a sequence record is considered by obitools as a special tag annotation name `sequence`. Therefore, it is possible to edit the sequence itself by using the `obiannotate` command with the `--set-tag` option.
+
+```bash
+obiannotate --set-tag sequence='"acgtacgt"' five_tags.fasta
+```
+```
+>seqA1 {"count":1,"tata":"bar","taxid":"taxon:9606 [Homo sapiens]@species","toto":"titi"}
+acgtacgt
+>seqB1 {"tata":"bar","taxid":"taxon:63221 [Homo sapiens neanderthalensis]@subspecies","toto":"tata"}
+acgtacgt
+>seqA2 {"count":5,"tata":"foo","taxid":"taxon:9605 [Homo]@genus","toto":"tutu"}
+acgtacgt
+>seqC1 {"count":15,"tata":"foo","taxid":"taxon:9604 [Hominidae]@family","toto":"foo"}
+acgtacgt
+>seqB2 {"count":25,"tata":"bar"}
+acgtacgt
+```
+
+As for the other tags, the `--set-tag` option requires a expression expressed using the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}) and returning a string. 
+
 
 ## Synopsis
 
