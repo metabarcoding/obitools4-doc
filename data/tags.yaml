@@ -1,58 +1,1000 @@
+- tag: ac
+  definition: Accession number of the ecoPCR record used as template.
+  command:
+  - obiconvert
+  category:
+  - taxonomy
+- tag: ali_dir
+  definition: Orientation of the alignment window when overlapping reads are aligned
+    ("left" or "right").
+  command:
+  - obikmersim
+  - obipairing
+  category:
+  - pairing
+- tag: ali_length
+  definition: Length of the aligned region considered when assembling paired reads.
+  command:
+  - obikmersim
+  - obipairing
+  category:
+  - pairing
+- tag: amplicon_length
+  definition: Expected size of the in silico amplicon described in an ecoPCR record.
+  command:
+  - obiconvert
+  category:
+  - primer
+- tag: aho_corasick
+  definition: Total number of occurrences of the provided motifs detected by the Aho–Corasick
+    search.
+  command:
+  - obiannotate
+  category:
+  - annotation
+- tag: aho_corasick_Fwd
+  definition: Number of motif matches on the forward strand when running the Aho–Corasick
+    scanner.
+  command:
+  - obiannotate
+  category:
+  - annotation
+- tag: aho_corasick_Rev
+  definition: Number of motif matches on the reverse complement strand produced by
+    the Aho–Corasick scanner.
+  command:
+  - obiannotate
+  category:
+  - annotation
+- tag: chimera
+  definition: Flag produced by obiclean identifying sequences detected as chimeric.
+  command:
+  - obiclean
+  category:
+  - cleaning
+- tag: count
+  definition: Number of occurrences of the dereplicated sequence in the dataset.
+  category:
+  - general
 - tag: definition
-  definition: text information about the sequence present in the original sequence file.
+  definition: Text description kept from the original FASTA/FASTQ definition line.
+  category:
+  - general
+- tag: demultiplex_error
+  definition: Human‑readable reason explaining why a read could not be assigned to
+    a PCR sample.
+  command:
+  - obimultiplex
+  - obipcr
+  category:
+  - demultiplexing
 - tag: direction
-  definition: set to “forward” if the original sequence did not need to be
-    reverse-complemented to be processed, set to “reverse” otherwise.
+  definition: Orientation of the read with respect to the primer set (forward or reverse).
   command:
-    - obipcr
+  - obimultiplex
+  - obipcr
+  category:
+  - primer
+- tag: Entropies
+  definition: Per‑base minimal entropy measured while masking low-complexity regions.
+  command:
+  - obilowmask
+  category:
+  - masking
+- tag: experiment
+  definition: Experiment identifier assigned to each multiplexed sample in the NGS
+    filter.
+  command:
+  - obimultiplex
+  - obitagpcr
+  category:
+  - metadata
+- tag: family_name
+  definition: Scientific name of the family containing the ecoPCR reference sequence.
+  command:
+  - obiconvert
+  category:
+  - taxonomy
+- tag: family_taxid
+  definition: NCBI taxid of the family containing the ecoPCR reference sequence.
+  command:
+  - obiconvert
+  category:
+  - taxonomy
 - tag: forward_error
-  definition: Number of mismatch between forward primer and priming site
+  definition: Number of mismatches tolerated between the read and the forward primer.
   command:
-    - obipcr
+  - obimultiplex
+  - obipcr
   category:
-    - primer
+  - primer
 - tag: forward_match
-  definition: Forward primer priming site sequence
+  definition: Sequence of the forward primer match extracted from the read.
   command:
-    - obipcr
+  - obimultiplex
+  - obipcr
   category:
-    - primer
+  - primer
+- tag: forward_mismatch
+  definition: Mismatch count reported in ecoPCR reference entries for the forward
+    primer.
+  command:
+  - obiconvert
+  category:
+  - primer
 - tag: forward_primer
-  definition: Forward primer sequence
+  definition: Forward primer sequence used while demultiplexing or during in silico
+    PCR.
   command:
-    - obipcr
+  - obimultiplex
+  - obipcr
+  - obiconvert
   category:
-    - primer
+  - primer
+- tag: forward_tag
+  definition: Sample tag (index) identified on the forward side of a read.
+  command:
+  - obimultiplex
+  - obipcr
+  category:
+  - demultiplexing
+- tag: forward_tm
+  definition: Melting temperature of the forward primer reported by ecoPCR.
+  command:
+  - obiconvert
+  category:
+  - primer
+- tag: genus_name
+  definition: Scientific name of the genus containing the ecoPCR reference sequence.
+  command:
+  - obiconvert
+  category:
+  - taxonomy
+- tag: genus_taxid
+  definition: NCBI taxid of the genus containing the ecoPCR reference sequence.
+  command:
+  - obiconvert
+  category:
+  - taxonomy
+- tag: landmark_coord
+  definition: Coordinate of a reference sequence in the landmark space produced by
+    obilandmark.
+  command:
+  - obilandmark
+  category:
+  - reference
+- tag: landmark_id
+  definition: Identifier of the landmark sequence used as axis when building the landmark
+    space.
+  command:
+  - obilandmark
+  category:
+  - reference
+- tag: mask
+  definition: Scale (window size) that triggered masking of each nucleotide during
+    entropy masking.
+  command:
+  - obilowmask
+  category:
+  - masking
+- tag: merged_sample
+  definition: Map storing the abundance of each sample contributing to a merged record.
+  command:
+  - obiuniq
+  - obimatrix
+  category:
+  - metadata
+- tag: microsat
+  definition: Sequence of the detected microsatellite region.
+  command:
+  - obimicrosat
+  category:
+  - microsatellite
+- tag: microsat_from
+  definition: 1-based start position of the detected microsatellite.
+  command:
+  - obimicrosat
+  category:
+  - microsatellite
+- tag: microsat_left
+  definition: Left flanking region kept around the detected microsatellite.
+  command:
+  - obimicrosat
+  category:
+  - microsatellite
+- tag: microsat_right
+  definition: Right flanking region kept around the detected microsatellite.
+  command:
+  - obimicrosat
+  category:
+  - microsatellite
+- tag: microsat_to
+  definition: End position (1-based, inclusive) of the detected microsatellite.
+  command:
+  - obimicrosat
+  category:
+  - microsatellite
+- tag: microsat_unit
+  definition: Minimal repeat unit sequence describing the microsatellite.
+  command:
+  - obimicrosat
+  category:
+  - microsatellite
+- tag: microsat_unit_count
+  definition: Number of times the minimal unit is repeated inside the microsatellite.
+  command:
+  - obimicrosat
+  category:
+  - microsatellite
+- tag: microsat_unit_length
+  definition: Length (in bases) of the minimal repeat unit in the microsatellite.
+  command:
+  - obimicrosat
+  category:
+  - microsatellite
+- tag: microsat_unit_normalized
+  definition: Canonical representation of the repeat unit, normalized for strand orientation.
+  command:
+  - obimicrosat
+  category:
+  - microsatellite
+- tag: microsat_unit_orientation
+  definition: Orientation ("direct" or "reverse") of the repeat unit with respect
+    to the original read.
+  command:
+  - obimicrosat
+  category:
+  - microsatellite
+- tag: mode
+  definition: Whether a paired-read assembly comes from an actual alignment or from
+    simply joining reads.
+  command:
+  - obipairing
+  category:
+  - pairing
+- tag: obiclean_cluster
+  definition: Identifier of the obiclean cluster containing the sequence.
+  command:
+  - obiclean
+  category:
+  - cleaning
+- tag: obiclean_head
+  definition: Boolean flag indicating that the sequence is the most abundant variant
+    in its cluster.
+  command:
+  - obiclean
+  category:
+  - cleaning
+- tag: obiclean_headcount
+  definition: Abundance of the cluster head sequence.
+  command:
+  - obiclean
+  category:
+  - cleaning
+- tag: obiclean_internalcount
+  definition: Cumulated abundance of internal (non-head, non-singleton) variants in
+    the obiclean cluster.
+  command:
+  - obiclean
+  category:
+  - cleaning
+- tag: obiclean_mutation
+  definition: Edit description used by obiclean to label the relationship between
+    a sequence and its head.
+  command:
+  - obiclean
+  category:
+  - cleaning
+- tag: obiclean_samplecount
+  definition: Total abundance (head + internal + singleton) of the obiclean cluster.
+  command:
+  - obiclean
+  category:
+  - cleaning
+- tag: obiclean_singletoncount
+  definition: Number of singleton variants linked to the head in the obiclean graph.
+  command:
+  - obiclean
+  category:
+  - cleaning
+- tag: obiclean_status
+  definition: Final obiclean status (head/internal/singleton/bad) attributed to the
+    sequence.
+  command:
+  - obiclean
+  category:
+  - cleaning
+- tag: obiclean_weight
+  definition: Relative weight computed for each sequence during obiclean consensus
+    building.
+  command:
+  - obiclean
+  category:
+  - cleaning
+- tag: obicleandb_dist
+  definition: Distance distribution between a reference and its neighbors during database
+    cleaning.
+  command:
+  - obicleandb
+  category:
+  - cleaning
+- tag: obicleandb_level
+  definition: Taxonomic rank (none/genus/family) reached during the obicleandb validation
+    workflow.
+  command:
+  - obicleandb
+  category:
+  - cleaning
+- tag: obicleandb_median
+  definition: Median similarity score within the accepted cluster around a reference
+    sequence.
+  command:
+  - obicleandb
+  category:
+  - cleaning
+- tag: obicleandb_scores
+  definition: Raw similarity scores observed for the reference during database validation.
+  command:
+  - obicleandb
+  category:
+  - cleaning
+- tag: obicleandb_trusted
+  definition: Probability assigned by obicleandb that the reference sequence is trustworthy.
+  command:
+  - obicleandb
+  category:
+  - cleaning
+- tag: obicleandb_trusted_on
+  definition: Number of supporting sequences used to compute the obicleandb trust
+    score.
+  command:
+  - obicleandb
+  category:
+  - cleaning
+- tag: obiconsensus_consensus
+  definition: Boolean flag indicating whether a sequence is a consensus sequence produced
+    by obiconsensus.
+  command:
+  - obiconsensus
+  category:
+  - consensus
+- tag: obiconsensus_filtered_graph_size
+  definition: Size of the kmer graph after filtering low-coverage nodes.
+  command:
+  - obiconsensus
+  category:
+  - consensus
+- tag: obiconsensus_full_graph_size
+  definition: Size of the full kmer graph before filtering.
+  command:
+  - obiconsensus
+  category:
+  - consensus
+- tag: obiconsensus_kmer_max_occur
+  definition: Maximum abundance observed for any kmer in the graph used to build the
+    consensus.
+  command:
+  - obiconsensus
+  category:
+  - consensus
+- tag: obiconsensus_kmer_size
+  definition: Kmer size actually used to build the consensus for the sequence.
+  command:
+  - obiconsensus
+  category:
+  - consensus
+- tag: obiconsensus_seq_length
+  definition: Length of the consensus sequence returned by obiconsensus.
+  command:
+  - obiconsensus
+  category:
+  - consensus
+- tag: obiconsensus_weight
+  definition: Cumulated weight (number of supporting reads) of the consensus sequence.
+  command:
+  - obiconsensus
+  category:
+  - consensus
+- tag: obikmer_ali_length
+  definition: Alignment length between the query and the best kmer-matched reference.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_fast_count
+  definition: Number of shared kmers discovered during the fast filtering phase.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_fast_overlap
+  definition: Estimated overlap length inferred from the kmer matching step.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_fast_score
+  definition: Fast alignment score computed before the full alignment stage.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_identity
+  definition: Proportion of identical bases in the alignment computed after kmer matching.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_kmer_size
+  definition: Size of the kmers that were indexed to perform the similarity search.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_match_count
+  definition: Number of references sharing at least the requested number of kmers
+    with the query.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_match_id
+  definition: Identifier of the reference sequence selected as best match for a query
+    ("-rev" when aligning the reverse complement).
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_orientation
+  definition: Orientation (forward/reverse) used when aligning the query to the best
+    kmer match.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_residual_id
+  definition: Identity computed after removing the minimal number of shared kmers
+    from the alignment.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_score
+  definition: Alignment score resulting from the Smith–Waterman extension after kmer
+    matching.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_score_norm
+  definition: Alignment score normalized by alignment length for kmer-based matches.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obikmer_sparse_kmer
+  definition: Indicates whether sparse kmers were used while building the index.
+  command:
+  - obikmersim
+  category:
+  - kmer
+- tag: obitag_bestid
+  definition: Best identity score obtained when tagging a sequence with reference
+    databases.
+  command:
+  - obitag
+  category:
+  - classification
+- tag: obitag_bestmatch
+  definition: Identifier of the best matching reference sequence used for taxonomic
+    assignment.
+  command:
+  - obitag
+  category:
+  - classification
+- tag: obitag_coord
+  definition: Geographic coordinates of the query when using geometric tagging.
+  command:
+  - obitag
+  category:
+  - classification
+- tag: obitag_geomref_index
+  definition: Distance index (difference → taxon) stored for landmark-based geometric
+    tagging.
+  command:
+  - obitag
+  - obirefidx
+  category:
+  - reference
+- tag: obitag_match_count
+  definition: Number of reference sequences sharing the best score with the query.
+  command:
+  - obitag
+  category:
+  - classification
+- tag: obitag_min_dist
+  definition: Minimal geometric distance observed between the query and landmark references.
+  command:
+  - obitag
+  category:
+  - classification
+- tag: obitag_rank
+  definition: Taxonomic rank associated with the assigned reference taxon.
+  command:
+  - obitag
+  category:
+  - classification
+- tag: obitag_ref_index
+  definition: Precomputed index linking mismatch counts to reference taxa for LCS-based
+    tagging.
+  command:
+  - obitag
+  - obirefidx
+  category:
+  - reference
+- tag: obitag_similarity_method
+  definition: Identification method used by obitag ("lcs" or "geometric").
+  command:
+  - obitag
+  category:
+  - classification
+- tag: obimultiplex_amplicon_rank
+  definition: Rank of the barcode match among all amplicons compatible with the read.
+  command:
+  - obimultiplex
+  category:
+  - demultiplexing
+- tag: obimultiplex_direction
+  definition: Orientation of the read determined during barcode extraction (forward
+    or reverse).
+  command:
+  - obimultiplex
+  - obitagpcr
+  category:
+  - demultiplexing
+- tag: obimultiplex_error
+  definition: Explanation of the failure encountered during barcode extraction.
+  command:
+  - obimultiplex
+  - obitagpcr
+  category:
+  - demultiplexing
+- tag: obimultiplex_forward_error
+  definition: Mismatch count observed between the read and the forward primer in the
+    NGS filter.
+  command:
+  - obimultiplex
+  - obitagpcr
+  category:
+  - primer
+- tag: obimultiplex_forward_match
+  definition: Portion of the read matching the forward primer.
+  command:
+  - obimultiplex
+  - obitagpcr
+  category:
+  - primer
+- tag: obimultiplex_forward_matching
+  definition: Matching model (strict/hamming/indel) used to interpret the forward
+    primer.
+  command:
+  - obimultiplex
+  category:
+  - primer
+- tag: obimultiplex_forward_mismatches
+  definition: Forward primer mismatch count propagated to paired reads during PCR
+    tagging.
+  command:
+  - obitagpcr
+  category:
+  - primer
+- tag: obimultiplex_forward_primer
+  definition: Forward primer sequence fetched from the NGS filter entry assigned to
+    the read.
+  command:
+  - obimultiplex
+  category:
+  - primer
+- tag: obimultiplex_forward_proposed_tag
+  definition: Forward tag proposed by the error-tolerant search before validation.
+  command:
+  - obimultiplex
+  category:
+  - demultiplexing
+- tag: obimultiplex_forward_tag
+  definition: Forward sample tag assigned to the read.
+  command:
+  - obimultiplex
+  - obitagpcr
+  category:
+  - demultiplexing
+- tag: obimultiplex_forward_tag_dist
+  definition: Edit distance between the observed tag and the expected forward tag.
+  command:
+  - obimultiplex
+  category:
+  - demultiplexing
+- tag: obimultiplex_reverse_error
+  definition: Mismatch count observed between the read and the reverse primer in the
+    NGS filter.
+  command:
+  - obimultiplex
+  - obitagpcr
+  category:
+  - primer
+- tag: obimultiplex_reverse_match
+  definition: Portion of the read matching the reverse primer.
+  command:
+  - obimultiplex
+  - obitagpcr
+  category:
+  - primer
+- tag: obimultiplex_reverse_matching
+  definition: Matching model (strict/hamming/indel) used to interpret the reverse
+    primer.
+  command:
+  - obimultiplex
+  category:
+  - primer
+- tag: obimultiplex_reverse_mismatches
+  definition: Reverse primer mismatch count propagated to paired reads during PCR
+    tagging.
+  command:
+  - obitagpcr
+  category:
+  - primer
+- tag: obimultiplex_reverse_primer
+  definition: Reverse primer sequence fetched from the NGS filter entry assigned to
+    the read.
+  command:
+  - obimultiplex
+  category:
+  - primer
+- tag: obimultiplex_reverse_proposed_tag
+  definition: Reverse tag proposed by the error-tolerant search before validation.
+  command:
+  - obimultiplex
+  category:
+  - demultiplexing
+- tag: obimultiplex_reverse_tag
+  definition: Reverse sample tag assigned to the read.
+  command:
+  - obimultiplex
+  - obitagpcr
+  category:
+  - demultiplexing
+- tag: obimultiplex_reverse_tag_dist
+  definition: Edit distance between the observed tag and the expected reverse tag.
+  command:
+  - obimultiplex
+  category:
+  - demultiplexing
+- tag: obilowmask_error
+  definition: Reason why the sequence could not be processed during low-complexity
+    masking.
+  command:
+  - obilowmask
+  category:
+  - masking
+- tag: obisplit_frg
+  definition: Index of the fragment produced by obisplit from the original read.
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: obisplit_group
+  definition: Name of the splitting group (pool or pattern pair) to which the fragment
+    belongs.
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: obisplit_left_error
+  definition: Mismatch count tolerated on the left delimiting pattern.
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: obisplit_left_match
+  definition: Sequence matched by the left delimiting pattern.
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: obisplit_left_pattern
+  definition: Name of the pattern that delimited the left boundary.
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: obisplit_location
+  definition: Coordinates of the fragment extracted by obisplit (start..end, 1-based).
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: obisplit_nfrg
+  definition: Total number of fragments produced from the source read.
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: obisplit_right_error
+  definition: Mismatch count tolerated on the right delimiting pattern.
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: obisplit_right_match
+  definition: Sequence matched by the right delimiting pattern.
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: obisplit_right_pattern
+  definition: Name of the pattern that delimited the right boundary.
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: obisplit_set
+  definition: Label of the pattern set (pool) used to extract a fragment.
+  command:
+  - obisplit
+  category:
+  - splitting
+- tag: pair
+- tag: pairing_fast_count
+  definition: Number of kmers supporting the initial overlap detection between paired
+    reads.
+  command:
+  - obipairing
+  category:
+  - pairing
+- tag: pairing_fast_overlap
+  definition: Expected overlap length estimated from the fast pre-alignment step.
+  command:
+  - obipairing
+  category:
+  - pairing
+- tag: pairing_fast_score
+  definition: Score computed during the fast overlap detection stage prior to full
+    alignment.
+  command:
+  - obipairing
+  category:
+  - pairing
+- tag: pairing_mismatches
+  definition: Map describing positions and base substitutions observed when merging
+    paired reads.
+  command:
+  - obipairing
+  category:
+  - pairing
+- tag: pattern
+  definition: Pattern sequence tested with `obiannotate --pattern`; the tag name is
+    prefixed when `--pattern-name` is provided.
+  command:
+  - obiannotate
+  category:
+  - annotation
+- tag: pattern_error
+  definition: Number of mismatches or indels between the queried pattern and the matched
+    subsequence (prefix follows pattern name).
+  command:
+  - obiannotate
+  category:
+  - annotation
+- tag: pattern_location
+  definition: Genomic coordinates (forward or complement) of the matched pattern (prefix
+    follows pattern name).
+  command:
+  - obiannotate
+  category:
+  - annotation
+- tag: pattern_match
+  definition: Sequence fragment that matched the requested pattern (prefix follows
+    pattern name).
+  command:
+  - obiannotate
+  category:
+  - annotation
+- tag: rank
+  definition: Taxonomic rank assigned to the ecoPCR reference sequence.
+  command:
+  - obiconvert
+  category:
+  - taxonomy
+- tag: reffamidx_cluster_n
+  definition: Number of clusters created when indexing a family-level reference database.
+  command:
+  - obirefidx
+  category:
+  - reference
+- tag: reffamidx_clusterhead
+  definition: Boolean flag telling whether the reference sequence is the head of its
+    similarity cluster.
+  command:
+  - obirefidx
+  category:
+  - reference
+- tag: reffamidx_clusterid
+  definition: Identifier of the cluster head that represents a reference sequence.
+  command:
+  - obirefidx
+  category:
+  - reference
+- tag: reffamidx_clusteridentity
+  definition: Pairwise identity between a reference sequence and the head of its family
+    cluster.
+  command:
+  - obirefidx
+  category:
+  - reference
+- tag: reffamidx_id
+  definition: Unique identifier assigned to each reference sequence while building
+    the family index.
+  command:
+  - obirefidx
+  category:
+  - reference
+- tag: reffamidx_in
+  definition: Index structure created for a given reference sequence to accelerate
+    taxonomic assignment.
+  command:
+  - obirefidx
+  category:
+  - reference
 - tag: reverse_error
-  definition: Number of mismatch between reverse primer and priming site
+  definition: Number of mismatches tolerated between the read and the reverse primer.
   command:
-    - obipcr
+  - obimultiplex
+  - obipcr
   category:
-    - primer
+  - primer
 - tag: reverse_match
-  definition: Reverse primer priming site sequence
+  definition: Sequence of the reverse primer match extracted from the read.
   command:
-    - obipcr
+  - obimultiplex
+  - obipcr
   category:
-    - primer
+  - primer
+- tag: reverse_mismatch
+  definition: Mismatch count reported in ecoPCR reference entries for the reverse
+    primer.
+  command:
+  - obiconvert
+  category:
+  - primer
 - tag: reverse_primer
-  definition: Reverse primer sequence
+  definition: Reverse primer sequence used while demultiplexing or during in silico
+    PCR.
   command:
-    - obipcr
+  - obimultiplex
+  - obipcr
+  - obiconvert
   category:
-    - primer
+  - primer
+- tag: reverse_tag
+  definition: Sample tag identified on the reverse side of a read.
+  command:
+  - obimultiplex
+  - obipcr
+  category:
+  - demultiplexing
+- tag: reverse_tm
+  definition: Melting temperature of the reverse primer reported by ecoPCR.
+  command:
+  - obiconvert
+  category:
+  - primer
+- tag: sample
+  definition: Sample identifier assigned by the NGS filter and propagated to annotated
+    reads.
+  command:
+  - obimultiplex
+  - obitagpcr
+  category:
+  - metadata
 - tag: scientific_name
-  definition: Scientific name associated with to the taxid
+  definition: Scientific name for the current taxonomic annotation.
   command:
-    - obitag
-    - obipcr
+  - obiannotate
+  - obiconvert
+  - obitag
   category:
-    - taxonomy
+  - taxonomy
+- tag: score
+  definition: Alignment score computed while merging paired reads.
+  command:
+  - obipairing
+  category:
+  - pairing
+- tag: score_norm
+  definition: Alignment score normalized by the overlap length when assembling paired
+    reads.
+  command:
+  - obikmersim
+  - obipairing
+  category:
+  - pairing
+- tag: seq_a_single
+  definition: Number of nucleotides trimmed from sequence A because they are single-stranded
+    in the overlap.
+  command:
+  - obikmersim
+  - obipairing
+  category:
+  - pairing
+- tag: seq_ab_match
+  definition: Number of matching positions observed in the aligned overlap between
+    two sequences.
+  command:
+  - obikmersim
+  - obipairing
+  category:
+  - pairing
+- tag: seq_b_single
+  definition: Number of nucleotides trimmed from sequence B because they are single-stranded
+    in the overlap.
+  command:
+  - obikmersim
+  - obipairing
+  category:
+  - pairing
+- tag: seq_length
+  definition: Length of the sequence in nucleotides.
+  command:
+  - obiannotate
+  - obikmersim
+  - obimicrosat
+  category:
+  - general
+- tag: seq_number
+  definition: Ordinal number assigned to sequences when numbering is requested or
+    needed for taxonomy extraction.
+  command:
+  - obiannotate
+  - obiconvert
+  category:
+  - metadata
+- tag: species_name
+  definition: Scientific name of the species associated with the ecoPCR reference
+    sequence.
+  command:
+  - obiconvert
+  category:
+  - taxonomy
+- tag: species_taxid
+  definition: NCBI taxid of the species associated with the ecoPCR reference sequence.
+  command:
+  - obiconvert
+  category:
+  - taxonomy
+- tag: strand
+  definition: Strand orientation stored in the ecoPCR record.
+  command:
+  - obiconvert
+  category:
+  - primer
 - tag: taxid
-  definition: Taxonomic identifier
+  definition: Taxonomic identifier of the sequence within the current taxonomy.
   link: https://www.ncbi.nlm.nih.gov/Taxonomy
   command:
-    - obitag
-    - obipcr
+  - obitag
+  - obipcr
+  - obiconvert
   category:
-    - taxonomy
+  - taxonomy
+- tag: taxonomic_path
+  definition: Ordered list of taxids describing the lineage of the annotated sequence.
+  command:
+  - obiannotate
+  category:
+  - taxonomy
+- tag: taxonomic_rank
+  definition: Rank name corresponding to the assigned taxon.
+  command:
+  - obiannotate
+  category:
+  - taxonomy
