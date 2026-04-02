@@ -35,7 +35,8 @@ graph TD
 ## Synopsis
 
 ```bash
-obicount [--batch-size <int>] [--csv] [--debug] [--ecopcr] [--embl] [--fasta]
+obicount [--batch-mem <string>] [--batch-size <int>] [--batch-size-max <int>]
+         [--csv] [--debug] [--ecopcr] [--embl] [--fasta]
          [--fastq] [--force-one-cpu] [--genbank] [--help|-h|-?]
          [--input-OBI-header] [--input-json-header] [--max-cpu <int>]
          [--no-order] [--pprof] [--pprof-goroutine <int>]

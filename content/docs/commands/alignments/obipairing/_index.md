@@ -124,7 +124,8 @@ A `mode` attribute set to `alignment` will be added to the consensus sequence an
 
 ```bash
 obipairing --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
-           [--batch-size <int>] [--compress|-Z] [--debug] [--delta|-D <int>]
+           [--batch-mem <string>] [--batch-size <int>]
+           [--batch-size-max <int>] [--compress|-Z] [--debug] [--delta|-D <int>]
            [--ecopcr] [--embl] [--exact-mode] [--fast-absolute] [--fasta]
            [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu]
            [--gap-penality|-G <float64>] [--genbank] [--help|-h|-?]

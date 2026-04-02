@@ -16,7 +16,8 @@ Apply a LUA script to each sequence in a sequence file.
 
 ```bash
 obiscript [--allows-indels] [--approx-pattern <PATTERN>]...
-          [--attribute|-a <KEY=VALUE>]... [--batch-size <int>]
+          [--attribute|-a <KEY=VALUE>]... [--batch-mem <string>]
+          [--batch-size <int>] [--batch-size-max <int>]
           [--compressed|-Z] [--csv] [--debug] [--definition|-D <PATTERN>]...
           [--ecopcr] [--embl] [--fail-on-taxonomy] [--fasta] [--fasta-output]
           [--fastq] [--fastq-output] [--force-one-cpu] [--genbank]

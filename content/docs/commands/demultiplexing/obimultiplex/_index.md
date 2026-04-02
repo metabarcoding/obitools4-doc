@@ -462,7 +462,8 @@ In this trivial example with a single rejected sequence you obtain only a single
 ## Synopsis
 
 ```bash
-obimultiplex [--allowed-mismatches|-e <int>] [--batch-size <int>]
+obimultiplex [--allowed-mismatches|-e <int>] [--batch-mem <string>]
+             [--batch-size <int>] [--batch-size-max <int>]
              [--compress|-Z] [--debug] [--ecopcr] [--embl] [--fasta]
              [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu]
              [--genbank] [--help|-h|-?] [--input-OBI-header]

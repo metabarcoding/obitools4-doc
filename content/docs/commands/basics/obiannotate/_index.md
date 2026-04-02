@@ -467,7 +467,7 @@ The results of the `printf` function are presented above. The first sequence is 
 ##### Extracting a fragment of the sequence
 
 You can extract a fragment of a sequence using the `--cut` option. This option requires an argument in the form of `#:###`, where `#` is the start position and `###` is the end position of the fragment. Position numbering is one-based, and the fragment includes the limits.
-<!-- J'ai relu jusqu'ici -->
+
 
 ```bash
 obiannotate --cut 2:7 five_tags.fasta > five_tags_sub_2_7.fasta
@@ -510,7 +510,7 @@ gatgctccatgctagtgctagtcgatga
 gatggctccatgctagtgctagtcgatga
 ```
 
-Following python usage negative coordinates have to be considered from the end of the sequence. `-1` is the last position of the sequence, `-2` is the second last position of the sequence, and so on.
+Following python usage, negative coordinates have to be considered from the end of the sequence. `-1` is the last position of the sequence, `-2` is the second last position of the sequence, and so on.
 
 ```bash
 obiannotate --cut='-7:-2' five_tags.fasta 
@@ -529,8 +529,7 @@ cgatg
 ```
 
 > [!WARNING] 
-> When using negative coordinates like in the above command to not confuse the shell interpretor,
-> the option has to be written followed by the `=` sign without space between the option and the value: `--cut='-7:-2'` 
+> When using negative coordinates, as in the above command, to avoid confusing the shell interpreter, the option must be written followed by the equal sign `=` without space between the option and the value: `--cut='-7:-2'` 
 
 ##### Editing the sequence itself
 
@@ -552,7 +551,7 @@ acgtacgt
 acgtacgt
 ```
 
-As for the other tags, the `--set-tag` option requires a expression expressed using the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}) and returning a string. 
+As for the other tags, the `--set-tag` option requires an expression written in the [{{% obitools4 %}} expression language]({{< ref "/docs/programming/expression" >}}) that returns a string. 
 
 
 ## Synopsis
@@ -560,7 +559,8 @@ As for the other tags, the `--set-tag` option requires a expression expressed us
 ```bash
 obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
             [--allows-indels] [--approx-pattern <PATTERN>]...
-            [--attribute|-a <KEY=VALUE>]... [--batch-size <int>] [--clear]
+            [--attribute|-a <KEY=VALUE>]... [--batch-mem <string>]
+         [--batch-size <int>] [--batch-size-max <int>] [--clear]
             [--compress|-Z] [--csv] [--cut <###:###>] [--debug]
             [--definition|-D <PATTERN>]... [--delete-tag <KEY>]... [--ecopcr]
             [--embl] [--fail-on-taxonomy] [--fasta] [--fasta-output]

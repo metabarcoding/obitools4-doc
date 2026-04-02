@@ -17,7 +17,8 @@ Distribute a sequence file accross multiple output files.
 ## Synopsis
 
 ```bash
-obidistribute --pattern|-p <string> [--append|-A] [--batch-size <int>]
+obidistribute --pattern|-p <string> [--append|-A] [--batch-mem <string>]
+              [--batch-size <int>] [--batch-size-max <int>] [--compress|-Z]
               [--batches|-n <int>] [--classifier|-c <string>] [--compress|-Z]
               [--csv] [--debug] [--directory|-d <string>] [--ecopcr] [--embl]
               [--fasta] [--fasta-output] [--fastq] [--fastq-output]

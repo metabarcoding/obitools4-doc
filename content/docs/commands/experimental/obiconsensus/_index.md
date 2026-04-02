@@ -16,7 +16,8 @@ Denoise MinIon sequence data by constructing consensus sequences.
 ## Synopsis
 
 ```bash
-obiconsensus [--batch-size <int>] [--cluster|-C] [--compress|-Z] [--debug]
+obiconsensus [--batch-mem <string>] [--batch-size <int>]
+             [--batch-size-max <int>] [--cluster|-C] [--compress|-Z] [--debug]
              [--distance|-d <int>] [--ecopcr] [--embl] [--fasta]
              [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu]
              [--genbank] [--help|-h|-?] [--input-OBI-header]

@@ -17,7 +17,8 @@ Generate summary statistics describing the sequence content of a sequence file.
 ## Synopsis
 
 ```bash
-obisummary [--batch-size <int>] [--csv] [--debug] [--ecopcr] [--embl]
+obisummary [--batch-mem <string>] [--batch-size <int>]
+           [--batch-size-max <int>] [--csv] [--debug] [--ecopcr] [--embl]
            [--fasta] [--fastq] [--force-one-cpu] [--genbank] [--help|-h|-?]
            [--input-OBI-header] [--input-json-header] [--json-output]
            [--map <string>]... [--max-cpu <int>] [--no-order] [--pprof]

@@ -267,7 +267,8 @@ obiclean -r 0.1 \
 ## Synopsis
 
 ```bash
-obiclean [--batch-size <int>] [--compressed|-Z] [--debug]
+obiclean [--batch-mem <string>] [--batch-size <int>]
+         [--batch-size-max <int>] [--compressed|-Z] [--debug]
          [--distance|-d <int>] [--ecopcr] [--embl] [--fasta] [--fasta-output]
          [--fastq] [--fastq-output] [--force-one-cpu] [--genbank] [--head|-H]
          [--help|-h|-?] [--input-OBI-header] [--input-json-header]

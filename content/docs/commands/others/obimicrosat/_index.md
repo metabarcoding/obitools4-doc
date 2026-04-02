@@ -16,7 +16,8 @@ Extract sequence entries containing a microsatellite from a sequence file.
 ## Synopsis
 
 ```bash
-obimicrosat [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr]
+obimicrosat [--batch-mem <string>] [--batch-size <int>]
+            [--batch-size-max <int>] [--compress|-Z] [--debug] [--ecopcr]
             [--embl] [--fasta] [--fasta-output] [--fastq] [--fastq-output]
             [--force-one-cpu] [--genbank] [--help|-h|-?] [--input-OBI-header]
             [--input-json-header] [--json-output] [--max-cpu <int>]

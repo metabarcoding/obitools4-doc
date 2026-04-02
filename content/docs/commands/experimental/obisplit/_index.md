@@ -17,7 +17,8 @@ weight: 110
 ## Synopsis
 
 ```bash
-obisplit [--allows-indels] [--batch-size <int>] [--compress|-Z]
+obisplit [--allows-indels] [--batch-mem <string>] [--batch-size <int>]
+         [--batch-size-max <int>] [--compress|-Z]
          [--config|-C <string>] [--csv] [--debug] [--ecopcr] [--embl]
          [--fail-on-taxonomy] [--fasta] [--fasta-output] [--fastq]
          [--fastq-output] [--force-one-cpu] [--genbank] [--help|-h|-?]

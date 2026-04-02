@@ -17,7 +17,8 @@ Convert a mapping tag from a sequence file to a matrix file in CSV format.
 ## Synopsis
 
 ```bash
-obimatrix [--batch-size <int>] [--csv] [--debug] [--ecopcr] [--embl]
+obimatrix [--batch-mem <string>] [--batch-size <int>]
+          [--batch-size-max <int>] [--csv] [--debug] [--ecopcr] [--embl]
           [--fasta] [--fastq] [--force-one-cpu] [--genbank] [--help|-h|-?]
           [--input-OBI-header] [--input-json-header] [--map <string>]
           [--max-cpu <int>] [--na-value <string>] [--no-order] [--pprof]

@@ -16,7 +16,8 @@ Clean a sequence reference database for trivial wrong taxonomic annotations.
 ## Synopsis
 
 ```bash
-obicleandb [--batch-size <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
+obicleandb [--batch-mem <string>] [--batch-size <int>]
+           [--batch-size-max <int>] [--compress|-Z] [--debug] [--ecopcr] [--embl]
            [--fasta] [--fasta-output] [--fastq] [--fastq-output]
            [--force-one-cpu] [--genbank] [--help|-h|-?]
            [--ignore-taxon|-i <TAXID>]... [--input-OBI-header]

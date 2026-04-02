@@ -16,7 +16,8 @@ url: "/obitools/obitaxonomy"
 ## Synopsis
 
 ```bash
-obitaxonomy [--alternative-names|-a] [--batch-size <int>] [--debug]
+obitaxonomy [--alternative-names|-a] [--batch-mem <string>]
+          [--batch-size <int>] [--batch-size-max <int>] [--debug]
             [--download-ncbi] [--dump|-D <TAXID>] [--extract-taxonomy]
             [--fixed|-F] [--force-one-cpu] [--help|-h|-?] [--max-cpu <int>]
             [--no-progressbar] [--out|-o <FILENAME>] [--parents|-p <TAXID>]

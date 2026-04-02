@@ -17,7 +17,8 @@ url: "/obitools/obitagpcr"
 
 ```bash
 obitagpcr --forward-reads|-F <FILENAME_F> --reverse-reads|-R <FILENAME_R>
-          [--allowed-mismatches|-e <int>] [--batch-size <int>]
+          [--allowed-mismatches|-e <int>] [--batch-mem <string>]
+          [--batch-size <int>] [--batch-size-max <int>]
           [--compress|-Z] [--debug] [--delta|-D <int>] [--ecopcr] [--embl]
           [--exact-mode] [--fast-absolute] [--fasta] [--fasta-output]
           [--fastq] [--fastq-output] [--force-one-cpu]

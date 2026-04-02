@@ -65,3 +65,24 @@ Some {{% obitools %}} options are shared by most of the commands. These options 
 {{< option-sets/output >}}
 
 {{< option-sets/common >}}
+
+## Batch sequence management
+
+OBITools provides three options to control how sequences are batched for parallel processing:
+
+- **`--batch-size`**: Minimum number of sequences per batch (floor, default: 1)
+- **`--batch-size-max`**: Maximum number of sequences per batch (ceiling, default: 2000)
+- **`--batch-mem`**: Maximum memory per batch (e.g. 128K, 64M, 1G; default: 128M). Set to 0 to disable.
+
+These options allow you to fine-tune the batch size based on your data characteristics and available memory. When `--batch-mem` is set, it takes precedence over count-based batching.
+
+```bash
+# Use memory-based batching with 256MB per batch
+obicount --batch-mem=256M input.fasta
+
+# Use count-based batching with custom min/max
+obicount --batch-size=10 --batch-size-max=500 input.fasta
+
+# Disable memory-based batching (use count-only)
+obicount --batch-mem=0 input.fasta
+```

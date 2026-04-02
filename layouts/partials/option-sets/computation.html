@@ -3,5 +3,9 @@
 <ul>
     <li>{{ partial "cmd-options/max-cpu.html" .}}</li>
     <li>{{ partial "cmd-options/force-one-cpu.html" .}}</li>
+    {{/* Batch size options */}}
     <li>{{ partial "cmd-options/batch-size.html" .}}</li>
+    <li>{{ partial "cmd-options/batch-size-max.html" .}}</li>
+    {{/* Batch memory option */}}
+    <li>{{ partial "cmd-options/batch-mem.html" .}}</li>
 </ul>
