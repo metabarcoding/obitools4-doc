@@ -559,7 +559,8 @@ As for the other tags, the `--set-tag` option requires an expression written in 
 ```bash
 obiannotate [--add-lca-in <SLOT_NAME>] [--aho-corasick <string>]
             [--allows-indels] [--approx-pattern <PATTERN>]...
-            [--attribute|-a <KEY=VALUE>]... [--batch-size <int>] [--clear]
+            [--attribute|-a <KEY=VALUE>]... [--batch-mem <string>]
+         [--batch-size <int>] [--batch-size-max <int>] [--clear]
             [--compress|-Z] [--csv] [--cut <###:###>] [--debug]
             [--definition|-D <PATTERN>]... [--delete-tag <KEY>]... [--ecopcr]
             [--embl] [--fail-on-taxonomy] [--fasta] [--fasta-output]

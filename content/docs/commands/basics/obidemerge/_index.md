@@ -17,7 +17,8 @@ weight: 60
 ## Synopsis
 
 ```bash
-obidemerge [--batch-size <int>] [--compress|-Z] [--csv] [--debug]
+obidemerge [--batch-mem <string>] [--batch-size <int>]
+           [--batch-size-max <int>] [--compress|-Z] [--csv] [--debug]
            [--demerge|-d <string>] [--ecopcr] [--embl] [--fail-on-taxonomy]
            [--fasta] [--fasta-output] [--fastq] [--fastq-output]
            [--force-one-cpu] [--genbank] [--help|-h|-?] [--input-OBI-header]

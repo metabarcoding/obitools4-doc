@@ -17,7 +17,8 @@ A Least Common Ancestor-based algorithm for taxonomic sequence annotation.
 ## Synopsis
 
 ```bash
-obitag --reference-db|-R <FILENAME> [--batch-size <int>] [--compressed|-Z]
+obitag --reference-db|-R <FILENAME> [--batch-mem <string>] [--batch-size <int>]
+       [--batch-size-max <int>] [--compressed|-Z]
            [--debug] [--ecopcr] [--embl] [--fasta] [--fasta-output] [--fastq]
            [--fastq-output] [--force-one-cpu] [--genbank] [--geometric|-G]
            [--help|-h|-?] [--input-OBI-header] [--input-json-header]

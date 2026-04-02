@@ -17,7 +17,8 @@ Convert a sequence file to {{% fasta %}}, {{% fastq %}}, or JSON format.
 ## Synopsis
 
 ```bash
-obiconvert [--batch-size <int>] [--compress|-Z] [--csv] [--debug] [--ecopcr]
+obiconvert [--batch-mem <string>] [--batch-size <int>]
+           [--batch-size-max <int>] [--compress|-Z] [--csv] [--debug] [--ecopcr]
            [--embl] [--fail-on-taxonomy] [--fasta] [--fasta-output] [--fastq]
            [--fastq-output] [--force-one-cpu] [--genbank] [--help|-h|-?]
            [--input-OBI-header] [--input-json-header] [--json-output]

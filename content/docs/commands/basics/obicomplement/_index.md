@@ -17,7 +17,8 @@ Compute the reverse complement of the sequence entries. The output is written by
 ## Synopsis
 
 ```bash
-obicomplement [--batch-size <int>] [--compress|-Z] [--csv] [--debug]
+obicomplement [--batch-mem <string>] [--batch-size <int>]
+              [--batch-size-max <int>] [--compress|-Z] [--csv] [--debug]
               [--ecopcr] [--embl] [--fail-on-taxonomy] [--fasta]
               [--fasta-output] [--fastq] [--fastq-output] [--force-one-cpu]
               [--genbank] [--help|-h|-?] [--input-OBI-header]

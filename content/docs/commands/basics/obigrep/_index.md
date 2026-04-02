@@ -660,7 +660,8 @@ obigrep -s '^t' \
 
 ```bash
 obigrep [--allows-indels] [--approx-pattern <PATTERN>]...
-        [--attribute|-a <KEY=VALUE>]... [--batch-size <int>] [--compress|-Z]
+        [--attribute|-a <KEY=VALUE>]... [--batch-mem <string>]
+        [--batch-size <int>] [--batch-size-max <int>] [--compress|-Z]
         [--csv] [--debug] [--definition|-D <PATTERN>]... [--ecopcr] [--embl]
         [--fail-on-taxonomy] [--fasta] [--fasta-output] [--fastq]
         [--fastq-output] [--force-one-cpu] [--genbank]

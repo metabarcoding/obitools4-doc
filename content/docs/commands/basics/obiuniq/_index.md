@@ -17,7 +17,8 @@ Dereplicate a sequence file, by merging identical sequences.
 ## Synopsis
 
 ```bash
-obiuniq [--batch-size <int>] [--category-attribute|-c <CATEGORY>]...
+obiuniq [--batch-mem <string>] [--batch-size <int>] [--batch-size-max <int>]
+        [--category-attribute|-c <CATEGORY>]...
         [--chunk-count <int>] [--compress|-Z] [--csv] [--debug] [--ecopcr]
         [--embl] [--fail-on-taxonomy] [--fasta] [--fasta-output] [--fastq]
         [--fastq-output] [--force-one-cpu] [--genbank] [--help|-h|-?]

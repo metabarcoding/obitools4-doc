@@ -1,4 +1,4 @@
-{{ partial "cmd-options/option.html" 
+{{ partial "cmd-options/option.html"
 (dict "name" "batch-size"
       "param" "INTEGER"
-      "documentation" `number of sequence per batch for parallel processing (default: 1000, env: **OBIBATCHSIZE**)`) }}
+      "documentation" `minimum number of sequences per batch for parallel processing (floor, default: 1, env: **OBIBATCHSIZE**)`) }}

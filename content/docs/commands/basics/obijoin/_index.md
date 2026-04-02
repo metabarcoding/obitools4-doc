@@ -17,7 +17,8 @@ Perform a join operation to transfer annotations from a file to a sequence file.
 ## Synopsis
 
 ```bash
-obijoin --join-with|-j <string> [--batch-size <int>] [--by|-b <string>]...
+obijoin --join-with|-j <string> [--batch-mem <string>] [--batch-size <int>]
+        [--batch-size-max <int>] [--by|-b <string>]...
         [--compress|-Z] [--csv] [--debug] [--ecopcr] [--embl]
         [--fail-on-taxonomy] [--fasta] [--fasta-output] [--fastq]
         [--fastq-output] [--force-one-cpu] [--genbank] [--help|-h|-?]
