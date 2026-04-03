@@ -11,7 +11,7 @@ url: "/obitools/obimultiplex"
 
 ## Description 
 
-The {{% obi obimultiplex %}} command demultiplexes sequencing reads by identifying sample-specific tags (barcodes) and PCR primers in the sequences. It assigns each sequence to its corresponding sample based on the tag combinations and primer sequences provided in a sample description file.
+The {{< obi obimultiplex >}} command demultiplexes sequencing reads by identifying sample-specific tags (barcodes) and PCR primers in the sequences. It assigns each sequence to its corresponding sample based on the tag combinations and primer sequences provided in a sample description file.
 
 The demultiplexing process involves:
 
@@ -24,7 +24,7 @@ The demultiplexing process involves:
 
 ### The new `obimultiplex` sample description file format
 
-If {{% obi obimultiplex %}} is still able to use the old *ngsfilter* format used by the legacy obitools, it is now preferable to rely on the new format.
+If {{< obi obimultiplex >}} is still able to use the old *ngsfilter* format used by the legacy obitools, it is now preferable to rely on the new format.
 
 The new format is a {{% csv %}} file, which can easily be prepared using an export from your favourite spreadsheet program.
 
@@ -90,7 +90,7 @@ obimultiplex -s samples_simple.csv \
 
 #### Annotations provided by the `obimultiplex` command
 
-{{% obitools %}} annotates its output to enable quality checks on ongoing tasks. {{% obi obimultiplex %}} is adding the following annotations:
+{{% obitools %}} annotates its output to enable quality checks on ongoing tasks. {{< obi obimultiplex >}} is adding the following annotations:
 
 - Sample description
   
@@ -106,11 +106,11 @@ obimultiplex -s samples_simple.csv \
 
 - Amplicon description
 
-  The second task of {{% obi obimultiplex %}} is to extract the amplified barcode sequence from the read. A read sequence can contain the sequence of a single amplicon or several, depending on the sequencing library preparation protocol.  For each read, {{% obi obimultiplex %}} produces one sequence per amplicon as output. This sequence is annotated by a set of tags that describe the properties of the barcode in question. 
+  The second task of {{< obi obimultiplex >}} is to extract the amplified barcode sequence from the read. A read sequence can contain the sequence of a single amplicon or several, depending on the sequencing library preparation protocol.  For each read, {{< obi obimultiplex >}} produces one sequence per amplicon as output. This sequence is annotated by a set of tags that describe the properties of the barcode in question. 
   
   - `obimultiplex_amplicon_rank`: "1/1"
     
-    {{% obi obimultiplex %}} is able to detect concatemer of several amplicons. This information
+    {{< obi obimultiplex >}} is able to detect concatemer of several amplicons. This information
     is reported in the `obimultiplex_amplicon_rank` as a ratio here "1/1" meaning the first among one in the read. A value of "2/3" would mean the second amplicon detected among three in the read.
 
   - `obimultiplex_direction`: "reverse"
@@ -129,7 +129,7 @@ obimultiplex -s samples_simple.csv \
   
     - `obimultiplex_forward_primer`: "ttagataccccactatgc"
       
-      The true forward primer sequence as provided in the {{% obi obimultiplex %}} sample description file.
+      The true forward primer sequence as provided in the {{< obi obimultiplex >}} sample description file.
 
     - `obimultiplex_forward_match`: "ttagataccccactatgc"
   
@@ -137,13 +137,13 @@ obimultiplex -s samples_simple.csv \
 
     - `obimultiplex_forward_error`: 0
 
-      The number of differences between the `obimultiplex_forward_primer` and the `obimultiplex_forward_match` is equal to the value of `obimultiplex_forward_error`. {{% obi obimultiplex %}} by default
+      The number of differences between the `obimultiplex_forward_primer` and the `obimultiplex_forward_match` is equal to the value of `obimultiplex_forward_error`. {{< obi obimultiplex >}} by default
       allows up to two mismatches. That threshold can be changed using the **--allowed-mismatches** option (or **-e** for the short version option). 
 
   - Reverse primer:
     - `obimultiplex_reverse_primer`:"tagaacaggctcctctag"
 
-      The true reverse primer sequence as provided in the {{% obi obimultiplex %}} sample description file.
+      The true reverse primer sequence as provided in the {{< obi obimultiplex >}} sample description file.
 
     - `obimultiplex_reverse_match`:"tagaacaggctcgtctag"
 
@@ -155,11 +155,11 @@ obimultiplex -s samples_simple.csv \
 
 - Tag identification
 
-  As for the primers, {{% obi obimultiplex %}} can account for sequencing errors in the portion of the reads that corresponds to the tag used to discriminate between samples. This allows some amplicons to be rescued, enabling the identification of the correct sample despite sequencing errors. This is particularly important when relatively high-error-rate sequencers are used, such as Nanopore sequencing.
+  As for the primers, {{< obi obimultiplex >}} can account for sequencing errors in the portion of the reads that corresponds to the tag used to discriminate between samples. This allows some amplicons to be rescued, enabling the identification of the correct sample despite sequencing errors. This is particularly important when relatively high-error-rate sequencers are used, such as Nanopore sequencing.
 
   The same type of information is stored for both the forward and reverse tags. This includes information on the algorithm used to match the tag, the sequence identified on the read, the actual tag sequence proposed for association with the observation, and the number of differences between the observation and the proposal.
 
-  The tag matching algorithm and its parameters can be configured in the {{% obi obimultiplex %}} sample description file. 
+  The tag matching algorithm and its parameters can be configured in the {{< obi obimultiplex >}} sample description file. 
 
   - Forward tag:
     - "obimultiplex_forward_tag":"gcctcct"
@@ -234,7 +234,7 @@ Two parameters are available to tune the matching of primers:
   - Only mismatches are allowed (default), 
   - mismatches and insertions/deletions (indels) are permitted.
 
-These two parameters can be set using options on the {{% obi obimultiplex %}} command line, or by setting parameters in the sample description file using `@param` lines at the beginning of the file.
+These two parameters can be set using options on the {{< obi obimultiplex >}} command line, or by setting parameters in the sample description file using `@param` lines at the beginning of the file.
 
 ###### Changing the nature of the differences
 
@@ -242,7 +242,7 @@ By default only mismatches are allowed as differences between the primer sequenc
 
 With [Oxford Nanopore](https://nanoporetech.com/) sequencers, it is better to allow indels in addition to mismatches, as indels represent half of the sequencing errors produced by these machines. 
 
-Allowing indels can be done by adding the `--with-indels` option to the {{% obi obimultiplex %}} command. 
+Allowing indels can be done by adding the `--with-indels` option to the {{< obi obimultiplex >}} command. 
 
 ```bash
 obimultiplex -s samples_simple.csv \
@@ -265,7 +265,7 @@ Here a modified version of the sample description file including the `@param,ind
 
 {{< code "samples_with_indels.csv" csv true >}}
 
-If such file is used, no need to add the `--with-indel` option to the {{% obi obimultiplex %}} command.
+If such file is used, no need to add the `--with-indel` option to the {{< obi obimultiplex >}} command.
 
 
 ```bash
@@ -318,7 +318,7 @@ It is even possible to be more precise by defining a different number of mismatc
 
 ##### Changing tag matching parameters
 
-There are more parameters for tag matching than for primer matching. They can only be changed by parametrizing them in the '@param' section of the sample description file. These parameters have no corresponding option available on the {{% obi obimultiplex %}} command. 
+There are more parameters for tag matching than for primer matching. They can only be changed by parametrizing them in the '@param' section of the sample description file. These parameters have no corresponding option available on the {{< obi obimultiplex >}} command. 
 
 ###### The tag matching algorithms
 
@@ -364,7 +364,7 @@ It is possible to indicate that some bases have been added in between the tag an
 5'-TAG-SPACER-PRIMER->3'
 ```
 
-It is important to indicate the length of this spacer to the {{% obi obimultiplex %}} command to allow it to correctly extract the tag sequence. As for the previously described parameters, this spacer length can be specified globally for the forward and reverse primers, or for any primer individually.
+It is important to indicate the length of this spacer to the {{< obi obimultiplex >}} command to allow it to correctly extract the tag sequence. As for the previously described parameters, this spacer length can be specified globally for the forward and reverse primers, or for any primer individually.
 
 To specify globally you can use the `@param,spacer` parametter
 
@@ -419,7 +419,7 @@ And it is also possible to specify the tag delimiter for a given primer.
 
 ### Understanding why some amplicons are not assigned to a sample
 
-The {{% obi obimultiplex %}} can reject some reads because it is unable to identify any amplicon. It can also reject some detected amplicon because it is not able to assign it to a sample. In these cases, the corresponding sequences are not included in the result file. The problematic sequences can be stored separately in another file whose name is specified by the `--unidentified` or `-u` option. 
+The {{< obi obimultiplex >}} can reject some reads because it is unable to identify any amplicon. It can also reject some detected amplicon because it is not able to assign it to a sample. In these cases, the corresponding sequences are not included in the result file. The problematic sequences can be stored separately in another file whose name is specified by the `--unidentified` or `-u` option. 
 
 ```bash
 obimultiplex -s samples_simple.csv \

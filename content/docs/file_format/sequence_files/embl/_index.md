@@ -122,7 +122,7 @@ The record concludes with a `//` line, indicating the end of the record. This te
 ## Converting EMBL Flat File to FASTA format
 
 To convert a EMBL flat file to {{% fasta %}} format, you can use the {{< obi obiconvert >}} command.
-The {{% obi obiconvert %}} command extracts from the source feature present in each EMBL record the taxid and scientific name associated with the record to store them in the `taxid` and `scientific_name` tags within the FASTA header.
+The {{< obi obiconvert >}} command extracts from the source feature present in each EMBL record the taxid and scientific name associated with the record to store them in the `taxid` and `scientific_name` tags within the FASTA header.
 
 ```bash
 obiconvert sample.embl

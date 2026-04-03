@@ -31,6 +31,8 @@ The script is structured around three optional Lua functions.
 - The `begin()` function runs once before any record is processed and is typically used for initialisation. 
 - The `finish()` function runs once after the last record and is typically used to print summary statistics. A thread-safe key-value table called `obicontext` is shared across all parallel worker invocations and can be used to accumulate results safely.
 
+To allow for interacting with {{% obitools4 %}} objects, an [obitools Lua extension]({{< ref "/docs/programming/lua" >}}) is available.
+
 The set of selection options (such as `--min-length`,
 `--predicate`, `--sequence`, etc.) used by {{< obi obigrep >}} are also available in {{< obi obiscript >}}. But an important behavioural detail has to be considered: the sequence selection option do **not** filter sequences out of the output, like in {{< obi obigrep >}}, 
 they only select which sequences the `worker()` function is applied to. Sequences that do

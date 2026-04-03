@@ -14,24 +14,203 @@ The aim of this section is not to be a full introduction to [Lua](https://www.lu
 
 ## The structure of a Lua script for {{< obi obiscript >}}
 
-{{< code example.lua lua true >}}
+A Lua script for {{< obi obiscript >}} can define three optional functions:
 
-### The `begin` and finish function
+- **`begin()`**: called once at the start of the script
+- **`worker(sequence)`**: called for each sequence
+- **`finish()`**: called at the end of the script
+
+```lua
+-- example.lua
+
+function begin()
+    print("Starting script")
+end
+
+function worker(sequence)
+    -- Process the sequence
+    result = sequence:id()
+    print(result)
+    return sequence
+end
+
+function finish()
+    print("Script finished")
+end
+```
+
+### The `begin` function
+
+The `begin` function is called once at the beginning of the script execution, before any sequences are processed. It can be used to initialize variables, set up counters, or perform one-time setup tasks.
+
+```lua
+function begin()
+    obicontext.item("compteur", 0)
+    print("Script started")
+end
+```
+
+### The `finish` function
+
+The `finish` function is called once at the end of the script execution, after all sequences have been processed. It can be used to output final results, print statistics, or perform cleanup tasks.
+
+```lua
+function finish()
+    total = obicontext.item("compteur")
+    print("Total sequences processed: " .. total)
+end
+```
 
 ### The `worker` function
 
+The `worker` function is called for each sequence processed by the script. It must accept a single parameter, the `sequence` of type `BioSequence`, and must return either a `BioSequence` or a `BioSequenceSlice`. If the function returns `nil`, `nil`, or nothing, the sequence is skipped.
+
+```lua
+function worker(sequence)
+    samples = sequence:attribute("merged_sample")
+    samples["tutu"] = 4
+    sequence:attribute("merged_sample", samples)
+    sequence:attribute("toto", 44444)
+    
+    nb = obicontext.inc("compteur")
+    sequence:id("seq_" .. nb)
+    
+    return sequence
+end
+```
+
 ## The `obicontext` to share information
+
+The `obicontext` module provides a shared context for data exchange between functions and within the `worker` function. It allows you to store and retrieve values using string keys.
+
+### Accessing and modifying context items
+
+The `obicontext.item(key, value)` function can be used to store or retrieve values from the context. When called with two arguments, it stores the value. When called with one argument, it retrieves the value.
+
+```lua
+-- Store a value
+obicontext.item("counter", 0)
+
+-- Update the counter
+obicontext.item("counter", obicontext.item("counter") + 1)
+
+-- Retrieve a value
+count = obicontext.item("counter")
+```
+
+### Incrementing and decrementing counters
+
+The `obicontext.inc(key)` function increments a numeric value in the context and returns the new value. The `obicontext.dec(key)` function decrements a numeric value.
+
+```lua
+-- Increment a counter
+counter = obicontext.inc("counter")
+
+-- Decrement a counter
+counter = obicontext.dec("counter")
+```
+
+### Locking mechanisms
+
+The `obicontext.lock()`, `obicontext.unlock()`, and `obicontext.trylock()` functions provide mutex locking mechanisms for thread-safe operations.
+
+```lua
+-- Use Mutex from obicontext
+locker = Mutex:new()
+obicontext.item("locker", locker)
+
+-- Lock the context
+locker:lock()
+
+-- Critical section
+print("Processing")
+
+-- Unlock the context
+locker:unlock()
+```
+
+You can also use the built-in locking functions:
+
+```lua
+obicontext.lock()  -- Acquire global lock
+-- Critical section
+obicontext.unlock()  -- Release global lock
+
+-- Try to acquire lock without blocking
+if obicontext.trylock() then
+    -- Locked successfully
+    -- Work...
+    obicontext.unlock()
+end
+```
 
 ## The OBITools classes
 
 ### The `BioSequence` class
 
+The `BioSequence` class represents a nucleic acid sequence. It provides methods to access and modify sequence properties, quality scores, annotations, and taxonomy information. See detailed documentation in [BioSequence class](/docs/programming/lua/OBITools_classes/BioSequence/).
+
 ### The `BioSequenceSlice` class
+
+The `BioSequenceSlice` class represents a mutable array of `BioSequence` objects. It allows you to manage multiple sequences and manipulate them as a collection. See detailed documentation in [BioSequenceSlice class](/docs/programming/lua/OBITools_classes/BioSequenceSlice/).
 
 ### The `Taxonomy` class
 
+The `Taxonomy` class represents a taxonomic classification system. It contains a collection of `Taxon` objects and provides methods to search and manage taxonomic data. The `Taxonomy` class can be used to add, retrieve, and navigate taxonomic hierarchies. See detailed documentation in [Taxonomy class](/docs/programming/lua/OBITools_classes/Taxonomy/).
+
 ### The `Taxon` class
+
+The `Taxon` class represents a taxonomic classification within a `Taxonomy` system. Each taxon has a unique identifier, a parent, a name, and a taxonomic rank. `Taxon` objects can be organized in hierarchical relationships. See detailed documentation in [Taxon class](/docs/programming/lua/OBITools_classes/Taxon/).
 
 ## Dealing with the OBITools4 multithreading
 
-{{< code extrem_quality.lua lua true>}}
+The `obicontext` module provides thread-safe mechanisms for sharing data between parallel workers. The `begin()` and `finish()` functions are executed in separate goroutines, while `worker()` functions run in parallel across multiple threads.
+
+For thread-safe operations, always use the mutex mechanisms provided by `obicontext` or create your own `Mutex` objects:
+
+```lua
+-- Example: extrem_quality.lua
+
+size = 60
+
+function begin()
+    obicontext.item("locker", Mutex:new())
+    header = "id"
+    for i = 1, size do
+        header = header .. ", L" .. i
+    end
+    
+    for i = size, 1, -1 do
+        header = header .. ", R" .. i
+    end
+    
+    obicontext.item("locker"):lock()
+    print(header)
+    obicontext.item("locker"):unlock()
+end
+
+function worker(sequence)
+    l = sequence:len()
+    
+    if l > size * 2 then
+        qualities = sequence:qualities()
+        rep = sequence:id()
+        
+        for i = 1, size do
+            rep = rep .. ", " .. qualities[i]
+        end
+        
+        for i = size, 1, -1 do
+            rep = rep .. ", " .. qualities[l - i + 1]
+        end
+        
+        obicontext.item("locker"):lock()
+        print(rep)
+        obicontext.item("locker"):unlock()
+    end
+    
+    return BioSequenceSlice.new()
+end
+```
+
+The `Mutex` class provides `lock()`, `unlock()`, and `trylock()` methods for thread synchronization. The `obicontext` lock ensures safe access to shared variables between concurrent workers.

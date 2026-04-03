@@ -103,7 +103,7 @@ The record concludes with a `//` line, indicating the end of the record. This te
 ## Converting GenBank Flat File to FASTA format
 
 To convert a GenBank flat file to {{% fasta %}} format, you can use the {{< obi obiconvert >}} command.
-The {{% obi obiconvert %}} command extracts the taxid and scientific name associated with each GenBank record and stores them in the `taxid` and `scientific_name` tags in the FASTA header.
+The {{< obi obiconvert >}} command extracts the taxid and scientific name associated with each GenBank record and stores them in the `taxid` and `scientific_name` tags in the FASTA header.
 
 ```bash
 obiconvert sample.gb

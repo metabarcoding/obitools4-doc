@@ -160,7 +160,7 @@ Both methods will produce the same result, a file named <a href="two_sequences_c
 
 ## Combining {{% obitools %}} commands using pipes
 
-Since {{% obitools %}} are UNIX commands, and their default behaviour is to read their input from *stdin* and write their output to *stdout*, it is possible to combine them using the Unix pipe mechanism (*i.e.* `|`). For example, you can reverse-complement the file `two_sequences.fasta` with the command {{% obi obicomplement %}}, and then count the number of DNA sequences in the resulting file with the command {{% obi obicount %}}, without saving the intermediate results, by linking the *stdout* of {{% obi obicomplement %}} to the *stdin* of {{% obi obicount %}}.
+Since {{% obitools %}} are UNIX commands, and their default behaviour is to read their input from *stdin* and write their output to *stdout*, it is possible to combine them using the Unix pipe mechanism (*i.e.* `|`). For example, you can reverse-complement the file `two_sequences.fasta` with the command {{< obi obicomplement >}}, and then count the number of DNA sequences in the resulting file with the command {{< obi obicount >}}, without saving the intermediate results, by linking the *stdout* of {{< obi obicomplement >}} to the *stdin* of {{< obi obicount >}}.
 
 ```bash
 obicomplement two_sequences.fasta | obicount 
@@ -172,7 +172,7 @@ reads,3
 symbols,200
 ```
 
-The result of the {{% obi obicount %}} command is a CSV file. Therefore, it can itself be piped to another command, like [`csvtomd`](https://github.com/mplewis/csvtomd) to reformat the result in a Markdown table.
+The result of the {{< obi obicount >}} command is a CSV file. Therefore, it can itself be piped to another command, like [`csvtomd`](https://github.com/mplewis/csvtomd) to reformat the result in a Markdown table.
 
 ```bash
 obicomplement two_sequences.fasta | obicount | csvtomd
