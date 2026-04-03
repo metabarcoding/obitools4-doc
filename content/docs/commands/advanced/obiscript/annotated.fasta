@@ -1,0 +1,12 @@
+>sample1_seq001 {"definition":"control sequence for annotation test","sample":"sample1"}
+atcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcg
+>sample1_seq002 {"definition":"another control sequence from sample1","sample":"sample1"}
+gctagctagctagctagctagctagctagctagctagctagctagcta
+>sample2_seq003 {"definition":"second sample sequence","sample":"sample2"}
+ttaattaattaattaattaattaattaattaattaattaattaattaa
+>sample2_seq004 {"definition":"second sample another sequence","sample":"sample2"}
+ccggccggccggccggccggccggccggccggccggccggccggccgg
+>sample3_seq005 {"definition":"third sample first sequence","sample":"sample3"}
+aaaattttccccggggaaaattttccccggggaaaattttccccgggg
+>sample3_seq006 {"definition":"third sample second sequence","sample":"sample3"}
+ttttaaaaccccggggttttaaaaccccggggttttaaaaccccgggg

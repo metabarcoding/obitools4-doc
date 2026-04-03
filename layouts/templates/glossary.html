@@ -1,5 +1,5 @@
 {{- $arg := (.Get 0) -}}
-{{- range sort .Site.Data.termbase "term" -}}
+{{- range sort hugo.Data.termbase "term" -}}
     <dl>
     <dt>{{- .term }}{{ with .abbr }} ({{ . -}}){{ end -}}
     </dt>

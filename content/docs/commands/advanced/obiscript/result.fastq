@@ -1,0 +1,16 @@
+@seq001 {"definition":"long sequence passes min-length 100 filter"}
+atcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcgatcg
++
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@seq002 {"definition":"short sequence fails min-length 100 filter"}
+gctagctagctagctagctagctagctagctagctagctagctagctagctagctagctagctagctagctagctagcta
++
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@seq003 {"definition":"long sequence passes min-length 100 filter"}
+ttaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaattaa
++
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+@seq004 {"definition":"short sequence fails min-length 100 filter"}
+ccggccggccggccggccggccggccggccggccggccggccggccggccgg
++
+IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII

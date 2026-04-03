@@ -3,7 +3,7 @@
 {{- $context := . -}}
 
 <!-- range over data file -->
-{{- range $.Site.Data.commands -}}
+{{- range hugo.Data.commands -}}
   {{- if eq ( .command | lower) ( $entry | lower ) -}}
     <a href="{{ ref $context .command }}">
     <abbr title="{{- .command -}}: {{ .short | plainify -}}"><code>{{- .command -}}</code></abbr>

@@ -1,0 +1,17 @@
+>seq001 {"definition":"dinucleotide AC repeat 16x with 40bp non-repetitive flanks","microsat":"acacacacacacacacacacacacacacacac","microsat_from":40,"microsat_left":"agtcgaacttgcatgccttcagggcaagtctagcttacg","microsat_right":"cgatagtcatgcaagtcttgcggcatagatcgttacca","microsat_to":71,"microsat_unit":"ac","microsat_unit_count":16,"microsat_unit_length":2,"microsat_unit_normalized":"ac","microsat_unit_orientation":"direct","seq_length":109}
+agtcgaacttgcatgccttcagggcaagtctagcttacgacacacacacacacacacaca
+cacacacacaccgatagtcatgcaagtcttgcggcatagatcgttacca
+>seq002 {"definition":"mononucleotide A repeat 25x with 20bp non-repetitive flanks","microsat":"aaaaaaaaaaaaaaaaaaaaaaaaaaa","microsat_from":21,"microsat_left":"agtcgaacttgcatgccttc","microsat_right":"cgatagtcatgcaagtcttgcgg","microsat_to":47,"microsat_unit":"a","microsat_unit_count":27,"microsat_unit_length":1,"microsat_unit_normalized":"a","microsat_unit_orientation":"direct","seq_length":70}
+agtcgaacttgcatgccttcaaaaaaaaaaaaaaaaaaaaaaaaaaacgatagtcatgca
+agtcttgcgg
+>seq003 {"definition":"trinucleotide AGC repeat 11x with 40bp non-repetitive flanks","microsat":"agcagcagcagcagcagcagcagcagcagcagcagc","microsat_from":40,"microsat_left":"agtcgaacttgcatgccttcagggcaagtctagcttacg","microsat_right":"cgatagtcatgcaagtcttgcggcatagatcgttacca","microsat_to":75,"microsat_unit":"agc","microsat_unit_count":12,"microsat_unit_length":3,"microsat_unit_normalized":"agc","microsat_unit_orientation":"direct","seq_length":113}
+agtcgaacttgcatgccttcagggcaagtctagcttacgagcagcagcagcagcagcagc
+agcagcagcagcagccgatagtcatgcaagtcttgcggcatagatcgttacca
+>seq004 {"definition":"tetranucleotide ACGT repeat 6x with 20bp non-repetitive flanks","microsat":"acgtacgtacgtacgtacgtacgt","microsat_from":22,"microsat_left":"agtcgaacttgcatgccttca","microsat_right":"cgatagtcatgcaagtcttgcgg","microsat_to":45,"microsat_unit":"acgt","microsat_unit_count":6,"microsat_unit_length":4,"microsat_unit_normalized":"acgt","microsat_unit_orientation":"direct","seq_length":68}
+agtcgaacttgcatgccttcaacgtacgtacgtacgtacgtacgtcgatagtcatgcaag
+tcttgcgg
+>seq006 {"definition":"GT repeat 16x with 40bp non-repetitive flanks canonical form is AC","microsat":"gtgtgtgtgtgtgtgtgtgtgtgtgtgtgtgt","microsat_from":40,"microsat_left":"agtcgaacttgcatgccttcagggcaagtctagcttacg","microsat_right":"cgatagtcatgcaagtcttgcggcatagatcgttacca","microsat_to":71,"microsat_unit":"gt","microsat_unit_count":16,"microsat_unit_length":2,"microsat_unit_normalized":"ac","microsat_unit_orientation":"reverse","seq_length":109}
+agtcgaacttgcatgccttcagggcaagtctagcttacggtgtgtgtgtgtgtgtgtgtg
+tgtgtgtgtgtcgatagtcatgcaagtcttgcggcatagatcgttacca
+>seq007 {"definition":"AC repeat 16x with only 10bp flanks insufficient for primer design","microsat":"acacacacacacacacacacacacacacacac","microsat_from":11,"microsat_left":"agtcgaactt","microsat_right":"cgatagtca","microsat_to":42,"microsat_unit":"ac","microsat_unit_count":16,"microsat_unit_length":2,"microsat_unit_normalized":"ac","microsat_unit_orientation":"direct","seq_length":51}
+agtcgaacttacacacacacacacacacacacacacacacaccgatagtca

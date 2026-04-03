@@ -1,0 +1,8 @@
+>seq001 {"definition":"Forward read one from paired-end sequencing"}
+atcgatcgatcgatcgatcgatcgatcgatcgatcgatcg
+>seq002 {"definition":"Forward read two from paired-end sequencing"}
+gctagctagctagctagctagctagctagctagctagct
+>seq003 {"definition":"Forward read three from paired-end sequencing"}
+ttaaccggttaaccggttaaccggttaaccggttaaccg
+>seq004 {"definition":"Forward read four from paired-end sequencing"}
+acgtacgtacgtacgtacgtacgtacgtacgtacgtacg

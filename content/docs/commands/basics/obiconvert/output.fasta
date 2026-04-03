@@ -1,0 +1,8 @@
+>seq001 {"definition":"DNA sequence with quality scores for FASTQ to FASTA conversion"}
+atcgatcgatcgatcgatcgatcgatcgatcgatcgatcg
+>seq002 {"definition":"Second sequence with moderate quality scores"}
+gctagctagctagctagctagctagctagctagctagct
+>seq003 {"definition":"Third sequence with high quality scores"}
+ttaaccggttaaccggttaaccggttaaccggttaaccg
+>seq004 {"definition":"Fourth sequence with variable quality scores"}
+acgtacgtacgtacgtacgtacgtacgtacgtacgtacg

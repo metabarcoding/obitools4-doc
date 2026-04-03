@@ -2,6 +2,7 @@ baseURL: https://metabarcoding.github.io/obitools4-doc/
 languageCode: en-us
 title: OBITools4 documentation
 enableEmoji: true
+buildFuture: true
 
 # module:
 #   imports:
@@ -14,7 +15,7 @@ taxonomies:
   category: categories
 
 refLinksErrorLevel: WARNING
-refLinksNotFoundURL: /some/other/url
+#refLinksNotFoundURL: /some/other/url
 
 # Needed for mermaid/katex shortcodes
 markup:
@@ -25,14 +26,14 @@ markup:
         title: true
     renderer:
       unsafe: true
-    
+
   tableOfContents:
     startLevel: 1
 
 params:
   # (Optional, default light) Sets color theme: light, dark or auto.
   # Theme 'auto' switches between dark and light modes based on browser/os preferences
-  BookTheme: 'light'
+  BookTheme: "light"
 
   # (Optional, default true) Controls table of contents visibility on right side of pages.
   # Start and end levels can be controlled with markup.tableOfContents setting.
@@ -45,11 +46,11 @@ params:
 
   # (Optional, default docs) Specify section of content to render as menu
   # You can also set value to "*" to render all sections to menu
-  BookSection: '*'
+  BookSection: "*"
 
   # Set source repository location.
   # Used for 'Last Modified' and 'Edit this page' links.
-  BookRepo: 'https://github.com/metabarcoding/obitools4-doc'
+  BookRepo: "https://github.com/metabarcoding/obitools4-doc"
 
   # Specifies commit portion of the link to the page's last modified commit hash for 'doc' page
   # type.
@@ -66,7 +67,7 @@ params:
   # (Optional, default January 2, 2006) Configure the date format used on the pages
   # - In git information
   # - In blog posts
-  BookDateFormat: 'Jan 2, 2006'
+  BookDateFormat: "Jan 2, 2006"
 
   # (Optional, default true) Enables search function with flexsearch,
   # Index is built on fly, therefore it might slowdown your website.
@@ -88,20 +89,20 @@ params:
   # /!\ This is an experimental feature, might be removed or changed at any time
   # (Optional, experimental, default false) Enables service worker that caches visited pages and resources for offline use.
   BookServiceWorker: true
-  
+
   BookEnableJS: true
-  BookLogo: 'obitools_logo.jpg'
+  BookLogo: "obitools_logo.jpg"
 
 theme:
-- hugo-admonitions
-- hugo-book  
-- hugo-cite
+  - hugo-admonitions
+  - hugo-book
+  - hugo-cite
 
 # - hugo-thirdhemisphere
 
 module:
   mounts:
-  - source: 'static'
-    target: 'static'
-  - source: 'images'
-    target: 'static/images'
+    - source: "static"
+      target: "static"
+    - source: "images"
+      target: "static/images"

@@ -69,16 +69,16 @@ Based on results of the first step, a second alignment step is on the overlappin
 
 The first fast alignment step adds three tags to the FASTQ header for each sequence record to indicate the results of this first step alignment.
 
-- `paring_fast_count` : Number of 4mer shared on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}).
+- `paring_fast_count` : Number of 4mer shared on the main diagonal of the [fasta dot plot]({{< relref "/docs/commands/alignments/obipairing/fasta-like#dotplot" >}}).
 - `pairing_fast_overlap` : Length in nucleotides of the overlap as detected by this algorithm.
-- `pairing_fast_score` : The pairing fast score is the number of shared 4mer on the main diagonal of the [fasta dot plot]({{< relref "fasta-like#dotplot" >}}) (`pairing_fast_count`) divided by the number of 4mer involved in the overlapping region of the forward and reverse reads ({{< katex >}}pairing\_fast\_overlap - 3{{< /katex >}})
+- `pairing_fast_score` : The pairing fast score is the number of shared 4mer on the main diagonal of the [fasta dot plot]({{< relref "/docs/commands/alignments/obipairing/fasta-like#dotplot" >}}) (`pairing_fast_count`) divided by the number of 4mer involved in the overlapping region of the forward and reverse reads ({{< katex >}}pairing\_fast\_overlap - 3{{< /katex >}})
   {{< katex display=true >}}
   pairing\_fast\_score = \frac{pairing\_fast\_count}{pairing\_fast\_overlap - 3}
   {{< /katex >}}
 
 There are two options for controlling this first step.
 
-- The `--fasta-exact` option allows changing the [best alignment selection]({{< relref "fasta-like#fasta-scores" >}}) from the one with the highest `pairing_fast_score` (the default behavior) to the one with the highest `pairing_fast_count`.
+- The `--fasta-exact` option allows changing the [best alignment selection]({{< relref "/docs/commands/alignments/obipairing/fasta-like#fasta-scores" >}}) from the one with the highest `pairing_fast_score` (the default behavior) to the one with the highest `pairing_fast_count`.
 
 - The `--exact-mode` option tells {{< obi obipairing >}} to bypass this first alignment step and proceed directly to exact alignment, at the cost of a longer computation time.
 
@@ -95,7 +95,7 @@ The exact alignment step adds the following tags to the FASTQ header for each re
 - `seq_a_single`: the length of the unaligned region on the forward read.
 - `seq_ab_match`: the number of matches in the aligned overlapping region.
 - `seq_b_single`: the length of the unaligned region on the reverse read.
-- `score`: the raw score of the alignment (the sum of the [elementary scores for each aligned position]({{< relref "exact-alignment#scoring-system">}})).
+- `score`: the raw score of the alignment (the sum of the [elementary scores for each aligned position]({{< relref "/docs/commands/alignments/obipairing/exact-alignment#scoring-system">}})).
 - `score_norm`: `seq_ab_match` divided by `ali_length`.
 - `pairing_mismatches`: a description of the mismatches between the reads (this tag is not added if the `--without-stat` is set). It is expressed as a JSON map with keys describing the mismatch and values corresponding to the position of the mismatch in the reconstructed full length amplicon.
   ```json

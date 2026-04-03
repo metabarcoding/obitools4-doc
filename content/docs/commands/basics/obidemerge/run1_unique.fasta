@@ -1,0 +1,4 @@
+>run1seq001 {"merged_sample": {"run1sampleA": 10, "run1sampleB": 5}, "count": 15}
+ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT
+>run1seq002 {"merged_sample": {"run1sampleA": 3}, "count": 3}
+TTGGCCAATTGGCCAATTGGCCAATTGGCCAATTGGCCAA

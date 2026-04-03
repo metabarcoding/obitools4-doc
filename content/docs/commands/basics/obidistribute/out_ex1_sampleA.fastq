@@ -1,0 +1,16 @@
+@seq001 {"sample_id":"sampleA"}
+atcgatcgatcgatcgatcg
++
+IIIIIIIIIIIIIIIIIIII
+@seq002 {"sample_id":"sampleA"}
+gctagctagctagctagcta
++
+IIIIIIIIIIIIIIIIIIII
+@seq003 {"sample_id":"sampleA"}
+ttagctaatcggtaatcggt
++
+IIIIIIIIIIIIIIIIIIII
+@seq009 {"sample_id":"sampleA"}
+atgatgatgatgatgatgat
++
+IIIIIIIIIIIIIIIIIIII
