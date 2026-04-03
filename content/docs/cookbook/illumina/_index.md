@@ -61,7 +61,7 @@ mkdir results
 When using the result of a paired-end sequencing with supposedly overlapping forward and reverse reads,
 the first step is to assemble them in order to recover the corresponding full length sequence.
 
-The forward and reverse reads of the same fragment are located at the same line position in both fastq files. These two files are used as inputs by the {{% obi obipairing %}} program to assemble the forward and reverse reads. This program then returns the reconstructed sequence as output:
+The forward and reverse reads of the same fragment are located at the same line position in both fastq files. These two files are used as inputs by the {{< obi obipairing >}} program to assemble the forward and reverse reads. This program then returns the reconstructed sequence as output:
 
 ```bash
 obipairing --min-identity=0.8 \
@@ -71,7 +71,7 @@ obipairing --min-identity=0.8 \
            > results/wolf.fastq 
 ```
 
-The `--min-identity` and `--min-overlap` options allow to discard sequences with low alignment quality. In the example command above, a low alignment quality corresponds to paired-end reads overlapping over less than 10 base pairs, or to paired-end reads exhibiting an alignment of less than 80% of identity. Paired-end reads producing such low quality alignments are returned concatenated with an attribute `"mode":"join"`. Those that do not fulfill the above criteria are assembled and the result is returned with the attribute `"mode":"alignment"`. For more information, please refer to the command {{% obi obipairing %}}.
+The `--min-identity` and `--min-overlap` options allow to discard sequences with low alignment quality. In the example command above, a low alignment quality corresponds to paired-end reads overlapping over less than 10 base pairs, or to paired-end reads exhibiting an alignment of less than 80% of identity. Paired-end reads producing such low quality alignments are returned concatenated with an attribute `"mode":"join"`. Those that do not fulfill the above criteria are assembled and the result is returned with the attribute `"mode":"alignment"`. For more information, please refer to the command {{< obi obipairing >}}.
 
 The output of the above procedure can be rapidly checked by looking at the first sequence record of `wolf_assembled.fastq`. This can be done with the unix command:
 
@@ -91,7 +91,7 @@ The `-n 4` option of the head command indicates to print only the first four lin
 
 ## Exclude unpaired reads
 
-Sequences corresponding to unpaired reads exhibit an attribute `"mode":"join"` and cannot be reliably used in downstream analyses. They can be removed from the dataset using the {{% obi obigrep %}} command, as follows:
+Sequences corresponding to unpaired reads exhibit an attribute `"mode":"join"` and cannot be reliably used in downstream analyses. They can be removed from the dataset using the {{< obi obigrep >}} command, as follows:
 
 ```bash
 obigrep -p 'annotations.mode != "join"' \
@@ -105,7 +105,7 @@ then the corresponding sequence record should be kept in the output.
 ## Assign each sequence record to the corresponding sample and marker combination
 
 Each sequence record is assigned to its corresponding sample and marker using the information provided in the file [`wolf_diet_ngsfilter.csv`](wolf_data/wolf_diet_ngsfilter.csv).
-This file, which is in a  {{% csv %}} tabular format, exemplifies the type of information necessary for the {{% obi obimultiplex %}} program to run.
+This file, which is in a  {{% csv %}} tabular format, exemplifies the type of information necessary for the {{< obi obimultiplex >}} program to run.
 
 {{< code "wolf_data/wolf_diet_ngsfilter.csv" csv true >}}
 
@@ -130,7 +130,7 @@ Here three parameters have been provided:
 - `@param,primer_mismatches,2`: The match between the primers and their corresponding sequences in the sequencing data can exhibit at most two mismatches.
 - `@param,indels,false`: The mismatches between the primers and their corresponding sequences in the sequencing data cannot be insertions or deletions, but only substitutions.  
   
-See {{% obi obimultiplex %}} for more details.
+See {{< obi obimultiplex >}} for more details.
 
 ```bash
 obimultiplex -s wolf_data/wolf_diet_ngsfilter.csv \
@@ -139,7 +139,7 @@ obimultiplex -s wolf_data/wolf_diet_ngsfilter.csv \
              > results/wolf_assembled_assigned.fastq
 ```
 
-The command {{% obi obimultiplex %}} written above creates two files:
+The command {{< obi obimultiplex >}} written above creates two files:
 
 -   [`unidentified.fastq`](results/unidentified.fastq) containing the sequences records that
     failed to be assigned to a sample/marker combination
@@ -150,7 +150,7 @@ The command {{% obi obimultiplex %}} written above creates two files:
 Note that each sequence record of the
 [`wolf_assembled_assigned.fastq`](results/wolf_assembled_assigned.fastq) file
 contains only the barcode sequence as the sequences of primers and tags are
-removed by the {{% obi obimultiplex %}} program. Information concerning the
+removed by the {{< obi obimultiplex >}} program. Information concerning the
 experiment, sample, primers and tags is added as attributes in the sequence
 header.
 
@@ -176,7 +176,7 @@ as well as to obtain more interpretable results. Dereplicating replicated *reads
 The program performs a pairwise comparison of all reads in the dataset. For reads that are strictly
 identical, only one representative sequence is kept while its frequency in the dataset is saved in the `count` attribute.
 
-In the command below, we use the {{% obi obiuniq %}} command with the `-m sample` option to also store the frequency of the sequence in each sample. The program returns a {{% fasta %}} file.
+In the command below, we use the {{< obi obiuniq >}} command with the `-m sample` option to also store the frequency of the sequence in each sample. The program returns a {{% fasta %}} file.
 
 ```bash
 obiuniq -m sample \
@@ -192,12 +192,12 @@ ttagccctaaacacaagtaattaatataacaaaattattcggcagagtactaccggcagt
 agcttaaaactcaaaggacttggcggtgctttatacccct
 ```
 
-The {{% obi obiuniq %}} command has added two `key:value` entries in the sequences attributes:
+The {{< obi obiuniq >}} command has added two `key:value` entries in the sequences attributes:
 
 -   `"merged_sample":{"29a_F260619":1}`: means that this sequence has been found once, in a single sample called "29a_F260619". 
 -   `"count":1` : represents the number of times, i.e. 1, this sequence has been found in the whole dataset.
 
-To keep only these two attributes in the sequence definition, we can use the {{% obi obiannotate %}} command:
+To keep only these two attributes in the sequence definition, we can use the {{< obi obiannotate >}} command:
 
 ```bash
 obiannotate -k count -k merged_sample \
@@ -233,7 +233,7 @@ these sequences can correspond to PCR/sequencing errors, or chimeras.
 
 #### Flagging PCR errors
 
-The {{% obi obiclean %}} program flags sequence variants as:
+The {{< obi obiclean >}} program flags sequence variants as:
 - potential error generated during PCR amplification (flagged as `internal` sequences), 
 - genuine sequences:
   - flagged as `head`, 
@@ -243,7 +243,7 @@ In the example below, a sequence is considered as a variant of another one if:
 - both occurred in the same sample (`-s sample`),
 - it exist only a single difference between both sequences (substitution, insertion, or deletion)
 - if the abondance of the variant is less than 5% of the abondance of the main sequence (`-r 0.05` option).
-We ask {{% obi obiclean %}} to keep only the sequences that are considered as genuine `head` or `singleton` in at least one sample (`-H` option). See the {{% obi obiclean %}} documentation for details.
+We ask {{< obi obiclean >}} to keep only the sequences that are considered as genuine `head` or `singleton` in at least one sample (`-H` option). See the {{< obi obiclean >}} documentation for details.
 
 ```bash
 obiclean -s sample -r 0.05 --detect-chimera -H \
@@ -490,7 +490,7 @@ obiannotate --length \
                                   Frequency
 ```
 
-The DNA marker amplified here, i.e. the v5 region of the mitochondrial 12S rRNA gene, should be about 100 bp long. Here, one sequence is very short (<5 bp). We can filter this sequence out with {{% obi obigrep %}}:
+The DNA marker amplified here, i.e. the v5 region of the mitochondrial 12S rRNA gene, should be about 100 bp long. Here, one sequence is very short (<5 bp). We can filter this sequence out with {{< obi obigrep >}}:
 
 ```bash
 obigrep -l 50 \
@@ -546,7 +546,7 @@ directory.
 
 ### Assigning taxa to the sequences 
 
-Using the reference database [`db_v05_r117.fasta.gz`](wolf_data/db_v05_r117.fasta.gz) and the full NCBI taxonomy, assigning taxa to the sequences can be done with {{% obi obitag %}} as follows:
+Using the reference database [`db_v05_r117.fasta.gz`](wolf_data/db_v05_r117.fasta.gz) and the full NCBI taxonomy, assigning taxa to the sequences can be done with {{< obi obitag >}} as follows:
 
 ```bash
 obitag -t ncbitaxo.tgz \
@@ -559,13 +559,13 @@ The resulting file, containing only few sequences in this tutorial, looks like t
 
 {{< code "results/wolf_assembled_taxo.fasta" fasta true >}}
 
-The {{% obi obitag %}} command adds several attributes in the sequence record header, like:
+The {{< obi obitag >}} command adds several attributes in the sequence record header, like:
 
 - `obitag_bestmatch:ACCESSION` where ACCESSION is the id of the sequence in
 the reference database that best aligns to the query sequence
 - `obitag_bestid:FLOAT` where FLOAT\*100 is the percentage of identity between
 the best match sequence and the query sequence
-- `taxid:TAXID` where TAXID is the taxonomic ID of the taxon assigned to the sequence by {{% obi obitag %}}
+- `taxid:TAXID` where TAXID is the taxonomic ID of the taxon assigned to the sequence by {{< obi obitag >}}
 
 ## Exporting the results in a tabular format
 
@@ -573,7 +573,7 @@ To reduce the file size and make it easier to analyze, we can make some
 cosmetic changes to the data file, for example by removing some useless information that 
 {{% obitools4 %}} inserts in the sequence header to explain its decisions.
 
-{{% obi obiannotate %}} is the tool to make such changes. In the next command,
+{{< obi obiannotate >}} is the tool to make such changes. In the next command,
 we will remove some tags inserted by {{< obi obiclean >}}.
 
 ```bash

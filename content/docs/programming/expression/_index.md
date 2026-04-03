@@ -133,15 +133,15 @@ The expression language allows to access to the methods of the **BioSequence** c
 #### 🧩 The useful methods for the **BioSequence** class are:
 
 1. **`Len() int`** - Returns the length of the sequence.
-3. **`String() string`** - Returns the sequence itself as a string.
-2. **`Id() string`** - Returns the identifier of the sequence.
-3. **`Definition() string`**  - Returns the definition part of the header line of the sequence 
-4. **`HasAnnotation() bool`** - Returns `true` if at least one annotation exists for this sequence.
-5. **`HasDefinition() bool`** - Returns `true` if a definition exists for this sequence.
-6. **`HasSequence() bool`** - Returns `true` if the sequence is not empty.
-7. **`HasQualities() bool`** - Returns `true` if quality scores exist for this sequence. 
-8. **`Count() int`** - Returns the number of occurrences of the sequence in the data set. 
-9. **`Taxid() string`** - Returns the taxonomy id associated with this sequence.
+2. **`Sequence() string`** - Returns the sequence itself as a string.
+3. **`Id() string`** - Returns the identifier of the sequence.
+4. **`Definition() string`** - Returns the definition part of the header line of the sequence.
+5. **`HasAnnotation() bool`** - Returns `true` if at least one annotation exists for this sequence.
+6. **`HasDefinition() bool`** - Returns `true` if a definition exists for this sequence.
+7. **`HasSequence() bool`** - Returns `true` if the sequence is not empty.
+8. **`HasQualities() bool`** - Returns `true` if quality scores exist for this sequence.
+9. **`Count() int`** - Returns the number of occurrences of the sequence in the data set.
+10. **`Taxid() string`** - Returns the taxonomy id associated with this sequence.
     
 ### 🧩 List of Functions Added to the Gval Language
 

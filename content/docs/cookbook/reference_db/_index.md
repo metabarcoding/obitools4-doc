@@ -16,14 +16,14 @@ for a given marker of metabarcoding.
 Here is a quick step-by-step guide to creating a reference database, here for assigning sequences from wolf fecal 
 samples to study its diet, a dataset used in the [metabarcoding analysis tutorial here](https://obitools4.metabarcoding.org/docs/cookbook/wolf-tutorial/).
 
-One way to build a reference database is to use the {{% obi obipcr %}} program to simulate a PCR and extract all sequences 
+One way to build a reference database is to use the {{< obi obipcr >}} program to simulate a PCR and extract all sequences 
 from a general purpose DNA database such as [GenBank](https://www.ncbi.nlm.nih.gov/nucleotide/) or [EMBL](https://www.ebi.ac.uk/ena/browser/home)
 that can be amplified *in silico* by the two primers used for PCR amplification.
 
 The steps to create a reference database are:
 
 1. Download sequences from a public database such as GenBank or EMBL
-2. Perform an *in silico* PCR amplification of these sequences with a given marker with {{% obi obipcr %}}
+2. Perform an *in silico* PCR amplification of these sequences with a given marker with {{< obi obipcr >}}
 3. Clean up the database by deleting sequences that do not provide sufficient taxonomic information and are redundant
 
 Since Genbank and the taxonomy associated with sequences are constantly evolving, you may not get exactly the same results when using the following commands.
@@ -54,18 +54,18 @@ obipcr -e 3 -l 50 -L 150 \
 
 The `-l` and `-L` options define the minimum and maximum sizes of sequence fragments to be amplified.
 Three mismatches with primer sequences are allowed here (-e 3), and we recommend using the `--no-order` option
-to speed up the program (see {{% obi obipcr %}} documentation).
+to speed up the program (see {{< obi obipcr >}} documentation).
 
 This previous command produces a {{% fasta %}} file, with the computed amplified sequences.
 
 ## Clean the database
 
-We choose to apply these different steps of filtering to clean up the sequences obtained with {{% obi obipcr %}}:
+We choose to apply these different steps of filtering to clean up the sequences obtained with {{< obi obipcr >}}:
 
-1. Keep the sequences with a taxid and a taxonomic description to family, genus and species ranks ({{% obi obigrep %}})
+1. Keep the sequences with a taxid and a taxonomic description to family, genus and species ranks ({{< obi obigrep >}})
 2. Remove redundant sequences (dereplicate)
 3. Ensure that the dereplicated sequences have a taxid (taxon identifier) at the family level
-4. Ensure that sequences each have a unique identification ID with {{% obi obiannotate %}}
+4. Ensure that sequences each have a unique identification ID with {{< obi obiannotate >}}
 5. Index the database
 
 #### Keep annotated sequences
@@ -79,7 +79,7 @@ which looks like `Release_264/taxonomy`, or download the taxdump file online wit
 curl http://ftp.ncbi.nih.gov/pub/taxonomy/taxdump.tar.gz
 ```
 
-The {{% obi obigrep %}} program allows to filter sequences, to keep only those with a taxid and a sufficient taxonomic description.
+The {{< obi obigrep >}} program allows to filter sequences, to keep only those with a taxid and a sufficient taxonomic description.
 
 ```bash
 obigrep -t taxdump.tar.gz \
@@ -92,7 +92,7 @@ obigrep -t taxdump.tar.gz \
 
 #### Dereplicate sequences
 
-The {{% obi obiuniq %}} program is able to dereplicate the sequences.
+The {{< obi obiuniq >}} program is able to dereplicate the sequences.
 
 ```bash
 obiuniq -c taxid v05_clean.fasta > v05_clean_uniq.fasta

@@ -15,7 +15,7 @@ The [CSV (Comma-Separated Values)](https://en.wikipedia.org/wiki/Comma-separated
 
 ## Converting FASTA file to CSV
 
-Use the {{% obi obicsv %}} command to convert a {{% fasta %}} file to CSV format, with the `-i` and `-s` options, to print the sequence identifier and the nucleotide sequence respectively, and the `-k` option to retain the desired attributes. Each record in the FASTA file corresponds to a line in the output file:
+Use the {{< obi obicsv >}} command to convert a {{% fasta %}} file to CSV format, with the `-i` and `-s` options, to print the sequence identifier and the nucleotide sequence respectively, and the `-k` option to retain the desired attributes. Each record in the FASTA file corresponds to a line in the output file:
 
 {{< code "two_sequences.fasta" fasta true >}}
 
@@ -44,7 +44,7 @@ csvlook -I two_sequences.csv
 
 ## Converting CSV file to FASTA format
 
-To convert a sequence file in CSV format to {{% fasta %}} format, you can use the {{% obi obiconvert %}} command:
+To convert a sequence file in CSV format to {{% fasta %}} format, you can use the {{< obi obiconvert >}} command:
 
 ```bash
 obiconvert two_sequences.csv
@@ -60,7 +60,7 @@ agcttaaaactcaaaggacctggcagttctttatatccct
 
 ## Converting FASTQ file to CSV
 
-In the same way as for {{% fasta %}} files, use the {{% obi obicsv %}} command to convert a {{% fastq %}} file to CSV format (the `-q` option prints the quality of the sequence in the output):
+In the same way as for {{% fasta %}} files, use the {{< obi obicsv >}} command to convert a {{% fastq %}} file to CSV format (the `-q` option prints the quality of the sequence in the output):
 
 {{< code "two_sequences.fastq" fastq true >}}
 

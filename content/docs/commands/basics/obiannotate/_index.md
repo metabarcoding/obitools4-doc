@@ -18,7 +18,7 @@ There are two particularly important groups of options in {{< obi obiannotate >}
 
 ### The selection options
 
-They correspond to the selection options described in the {{% obi obigrep %}} documentation. 
+They correspond to the selection options described in the {{< obi obigrep >}} documentation. 
 
 ### The edition options
 
@@ -242,7 +242,7 @@ cgatgctccatgctagtgctagtcgatga
 cgatggctccatgctagtgctagtcgatga
 ```
 
-When used with the `--aho-corasick` option {{% obi obiannotate %}} adds the three following options:
+When used with the `--aho-corasick` option {{< obi obiannotate >}} adds the three following options:
 
   - `aho_corasick`: the total number of match on the sequence
   - `aho_corasick_Fwd`: the number of match on the forward strand
@@ -250,7 +250,7 @@ When used with the `--aho-corasick` option {{% obi obiannotate %}} adds the thre
 
 * Matching a primer against sequences 
 
-It is possible to identify sequences that match a primer using the same algorithm than the one used by {{% obi obipcr %}} or {{% obi obimultiplex %}}. Four options controle this feature:
+It is possible to identify sequences that match a primer using the same algorithm than the one used by {{< obi obipcr >}} or {{< obi obimultiplex >}}. Four options controle this feature:
 
 - `--pattern <PATTERN>`: the primer sequence to be searched. The pattern is following the [DNA Pattern grammar]({{< ref "../../../patterns/dnagrep" >}}) allowing to use the IUPAC DNA codes and to indicates non mutable positions.
 - `--pattern-error <INT>` : the maximum error allowed when matching the primer. Default is 0.

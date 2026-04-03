@@ -29,12 +29,7 @@ user-supplied pattern containing `%s`, which is replaced by the classifier value
 batch index. For example, with `--pattern samples_%s.fastq` and a `sample_id`
 annotation, sequences labelled `sampleA` will be written to `samples_sampleA.fastq`.
 
-When no classifier is specified, sequences can be split into a fixed number of batches
-(`--batches`) for parallel downstream processing, or sharded deterministically by hash
-(`--hash`) to ensure reproducible partitioning regardless of input order. Output files
-can be extended rather than overwritten using `--append`, making incremental
-demultiplexing possible. Sequences lacking the classifier annotation are written to a
-fallback file named using the `--na-value` (default: `NA`).
+When no classifier is specified, sequences can be split into a fixed number of batches(`--batches`) for parallel downstream processing, or sharded  deterministically by hash (`--hash`) to ensure reproducible partitioning regardless of input order. Output files can be extended rather than overwritten using `--append`, making incremental demultiplexing possible. Sequences lacking the classifier annotation are written to a fallback file named using the `--na-value` (default: `NA`).
 
 {{< mermaid class="workflow" >}}
 graph TD
@@ -50,8 +45,7 @@ graph TD
   classDef obitools fill:#99d57c
 {{< /mermaid >}}
 
-To illustrate annotation-based demultiplexing, consider the following {{% fastq %}}
-input file where each sequence carries a `sample_id` tag:
+To illustrate annotation-based demultiplexing, consider the following {{% fastq %}} input file where each sequence carries a `sample_id` tag:
 
 {{< code "reads.fastq" fastq true >}}
 
@@ -63,8 +57,7 @@ obidistribute --classifier sample_id --pattern samples_%s.fastq \
   --no-progressbar --input-json-header reads.fastq
 ```
 
-This produces `samples_sampleA.fastq`, `samples_sampleB.fastq`,
-`samples_sampleC.fastq`, and `samples_NA.fastq` (for the sequence with no
+This produces `samples_sampleA.fastq`, `samples_sampleB.fastq`,`samples_sampleC.fastq`, and `samples_NA.fastq` (for the sequence with no
 `sample_id` annotation). Each output file contains only the sequences belonging
 to that sample, with all original annotations preserved.
 
@@ -137,24 +130,6 @@ obidistribute --pattern|-p <string> [--append|-A] [--batch-mem <string>]
 {{< option-sets/common >}}
 
 ## Examples
-
-### Demultiplex sequences by sample annotation
-
-The file [reads.fastq](reads.fastq) contains 10 {{% fastq %}} sequences annotated
-with a `sample_id` tag. Three samples are present (`sampleA`, `sampleB`, `sampleC`)
-and one sequence has no `sample_id` annotation. {{< obi obidistribute >}} with
-`--classifier sample_id` routes each sequence to its own output file.
-
-{{< code "reads.fastq" fastq true >}}
-
-```bash
-obidistribute --classifier sample_id \
-  --pattern out_ex1_%s.fastq \
-  --no-progressbar --input-json-header \
-  -o /dev/null reads.fastq
-```
-
-{{< code "out_ex1_sampleA.fastq" fastq true >}}
 
 ### Split a dataset into equal batches for parallel processing
 
