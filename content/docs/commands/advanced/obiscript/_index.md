@@ -18,26 +18,22 @@ weight: 50
 
 ## Description
 
-{{< obi obiscript >}} lets a biologist apply fully custom logic to every sequence in
+{{< obi obiscript >}} lets applying fully custom logic to every sequence in
 a dataset by writing a short [Lua](https://www.lua.org/) script, without recompiling
 {{% obitools4 %}} or writing Go code. It is the right tool whenever the built-in
 commands — {{< obi obigrep >}}, {{< obi obiannotate >}}, and the like — are not
 flexible enough: for instance to compute a new attribute from the sequence itself,
-to maintain a running counter across all records, or to read an external table and
-join it into the annotations.
+to maintain a running counter across all records, or merging external data sources into the annotations.
 
-The script is structured around three optional Lua functions. The `worker(sequence)`
-function is the core: it is called once per input sequence record, receives the record
-as a `BioSequence` object, and must return the (possibly modified) record — or `nil`
-to drop it. The `begin()` function runs once before any record is processed and is
-typically used for initialisation. The `finish()` function runs once after the last
-record and is typically used to print summary statistics. A thread-safe key-value table
-called `obicontext` is shared across all parallel worker invocations and can be used to
-accumulate results safely.
+The script is structured around three optional Lua functions. 
 
-An important behavioural detail: the sequence selection flags (such as `--min-length`,
-`--predicate`, `--sequence`, etc.) do **not** filter sequences out of the output —
-they select which sequences the `worker()` function is applied to. Sequences that do
+- The `worker(sequence)` function is the core: it is called once per input sequence record, receives the record as a `BioSequence` object, and must return the (possibly modified) record, or set or sequence records, or `nil` to drop the current sequence from the output. 
+- The `begin()` function runs once before any record is processed and is typically used for initialisation. 
+- The `finish()` function runs once after the last record and is typically used to print summary statistics. A thread-safe key-value table called `obicontext` is shared across all parallel worker invocations and can be used to accumulate results safely.
+
+The set of selection options (such as `--min-length`,
+`--predicate`, `--sequence`, etc.) used by {{< obi obigrep >}} are also available in {{< obi obiscript >}}. But an important behavioural detail has to be considered: the sequence selection option do **not** filter sequences out of the output, like in {{< obi obigrep >}}, 
+they only select which sequences the `worker()` function is applied to. Sequences that do
 not match the selection pass through to the output unchanged, without the script being
 executed on them.
 
@@ -52,6 +48,8 @@ obiscript --template
 
 The skeleton demonstrates all three lifecycle functions and shows how to use
 `obicontext` for cross-record aggregation and `sequence:id()` to rename records.
+
+## Workflow of the command
 
 {{< mermaid class="workflow" >}}
 graph TD
