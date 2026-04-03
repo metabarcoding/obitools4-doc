@@ -1,6 +1,6 @@
 {{ $old := "" }}
 {{ $context := . }}
-{{ range sort .Site.Data.tags "tag" "asc" }}
+{{ range sort hugo.Data.tags "tag" "asc" }}
   {{ $first := substr .tag 0 1 | upper }}
   {{ if ne $first $old }}
 ### \- {{ $first }} -

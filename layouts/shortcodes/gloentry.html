@@ -2,7 +2,7 @@
 {{- $entry := (.Get 0) -}}
 
 <!-- range over data file -->
-{{- range $.Site.Data.termbase -}}
+{{- range hugo.Data.termbase -}}
 
 <!-- Find matches -->
     {{- if eq ( .abbr | lower) ( $entry | lower ) -}}

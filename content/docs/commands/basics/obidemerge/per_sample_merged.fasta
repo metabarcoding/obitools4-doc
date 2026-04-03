@@ -1,0 +1,14 @@
+>seq001 {"count":5,"sample":"sampleA"}
+acgtacgtacgtacgtacgtacgtacgtacgtacgtacgt
+>seq001 {"count":3,"sample":"sampleB"}
+acgtacgtacgtacgtacgtacgtacgtacgtacgtacgt
+>seq001 {"count":1,"sample":"sampleC"}
+acgtacgtacgtacgtacgtacgtacgtacgtacgtacgt
+>seq002 {"count":2,"sample":"sampleA"}
+ttggccaattggccaattggccaattggccaattggccaa
+>seq002 {"count":7,"sample":"sampleD"}
+ttggccaattggccaattggccaattggccaattggccaa
+>seq003 {"count":4,"sample":"sampleB"}
+gctagctagctagctagctagctagctagctagctagcta
+>seq004 {"count":6}
+aaaaccccggggttttaaaaccccggggttttaaaacccc

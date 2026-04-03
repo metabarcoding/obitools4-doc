@@ -562,7 +562,7 @@ obigrep -s '^t' \
         forward.fastq
 ```
 
-After running the {{< obi obigrep >}} command, if you check the directory contents, you will obtain two new files named [`start_t_R1.fastq`](start_t_R1.fastq) and [`start_t_R2.fastq`](start_t_R2.fastq), in addition to the two input files, [`forward.fastq`](foward.fastq) and [`reverse.fastq`](reverse.fastq).  These file names are created by adding the suffixes `_R1` and `_R2` to the `start_t.fastq` file name specified in the `--out` option. The `start_t_R1.fastq` file (suffix `_R1`) contains the reads from the main file ([`forward.fastq`](foward.fastq)), while `start_t_R2.fastq` (suffix `_R2`) contains the reads from the file specified by the '--paired-with' option ([`reverse.fastq`](reverse.fastq)).
+After running the {{< obi obigrep >}} command, if you check the directory contents, you will obtain two new files named [`start_t_R1.fastq`](start_t_R1.fastq) and [`start_t_R2.fastq`](start_t_R2.fastq), in addition to the two input files, [`forward.fastq`](forward.fastq) and [`reverse.fastq`](reverse.fastq).  These file names are created by adding the suffixes `_R1` and `_R2` to the `start_t.fastq` file name specified in the `--out` option. The `start_t_R1.fastq` file (suffix `_R1`) contains the reads from the main file ([`forward.fastq`](forward.fastq)), while `start_t_R2.fastq` (suffix `_R2`) contains the reads from the file specified by the '--paired-with' option ([`reverse.fastq`](reverse.fastq)).
 
 ```
 % ls -l
@@ -576,7 +576,7 @@ total 135568
 Inspecting the file  [`start_t_R1.fastq`](start_t_R1.fastq) makes the effect of  {{< obi obigrep >}} clear. Every sequence starts with **t**.
 
 {{< code "start_t_R1.fastq" fastq true >}}
-However, when we look at the file  [`start_t_R2.fastq`](start_t_R2.fastq), the second sequence starts with a **c**. In fact, the {{< obi obigrep>}} constraint was only applied to the [`forward.fastq`](foward.fastq) file. The sequences were selected from the [`reverse.fastq`](reverse.fastq) file because they are paired with one of the sequences selected from the [`forward.fastq`](foward.fastq) file.
+However, when we look at the file  [`start_t_R2.fastq`](start_t_R2.fastq), the second sequence starts with a **c**. In fact, the {{< obi obigrep>}} constraint was only applied to the [`forward.fastq`](forward.fastq) file. The sequences were selected from the [`reverse.fastq`](reverse.fastq) file because they are paired with one of the sequences selected from the [`forward.fastq`](forward.fastq) file.
 
 {{< code "start_t_R2.fastq" fastq true >}}
 

@@ -1,0 +1,6 @@
+>seq001  Test DNA sequence for FASTA conversion
+atcgatcgatcgatcgatcgatcgatcgatcgatcgatcg
+>seq002  Another test sequence with different nucleotide content
+gctagctagctagctagctagctagctagctagctagct
+>seq003  Third sequence for testing output format
+ttaaccggttaaccggttaaccggttaaccggttaaccg

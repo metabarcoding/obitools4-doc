@@ -1,0 +1,8 @@
+>seq001 {"merged_sample": {"sampleA": 5, "sampleB": 3, "sampleC": 1}, "sample": {"sampleX": 5}, "count": 9}
+ACGTACGTACGTACGTACGTACGTACGTACGTACGTACGT
+>seq002 {"merged_sample": {"sampleA": 2, "sampleD": 7}, "sample": {"sampleY": 2}, "count": 9}
+TTGGCCAATTGGCCAATTGGCCAATTGGCCAATTGGCCAA
+>seq003 {"merged_sample": {"sampleB": 4}, "sample": {"sampleX": 4}, "count": 4}
+GCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTAGCTA
+>seq004 {"count": 6}
+AAAACCCCGGGGTTTTAAAACCCCGGGGTTTTAAAACCCC
