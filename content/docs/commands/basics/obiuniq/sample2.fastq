@@ -1,0 +1,12 @@
+@s2_seq001 {"sample": "s2", "primer": "p1"}
+ATCGATCGATCGATCGATCG
++
+IIIIIIIIIIIIIIIIIIII
+@s2_seq002 {"sample": "s2", "primer": "p2"}
+TTTTTTTTTTTTTTTTTTTT
++
+IIIIIIIIIIIIIIIIIIII
+@s2_seq003 {"sample": "s2", "primer": "p2"}
+TTTTTTTTTTTTTTTTTTTT
++
+IIIIIIIIIIIIIIIIIIII

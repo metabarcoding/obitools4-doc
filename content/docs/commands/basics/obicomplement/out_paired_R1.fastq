@@ -1,0 +1,12 @@
+@pair001/1 {"definition":"paired read 1 forward"}
+cgatcgatcgatcgatcgat
++
+IIIIIIIIIIIIIIIIIIII
+@pair002/1 {"definition":"paired read 2 forward"}
+gcgcgcgcgcgcgcgcgcgc
++
+IIIIIIIIIIIIIIIIIIII
+@pair003/1 {"definition":"paired read 3 forward"}
+aattccggaattccggaatt
++
+IIIIIIIIIIIIIIIIIIII

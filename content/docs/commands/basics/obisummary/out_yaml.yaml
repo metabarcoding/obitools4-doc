@@ -1,0 +1,11 @@
+annotations:
+    keys:
+        scalar:
+            definition: 3
+    map_attributes: 0
+    scalar_attributes: 1
+    vector_attributes: 0
+count:
+    reads: 3
+    total_length: 60
+    variants: 3

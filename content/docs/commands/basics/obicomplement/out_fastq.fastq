@@ -1,0 +1,20 @@
+@read001 {"definition":"sequencing read 1"}
+cgatcgatcgatcgatcgat
++
+IIIIIIIIIIIIIIIIIIII
+@read002 {"definition":"sequencing read 2"}
+gcgcgcgcgcgcgcgcgcgc
++
+IIIIIIIIIIIIIIIIIIII
+@read003 {"definition":"sequencing read 3"}
+atatatatatatatatatat
++
+IIIIIIIIIIIIIIIIIIII
+@read004 {"definition":"sequencing read 4"}
+aattccggaattccggaatt
++
+IIIIIIIIIIIIIIIIIIII
+@read005 {"definition":"sequencing read 5"}
+agctagcatgcatagccgat
++
+IIIIIIIIIIIIIIIIIIII

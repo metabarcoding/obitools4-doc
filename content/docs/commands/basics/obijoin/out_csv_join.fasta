@@ -1,0 +1,6 @@
+>seq001 {"phylum":"Proteobacteria","scientific_name":"Bacteria","taxid":"2"}
+acgtacgtacgtacgt
+>seq002 {"phylum":"Euryarchaeota","scientific_name":"Archaea","taxid":"2157"}
+ggggaaaattttcccc
+>seq003 {"phylum":"Arthropoda","scientific_name":"Eukaryota","taxid":"2759"}
+atatatatatatatat

@@ -1,0 +1,16 @@
+@s1_seq001 {"sample": "s1", "primer": "p1"}
+ATCGATCGATCGATCGATCG
++
+IIIIIIIIIIIIIIIIIIII
+@s1_seq002 {"sample": "s1", "primer": "p1"}
+ATCGATCGATCGATCGATCG
++
+IIIIIIIIIIIIIIIIIIII
+@s1_seq003 {"sample": "s1", "primer": "p2"}
+GCTAGCTAGCTAGCTAGCTA
++
+IIIIIIIIIIIIIIIIIIII
+@s1_seq004 {"sample": "s1", "primer": "p2"}
+GCTAGCTAGCTAGCTAGCTA
++
+IIIIIIIIIIIIIIIIIIII

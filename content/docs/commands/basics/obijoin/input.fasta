@@ -1,0 +1,12 @@
+>seq001 {"sample":"S1","barcode":"ATGC"}
+ATGCATGCATGCATGCATGC
+>seq002 {"sample":"S2","barcode":"GCTA"}
+GCTAGCTAGCTAGCTAGCTA
+>seq003 {"sample":"S3","barcode":"TTTT"}
+TTTTTTTTTTTTTTTTTTTT
+>seq004 {"sample":"S1","barcode":"ATGC"}
+AAAAATTTTTCCCCCGGGGG
+>seq005 {"sample":"S2","barcode":"GCTA"}
+GGGGGAAAAATTTTTCCCCC
+>seq006 {"sample":"S4","barcode":"AAAA"}
+CCCCCCGGGGGTTTTTAAAAA

@@ -1,0 +1,6 @@
+>rna001 {"definition":"mRNA fragment with uracil"}
+gcatgcatgcatgcatgcat
+>rna002 {"definition":"coding RNA with uracil"}
+atgcatgcatgcatgcatgc
+>rna003 {"definition":"polyU RNA sequence"}
+aaaaaaaaaaaaaaaaaaaa

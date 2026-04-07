@@ -1,0 +1,6 @@
+>seq005 {"count":3,"merged_id":{"seq003":1,"seq004":1,"seq005":1},"sample":"sample2","taxid":"2157"}
+ggggaaaattttcccc
+>seq001 {"count":2,"merged_id":{"seq001":1,"seq002":1},"sample":"sample1","taxid":"2"}
+acgtacgtacgtacgt
+>seq006 {"count":1,"merged_id":{"seq006":1},"sample":"sample3","taxid":"2759"}
+atatatatatatatat

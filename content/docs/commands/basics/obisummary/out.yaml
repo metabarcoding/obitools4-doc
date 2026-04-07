@@ -1,0 +1,12 @@
+annotations:
+    keys:
+        map:
+            taxid_merged: 5
+    map_attributes: 1
+    scalar_attributes: 0
+    vector_attributes: 0
+count:
+    reads: 5
+    total_length: 80
+    variants: 5
+

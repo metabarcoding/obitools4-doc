@@ -1,0 +1,8 @@
+>seq008 {"count":1,"primer":"p1"}
+cccccccccccccccccccc
+>seq001 {"count":4,"primer":"p1"}
+atcgatcgatcgatcgatcg
+>seq004 {"count":2,"primer":"p1","sample":"s1"}
+gctagctagctagctagcta
+>seq007 {"count":1,"primer":"p1","sample":"s2"}
+tttttttttttttttttttt

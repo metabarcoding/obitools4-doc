@@ -1,0 +1,12 @@
+>ref001 {"barcode":"ATGC","sample":"S1"}
+atgcatgcatgcatgcatgc
+>ref002 {"barcode":"GCTA","sample":"S2"}
+gctagctagctagctagcta
+>seq003 {"barcode":"TTTT","sample":"S3"}
+tttttttttttttttttttt
+>ref001 {"barcode":"ATGC","sample":"S1"}
+aaaaatttttcccccggggg
+>ref002 {"barcode":"GCTA","sample":"S2"}
+gggggaaaaatttttccccc
+>seq006 {"barcode":"AAAA","sample":"S4"}
+ccccccgggggtttttaaaaa

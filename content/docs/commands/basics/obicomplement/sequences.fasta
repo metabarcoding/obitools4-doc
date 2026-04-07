@@ -1,0 +1,10 @@
+>seq001 basic DNA sequence
+ATCGATCGATCGATCGATCG
+>seq002 GC-rich sequence
+GCGCGCGCGCGCGCGCGCGC
+>seq003 AT-rich sequence
+ATATATATATATATATATAT
+>seq004 palindromic sequence
+AATTCCGGAATTCCGGAATT
+>seq005 mixed sequence
+ATCGGCTATGCATGCTAGCT
