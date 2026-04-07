@@ -1,0 +1,12 @@
+@seq001 {"instrument":"Illumina NovaSeq 6000","run_id":"ERR7891234","sample_id":"SAMPLE001"}
+ACGTACGTACGTACGT
++
+IIIIIIIIIIIIIIII
+@seq002 {"instrument":"Illumina NovaSeq 6000","run_id":"ERR7891234","sample_id":"SAMPLE002"}
+GGGGAAAATTTTCCCC
++
+IIIIIIIIIIIIIIII
+@seq003 {"instrument":"Illumina NovaSeq 6000","run_id":"ERR7891234","sample_id":"SAMPLE003"}
+ATATATATATATATAT
++
+IIIIIIIIIIIIIIII

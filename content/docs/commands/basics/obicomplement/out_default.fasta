@@ -1,0 +1,10 @@
+>seq001 {"definition":"basic DNA sequence"}
+cgatcgatcgatcgatcgat
+>seq002 {"definition":"GC-rich sequence"}
+gcgcgcgcgcgcgcgcgcgc
+>seq003 {"definition":"AT-rich sequence"}
+atatatatatatatatatat
+>seq004 {"definition":"palindromic sequence"}
+aattccggaattccggaatt
+>seq005 {"definition":"mixed sequence"}
+agctagcatgcatagccgat

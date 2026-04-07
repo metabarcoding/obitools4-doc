@@ -1,0 +1,12 @@
+>seq001 {"sample":"sample1","taxid":2}
+ACGTACGTACGTACGT
+>seq002 {"sample":"sample1","taxid":2}
+ACGTACGTACGTACGT
+>seq003 {"sample":"sample2","taxid":2157}
+GGGGAAAATTTTCCCC
+>seq004 {"sample":"sample2","taxid":2157}
+GGGGAAAATTTTCCCC
+>seq005 {"sample":"sample2","taxid":2157}
+GGGGAAAATTTTCCCC
+>seq006 {"sample":"sample3","taxid":2759}
+ATATATATATATATAT

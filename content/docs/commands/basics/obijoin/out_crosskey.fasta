@@ -1,0 +1,12 @@
+>seq001 {"barcode":"ATGC","experiment":"amplicon_run1","location":"Paris","sample":"S1","well":"S1"}
+atgcatgcatgcatgcatgc
+>seq002 {"barcode":"GCTA","experiment":"amplicon_run2","location":"Lyon","sample":"S2","well":"S2"}
+gctagctagctagctagcta
+>seq003 {"barcode":"TTTT","sample":"S3"}
+tttttttttttttttttttt
+>seq004 {"barcode":"ATGC","experiment":"amplicon_run1","location":"Paris","sample":"S1","well":"S1"}
+aaaaatttttcccccggggg
+>seq005 {"barcode":"GCTA","experiment":"amplicon_run2","location":"Lyon","sample":"S2","well":"S2"}
+gggggaaaaatttttccccc
+>seq006 {"barcode":"AAAA","sample":"S4"}
+ccccccgggggtttttaaaaa

@@ -1,0 +1,20 @@
+@seq001 {"definition":"a test read"}
+acgtacgtacgtacgt
++
+IIIIIIIIIIIIIIIII
+@seq002 {"definition":"another read"}
+ccccggggttttaaaa
++
+IIIIIIIIIIIIIIIII
+@seq003 {"definition":"read with IUPAC codes"}
+nhbvdwsmkryacgt
++
+IIIIIIIIIIIIIIII
+@seq004 {"definition":"fourth read"}
+tagctagctagctagc
++
+IIIIIIIIIIIIIIIII
+@seq005 {"definition":"fifth read"}
+tttttttttttttttt
++
+IIIIIIIIIIIIIIIII

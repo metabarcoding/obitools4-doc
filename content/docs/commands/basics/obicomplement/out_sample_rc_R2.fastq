@@ -1,0 +1,12 @@
+@pair001 {"definition":"paired read R2"}
+acattgccgattgccgta
++
+IIIIIIIIIIIIIIIIIII
+@pair002 {"definition":"paired read R2"}
+aaaattttggggcccc
++
+IIIIIIIIIIIIIIIII
+@pair003 {"definition":"paired read R2"}
+attgccgattgccgtaa
++
+IIIIIIIIIIIIIIIIII

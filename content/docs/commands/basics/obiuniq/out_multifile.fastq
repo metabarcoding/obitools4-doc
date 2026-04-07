@@ -1,0 +1,8 @@
+>s1_seq001 {"count":2,"primer":"p1","sample":"s1"}
+atcgatcgatcgatcgatcg
+>s2_seq001 {"count":1,"primer":"p1","sample":"s2"}
+atcgatcgatcgatcgatcg
+>s1_seq004 {"count":2,"primer":"p2","sample":"s1"}
+gctagctagctagctagcta
+>s2_seq002 {"count":2,"primer":"p2","sample":"s2"}
+tttttttttttttttttttt
