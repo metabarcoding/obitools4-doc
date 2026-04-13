@@ -79,6 +79,47 @@ function worker(sequence)
 end
 ```
 
+### The `slice_worker` function
+
+The `slice_worker` function is an alternative to `worker` for batch-level processing. Instead of being called once per sequence, it receives an entire batch as a `BioSequenceSlice` and must return a `BioSequenceSlice`. This is particularly efficient when a single operation can cover all sequences at once — for example, a single HTTP request to an external server.
+
+If both `slice_worker` and `worker` are defined in the same script, `slice_worker` takes precedence.
+
+Because `BioSequence` objects are accessed by pointer, any attribute set on a sequence retrieved from the slice is immediately reflected in the slice — no reassignment is needed.
+
+The batch size is not fixed: it depends on the input file and OBITools4's dynamic flush mechanism. A `slice_worker` must always iterate up to `slice:len()` and must not assume a constant size.
+
+```lua
+local json = require("json")
+
+function slice_worker(slice)
+    -- Build a batch payload for a single HTTP request
+    local ids, seqs = {}, {}
+    for i = 0, slice:len() - 1 do
+        local s = slice:sequence(i)
+        table.insert(ids,  s:id())
+        table.insert(seqs, s:sequence())
+    end
+
+    local response, err = http.post(SERVER_URL, json.encode({ ids = ids, seqs = seqs }))
+    if err then
+        return slice  -- return the batch unmodified on error
+    end
+
+    local data = json.decode(response)
+    -- Annotate each sequence from the response
+    for i = 0, slice:len() - 1 do
+        local s = slice:sequence(i)
+        local score = data[s:id()]
+        if score then
+            s:attribute("server_score", score)
+        end
+    end
+
+    return slice
+end
+```
+
 ## The `obicontext` to share information
 
 The `obicontext` module provides a shared context for data exchange between functions and within the `worker` function. It allows you to store and retrieve values using string keys.

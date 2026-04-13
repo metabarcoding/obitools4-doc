@@ -21,7 +21,8 @@ to maintain a running counter across all records, or merging external data sourc
 
 The script is structured around three optional Lua functions. 
 
-- The `worker(sequence)` function is the core: it is called once per input sequence record, receives the record as a `BioSequence` object, and must return the (possibly modified) record, or set or sequence records, or `nil` to drop the current sequence from the output. 
+- The `worker(sequence)` function is the core: it is called once per input sequence record, receives the record as a `BioSequence` object, and must return the (possibly modified) record, or a set of sequence records, or `nil` to drop the current sequence from the output.
+- The `slice_worker(slice)` function is an alternative to `worker`: instead of receiving one sequence at a time, it receives a whole batch (`BioSequenceSlice`) and must return a `BioSequenceSlice`. This is useful when a single operation can cover the entire batch — for example, a single HTTP request to an external server for all sequences at once. If both `slice_worker` and `worker` are defined in the same script, `slice_worker` takes precedence.
 - The `begin()` function runs once before any record is processed and is typically used for initialisation. 
 - The `finish()` function runs once after the last record and is typically used to print summary statistics. A thread-safe key-value table called `obicontext` is shared across all parallel worker invocations and can be used to accumulate results safely.
 
@@ -89,8 +90,8 @@ obiscript [--script|-S SCRIPT] [--template]
 
 - {{< cmd-option name="script" short="S" param="SCRIPT" >}}
   Path to the Lua script file to execute. The file must exist and be syntactically
-  valid Lua. The script should define a `worker(sequence)` function, and optionally
-  `begin()` and `finish()`.
+  valid Lua. The script should define either a `worker(sequence)` function or a
+  `slice_worker(slice)` function, and optionally `begin()` and `finish()`.
   {{< /cmd-option >}}
 
 - {{< cmd-option name="template" >}}
