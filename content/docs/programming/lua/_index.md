@@ -144,6 +144,61 @@ if obicontext.trylock() then
 end
 ```
 
+## The `http` module
+
+The `http` module allows Lua scripts to make HTTP POST requests directly from `obiscript`, without spawning an external process such as `curl`. The underlying Go `http.Client` is a package-level singleton with keep-alive and connection pooling enabled, so the TCP connection is reused across all calls within a worker — this is particularly efficient when querying the same server for every sequence in the file.
+
+### `http.post(url, body)`
+
+Sends an HTTP POST request to `url` with `body` as the request body. The `Content-Type` header is automatically set to `application/json`. The request timeout is 30 seconds.
+
+**On success** — returns the response body as a string:
+
+```lua
+local response = http.post(url, body)
+```
+
+**On error** — returns `nil` followed by an error string:
+
+```lua
+local response, err = http.post(url, body)
+if err then
+    print("Request failed: " .. err)
+end
+```
+
+### Example: querying a REST server for each sequence
+
+```lua
+local json = require("json")
+
+local SERVER_URL = string.format(
+    "http://%s:%d/api/query",
+    os.getenv("SERVER_HOST") or "127.0.0.1",
+    tonumber(os.getenv("SERVER_PORT")) or 8080
+)
+
+function worker(sequence)
+    local payload = json.encode({
+        id  = sequence:id(),
+        seq = sequence:sequence(),
+    })
+
+    local response, err = http.post(SERVER_URL, payload)
+    if err then
+        sequence:attribute("query_error", err)
+        return sequence
+    end
+
+    local data = json.decode(response)
+    if data and data.score then
+        sequence:attribute("server_score", data.score)
+    end
+
+    return sequence
+end
+```
+
 ## The OBITools classes
 
 ### The `BioSequence` class
