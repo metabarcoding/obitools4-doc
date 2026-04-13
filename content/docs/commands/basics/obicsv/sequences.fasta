@@ -1,6 +1,12 @@
->seq001 {"sample":"soil_A","taxid":2}
-ATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGCATGC
->seq002 {"sample":"soil_A","taxid":2157}
-GGGGAAAATTTTCCCCGGGGAAAATTTTCCCCGGGGAAAATTTTCCCCGGGGAAAATTTT
->seq003 {"sample":"soil_B","taxid":2759}
-CCCGGGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATCGATC
+>seq001 {"sample":"S1","location":"Paris","experiment":"run1","count":42,"taxid":2}
+ATGCATGCATGCATGCATGC
+>seq002 {"sample":"S2","location":"Lyon","experiment":"run1","count":15,"taxid":2157}
+GCTAGCTAGCTAGCTAGCTA
+>seq003 {"sample":"S1","location":"Paris","experiment":"run2","count":7,"taxid":2759}
+TTTTTTTTTTTTTTTTTTTT
+>seq004 {"sample":"S3","location":"Grenoble","experiment":"run2","count":3}
+AAAAATTTTTCCCCCGGGGG
+>seq005 {"sample":"S2","location":"Lyon","experiment":"run3","count":20}
+GGGGGAAAAATTTTTCCCCC
+>seq006 {"sample":"S4","location":"Bordeaux","experiment":"run3","count":1}
+CCCCCCGGGGGTTTTTAAAA
