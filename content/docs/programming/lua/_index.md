@@ -240,6 +240,53 @@ function worker(sequence)
 end
 ```
 
+## The `json` module
+
+The `json` module provides JSON encoding and decoding directly in Lua scripts, without any external library. Like `obicontext`, `http`, and the OBITools classes, it is available as a **global** — no `require` needed.
+
+Lua tables are mapped to JSON objects (string-keyed tables) or JSON arrays (integer-keyed tables), and nested structures are handled recursively to any depth.
+
+### `json.encode(data)`
+
+Encodes a Lua value (table, string, number, boolean, or nil) to a JSON string.
+
+**On success** — returns the JSON string:
+
+```lua
+local s = json.encode({name = "Homo_sapiens", score = 1.0})
+-- s = '{"name":"Homo_sapiens","score":1}'
+```
+
+**On error** — returns `nil` followed by an error string:
+
+```lua
+local s, err = json.encode(data)
+if err then
+    print("Encode failed: " .. err)
+end
+```
+
+### `json.decode(string)`
+
+Decodes a JSON string to a Lua value. JSON objects become tables with string keys, JSON arrays become tables with integer keys, and nested structures are decoded recursively.
+
+**On success** — returns the decoded value:
+
+```lua
+local data = json.decode('{"Human":{"query_001":{"Homo_sapiens--GCF_000001405_40":1.0}}}')
+local score = data["Human"]["query_001"]["Homo_sapiens--GCF_000001405_40"]
+-- score = 1.0
+```
+
+**On error** — returns `nil` followed by an error string:
+
+```lua
+local data, err = json.decode(s)
+if err then
+    print("Decode failed: " .. err)
+end
+```
+
 ## The OBITools classes
 
 ### The `BioSequence` class
