@@ -189,9 +189,11 @@ end
 
 The `http` module allows Lua scripts to make HTTP POST requests directly from `obiscript`, without spawning an external process such as `curl`. The underlying Go `http.Client` is a package-level singleton with keep-alive and connection pooling enabled, so the TCP connection is reused across all calls within a worker — this is particularly efficient when querying the same server for every sequence in the file.
 
-### `http.post(url, body)`
+Concurrent requests are throttled through an internal semaphore whose default size equals the number of parallel workers (`--max-cpu`). This prevents flooding a local server that can only handle a limited number of simultaneous connections. The concurrency limit can be lowered with `http.set_concurrency()` (see below).
 
-Sends an HTTP POST request to `url` with `body` as the request body. The `Content-Type` header is automatically set to `application/json`. The request timeout is 30 seconds.
+### `http.post(url, body [, timeout_ms])`
+
+Sends an HTTP POST request to `url` with `body` as the request body. The `Content-Type` header is automatically set to `application/json`. The default timeout is 300 seconds; pass an optional third argument in milliseconds to override it for a single call.
 
 **On success** — returns the response body as a string:
 
@@ -208,6 +210,30 @@ if err then
 end
 ```
 
+**With a custom timeout** (5 seconds):
+
+```lua
+local response, err = http.post(url, body, 5000)
+```
+
+### `http.set_concurrency(n)`
+
+Sets the maximum number of HTTP requests that can be in-flight simultaneously across all parallel workers. Must be called in `begin()`, before the first `http.post`.
+
+Use this when the target server cannot handle as many concurrent requests as there are OBITools workers:
+
+```lua
+function begin()
+    http.set_concurrency(1)   -- serialise all requests (single-threaded server)
+end
+```
+
+```lua
+function begin()
+    http.set_concurrency(4)   -- allow up to 4 concurrent requests
+end
+```
+
 ### Example: querying a REST server for each sequence
 
 ```lua
@@ -218,6 +244,11 @@ local SERVER_URL = string.format(
     os.getenv("SERVER_HOST") or "127.0.0.1",
     tonumber(os.getenv("SERVER_PORT")) or 8080
 )
+
+function begin()
+    -- Limit concurrency if the server is single-threaded
+    http.set_concurrency(1)
+end
 
 function worker(sequence)
     local payload = json.encode({

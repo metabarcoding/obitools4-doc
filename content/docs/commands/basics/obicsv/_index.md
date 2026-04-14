@@ -1,7 +1,7 @@
 ---
 archetype: "command"
 title: "obicsv"
-date: 2026-04-06
+date: 2026-04-13
 command: "obicsv"
 category: basics
 url: "/obitools/obicsv"
@@ -18,36 +18,57 @@ weight: 50
 
 ## Description
 
-`{{< obi obicsv >}}` converts biological sequence data into {{% csv %}} format for easy inspection, spreadsheet analysis, or integration with other tools. A biologist might use it to export sequences from OBITools for quality control, taxonomic inspection, or downstream analysis in R or Python.
+{{< obi obicsv >}} converts biological sequence datasets into {{% csv %}} (comma-separated values) format. Each row in the output represents one sequence, and the columns are chosen explicitly by the user: the sequence identifier, the nucleotide sequence itself, per-base quality scores, taxonomic annotation, abundance count, sequence definition, and any annotation attributes stored in the sequence headers. This makes {{< obi obicsv >}} particularly useful when a biologist wants to analyse sequence metadata in a spreadsheet application, load annotations into R or Python, or export data for database ingestion. Rather than parsing OBITools JSON-annotated {{% fasta %}} or {{% fastq %}} headers manually, {{< obi obicsv >}} extracts the desired fields into a clean tabular format.
 
-No columns are output unless explicitly selected with flags such as `--ids`, `--sequence`, `--quality`, `--taxon`, `--auto`, or `--keep`. Multiple flags can be combined to choose the desired columns. The command uses parallel workers to process large datasets efficiently and can write output to stdout or directly to a file.
+No column is included unless the corresponding flag is given. Flags such as `--ids`, `--sequence`, `--quality`, `--count`, `--taxon`, and `--keep` select individual columns; the `--auto` flag inspects the first batch of sequences and automatically selects all annotation attributes found there, saving the effort of enumerating column names manually. Values absent from a given sequence are represented by `NA` in the output.
 
 {{< mermaid class="workflow" >}}
 graph TD
-  A@{ shape: doc, label: "sequences.fastq" }
+  A@{ shape: doc, label: "sequences.fasta" }
   C[obicsv]
-  D@{ shape: doc, label: "output.csv" }
+  D@{ shape: doc, label: "out_ids_sample.csv" }
   A --> C:::obitools
   C --> D
   classDef obitools fill:#99d57c
 {{< /mermaid >}}
 
-The file [sequences.fastq](sequences.fastq) contains three FASTQ records with quality scores:
+Consider the annotated {{% fasta %}} file [sequences.fasta](sequences.fasta), in which each record carries attributes such as `sample`, `location`, `experiment`, `count`, and optionally `taxid`:
 
-{{< code "sequences.fastq" fastq true >}}
+{{< code "sequences.fasta" fasta true >}}
 
-When you export with `--ids --sequence`, you get:
+The simplest use of {{< obi obicsv >}} is to extract the sequence identifier alongside a single annotation attribute. Here `--ids` adds the identifier column and `--keep sample` adds the `sample` attribute:
 
 ```bash
-obicsv --ids --sequence sequences.fastq -o output1.csv
+obicsv --ids --keep sample sequences.fasta -o out_ids_sample.csv
 ```
 
 ```
-id,sequence
-seq001,atgcatgcatgcatgcatgcatgcatgcatgcatgcatgcatgcatgcatgcatgcatgc
-seq002,ggggaaaattttccccggggaaaattttccccggggaaaattttccccggggaaaatttt
-seq003,cccccccccccccccccccccccccccccccccccccccccccccccccccccccccc
+id,sample
+seq001,S1
+seq002,S2
+seq003,S1
+seq004,S3
+seq005,S2
+seq006,S4
 ```
+
+When the list of annotation attributes is not known in advance, `--auto` inspects the first batch of sequences and includes every attribute it finds. Attributes absent from a given sequence receive `NA`:
+
+```bash
+obicsv --auto sequences.fasta -o out_auto.csv
+```
+
+```
+count,experiment,location,sample,taxid
+42,run1,Paris,S1,2
+15,run1,Lyon,S2,2157
+7,run2,Paris,S1,2759
+3,run2,Grenoble,S3,NA
+20,run3,Lyon,S2,NA
+1,run3,Bordeaux,S4,NA
+```
+
+Note that `seq004`, `seq005`, and `seq006` lack a `taxid` annotation; their value in the `taxid` column is `NA`. This is expected whenever annotation is incomplete — {{< obi obicsv >}} never omits rows for missing attributes.
 
 ## Synopsis
 
@@ -69,48 +90,64 @@ obicsv [--auto] [--batch-mem <string>] [--batch-size <int>]
 #### {{< obi obicsv >}} specific options
 
 - {{< cmd-option name="ids" short="i" >}}
-  Include the sequence identifier column in the CSV output. Useful for tracking or linking sequences.
+  Print the sequence identifier as the first column of the output. Default: `false`.
   {{< /cmd-option >}}
 
 - {{< cmd-option name="sequence" short="s" >}}
-  Include the nucleotide or amino acid sequence in the CSV output. This is the main biological data column.
+  Print the nucleotide (or amino acid) sequence in the output. Default: `false`.
   {{< /cmd-option >}}
 
 - {{< cmd-option name="quality" short="q" >}}
-  Include quality scores for each position in the CSV output. Essential for quality control and filtering downstream.
+  Print the per-base quality scores in the output. Default: `false`.
   {{< /cmd-option >}}
 
 - {{< cmd-option name="definition" short="d" >}}
-  Include the sequence description or definition from the source file in the CSV output.
+  Print the sequence definition (title line text after the identifier) in the output. Default: `false`.
   {{< /cmd-option >}}
 
 - {{< cmd-option name="count" >}}
-  Include the count attribute, representing how many original reads were collapsed into this sequence (e.g., from clustering or demultiplexing).
+  Print the `count` annotation attribute in the output. Default: `false`.
   {{< /cmd-option >}}
 
 - {{< cmd-option name="taxon" >}}
-  Include taxonomic information in the CSV output. Outputs both the NCBI taxid and the scientific name. Requires a taxonomy database (see `--taxonomy`).
+  Print the `taxid` attribute as a dedicated column in the output. Note: only the numeric taxid is output — no scientific name column is produced. Sequences without a `taxid` annotation show `NA`. Default: `false`.
   {{< /cmd-option >}}
 
 - {{< cmd-option name="obipairing" >}}
-  Include attributes that were added by the `obipairing` command (pairing scores, mismatches, etc.).
-  {{< /cmd-option >}}
-
-- {{< cmd-option name="auto" >}}
-  Automatically detect which columns to output by examining the first batch of sequences. Outputs all annotation attributes found in the headers. Can be combined with `--ids`, `--sequence`, etc. to add those columns on top of the auto-detected ones.
+  Print the eight attributes added by the {{< obi obipairing >}} command: `mode`, `seq_a_single`, `seq_b_single`, `ali_dir`, `score`, `score_norm`, `seq_ab_match`, `pairing_mismatches`. Only meaningful on sequences previously processed by {{< obi obipairing >}}; all values are `NA` otherwise. Default: `false`.
   {{< /cmd-option >}}
 
 - {{< cmd-option name="keep" short="k" param="KEY" >}}
-  Keep only the specified attribute(s). Can be used multiple times to keep several columns. Useful for extracting specific annotations. If the specified attributes are not present in the input, NA values are output.
+  Include the annotation attribute named `KEY` as an output column. Repeat the flag to include multiple attributes. If an attribute is absent from a sequence, its value appears as `NA`. Default: `[]`.
+  {{< /cmd-option >}}
+
+- {{< cmd-option name="auto" >}}
+  Inspect the first batch of sequences and automatically select all annotation attributes found there as output columns. Attributes that appear only in later batches will not be included in the header and their values will be treated as missing. Default: `false`.
   {{< /cmd-option >}}
 
 - {{< cmd-option name="na-value" param="NAVALUE" >}}
-  String to use for missing or unavailable values in the CSV. Customize for compatibility with other tools (e.g., empty string, "NA", "null"). Default: "NA".
+  Intended to customise the placeholder string for missing values in the output. **Note:** this flag is currently not applied by the {{% csv %}} writer — missing values always appear as `NA` regardless of this setting. Default: `NA`.
   {{< /cmd-option >}}
 
 #### Taxonomic options
 
 - {{< cmd-options/taxonomy/taxonomy >}}
+
+- {{< cmd-option name="fail-on-taxonomy" >}}
+  Cause {{< obi obicsv >}} to fail with an error if a `taxid` encountered is not currently valid in the taxonomy database. Default: `false`.
+  {{< /cmd-option >}}
+
+- {{< cmd-option name="raw-taxid" >}}
+  Print taxids in the output without supplementary information (taxon name and rank). Default: `false`.
+  {{< /cmd-option >}}
+
+- {{< cmd-option name="update-taxid" >}}
+  Automatically update taxids declared as merged to a newer one. Default: `false`.
+  {{< /cmd-option >}}
+
+- {{< cmd-option name="with-leaves" >}}
+  When taxonomy is extracted from a sequence file, add sequences as leaves of their taxid annotation. Default: `false`.
+  {{< /cmd-option >}}
 
 {{< option-sets/input >}}
 
@@ -120,49 +157,62 @@ obicsv [--auto] [--batch-mem <string>] [--batch-size <int>]
 
 ## Examples
 
-**Export sequences with identifiers and sequence data:**
+**Export sequence content and quality from a {{% fastq %}} file:**
+
+The file [reads.fastq](reads.fastq) contains four {{% fastq %}} records with free-text definitions and per-base quality scores. Exporting identifiers, definitions, sequences, and quality strings together gives a complete per-read table, useful for quality control or inspection in a spreadsheet:
+
+{{< code "reads.fastq" fastq true >}}
 
 ```bash
-obicsv --ids --sequence sequences.fastq -o output1.csv
+obicsv --ids --sequence --quality --definition reads.fastq | csvlook
 ```
 
-{{< code "output1.csv" csv true >}}
+```
+| id     | definition              | sequence             | qualities            |
+| ------ | ----------------------- | -------------------- | -------------------- |
+| seq001 | Bacteria amplicon read  | atgcatgcatgcatgcatgc | IIIIIIIIIIIIIIIIIIII |
+| seq002 | Archaea amplicon read   | gctagctagctagctagcta | IIIIIIIIIIIIIIIIIIII |
+| seq003 | Eukaryota amplicon read | tttttttttttttttttttt | IIIIIIIIIIIIIIIIIIII |
+| seq004 | unknown origin read     | aaaaatttttcccccggggg | IIIIIIIIIIIIIIIIIIII |
+```
 
-**Export with quality scores included:**
+**Export abundance counts and taxonomic annotations alongside selected attributes:**
+
+After taxonomic assignment, sequences carry a `taxid` annotation and may carry `count` values from clustering or demultiplexing. The `--count` flag exports the abundance count, `--taxon` exports the numeric taxid, and `--keep` adds further annotation attributes. Sequences lacking a `taxid` produce `NA` in that column:
 
 ```bash
-obicsv --ids --sequence --quality sequences.fastq -o output2.csv
+obicsv --count --taxon --keep location --keep experiment sequences.fasta | csvlook
 ```
 
-{{< code "output2.csv" csv true >}}
+```
+| count | taxid | location  | experiment |
+| ----- | ----- | --------- | ---------- |
+|    42 |     2 | Paris     | run1       |
+|    15 |  2157 | Lyon      | run1       |
+|     7 |  2759 | Paris     | run2       |
+|     3 |    NA | Grenoble  | run2       |
+|    20 |    NA | Lyon      | run3       |
+|     1 |    NA | Bordeaux  | run3       |
+```
 
-**Auto-detect annotation columns from sequence headers:**
+**Export identifiers and taxid, illustrating missing-value handling:**
 
-The file [sequences.fasta](sequences.fasta) contains annotated FASTA sequences:
-
-{{< code "sequences.fasta" fasta true >}}
+When only some sequences carry a `taxid` annotation, the remaining rows show `NA`. The `--na-value` flag is intended to customise this placeholder but is currently not applied by the writer — the output always shows `NA` regardless of the value passed:
 
 ```bash
-obicsv --auto --ids sequences.fasta -o output4.csv
+obicsv --ids --keep taxid --na-value MISSING sequences.fasta | csvlook
 ```
 
-{{< code "output4.csv" csv true >}}
-
-**Extract specific attributes:**
-
-```bash
-obicsv --keep sample --keep taxid sequences.fasta -o output5.csv
 ```
-
-{{< code "output5.csv" csv true >}}
-
-**Export with gzip compression:**
-
-```bash
-obicsv --ids --sequence -Z sequences.fasta -o output6.csv.gz
+| id     | taxid |
+| ------ | ----- |
+| seq001 |     2 |
+| seq002 |  2157 |
+| seq003 |  2759 |
+| seq004 |    NA |
+| seq005 |    NA |
+| seq006 |    NA |
 ```
-
-The output is compressed and can be decompressed with `gunzip -c output6.csv.gz`.
 
 ```bash
 obicsv --help
