@@ -1,0 +1,8 @@
+>seq001 {"count": 15, "merged_sample": {"sample_A": 10, "sample_B": 5, "sample_C": 0}, "by_locality": {"loc_north": 12, "loc_south": 3}, "taxid": 2, "scientific_name": "Bacteria", "definition": "16S rRNA Bacteria OTU_001"}
+ACGTACGTACGTACGTACGT
+>seq002 {"count": 28, "merged_sample": {"sample_A": 0, "sample_B": 20, "sample_C": 8}, "by_locality": {"loc_north": 0, "loc_south": 28}, "taxid": 2759, "scientific_name": "Eukaryota", "definition": "18S rRNA Eukaryota OTU_002"}
+TTGGCCAAGGTTCCAAGGTT
+>seq003 {"count": 22, "merged_sample": {"sample_A": 7, "sample_B": 0, "sample_C": 15}, "by_locality": {"loc_north": 10, "loc_south": 12}, "taxid": 2157, "scientific_name": "Archaea", "definition": "16S rRNA Archaea OTU_003"}
+GCGCGCATGCGCGCATGCGC
+>seq004 {"count": 9, "merged_sample": {"sample_A": 3, "sample_B": 3, "sample_C": 3}, "by_locality": {"loc_north": 5, "loc_south": 4}, "taxid": 2, "scientific_name": "Bacteria", "definition": "16S rRNA Bacteria OTU_004"}
+AAATTTCCCGGGAAATTTCC

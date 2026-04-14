@@ -1,0 +1,12 @@
+@seq006 {"count": 10, "merged_sample": {"sample_A": 8, "sample_B": 2}, "ali_length": 150, "pairing_score": 0.95}
+ACGTACGTACGTACGTACGT
++
+IIIIIIIIIIIIIIIIIIII
+@seq007 {"count": 15, "merged_sample": {"sample_A": 0, "sample_B": 15}, "ali_length": 140, "pairing_score": 0.88}
+TTGGCCAAGGTTCCAAGGTT
++
+IIIIIIIIIIIIIIIIIIII
+@seq008 {"count": 3, "ali_length": 120, "pairing_score": 0.75}
+GCGCGCATGCGCGCATGCGC
++
+IIIIIIIIIIIIIIIIIIII
