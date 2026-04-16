@@ -1,5 +1,5 @@
 @pair001/2 {"definition":"paired read 1 reverse"}
-cgatcgatcgatcgatcgat
+atcgatcgatcgatcgatcg
 +
 IIIIIIIIIIIIIIIIIIII
 @pair002/2 {"definition":"paired read 2 reverse"}
@@ -7,6 +7,6 @@ cgcgcgcgcgcgcgcgcgcg
 +
 IIIIIIIIIIIIIIIIIIII
 @pair003/2 {"definition":"paired read 3 reverse"}
-ttaattggccaattggccaa
+ttggccaattggccaattaa
 +
 IIIIIIIIIIIIIIIIIIII
