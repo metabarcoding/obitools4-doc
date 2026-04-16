@@ -1,0 +1,12 @@
+@HELIUM_000100422_612GNAAXX:7:57:18459:16145#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"gaatatc","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"gaatatc","sample":"26a_F040644"}
+ccgaatatctagaacaggctcctctagagggatgtaaagcaccgccaagtcctttgagtttcaggctgttgctagtagtactctggcgaacattcttgtttattgaat
++
+CCBCCCCCCCCCCCCCCCDCCCCCCCCCCCCCCCCCCCCBCCCCCCCCC>CCCCCCBCBCCCCCDDACDBABCABBACB?CCCACB@79@C@@8@AD=B@C?CA68A?
+@HELIUM_000100422_612GNAAXX:7:74:8683:20738#0/1 {"experiment":"wolf_diet","obimultiplex_direction":"reverse","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"gaatatc","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"gaatatc","sample":"26a_F040644"}
+ccgaatatctagaacaggctcctctagagggatgtaaagcaccgccaagtcctttgagtttcaggctgttgctagtagtactctggcgaacattcttgtttattgaat
++
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDCCCCACCCCCCCC>CCACCCCBCB@C=CC@6;:AA>A=;?A=>C=:,81505C<?@@;3=A3339
+@HELIUM_000100422_612GNAAXX:7:3:14624:12375#0/1 {"experiment":"wolf_diet","obimultiplex_direction":"reverse","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"gaatatc","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"gaatatc","sample":"26a_F040644"}
+ccgaatatctagaacaggctcctctagagggatgtaaagcaccgccaagtcctttgagtttcaggctgtcgctagtagtactctggcgaacattcttgtttattgaat
++
+CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCDBCCCCCCCBCCCCCCCCB@CCCCCC@CBCCCCCAAA>A'A====8::8>00///'0//';6;5<=1AAA43A#####

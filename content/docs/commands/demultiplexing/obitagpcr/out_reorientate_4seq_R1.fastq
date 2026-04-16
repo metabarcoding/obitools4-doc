@@ -1,0 +1,16 @@
+@HELIUM_000100422_612GNAAXX:7:119:14871:19157#0/1 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"gcctcct","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"gcctcct","sample":"29a_F260619"}
+ccgcctcctttagataccccactatgcttagccctaaacacaagtaattattataacaaaatcattcgccagagtactaccggcaatagctcaaaactcaaagaactt
++
+CCCCCCCCCCCCCCCCCCCCCCBCCCCB@BCCCCCCCCCCCCCB;CCCACCCCCCCAACA29,?<5899+A=A###################################
+@HELIUM_000100422_612GNAAXX:7:108:5640:3823#0/1 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"gcctcct","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"gcctcct","sample":"29a_F260619"}
+ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattgttcgccagagtactaccggcaatagcttaaaactcaaaggactt
++
+CCCCCCCBCCCCCCCCCCCCCCCCCCCCCCBCCCCCBCCCCCCC<CCCCACC;C?CCCC@A;=,B;93:;CC=C;==??#############################
+@HELIUM_000100422_612GNAAXX:7:97:14311:19299#0/1 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"gcctcct","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"gcctcct","sample":"29a_F260619"}
+ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccgccactagcttaaaactcaaagaactc
++
+CCCCCCCCCCCCCCCCCCCCCCCBBCCC?BCCCCCBC?CCCC@@;AAAAA5C@C@CCC@C>>;C@7CC@C93;31::5<<AA<@########################
+@HELIUM_000100422_612GNAAXX:7:22:8540:14708#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"reverse","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"gcctcct","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"gcctcct","sample":"29a_F260619"}
+ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcaatagcttcacactcaaagaactt
++
+CCCDCCCCCCCCCDCCCCCCCCCDCCC@CCACCCCCCCCCCCCDCCCCCCCCCDCCCCCBBBBCC=/AAA===>=C<CCC?B9AA;3??7CC@C6CCC8ACCC+AB8A
