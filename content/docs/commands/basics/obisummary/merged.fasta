@@ -1,0 +1,8 @@
+>seq001 {"count":5,"merged_sample":{"s1":3,"s2":2},"obiclean_weight":{"s1":6,"s2":2},"marker":{"16S":5}}
+ACGTACGTACGTACGTACGT
+>seq002 {"count":3,"merged_sample":{"s1":3},"obiclean_weight":{"s1":3},"marker":{"COI":3}}
+TGCATGCATGCATGCATGCA
+>seq003 {"count":8,"merged_sample":{"s2":8},"obiclean_weight":{"s2":9},"marker":{"16S":8}}
+AAACCCGGGTTTTAAAACCC
+>seq004 {"count":2,"merged_sample":{"s1":1,"s2":1},"obiclean_weight":{"s1":1,"s2":1},"marker":{"COI":2}}
+GCTAGCTAGCTAGCTAGCTA
