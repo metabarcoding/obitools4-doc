@@ -1,0 +1,34 @@
+annotations:
+    keys:
+        map:
+            marker: 4
+            merged_sample: 4
+            obiclean_weight: 4
+        scalar:
+            count: 4
+    map_attributes: 3
+    scalar_attributes: 1
+    vector_attributes: 0
+count:
+    reads: 18
+    total_length: 80
+    variants: 4
+map_summaries:
+    marker:
+        16S: 13
+        COI: 5
+    obiclean_weight:
+        s1: 10
+        s2: 12
+samples:
+    sample_count: 2
+    sample_stats:
+        s1:
+            reads: 7
+            singletons: 1
+            variants: 3
+        s2:
+            reads: 11
+            singletons: 1
+            variants: 3
+

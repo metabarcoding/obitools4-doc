@@ -1,0 +1,46 @@
+annotations:
+    keys:
+        map:
+            merged_sample: 26
+            obiclean_status: 26
+            obiclean_weight: 26
+        scalar:
+            count: 26
+            obitag_bestid: 26
+            obitag_bestmatch: 26
+            obitag_difference: 26
+            obitag_match_count: 26
+            obitag_rank: 26
+            scientific_name: 26
+            taxid: 26
+    map_attributes: 3
+    scalar_attributes: 8
+    vector_attributes: 0
+count:
+    reads: 31337
+    total_length: 2585
+    variants: 26
+samples:
+    sample_count: 4
+    sample_stats:
+        13a_F730603:
+            obiclean_bad: 0
+            reads: 7337
+            singletons: 1
+            variants: 8
+        15a_F730814:
+            obiclean_bad: 0
+            reads: 7568
+            singletons: 0
+            variants: 3
+        26a_F040644:
+            obiclean_bad: 0
+            reads: 11059
+            singletons: 0
+            variants: 13
+        29a_F260619:
+            obiclean_bad: 0
+            reads: 5373
+            singletons: 1
+            variants: 9
+

@@ -1,0 +1,6 @@
+>seq001 {"barcode":"ATGC","experiment":"amplicon_run1","location":"Paris","sample":"S1"}
+atgcatgcatgcatgcatgc
+>seq002 {"barcode":"GCTA","experiment":"amplicon_run2","location":"Lyon","sample":"S2"}
+gctagctagctagctagcta
+>seq003 {"barcode":"TTTT","sample":"S3"}
+tttttttttttttttttttt
