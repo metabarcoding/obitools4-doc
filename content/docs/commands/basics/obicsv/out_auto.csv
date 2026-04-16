@@ -1,0 +1,7 @@
+count,experiment,location,sample,taxid
+42,run1,Paris,S1,2
+15,run1,Lyon,S2,2157
+7,run2,Paris,S1,2759
+3,run2,Grenoble,S3,NA
+20,run3,Lyon,S2,NA
+1,run3,Bordeaux,S4,NA
