@@ -1,8 +1,8 @@
->seq008 {"count":1,"merged_sample":{"s1":1},"primer":"p1","sample":"s1"}
+>seq008 {"count":1,"merged_sample":{"UNKWNON":1},"primer":"p1"}
 cccccccccccccccccccc
 >seq001 {"count":4,"merged_sample":{"s1":3,"s2":1},"primer":"p1"}
 atcgatcgatcgatcgatcg
->seq004 {"count":2,"merged_sample":{"s1":2},"primer":"p1","sample":"s1"}
+>seq004 {"count":2,"merged_sample":{"UNKWNON":1,"s1":1},"primer":"p1"}
 gctagctagctagctagcta
 >seq007 {"count":1,"merged_sample":{"s2":1},"primer":"p1","sample":"s2"}
 tttttttttttttttttttt
