@@ -240,7 +240,7 @@ obiuniq --in-memory \
         reads.fastq
 ```
 
-** printing the command help **
+**printing the command help**
 
 ```bash
 obiuniq --help

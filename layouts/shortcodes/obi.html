@@ -2,7 +2,7 @@
 {{- $entry := (.Get 0) -}} {{- $context := . -}}
 
 <!-- range over data file -->
-{{- range $.Site.Data.commands -}} {{- if eq ( .command | lower) ( $entry |
+{{- range hugo.Data.commands -}} {{- if eq ( .command | lower) ( $entry |
 lower ) -}}
 <a href="{{ ref $context .command }}">
   <abbr title="{{- .command -}}: {{ .short | plainify -}}"
