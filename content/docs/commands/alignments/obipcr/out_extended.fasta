@@ -1,0 +1,24 @@
+>NC_035499_sub[53208..53366] {"definition":"Zantedeschia aethiopica chloroplast, complete sequence.","direction":"forward","forward_error":0,"forward_match":"gggcaatcctgagccaa","forward_primer":"GGGCAATCCTGAGCCAA","reverse_error":0,"reverse_match":"ccattgagtctctgcacctatc","reverse_primer":"CCATTGAGTCTCTGCACCTATC","scientific_name":"chloroplast Zantedeschia aethiopica (calla lily)","taxid":"69721"}
+acctactaagtggtaacttccaaactcagagaaaccctggaataaaaaatgggcaatcct
+gagccaaatccttgttttgagaaaaaggataggtgcagagactcaatggaagctgttcta
+acgaatggagttgattgcattgcgttggtagctggaatt
+>NC_044169_sub[45938..46124] {"definition":"Avena longiglumis chloroplast, complete sequence.","direction":"forward","forward_error":0,"forward_match":"gggcaatcctgagccaa","forward_primer":"GGGCAATCCTGAGCCAA","reverse_error":0,"reverse_match":"ccattgagtctctgcacctatc","reverse_primer":"CCATTGAGTCTCTGCACCTATC","scientific_name":"chloroplast Avena longiglumis","taxid":"4500"}
+acctgctaagtggtaacttccaaattcagagaaaccctggaattaaaaaagggcaatcct
+gagccaaatccgtgttttgagaggggggttctcgaactagaatacaaaggaaaaggatag
+gtgcagagactcaatggaagctgttctaacgaatcgagttaattacgttgtgttgttagt
+ggaactc
+>NC_056278_sub[35863..36052] {"definition":"Echinosophora koreensis chloroplast, complete sequence.","direction":"forward","forward_error":0,"forward_match":"gggcaatcctgagccaa","forward_primer":"GGGCAATCCTGAGCCAA","reverse_error":0,"reverse_match":"ccattgagtctctgcacctatc","reverse_primer":"CCATTGAGTCTCTGCACCTATC","scientific_name":"chloroplast Echinosophora koreensis","taxid":"228658"}
+acttaccaagtgataactttcaaattcagagaaaccctggaattaataatgggcaatcct
+gagccaaatcctgtttttcgcgaaaccaaagaaaagttcataaagcgagaagaaaaagga
+taggtgcagagactcaatggaagctgttctaacaaatggagttgacgacatttcctttcg
+cattagatta
+>NC_036304_sub[48014..48200] {"definition":"Iodes cirrhosa chloroplast, complete genome.","direction":"forward","forward_error":0,"forward_match":"gggcaatcctgagccaa","forward_primer":"GGGCAATCCTGAGCCAA","reverse_error":0,"reverse_match":"ccattgagtctctgcacctatc","reverse_primer":"CCATTGAGTCTCTGCACCTATC","scientific_name":"chloroplast Iodes cirrhosa","taxid":"1705841"}
+tactaagtgataactttcaaattcagagaaaccctggaattaataaaaatgggcaatcct
+gagccaaatcctgtttttccgaaaacaaacaaaggttcagcaagcgaaaacaagggatag
+gtgcagagactcaatggaagctgttctaacaaatggagttgactgcgttggtagagaaat
+ctttcga
+>NC_049876_sub[52413..52605] {"definition":"Quercus gilva chloroplast, complete genome.","direction":"forward","forward_error":0,"forward_match":"gggcaatcctgagccaa","forward_primer":"GGGCAATCCTGAGCCAA","reverse_error":0,"reverse_match":"ccattgagtctctgcacctatc","reverse_primer":"CCATTGAGTCTCTGCACCTATC","scientific_name":"chloroplast Quercus gilva","taxid":"103490"}
+acttaacaagtgataactttcaaattcagagaaaccctggaattaaaaatgggcaatcct
+gagccaaatcctattttacgaaaacaaataagggttcagaagaaagcgagaataaaaaaa
+ggataggtgcagagactcaatggaagctgttctaacaagtggggttgacttctttacgtt
+attacattaacgt
