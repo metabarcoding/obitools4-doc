@@ -10,7 +10,7 @@ CCCCCCCBCCCCCCCCCCCCCCCCCCCCCCBCCCCCBCCCCCCC<CCCCACC;C?CCCC@A;=,B;93:;CC=C;==??#
 ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccgccactagcttaaaactcaaagaactc
 +
 CCCCCCCCCCCCCCCCCCCCCCCBBCCC?BCCCCCBC?CCCC@@;AAAAA5C@C@CCC@C>>;C@7CC@C93;31::5<<AA<@########################
-@HELIUM_000100422_612GNAAXX:7:22:8540:14708#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"reverse","obimultiplex_forward_error":0,"obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_tag":"gcctcct","obimultiplex_reverse_error":0,"obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_tag":"gcctcct","sample":"29a_F260619"}
-ccgcctcctttagataccccactatgcttagccctaaacacaagtaattaatataacaaaattattcgccagagtactaccggcaatagcttcacactcaaagaactt
+@HELIUM_000100422_612GNAAXX:7:22:8540:14708#0/1 {"experiment":"wolf_diet","obimultiplex_direction":"reverse","obimultiplex_forward_error":0,"obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_tag":"gcctcct","obimultiplex_reverse_error":0,"obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_tag":"gcctcct","sample":"29a_F260619"}
+ccgcctccttagaacaggctcctctagaagggtataaagcaccgccaagtcctttgagttttaagctattgccggtagtactctggcgaataattttgttatattaat
 +
-CCCDCCCCCCCCCDCCCCCCCCCDCCC@CCACCCCCCCCCCCCDCCCCCCCCCDCCCCCBBBBCC=/AAA===>=C<CCC?B9AA;3??7CC@C6CCC8ACCC+AB8A
+CCCCCCCCCBCCCCCCCCBCCCCCCCCCCCA=AAA@CCCCCCCCCCC?CACCC?CC@C@CACC?CA=B?0A;AAA6;>3?AC?C?8AAA3<<-8<BAC@22<6?####
