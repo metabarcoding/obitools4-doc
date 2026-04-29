@@ -1,24 +1,24 @@
-@HELIUM_000100422_612GNAAXX:7:6:9274:14951#0/1 {"experiment":"wolf_diet","obimultiplex_direction":"reverse","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
+@HELIUM_000100422_612GNAAXX:7:6:9274:14951#0/1 {"experiment":"wolf_diet","obimultiplex_direction":"reverse","obimultiplex_forward_error":0,"obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_error":0,"obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
 ccaattaactagaacaggctcctctagaagggtataaagcaccgccaagtcctttgagttttaagctattgccggtagtactctgccgaatagttttgtttgcataac
 +
 CCCCCCCCCDCCCCCCCCCCCCCCCCCCCCCC=CBCCBCBCCCCCCBCD?CBCCCC@C?CCCC=B=AB>??=AB@#################################
-@HELIUM_000100422_612GNAAXX:7:97:10414:9929#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
+@HELIUM_000100422_612GNAAXX:7:97:10414:9929#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_error":0,"obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_error":0,"obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
 ccaattaactagaacaggctcctctagaagggtataaagcaccgccaagtcctttgagttttaagctattgccggtagtactctggcgaatagttttgtttgcataac
 +
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCBCCCCCCBCCCCCCCCCDCCCCCCCCCCCCCBCCCCCCCCCCCCC?BCCCCCCBC;?CCACC==89:9>9CACCB<
-@HELIUM_000100422_612GNAAXX:7:97:9091:15775#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
+@HELIUM_000100422_612GNAAXX:7:97:9091:15775#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_error":0,"obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_error":0,"obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
 ccaattaactagaacaggctcctctagaagggtataaagcaccgccaagtcctttgagttttaagctattgccggtagtactctggcgaatagttttgtttgcataac
 +
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCBCCCCCCCCCCCCCC@CBCCC?CCCCBCCCCC@CCB<@CCCCCC@?8CCCC@A=CA95<6.*<@CC;?:=@AC;9?
-@HELIUM_000100422_612GNAAXX:7:4:4214:9434#0/1 {"experiment":"wolf_diet","obimultiplex_direction":"reverse","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
+@HELIUM_000100422_612GNAAXX:7:4:4214:9434#0/1 {"experiment":"wolf_diet","obimultiplex_direction":"reverse","obimultiplex_forward_error":0,"obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_error":0,"obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
 ccaattaactagaacaggctcctctagaagggtataaagcaccgccaagtcctttgagttttaagctattgccggtagtactctgtcgaatagttttgtttgcatacc
 +
 BB@?B=??:?@@C@CCCCBCCB@CCCCBC?>?=>B@CC@CCCCCB@C8?C@CCCC?@:3???;-?###########################################
-@HELIUM_000100422_612GNAAXX:7:12:17693:3451#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
+@HELIUM_000100422_612GNAAXX:7:12:17693:3451#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_error":0,"obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_error":0,"obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
 ccaattaactagaacaggctcctctagaagggtataaagcaccgccaagtcctttgagttttaagctattgccggtagtactctggcgaatagttttgtttgcataac
 +
 CCCCCCCCCCCCCCCCCCCCCCCCCACCCCCC@CCCCCCBCCCCCBCCCCCDCCCCCCCCCCBCC@CBCC@=C;C=;6=AAC=CC<A=A<CBA@CAACC*>:C@CA>;
-@HELIUM_000100422_612GNAAXX:7:18:5317:11571#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_mismatches":0,"obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_mismatches":0,"obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
+@HELIUM_000100422_612GNAAXX:7:18:5317:11571#0/2 {"experiment":"wolf_diet","obimultiplex_direction":"forward","obimultiplex_forward_error":0,"obimultiplex_forward_match":"ttagataccccactatgc","obimultiplex_forward_tag":"aattaac","obimultiplex_reverse_error":0,"obimultiplex_reverse_match":"tagaacaggctcctctag","obimultiplex_reverse_tag":"aattaac","sample":"13a_F730603"}
 ccaattaactagaacaggctcctctagaagggtataaagcaccgccaagtcctttgagttttaagctattgccggtagtactctggcgaatagttttgtttgcataac
 +
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC@CCCCCCCBCCCCCCCBBCCCCCC?CDCC;CCCCCC@BCCBCCBCAA9CCCCC;6C?@CAC@CBACC30&59<A85
