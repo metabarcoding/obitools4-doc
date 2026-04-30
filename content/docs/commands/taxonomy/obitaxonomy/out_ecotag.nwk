@@ -1,0 +1,90 @@
+(
+ (
+  (
+   (
+    (
+     (
+      (
+       (
+        (
+         (
+          (
+           (
+            (
+             (
+              (
+               (
+                (
+                 (
+                  (
+                   (
+                    (
+                     (
+                      (
+                       (
+                        (
+                         (
+                          (
+                           (
+                            Canis lupus familiaris -9615@subspecies-:1.00000
+                                                      )Canis lupus -9612@species-:1.00000
+                                                    )Canis -9611@genus-:1.00000
+                                                  )Canidae -9608@family-:1.00000
+                                                )Caniformia -379584@suborder-:1.00000
+                                              )Carnivora -33554@order-:1.00000,
+                       (
+                        (
+                         (
+                          (
+                           (
+                            (
+                             Capreolus capreolus -9858@species-:1.00000
+                                                        )Capreolus -9857@genus-:1.00000
+                                                      )Odocoileinae -9881@subfamily-:1.00000,
+                           (
+                            (
+                             Cervus elaphus -9860@species-:1.00000
+                                                        )Cervus -9859@genus-:1.00000
+                                                      )Cervinae -34878@subfamily-:1.00000
+                                                    )Cervidae -9850@family-:1.00000
+                                                  )Pecora -35500@infraorder-:1.00000
+                                                )Ruminantia -9845@suborder-:1.00000
+                                              )Artiodactyla -91561@order-:1.00000
+                                            )Laurasiatheria -314145@superorder-:1.00000,
+                      (
+                       (
+                        (
+                         (
+                          (
+                           (
+                            (
+                             Marmota -9992@genus-:1.00000
+                                                        )Marmotini -337730@tribe-:1.00000
+                                                      )Xerinae -337726@subfamily-:1.00000
+                                                    )Sciuridae -55153@family-:1.00000
+                                                  )Sciuromorpha -33553@suborder-:1.00000
+                                                )Rodentia -9989@order-:1.00000
+                                              )Glires -314147@clade-:1.00000
+                                            )Euarchontoglires -314146@superorder-:1.00000
+                                          )Boreoeutheria -1437010@clade-:1.00000
+                                        )Eutheria -9347@clade-:1.00000
+                                      )Theria -32525@clade-:1.00000
+                                    )Mammalia -40674@class-:1.00000
+                                  )Amniota -32524@clade-:1.00000
+                                )Tetrapoda -32523@clade-:1.00000
+                              )Dipnotetrapodomorpha -1338369@clade-:1.00000
+                            )Sarcopterygii -8287@superclass-:1.00000
+                          )Euteleostomi -117571@clade-:1.00000
+                        )Teleostomi -117570@clade-:1.00000
+                      )Gnathostomata -7776@clade-:1.00000
+                    )Vertebrata -7742@clade-:1.00000
+                  )Craniata -89593@subphylum-:1.00000
+                )Chordata -7711@phylum-:1.00000
+              )Deuterostomia -33511@clade-:1.00000
+            )Bilateria -33213@clade-:1.00000
+          )Eumetazoa -6072@clade-:1.00000
+        )Metazoa -33208@kingdom-:1.00000
+      )Opisthokonta -33154@clade-:1.00000
+    )Eukaryota -2759@domain-:1.00000
+  )cellular organisms -131567@cellular root-:1.00000
+)root -1@no rank-;

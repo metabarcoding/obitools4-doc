@@ -1,0 +1,57 @@
+{{- $file   := .Get "file" -}}
+{{- $height := .Get "height" | default "600px" -}}
+{{- $type   := .Get "type"   | default "rc" -}}
+{{- $id     := $file | replaceRE "[^a-zA-Z0-9]" "_" | printf "pc_%s" -}}
+{{- $resource := .Page.Resources.GetMatch $file -}}
+
+{{- if not (.Page.Scratch.Get "phylocanvas") -}}
+<script src="https://cdn.jsdelivr.net/npm/@phylocanvas/phylocanvas.gl/dist/bundle.min.js"></script>
+{{- .Page.Scratch.Set "phylocanvas" true -}}
+{{- end -}}
+
+<div id="{{ $id }}"
+     style="width: 100%; height: {{ $height }}; border: 1px solid #ddd; border-radius: 8px; overflow: hidden; background: #fafafa; display: flex; align-items: center; justify-content: center;">
+  <span style="color:#999; font-style:italic;">Loading tree…</span>
+</div>
+
+{{- if $resource -}}
+<script>
+(function () {
+  function showError(msg) {
+    const container = document.getElementById('{{ $id }}');
+    container.innerHTML = '<span style="color:red; padding:1em;">' + msg + '</span>';
+  }
+  function initTree(source) {
+    const container = document.getElementById('{{ $id }}');
+    const lib = window.phylocanvas;
+    if (!lib) { showError('phylocanvas library not loaded'); return; }
+    const PhylocanvasGL = (lib && lib.default) ? lib.default : lib;
+    const w = container.clientWidth  || 800;
+    const h = container.clientHeight || parseInt('{{ $height }}') || 600;
+    container.innerHTML = '';
+    try {
+      new PhylocanvasGL(container, {
+        size: { width: w, height: h },
+        source: source,
+        type: '{{ $type }}',
+        showLabels: true,
+        showLeafLabels: true,
+      });
+    } catch(e) { showError('PhylocanvasGL error: ' + e.message); }
+  }
+  function load() {
+    fetch('{{ $resource.RelPermalink }}')
+      .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); })
+      .then(initTree)
+      .catch(e => showError('Fetch error: ' + e.message));
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', load);
+  } else {
+    load();
+  }
+})();
+</script>
+{{- else -}}
+<p><em>Newick file not found: <code>{{ $file }}</code></em></p>
+{{- end -}}
