@@ -1,5 +1,5 @@
-{{ partial "cmd-options/option.html" 
-(dict "name" "save-db"
-      "param" "FILENAME"
-      "documentation" `The name of a file where to save the reference DB with its indices (default: "")`) 
-}}
+{{ partial "cmd-options/option.html" (dict "name" "save-db" "param" "FILENAME"
+"documentation" `The name of the file in which the reference database should be
+saved after a round of annotation. This new database includes precomputed
+similarity indexes that can be used to accelerate the annotation process for
+other datasets. The default setting is to not save this database.`) }}
