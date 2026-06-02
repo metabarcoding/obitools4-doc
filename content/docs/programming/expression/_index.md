@@ -251,7 +251,7 @@ max({"a":10,"b":2})  // returns 10
 max(12) // returns 12
 ```
 
-#### **`which_max`**
+#### **`whichmax`**
 
 Returns the **key** (for a map) or the **index** (for a vector) corresponding to the maximum value in the container. Returns an error if the container is empty or if the values are not comparable.
 
@@ -261,17 +261,17 @@ Returns the **key** (for a map) or the **index** (for a vector) corresponding to
 ##### **Examples:**
 
 ```gval
-which_max({"Bacteria":1,"Fungi":0,"Plants":20})  // returns "Plants"
-which_max([10, 2, 7, 5])                          // returns 0
+whichmax({"Bacteria":1,"Fungi":0,"Plants":20})  // returns "Plants"
+whichmax([10, 2, 7, 5])                          // returns 0
 ```
 
 A typical use case is to identify which category dominates in a classification annotation:
 
 ```gval
-which_max(annotations.kmer_strict_matches) == "Plants"
+whichmax(annotations.kmer_strict_matches) == "Plants"
 ```
 
-#### **`which_min`**
+#### **`whichmin`**
 
 Returns the **key** (for a map) or the **index** (for a vector) corresponding to the minimum value in the container. Returns an error if the container is empty or if the values are not comparable.
 
@@ -281,8 +281,8 @@ Returns the **key** (for a map) or the **index** (for a vector) corresponding to
 ##### **Examples:**
 
 ```gval
-which_min({"Bacteria":1,"Fungi":0,"Plants":20})  // returns "Fungi"
-which_min([10, 2, 7, 5])                          // returns 1
+whichmin({"Bacteria":1,"Fungi":0,"Plants":20})  // returns "Fungi"
+whichmin([10, 2, 7, 5])                          // returns 1
 ```
 
 #### **`filtermin`**
