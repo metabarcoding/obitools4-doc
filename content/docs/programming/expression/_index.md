@@ -251,6 +251,78 @@ max({"a":10,"b":2})  // returns 10
 max(12) // returns 12
 ```
 
+#### **`which_max`**
+
+Returns the **key** (for a map) or the **index** (for a vector) corresponding to the maximum value in the container. Returns an error if the container is empty or if the values are not comparable.
+
+- On a **map**: returns the key (string) associated with the largest value.
+- On a **vector**: returns the zero-based index (number) of the largest element.
+
+##### **Examples:**
+
+```gval
+which_max({"Bacteria":1,"Fungi":0,"Plants":20})  // returns "Plants"
+which_max([10, 2, 7, 5])                          // returns 0
+```
+
+A typical use case is to identify which category dominates in a classification annotation:
+
+```gval
+which_max(annotations.kmer_strict_matches) == "Plants"
+```
+
+#### **`which_min`**
+
+Returns the **key** (for a map) or the **index** (for a vector) corresponding to the minimum value in the container. Returns an error if the container is empty or if the values are not comparable.
+
+- On a **map**: returns the key (string) associated with the smallest value.
+- On a **vector**: returns the zero-based index (number) of the smallest element.
+
+##### **Examples:**
+
+```gval
+which_min({"Bacteria":1,"Fungi":0,"Plants":20})  // returns "Fungi"
+which_min([10, 2, 7, 5])                          // returns 1
+```
+
+#### **`filtermin`**
+
+Returns a new container keeping only the elements whose value is greater than or equal to `minimum`. Accepts a **vector** or a **map** as first argument and a numeric threshold as second argument. For a scalar numeric value, the value itself is returned if it is greater than or equal to `minimum`, otherwise an error is raised.
+
+##### **Examples**
+
+```gval
+filtermin([10, 2, 5, 8], 5)              // returns [10, 5, 8]
+filtermin({"a":10,"b":2,"c":5}, 5)       // returns {"a":10,"c":5}
+```
+
+#### **`filtermax`**
+
+Returns a new container keeping only the elements whose value is less than or equal to `maximum`. Accepts a **vector** or a **map** as first argument and a numeric threshold as second argument. For a scalar numeric value, the value itself is returned if it is less than or equal to `maximum`, otherwise an error is raised.
+
+##### **Examples**
+
+```gval
+filtermax([10, 2, 5, 8], 5)              // returns [2, 5]
+filtermax({"a":10,"b":2,"c":5}, 5)       // returns {"b":2,"c":5}
+```
+
+#### **`saturatingsub`**
+
+Subtracts a numeric value from each element of a **vector** or a **map**, with a floor at zero (the result never goes below zero). For a scalar numeric value, applies the same saturating subtraction directly.
+
+- On **vectors**: all results are kept, including those that reach zero.
+- On **maps**: entries whose result would be zero or below are **omitted** from the returned map.
+
+##### **Examples**
+
+```gval
+saturatingsub([10, 2, 5], 4)             // returns [6, 0, 1]
+saturatingsub({"a":10,"b":2,"c":5}, 4)  // returns {"a":6,"c":1}  ("b" dropped: 2-4=0)
+saturatingsub(7, 3)                      // returns 4
+saturatingsub(2, 5)                      // returns 0
+```
+
 #### **`sprintf`** 
 
 **Formats a string by replacing placeholders with values**, enabling dynamic
